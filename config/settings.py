@@ -136,3 +136,27 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 AUTH_USER_MODEL = 'account.User'
+LOGIN_URL = '/u/login-register'
+
+COMMON_ADMIN_USER_ROLES = [
+    'financial_user'
+]
+
+SUPER_ADMIN_ROLES = [
+    'super_user'
+]
+
+ADMIN_USER_ROLES = [
+    *COMMON_ADMIN_USER_ROLES,
+    *SUPER_ADMIN_ROLES
+]
+
+USER_ROLES = [
+    *ADMIN_USER_ROLES,
+    'normal_user',
+]
+
+IMAGE_FORMATS = [
+    'jpg',
+    'png'
+]
