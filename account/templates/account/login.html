@@ -22,6 +22,14 @@
             <input type="submit" value="ورود" class="signin-button">
         </div>
 
-    </form>
+    </form>      
+    <div>
+        <a href= "{% url 'account:signup' %}">
+            ثبت نام
+        </a>
+        <a href= "{% url 'account:resetpassword' %}">
+            بازیابی رمز عبور
+        </a>
+    </div>
 </body>
 </html>

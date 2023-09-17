@@ -41,3 +41,12 @@ class Signup(View):
             new_user.set_password(password)
             new_user.save()
             return redirect('account:login')
+
+
+class ResetPassword(View):
+
+    def get(self,request):
+        return render(request,'account/resetpassword.html')
+    
+    def post(self, request):
+        pass
