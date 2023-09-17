@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     #thir party apps
+    'django_q',
     'phonenumber_field',
     # apps
     'account',
@@ -160,3 +161,16 @@ IMAGE_FORMATS = [
     'jpg',
     'png'
 ]
+
+Q_CLUSTER = {
+    'name': 'django-q',
+    'timeout': 60,
+    'orm': 'default',
+}
+
+MESSAGE_STORAGE = "django.contrib.messages.storage.cookie.CookieStorage"
+
+REDIS_CONFIG = {
+    'HOST': 'localhost',
+    'PORT': '6379'
+}
