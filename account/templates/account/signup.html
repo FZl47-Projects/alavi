@@ -1,0 +1,42 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <div class="firstname-wrapper">
+            <h2 id="firstname-text">نام</h2>
+            <input type="text" placeholder="" name="firstname" id="firstname-input">
+            <i></i>
+        </div>
+        <div class="lastname-wrapper">
+            <h2 id="lastname-text">نام خانوادگی</h2>
+            <input type="text" placeholder="" name="lastname" id="lastname-input">
+            <i></i>
+        </div>
+        <div class="phonenumber-wrapper">
+            <h2 id="phonenumber-text">شماره تلفن</h2>
+            <input type="text" placeholder="" name="phonenumber" id="phonenumber-input" pattern="[0-9]{11,12}">>
+            <i></i>
+        </div>
+
+        <div class="password-wrapper">
+            <h2 id="password-text">رمز عبور</h2>
+            <input type="password" placeholder="" name="password" id="password-input">
+        </div>
+        
+        <div class="password2-wrapper">
+            <h2 id="password2-text">رمز عبور</h2>
+            <input type="password2" placeholder="" name="password2" id="password2-input">
+        </div>
+
+        <div class="sign-up-button">
+            <input type="submit" value="ثبت نام" class="signin-button">
+        </div>
+
+    </form>
+</body>
+</html>

@@ -7,9 +7,9 @@
 <body>
     <form action="" method="POST">
         {% csrf_token %}
-        <div class="phone-number-wrapper">
-            <h2 id="phone_number-text">شماره تلفن</h2>
-            <input type="text" placeholder="" name="phone-number" id="phone-number-input">
+        <div class="phonenumber-wrapper">
+            <h2 id="phonenumber-text">شماره تلفن</h2>
+            <input type="text" placeholder="" name="phonenumber" id="phonenumber-input" pattern="[0-9]{11,12}">
             <i></i>
         </div>
 
