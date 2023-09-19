@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block Title %}
-تعریف رژیم غذایی
+  پنل ادمین
 {% endblock %}
 
 {% block Link %}
@@ -19,25 +19,25 @@
          <div class="up-menu">
            <ul class="list">
              <li class="item-menu">
-               <a href="home-admin" class="active">
+               <a href="{% url 'account:home-admin' %}" class="active">
                  <span><i class="fa fa-home"></i></span>
                  <span>خانه </span>
                </a>
              </li>
              <li class="item-menu">
-               <a href="users">
+               <a href="{% url 'account:users' %}">
                 <span><i class="fa-solid fa-users"></i></span>
                  <span>لیست کاربران</span>
                </a>
              </li>
              <li class="item-menu">
-               <a href="definition-of-diet" >
+               <a href="{% url 'account:definition-of-diet' %}" >
                 <span><i class="fa-solid fa-bowl-food"></i></span>
                  <span>تعریف رژیم غذایی</span>
                </a>
              </li>
              <li class="item-menu">
-               <a href="definition-of-training-program">
+               <a href="{% url 'account:definition-of-training-program' %}">
                  <span><i class="fa-sharp fa-solid fa-dumbbell"></i></span>
                  <span>تعریف برنامه تمرینی</span>
                </a>

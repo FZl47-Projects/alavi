@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.base_user import BaseUserManager
 from django.contrib.auth.models import AbstractUser
+from django.urls import reverse
 from phonenumber_field.modelfields import PhoneNumberField
 
 
@@ -100,3 +101,6 @@ class User(AbstractUser):
         if self.last_login:
             return self.last_login.strftime('%Y-%m-%d %H:%M:%S')
         return '-'
+
+    def get_absolute_url(self):
+        return reverse('account:user-profile',args=(self.id,))

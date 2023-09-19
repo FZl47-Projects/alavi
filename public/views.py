@@ -18,32 +18,3 @@ class Diet_plan(View):
     template_name = 'public/diet-plan.html'
     def get(self,request):
         return render(request,self.template_name)
-
-class Home_admin(View):
-    template_name = 'admin/home-admin.html'
-    def get(self,request):
-        return render(request,self.template_name)
-
-class Users(View):
-    template_name = 'admin/users.html'
-    def get(self,request):
-        return render(request,self.template_name)
-
-class Definition_diet(View):
-    template_name = 'admin/definition-of-diet.html'
-    def get(self,request):
-        return render(request,self.template_name)
-
-class Definition_training_program(View):
-    template_name = 'admin/definition-of-training-program.html'
-    def get(self,request):
-        return render(request,self.template_name)
-
-class User_profile(View):
-    template_name = 'admin/user-profile.html'
-    def get(self,request,user_id):
-        user = User.objects.get(id=user_id)
-        context = {
-            'user':user
-        }
-        return render(request,self.template_name,context)

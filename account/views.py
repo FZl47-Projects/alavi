@@ -199,3 +199,36 @@ class UserList(View):
         }
         return render(request, self.template_name, context)
 
+
+class Home_admin(View):
+    template_name = 'account/admin/home-admin.html'
+    def get(self,request):
+        return render(request,self.template_name)
+
+class Users(View):
+    template_name = 'account/admin/users.html'
+    def get(self,request):
+        users = User.normal_user.all()
+        context = {
+            'users':users
+        }
+        return render(request,self.template_name,context)
+
+class Definition_diet(View):
+    template_name = 'account/admin/definition-of-diet.html'
+    def get(self,request):
+        return render(request,self.template_name)
+
+class Definition_training_program(View):
+    template_name = 'account/admin/definition-of-training-program.html'
+    def get(self,request):
+        return render(request,self.template_name)
+
+class User_profile(View):
+    template_name = 'account/admin/user-profile.html'
+    def get(self,request,user_id):
+        user = User.normal_user.get(id=user_id)
+        context = {
+            'user':user
+        }
+        return render(request,self.template_name,context)
