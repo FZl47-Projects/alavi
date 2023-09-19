@@ -1,0 +1,49 @@
+
+
+@media (max-width: 500px){
+ 
+    .btns-table{
+     .btn-item{
+      border-bottom: none;
+      border-top-left-radius:12px;
+      border-top-right-radius: 12px;
+      padding: 3px 0;
+      font-size: 12px;
+      &.active{
+    padding: 7px 5px;
+    font-size: 14px;
+      }
+      
+     }
+    }
+
+  }
+
+@media (max-width: 700px) {
+    .ms-header{
+        .ms-nav{
+            .user {
+             font-size: 11px !important;
+            }
+        } 
+      }  
+        .content-main{
+            padding: 0 0px !important;
+            .title{
+                font-size:25px !important;
+              }
+       }
+    }
+   @media (max-width: 991px){
+    .menu-fixed-right {
+      right: -280px;
+      -webkit-transition: .5s;
+      transition: .5s;
+      top: 0;
+      width: 280px;
+      background: #fff;
+  }
+   }
+
+ 
+    

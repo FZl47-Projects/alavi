@@ -1,0 +1,115 @@
+@import "./base";
+@import "./colors";
+@import "./variables";
+@import "./mixns";
+@import "./component";
+
+.content-main-admin{
+    background-image: url(../images/hhh.png);
+    background-position: center;
+    background-size: cover;
+    height: 100vh;
+  }
+  .ms-header{
+    height: 20vh;
+  }
+  .tables-content{
+    
+  }
+  .tables-content{
+    display: none;
+    animation: fade-in 1s ease-in;
+    &.active{
+      display: block;
+    }
+  }
+  .table-two{
+   background-color: #292929;;
+    height: 70vh;
+    overflow-y: scroll;
+    margin: auto;
+    &::-webkit-scrollbar {
+      height: 5px;
+      width: 6px;
+      background-color: transparent;
+    }
+
+    /* Track */
+    &::-webkit-scrollbar-track {
+      background-color: transparent;
+    }
+
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+      background: rgb(7, 136, 85);
+      width: 10px;
+      height: 10px;
+      border-radius: 100px;
+      -webkit-border-radius: 100px;
+      -moz-border-radius: 100px;
+      -ms-border-radius: 100px;
+      -o-border-radius: 100px;
+}
+
+    /* Handle on hover */
+    &::-webkit-scrollbar-thumb:hover {
+      background: $color-primary;
+    }
+    .add-button{
+      padding: 20px 10px;
+      .inner-add-button{
+       border-radius:50px;
+       display: flex;
+       align-items: center;
+       background-color: #181818;
+       cursor: pointer;
+       .text{
+        color: #fff;
+        font-size: 12px;
+        padding-right: 5px;
+       }
+      }
+    }
+  }
+  .btns-table{
+    display: flex;
+    margin: auto;
+    height: 10vh;
+   .btn-item{
+    border: 1px solid rgba(94, 93, 93, 0.833);
+    border-bottom: none;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    padding: 7px 0;
+    font-size: 1em;
+    text-align: center;
+    background-color: #181818;
+    color: #fff;
+    cursor: pointer;
+    margin-top: auto;
+    &.active{
+      z-index: 1;
+  padding: 10px 5px;
+  font-size: 1em;
+  font-weight: 500;
+  cursor: default;
+  background-color: #292929;
+  background-repeat: no-repeat;
+  background-size: cover;
+    }
+     width: 16.28%;
+    
+      }
+  }
+  @keyframes fade-in {
+    0% {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0px);
+    }
+  }
+
+  @import "./medias";

@@ -1,0 +1,661 @@
+{% extends 'base/base_template.html' %}
+{% load static %}
+
+{% block Title %}
+  برنامه غذایی
+{% endblock %}
+
+{% block Link %}
+  <link rel="stylesheet" href="{% static 'front/vendors/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'front/styles/diet-plan.css' %}">
+  <link rel="stylesheet" href="{% static 'front/styles/all.css' %}">
+{% endblock %}
+{% block Content %}
+<body>
+  <section class="main-page">
+      <main class="col-md-12 col-lg-12 content-main-admin" >
+       <header class="ms-header">
+           <nav class="ms-nav">
+               <div class="user col-6">
+                   <span><img src="{% static 'front/images/userimage.png' %}" alt=""></span>
+                   <span>نام و نام خانوادگی</span>
+               </div>
+               <div class="logo col-6">
+                   <img src="{% static 'front/images/22.png' %}" alt="">
+               </div>
+           </nav>
+       </header>
+       <div class="btns-table  col-12 col-lg-11"> 
+           <div class="btn-item active">شنبه</div>
+           <div class="btn-item">یکشنبه</div>
+           <div class="btn-item">دوشنبه</div>
+           <div class="btn-item">سه شنبه</div>
+           <div class="btn-item">چهارشنبه</div>
+           <div class="btn-item">پنج شنیه</div>
+           <div class="btn-item">جمعه</div>
+          </div>
+       <section class="table-two col-12 col-lg-11">
+           <div class="tables-content active">
+                  <table class="table">
+                      <tr>
+                        <td>کاهو</td>
+                        <td>100گرم</td> 
+                        <td>200کالری</td>
+                        <td>توضیحات بیشتر</td>
+                      </tr>
+                      <tr>
+                          <td>کاهو</td>
+                          <td>100گرم</td> 
+                          <td>200کالری</td>
+                          <td>توضیحات بیشتر</td>
+                        </tr>
+                        <tr>
+                          <td>کاهو</td>
+                          <td>100گرم</td> 
+                          <td>200کالری</td>
+                          <td>توضیحات بیشتر</td>
+                        </tr> 
+                        <tr>
+                          <td>کاهو</td>
+                          <td>100گرم</td> 
+                          <td>200کالری</td>
+                          <td>توضیحات بیشتر</td>
+                        </tr>
+                        <tr>
+                          <td>کاهو</td>
+                          <td>100گرم</td> 
+                          <td>200کالری</td>
+                          <td>توضیحات بیشتر</td>
+                        </tr>
+                        <tr>
+                          <td>کاهو</td>
+                          <td>100گرم</td> 
+                          <td>200کالری</td>
+                          <td>توضیحات بیشتر</td>
+                        </tr>
+                        <tr>
+                          <td>کاهو</td>
+                          <td>100گرم</td> 
+                          <td>200کالری</td>
+                          <td>توضیحات بیشتر</td>
+                        </tr>
+                        <tr>
+                          <td>کاهو</td>
+                          <td>100گرم</td> 
+                          <td>200کالری</td>
+                          <td>توضیحات بیشتر</td>
+                        </tr>
+                        <tr>
+                          <td>کاهو</td>
+                          <td>100گرم</td> 
+                          <td>200کالری</td>
+                          <td>توضیحات بیشتر</td>
+                        </tr>
+                        <tr>
+                          <td>کاهو</td>
+                          <td>100گرم</td> 
+                          <td>200کالری</td>
+                          <td>توضیحات بیشتر</td>
+                        </tr>
+                        <tr>
+                          <td>کاهو</td>
+                          <td>100گرم</td> 
+                          <td>200کالری</td>
+                          <td>توضیحات بیشتر</td>
+                        </tr>
+                        <tr>
+                           <td>کاهو</td>
+                           <td>100گرم</td> 
+                           <td>200کالری</td>
+                           <td>توضیحات بیشتر</td>
+                         </tr>
+                         <tr>
+                           <td>کاهو</td>
+                           <td>100گرم</td> 
+                           <td>200کالری</td>
+                           <td>توضیحات بیشتر</td>
+                         </tr>
+                         <tr>
+                           <td>کاهو</td>
+                           <td>100گرم</td> 
+                           <td>200کالری</td>
+                           <td>توضیحات بیشتر</td>
+                         </tr>
+                         <tr>
+                           <td>کاهو</td>
+                           <td>100گرم</td> 
+                           <td>200کالری</td>
+                           <td>توضیحات بیشتر</td>
+                         </tr>
+                         <tr>
+                           <td>کاهو</td>
+                           <td>100گرم</td> 
+                           <td>200کالری</td>
+                           <td>توضیحات بیشتر</td>
+                         </tr>
+                      
+                  </table>
+           </div>
+           <div class="tables-content">
+                  <table class="table">
+                      <tr>
+                        <td>کاهو</td>
+                        <td>100گرم</td> 
+                        <td>200کالری</td>
+                        <td>توضیحات بیشتر</td>
+                      </tr>
+                      <tr>
+                          <td>کاهو</td>
+                          <td>100گرم</td> 
+                          <td>200کالری</td>
+                          <td>توضیحات بیشتر</td>
+                        </tr>
+                        <tr>
+                          <td>کاهو</td>
+                          <td>100گرم</td> 
+                          <td>200کالری</td>
+                          <td>توضیحات بیشتر</td>
+                        </tr> 
+                        <tr>
+                          <td>کاهو</td>
+                          <td>100گرم</td> 
+                          <td>200کالری</td>
+                          <td>توضیحات بیشتر</td>
+                        </tr>
+                        <tr>
+                          <td>کاهو</td>
+                          <td>100گرم</td> 
+                          <td>200کالری</td>
+                          <td>توضیحات بیشتر</td>
+                        </tr>
+                        <tr>
+                          <td>کاهو</td>
+                          <td>100گرم</td> 
+                          <td>200کالری</td>
+                          <td>توضیحات بیشتر</td>
+                        </tr>
+                        <tr>
+                          <td>کاهو</td>
+                          <td>100گرم</td> 
+                          <td>200کالری</td>
+                          <td>توضیحات بیشتر</td>
+                        </tr>
+                        <tr>
+                          <td>کاهو</td>
+                          <td>100گرم</td> 
+                          <td>200کالری</td>
+                          <td>توضیحات بیشتر</td>
+                        </tr>
+                        <tr>
+                          <td>کاهو</td>
+                          <td>100گرم</td> 
+                          <td>200کالری</td>
+                          <td>توضیحات بیشتر</td>
+                        </tr>
+                        <tr>
+                          <td>کاهو</td>
+                          <td>100گرم</td> 
+                          <td>200کالری</td>
+                          <td>توضیحات بیشتر</td>
+                        </tr>
+                        <tr>
+                          <td>کاهو</td>
+                          <td>100گرم</td> 
+                          <td>200کالری</td>
+                          <td>توضیحات بیشتر</td>
+                        </tr>
+                        <tr>
+                           <td>کاهو</td>
+                           <td>100گرم</td> 
+                           <td>200کالری</td>
+                           <td>توضیحات بیشتر</td>
+                         </tr>
+                         <tr>
+                           <td>کاهو</td>
+                           <td>100گرم</td> 
+                           <td>200کالری</td>
+                           <td>توضیحات بیشتر</td>
+                         </tr>
+                         <tr>
+                           <td>کاهو</td>
+                           <td>100گرم</td> 
+                           <td>200کالری</td>
+                           <td>توضیحات بیشتر</td>
+                         </tr>
+                         <tr>
+                           <td>کاهو</td>
+                           <td>100گرم</td> 
+                           <td>200کالری</td>
+                           <td>توضیحات بیشتر</td>
+                         </tr>
+                         <tr>
+                           <td>کاهو</td>
+                           <td>100گرم</td> 
+                           <td>200کالری</td>
+                           <td>توضیحات بیشتر</td>
+                         </tr>
+                      
+                  </table>
+           </div>
+           <div class="tables-content">
+                  <table class="table">
+                      <tr>
+                        <td>کاهو</td>
+                        <td>100گرم</td> 
+                        <td>200کالری</td>
+                        <td>توضیحات بیشتر</td>
+                      </tr>
+                      <tr>
+                          <td>کاهو</td>
+                          <td>100گرم</td> 
+                          <td>200کالری</td>
+                          <td>توضیحات بیشتر</td>
+                        </tr>
+                        <tr>
+                          <td>کاهو</td>
+                          <td>100گرم</td> 
+                          <td>200کالری</td>
+                          <td>توضیحات بیشتر</td>
+                        </tr> 
+                        <tr>
+                          <td>کاهو</td>
+                          <td>100گرم</td> 
+                          <td>200کالری</td>
+                          <td>توضیحات بیشتر</td>
+                        </tr>
+                        <tr>
+                          <td>کاهو</td>
+                          <td>100گرم</td> 
+                          <td>200کالری</td>
+                          <td>توضیحات بیشتر</td>
+                        </tr>
+                        <tr>
+                          <td>کاهو</td>
+                          <td>100گرم</td> 
+                          <td>200کالری</td>
+                          <td>توضیحات بیشتر</td>
+                        </tr>
+                        <tr>
+                          <td>کاهو</td>
+                          <td>100گرم</td> 
+                          <td>200کالری</td>
+                          <td>توضیحات بیشتر</td>
+                        </tr>
+                        <tr>
+                          <td>کاهو</td>
+                          <td>100گرم</td> 
+                          <td>200کالری</td>
+                          <td>توضیحات بیشتر</td>
+                        </tr>
+                        <tr>
+                          <td>کاهو</td>
+                          <td>100گرم</td> 
+                          <td>200کالری</td>
+                          <td>توضیحات بیشتر</td>
+                        </tr>
+                        <tr>
+                          <td>کاهو</td>
+                          <td>100گرم</td> 
+                          <td>200کالری</td>
+                          <td>توضیحات بیشتر</td>
+                        </tr>
+                        <tr>
+                          <td>کاهو</td>
+                          <td>100گرم</td> 
+                          <td>200کالری</td>
+                          <td>توضیحات بیشتر</td>
+                        </tr>
+                        <tr>
+                           <td>کاهو</td>
+                           <td>100گرم</td> 
+                           <td>200کالری</td>
+                           <td>توضیحات بیشتر</td>
+                         </tr>
+                         <tr>
+                           <td>کاهو</td>
+                           <td>100گرم</td> 
+                           <td>200کالری</td>
+                           <td>توضیحات بیشتر</td>
+                         </tr>
+                         <tr>
+                           <td>کاهو</td>
+                           <td>100گرم</td> 
+                           <td>200کالری</td>
+                           <td>توضیحات بیشتر</td>
+                         </tr>
+                         <tr>
+                           <td>کاهو</td>
+                           <td>100گرم</td> 
+                           <td>200کالری</td>
+                           <td>توضیحات بیشتر</td>
+                         </tr>
+                         <tr>
+                           <td>کاهو</td>
+                           <td>100گرم</td> 
+                           <td>200کالری</td>
+                           <td>توضیحات بیشتر</td>
+                         </tr>
+                      
+                  </table>
+           </div>
+           <div class="tables-content">
+                  <table class="table">
+                      <tr>
+                        <td>کاهو</td>
+                        <td>100گرم</td> 
+                        <td>200کالری</td>
+                        <td>توضیحات بیشتر</td>
+                      </tr>
+                      <tr>
+                          <td>کاهو</td>
+                          <td>100گرم</td> 
+                          <td>200کالری</td>
+                          <td>توضیحات بیشتر</td>
+                        </tr>
+                        <tr>
+                          <td>کاهو</td>
+                          <td>100گرم</td> 
+                          <td>200کالری</td>
+                          <td>توضیحات بیشتر</td>
+                        </tr> 
+                        <tr>
+                          <td>کاهو</td>
+                          <td>100گرم</td> 
+                          <td>200کالری</td>
+                          <td>توضیحات بیشتر</td>
+                        </tr>
+                        <tr>
+                          <td>کاهو</td>
+                          <td>100گرم</td> 
+                          <td>200کالری</td>
+                          <td>توضیحات بیشتر</td>
+                        </tr>
+                        <tr>
+                          <td>کاهو</td>
+                          <td>100گرم</td> 
+                          <td>200کالری</td>
+                          <td>توضیحات بیشتر</td>
+                        </tr>
+                        <tr>
+                          <td>کاهو</td>
+                          <td>100گرم</td> 
+                          <td>200کالری</td>
+                          <td>توضیحات بیشتر</td>
+                        </tr>
+                        <tr>
+                          <td>کاهو</td>
+                          <td>100گرم</td> 
+                          <td>200کالری</td>
+                          <td>توضیحات بیشتر</td>
+                        </tr>
+                        <tr>
+                          <td>کاهو</td>
+                          <td>100گرم</td> 
+                          <td>200کالری</td>
+                          <td>توضیحات بیشتر</td>
+                        </tr>
+                        <tr>
+                          <td>کاهو</td>
+                          <td>100گرم</td> 
+                          <td>200کالری</td>
+                          <td>توضیحات بیشتر</td>
+                        </tr>
+                        <tr>
+                          <td>کاهو</td>
+                          <td>100گرم</td> 
+                          <td>200کالری</td>
+                          <td>توضیحات بیشتر</td>
+                        </tr>
+                        <tr>
+                           <td>کاهو</td>
+                           <td>100گرم</td> 
+                           <td>200کالری</td>
+                           <td>توضیحات بیشتر</td>
+                         </tr>
+                         <tr>
+                           <td>کاهو</td>
+                           <td>100گرم</td> 
+                           <td>200کالری</td>
+                           <td>توضیحات بیشتر</td>
+                         </tr>
+                         <tr>
+                           <td>کاهو</td>
+                           <td>100گرم</td> 
+                           <td>200کالری</td>
+                           <td>توضیحات بیشتر</td>
+                         </tr>
+                         <tr>
+                           <td>کاهو</td>
+                           <td>100گرم</td> 
+                           <td>200کالری</td>
+                           <td>توضیحات بیشتر</td>
+                         </tr>
+                         <tr>
+                           <td>کاهو</td>
+                           <td>100گرم</td> 
+                           <td>200کالری</td>
+                           <td>توضیحات بیشتر</td>
+                         </tr>
+                      
+                  </table>
+           </div>
+           <div class="tables-content">
+                  <table class="table">
+                      <tr>
+                        <td>کاهو</td>
+                        <td>100گرم</td> 
+                        <td>200کالری</td>
+                        <td>توضیحات بیشتر</td>
+                      </tr>
+                      <tr>
+                          <td>کاهو</td>
+                          <td>100گرم</td> 
+                          <td>200کالری</td>
+                          <td>توضیحات بیشتر</td>
+                        </tr>
+                        <tr>
+                          <td>کاهو</td>
+                          <td>100گرم</td> 
+                          <td>200کالری</td>
+                          <td>توضیحات بیشتر</td>
+                        </tr> 
+                        <tr>
+                          <td>کاهو</td>
+                          <td>100گرم</td> 
+                          <td>200کالری</td>
+                          <td>توضیحات بیشتر</td>
+                        </tr>
+                        <tr>
+                          <td>کاهو</td>
+                          <td>100گرم</td> 
+                          <td>200کالری</td>
+                          <td>توضیحات بیشتر</td>
+                        </tr>
+                        <tr>
+                          <td>کاهو</td>
+                          <td>100گرم</td> 
+                          <td>200کالری</td>
+                          <td>توضیحات بیشتر</td>
+                        </tr>
+                        <tr>
+                          <td>کاهو</td>
+                          <td>100گرم</td> 
+                          <td>200کالری</td>
+                          <td>توضیحات بیشتر</td>
+                        </tr>
+                        <tr>
+                          <td>کاهو</td>
+                          <td>100گرم</td> 
+                          <td>200کالری</td>
+                          <td>توضیحات بیشتر</td>
+                        </tr>
+                        <tr>
+                          <td>کاهو</td>
+                          <td>100گرم</td> 
+                          <td>200کالری</td>
+                          <td>توضیحات بیشتر</td>
+                        </tr>
+                        <tr>
+                          <td>کاهو</td>
+                          <td>100گرم</td> 
+                          <td>200کالری</td>
+                          <td>توضیحات بیشتر</td>
+                        </tr>
+                        <tr>
+                          <td>کاهو</td>
+                          <td>100گرم</td> 
+                          <td>200کالری</td>
+                          <td>توضیحات بیشتر</td>
+                        </tr>
+                        <tr>
+                           <td>کاهو</td>
+                           <td>100گرم</td> 
+                           <td>200کالری</td>
+                           <td>توضیحات بیشتر</td>
+                         </tr>
+                         <tr>
+                           <td>کاهو</td>
+                           <td>100گرم</td> 
+                           <td>200کالری</td>
+                           <td>توضیحات بیشتر</td>
+                         </tr>
+                         <tr>
+                           <td>کاهو</td>
+                           <td>100گرم</td> 
+                           <td>200کالری</td>
+                           <td>توضیحات بیشتر</td>
+                         </tr>
+                         <tr>
+                           <td>کاهو</td>
+                           <td>100گرم</td> 
+                           <td>200کالری</td>
+                           <td>توضیحات بیشتر</td>
+                         </tr>
+                         <tr>
+                           <td>کاهو</td>
+                           <td>100گرم</td> 
+                           <td>200کالری</td>
+                           <td>توضیحات بیشتر</td>
+                         </tr>
+                      
+                  </table>
+           </div>
+           <div class="tables-content">
+                  <table class="table">
+                      <tr>
+                        <td>کاهو</td>
+                        <td>100گرم</td> 
+                        <td>200کالری</td>
+                        <td>توضیحات بیشتر</td>
+                      </tr>
+                      <tr>
+                          <td>کاهو</td>
+                          <td>100گرم</td> 
+                          <td>200کالری</td>
+                          <td>توضیحات بیشتر</td>
+                        </tr>
+                        <tr>
+                          <td>کاهو</td>
+                          <td>100گرم</td> 
+                          <td>200کالری</td>
+                          <td>توضیحات بیشتر</td>
+                        </tr> 
+                        <tr>
+                          <td>کاهو</td>
+                          <td>100گرم</td> 
+                          <td>200کالری</td>
+                          <td>توضیحات بیشتر</td>
+                        </tr>
+                        <tr>
+                          <td>کاهو</td>
+                          <td>100گرم</td> 
+                          <td>200کالری</td>
+                          <td>توضیحات بیشتر</td>
+                        </tr>
+                        <tr>
+                          <td>کاهو</td>
+                          <td>100گرم</td> 
+                          <td>200کالری</td>
+                          <td>توضیحات بیشتر</td>
+                        </tr>
+                        <tr>
+                          <td>کاهو</td>
+                          <td>100گرم</td> 
+                          <td>200کالری</td>
+                          <td>توضیحات بیشتر</td>
+                        </tr>
+                        <tr>
+                          <td>کاهو</td>
+                          <td>100گرم</td> 
+                          <td>200کالری</td>
+                          <td>توضیحات بیشتر</td>
+                        </tr>
+                        <tr>
+                          <td>کاهو</td>
+                          <td>100گرم</td> 
+                          <td>200کالری</td>
+                          <td>توضیحات بیشتر</td>
+                        </tr>
+                        <tr>
+                          <td>کاهو</td>
+                          <td>100گرم</td> 
+                          <td>200کالری</td>
+                          <td>توضیحات بیشتر</td>
+                        </tr>
+                        <tr>
+                          <td>کاهو</td>
+                          <td>100گرم</td> 
+                          <td>200کالری</td>
+                          <td>توضیحات بیشتر</td>
+                        </tr>
+                        <tr>
+                           <td>کاهو</td>
+                           <td>100گرم</td> 
+                           <td>200کالری</td>
+                           <td>توضیحات بیشتر</td>
+                         </tr>
+                         <tr>
+                           <td>کاهو</td>
+                           <td>100گرم</td> 
+                           <td>200کالری</td>
+                           <td>توضیحات بیشتر</td>
+                         </tr>
+                         <tr>
+                           <td>کاهو</td>
+                           <td>100گرم</td> 
+                           <td>200کالری</td>
+                           <td>توضیحات بیشتر</td>
+                         </tr>
+                         <tr>
+                           <td>کاهو</td>
+                           <td>100گرم</td> 
+                           <td>200کالری</td>
+                           <td>توضیحات بیشتر</td>
+                         </tr>
+                         <tr>
+                           <td>کاهو</td>
+                           <td>100گرم</td> 
+                           <td>200کالری</td>
+                           <td>توضیحات بیشتر</td>
+                         </tr>
+                      
+                  </table>
+           </div>
+               
+       </section>
+      </main>
+  </section>
+  <script src="{% static 'front/vendors/bootstrap.min.js' %}"></script>
+  <script src="{% static 'front/js/diet-plan.js' %}"></script>
+</body>
+{% endblock %}
+<!-- <!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>برنامه غذایی</title>
+
+</head> -->
+<!-- </html> -->

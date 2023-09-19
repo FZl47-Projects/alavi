@@ -1,0 +1,99 @@
+@import "./base";
+@import "./colors";
+@import "./variables";
+@import "./mixns";
+@import "./component";
+.table-title{
+  color: #fff;
+  margin: auto;
+  padding: 15px 0;
+  font-size: 16px;
+  font-weight: 500;
+}
+.content-main-admin{
+    background-image: url(../images/background.png);
+    background-position: center;
+    background-size: cover;
+    background-repeat: repeat-x;
+  }
+  .user-profile{
+      padding: 20px 10px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      background-color:rgba(7, 136, 84, 0.693);
+      margin: auto;
+      .user-img{
+          border-radius: 100%;
+          -webkit-border-radius: 100%;
+          -moz-border-radius: 100%;
+          -ms-border-radius: 100%;
+          -o-border-radius: 100%;
+          img{
+              border-radius: 100%;
+              -webkit-border-radius: 100%;
+              -moz-border-radius: 100%;
+              -ms-border-radius: 100%;
+              -o-border-radius: 100%;
+}
+     }
+     .specifications{
+         display: flex;
+         flex-wrap: wrap;
+         .specifications-item{
+             color: #fff;
+             text-align: center;
+             padding: 10px;
+             font-size: 13px;
+         }
+     }
+  }
+  .table-two{
+    background-color: #292929;;
+     height:400px;
+     overflow-y: scroll;
+     margin: auto;
+     padding: 15px;
+     &::-webkit-scrollbar {
+       height: 5px;
+       width: 6px;
+       background-color: transparent;
+     }
+ 
+     /* Track */
+     &::-webkit-scrollbar-track {
+       background-color: transparent;
+     }
+ 
+     /* Handle */
+     &::-webkit-scrollbar-thumb {
+       background: rgb(7, 136, 85);
+       width: 10px;
+       height: 10px;
+       border-radius: 100px;
+       -webkit-border-radius: 100px;
+       -moz-border-radius: 100px;
+       -ms-border-radius: 100px;
+       -o-border-radius: 100px;
+ }
+ 
+     /* Handle on hover */
+     &::-webkit-scrollbar-thumb:hover {
+       background: $color-primary;
+     }
+     .add-button{
+       padding: 20px 10px;
+       .inner-add-button{
+        border-radius:50px;
+        display: flex;
+        align-items: center;
+        background-color: #181818;
+        cursor: pointer;
+        .text{
+         color: #fff;
+         font-size: 12px;
+         padding-right: 5px;
+        }
+       }
+     }
+   }

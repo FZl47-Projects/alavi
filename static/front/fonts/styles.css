@@ -1,0 +1,9 @@
+@font-face {
+  font-family: 'Pinar-ExtraBold';
+  src: url(./Pinar-ExtraBold.eot);
+  src: url(./Pinar-ExtraBold.eot?#iefix) format('embedded-opentype'),
+       url(./Pinar-ExtraBold.otf) format('otf'),
+       url(./Pinar-ExtraBold.ttf) format('truetype'),
+       url(./Pinar-ExtraBold.woff) format('woff'),
+       url(./Pinar-ExtraBold.woff2) format('woff2');
+}

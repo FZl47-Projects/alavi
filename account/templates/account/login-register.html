@@ -203,15 +203,23 @@
                     {% csrf_token %}
                     <input type="hidden" name="type-page" value="register">
                     <div class="field input-field">
-                        <input type="tel" placeholder="شماره همراه" class="input" name="phonenumber">
+                        <input type="text" placeholder="نام" class="input" name="first_name" required minlength="3", maxlength="100">
                     </div>
 
                     <div class="field input-field">
-                        <input type="password" placeholder="رمز عبور" class="password" name="password">
+                        <input type="text" placeholder="نام خانوادگی" class="password" name="last_name" required required minlength="3", maxlength="100">
                     </div>
 
                     <div class="field input-field">
-                        <input type="password" placeholder="تایید رمز عبور" class="password" name="password2">
+                        <input type="tel" placeholder="شماره همراه" class="input" name="phonenumber" required>
+                    </div>
+
+                    <div class="field input-field">
+                        <input type="password" placeholder="رمز عبور" class="password" name="password" required minlength="8" maxlength="64">
+                    </div>
+
+                    <div class="field input-field">
+                        <input type="password" placeholder="تایید رمز عبور" class="password" name="password2" required minlength="8" maxlength="64">
                         <i class='bx bx-hide eye-icon'></i>
                     </div>
 

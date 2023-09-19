@@ -1,0 +1,117 @@
+@import "./component";
+@import "./mixns";
+@import "./base";
+
+.main-page{
+    width: 100vw;
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-image: url("../images/background.png");
+   
+    .content-main{
+     padding: 0 100px;
+     height: 80vh;
+    .title{
+      display: flex;
+      justify-content: end;
+      flex-direction: column;
+      font-size:40px;
+      color: #fff;
+      height: 50%;
+      padding: 10px;
+      line-height:1;
+      span{
+        &:nth-child(1){
+            font-weight: 500;
+        }
+      }
+    }
+    .services-content{
+        height:50%;
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+        .services-content-inner{
+            display: flex;
+            flex-wrap: wrap;
+            .services-item{
+                display: flex;
+                justify-content: center;
+                flex-direction: column;
+                align-items: center;
+                padding: 20px;
+                .title-services{
+                    display: flex;
+                    justify-content: center;
+                    flex-direction: column;
+                    font-size: 20px;
+                    padding: 10px;
+                    span {
+                        &:nth-child(1) {
+                          color: rgb(255, 255, 255);
+                        }
+                        &:nth-child(2) {
+                            color: #4a6e5d;
+                            font-weight: 600;
+                            font-size: 25px;
+                          }
+                        }
+                      }
+                .description{
+                    color: #fff;
+                }
+            }
+        }  
+     }
+    }
+}
+.services-content{
+    .services-content-inner{
+        .swiper{
+            .swiper-wrapper{
+               .swiper-slide {
+                background-color: rgba(13, 17, 13, 0.742);
+                &:nth-child(2n) {
+                    background-color:#0a291f7c !important;
+                    .services-item{
+                        .title-services{
+                            span {
+                                &:nth-child(1) {
+                                  color: #6da78b;
+                                  font-weight: 500;
+                                }
+                                &:nth-child(2) {
+                                    color: #ffffff;
+                                    font-weight: 600;
+                                    font-size: 25px;
+                                  }
+                                }
+                              }
+                        }
+                      }
+                   }
+               }
+               .swiper-button-next {
+                left: 0px !important ;
+                right: auto;
+            }
+            .swiper-button-prev {
+                left: auto;
+                right: 0px !important;
+            }
+            .swiper-button-next:after {
+                font-size: 23px !important;
+                color: #fff;
+            }
+            .swiper-button-prev:after {
+                font-size: 23px !important;
+                color: #fff;
+            }
+            }
+        }
+ }
+
+
+@import "./medias";
