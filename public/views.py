@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import View
+from requests import request
+from account.models import User
 
 class Index(View):
     template_name = 'public/index.html'
@@ -39,5 +41,9 @@ class Definition_training_program(View):
 
 class User_profile(View):
     template_name = 'admin/user-profile.html'
-    def get(self,request):
-        return render(request,self.template_name)
+    def get(self,request,user_id):
+        user = User.objects.get(id=user_id)
+        context = {
+            'user':user
+        }
+        return render(request,self.template_name,context)
