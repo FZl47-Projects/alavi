@@ -1,0 +1,198 @@
+{% load static %}
+<nav class="sidebar vertical-scroll  ps-container ps-theme-default ps-active-y">
+    <div class="logo d-flex justify-content-between">
+        <a href="index.html"><img src="{% static 'images/dashboard/logo.png' %}" alt></a>
+        <div class="sidebar_close_icon d-lg-none">
+            <i class="ti-close"></i>
+        </div>
+    </div>
+    <ul id="sidebar_menu">
+
+        <li>
+            <a class="active d-flex justify-content-between" href="{% url 'account:dashboard' %}">
+                داشبورد
+                <i class="fa fa-tachometer-alt p-2"></i>
+            </a>
+        </li>
+
+        <li>
+            <a class="active d-flex justify-content-between" href="/">
+                خانه
+                <i class="fa fa-home p-2"></i>
+            </a>
+        </li>
+        
+
+        <li>
+            <a class="has-arrow" href="#" aria-expanded="false">
+                <div class="icon_menu">
+                    <img src="{% static 'images/dashboard/menu-icon/2.svg.xml' %}" alt>
+                </div>
+                <span>ساختمان</span>
+            </a>
+            <ul>
+                <li>
+                    <a href="{% url 'receipt:building_dashboard_add' %}">
+                        افزودن ساختمان
+                        <div>
+                            <i class="fa fa-plus font-size-7 m-0"></i>
+                            <i class="fa fa-building m-0"></i>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'receipt:building_dashboard_list' %}">
+                        لیست ساختمان ها
+                        <i class="fa fa-building"></i>
+                    </a>
+                </li>
+
+            </ul>
+        </li>
+
+        <li>
+            <a class="has-arrow" href="#" aria-expanded="false">
+                <div class="icon_menu">
+                    <img src="{% static 'images/dashboard/menu-icon/2.svg.xml' %}" alt>
+                </div>
+                <span>کاربران</span>
+            </a>
+            <ul>
+                <li>
+                    <a href="{% url 'account:user_add' %}">
+                        افزودن کاربر
+                        <i class="fa fa-user-plus"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'account:user_list' %}">
+                        لیست کاربران
+                        <i class="fa fa-users"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'account:user_financial_add' %}">
+                        افزودن مدیر مالی
+                        <i class="fa fa-user-tie"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'account:user_financial_list' %}">
+                        لیست مدیران مالی
+                        <i class="fa fa-users"></i>
+                    </a>
+                </li>
+
+            </ul>
+        </li>
+
+        <li>
+            <a class="has-arrow" href="#" aria-expanded="false">
+                <div class="icon_menu">
+                    <img src="{% static 'images/dashboard/menu-icon/2.svg.xml' %}" alt>
+                </div>
+                <span>رسید ها</span>
+            </a>
+            <ul>
+                <li>
+                    <a href="#">
+                        ثبت رسید
+                        <div>
+                            <i class="fa fa-plus m-0 font-size-7"></i>
+                            <i class="fa fa-receipt m-0"></i>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        لیست رسید ها
+                        <i class="fa fa-receipt"></i>
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+        <li>
+            <a class="has-arrow" href="#" aria-expanded="false">
+                <div class="icon_menu">
+                    <img src="{% static 'images/dashboard/menu-icon/2.svg.xml' %}" alt>
+                </div>
+                <span>اعلانات</span>
+            </a>
+            <ul>
+                <li>
+                    <a href="{% url 'notification:notification_dashboard_add' %}">
+                        ایجاد اعلان عمومی
+                        <div>
+                            <i class="fa fa-plus m-0 font-size-7"></i>
+                            <i class="fa fa-bell m-0"></i>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'notification:notification_dashboard_user_add' %}">
+                        ایجاد اعلان برای کاربر
+                        <div>
+                            <i class="fa fa-user m-0 font-size-7"></i>
+                            <i class="fa fa-bell m-0"></i>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'notification:notification_dashboard_list' %}">
+                        لیست اعلان های عمومی
+                        <div>
+                            <i class="fa fa-bell m-0 font-size-7"></i>
+                            <i class="fa fa-list m-0"></i>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'notification:notification_dashboard_user_list' %}">
+                        لیست اعلان های کاربران
+                        <div>
+                            <i class="fa fa-user m-0 font-size-7"></i>
+                            <i class="fa fa-list m-0"></i>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+        <li>
+            <a class="has-arrow" href="#" aria-expanded="false">
+                <div class="icon_menu">
+                    <img src="{% static 'images/dashboard/menu-icon/2.svg.xml' %}" alt>
+                </div>
+                <span>پشتیبانی</span>
+            </a>
+            <ul>
+                <li>
+                    <a href="{% url 'support:support_dashboard_ticket_add' %}">
+                        ایجاد تیکت
+                        <div>
+                            <i class="fa fa-plus m-0 font-size-7"></i>
+                            <i class="fa fa-ticket-alt m-0"></i>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'support:support_dashboard_ticket_list_new' %}">
+                        تیکت های جدید
+                        <div>
+                            <i class="fa fa-reply m-0 font-size-7"></i>
+                            <i class="fa fa-ticket-alt m-0"></i>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'support:support_dashboard_ticket_list_archive' %}">
+                        تیکت های ارشیو شده
+                        <i class="fa fa-ticket-alt"></i>
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+    </ul>
+</nav>

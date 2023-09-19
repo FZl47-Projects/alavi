@@ -16,27 +16,8 @@ class CustomUserChangeForm(UserChangeForm):
         fields = ('email', 'phonenumber')
 
 
-class UpdateUserForm(forms.ModelForm):
-
-    class Meta:
-        model = User
-        fields = ('first_name', 'last_name', 'email')
-        error_messages = {
-            'email': {
-                'invalid': 'ایمیل نامعتبر است',
-                'unique': 'این ایمیل توسط کاربر دیگه ای در حال استفاده است'
-            }
-        }
-
-
 class RegisterUserForm(forms.Form):
-    email_error_messages = {
-        'invalid': 'ایمیل نامعتبر است',
-        'unique': 'این ایمیل توسط کاربر دیگه ای در حال استفاده است'
-    }
-
     phonenumber = PhoneNumberField(region='IR')
-    email = forms.EmailField(required=True, error_messages=email_error_messages)
     password = forms.CharField(max_length=64, min_length=8, required=True, widget=forms.PasswordInput())
     password2 = forms.CharField(max_length=64, min_length=8, required=True, widget=forms.PasswordInput())
 
@@ -87,3 +68,4 @@ class ResetPasswordSetForm(forms.Form):
         if p1 != p2:
             raise forms.ValidationError('passwords is not same')
         return p2
+
