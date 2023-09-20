@@ -44,51 +44,7 @@
     </form>
   </div>
    <section class="main-page">
-    <nav class="menu-fixed-right col-2">
-      <div class="inner-menu-fixed-right">
-        <div class="logo"><img src="{% static 'front/images/22.png' %}" alt=""></div>
-        <div class="up-menu">
-          <ul class="list">
-            <li class="item-menu">
-              <a href="{% url 'account:home-admin' %}" class="active">
-                <span><i class="fa fa-home"></i></span>
-                <span>خانه </span>
-              </a>
-            </li>
-            <li class="item-menu">
-              <a href="{% url 'account:users' %}">
-               <span><i class="fa-solid fa-users"></i></span>
-                <span>لیست کاربران</span>
-              </a>
-            </li>
-            <li class="item-menu">
-              <a href="{% url 'account:definition-of-diet' %}" >
-               <span><i class="fa-solid fa-bowl-food"></i></span>
-                <span>تعریف رژیم غذایی</span>
-              </a>
-            </li>
-            <li class="item-menu">
-              <a href="{% url 'account:definition-of-training-program' %}">
-                <span><i class="fa-sharp fa-solid fa-dumbbell"></i></span>
-                <span>تعریف برنامه تمرینی</span>
-              </a>
-            </li>
-            <li class="item-menu">
-              <a href="#">
-                <span><i class="fa-solid fa-message"></i></span>
-                <span>چت آنلاین</span>
-              </a>
-            </li>
-            <li class="item-menu">
-              <a href="#">
-                <span><i class="fa fa-home"></i></span>
-                <span>خروج</span>
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+    {% include 'account/admin/components/menu.html' %}
        <main class="col-md-12 col-lg-10 content-main-admin" >
         <header class="ms-header">
             <nav class="ms-nav">
