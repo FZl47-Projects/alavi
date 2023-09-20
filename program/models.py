@@ -15,15 +15,15 @@ class Days(models.Model):
     day = models.CharField("Day",choices=Day_choices, max_length=10)
     
 
-class Diet_program(models.Model):
-    day = models.ForeignKey(Days, on_delete=models.CASCADE)
+class Diet_program_object(models.Model):
+    day = models.ForeignKey(Days, on_delete=models.CASCADE, related_name='diet_program_objects')
     food = models.CharField("food",blank=False,null=False,max_length=100)
     quantity = models.PositiveIntegerField("quantity",default=0)
     energy = models.PositiveIntegerField("Energy",default= 0)
     info = models.TextField("Information")
 
-class Training_program(models.Model):
-    day = models.ForeignKey(Days, on_delete=models.CASCADE, max_length=100)
+class Training_program_object(models.Model):
+    day = models.ForeignKey(Days, on_delete=models.CASCADE, max_length=100, related_name='training_program_objects')
     name = models.CharField("Name",blank=False,null=False,max_length=100)
     rep = models.PositiveIntegerField("Repeat",default=0)
     sets = models.PositiveIntegerField("Set",default= 0)
