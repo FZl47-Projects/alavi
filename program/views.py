@@ -3,7 +3,7 @@ from django.views.generic import View
 from django.contrib.auth.mixins import LoginRequiredMixin
 from requests import request
 from account.models import User
-from program.models import Days
+from program.models import Day
 from program.models import Training_program_object
 from program.models import Diet_program_object
 
