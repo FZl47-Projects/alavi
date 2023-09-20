@@ -3,15 +3,18 @@ from django.views.generic import View
 from requests import request
 from account.models import User
 from program.models import Days
+from django.contrib.auth.models import User 
 
 # Create your views here.
 
 class Exercies(View):
     template_name = 'program/exercise.html'
     def get(self,request):
-        user = User.get_user
+        user = request.user
+        program = user.days.exercise_program_objects
         context = {
             'user' : user,
+            'program' : program
         }
         return render(request,self.template_name, context)
 
