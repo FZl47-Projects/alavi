@@ -1,6 +1,5 @@
 from django.shortcuts import render
 from django.views.generic import View
-from requests import request
 from account.models import User
 
 class Index(View):

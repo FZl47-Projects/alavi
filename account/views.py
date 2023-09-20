@@ -5,6 +5,7 @@ from django.shortcuts import render, redirect
 from django.http import JsonResponse, HttpResponseBadRequest, Http404, HttpResponse
 from django.views.decorators.http import require_POST
 from django.core.paginator import Paginator
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import View
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, get_user_model, logout as logout_handler
@@ -31,7 +32,7 @@ def login_register(request):
                 return redirect('account:login_register')
             login(request, user)
             messages.success(request, 'خوش امدید')
-            return redirect('public:home')
+            return redirect('public:index')
         else:
             messages.error(request, 'لطفا فیلد هارا به درستی وارد نمایید')
         return redirect('account:login_register')
@@ -50,13 +51,15 @@ def login_register(request):
         password = f.cleaned_data['password2']
         user = User(
             phonenumber=phonenumber,
+            first_name=f.cleaned_data['first_name'],
+            last_name=f.cleaned_data['last_name'],
         )
         user.set_password(password)
         user.save()
         # login
         login(request, user)
         messages.success(request, 'حساب شما با موفقیت ایجاد شد')
-        return redirect('public:home')
+        return redirect('public:index')
 
     if request.method == 'GET':
         return render(request, 'account/login-register.html')
@@ -185,9 +188,6 @@ def dashboard(request):
     return render(request, 'account/dashboard/index.html', context)
 
 
-
-
-
 class UserList(View):
     #TODO should be completed
     template_name = 'account/dashboard/user/list.html'
@@ -198,7 +198,6 @@ class UserList(View):
             'users': User.normal_user.all()
         }
         return render(request, self.template_name, context)
-
 
 class Home_admin(View):
     template_name = 'account/admin/home-admin.html'
@@ -224,10 +223,12 @@ class Definition_training_program(View):
     def get(self,request):
         return render(request,self.template_name)
 
-class User_profile(View):
+class User_profile(LoginRequiredMixin,View):
     template_name = 'account/admin/user-profile.html'
     def get(self,request,user_id):
-        user = User.normal_user.get(id=user_id)
+        
+        user = User.objects.get(id=user_id)
+        
         context = {
             'user':user
         }

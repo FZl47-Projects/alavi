@@ -17,8 +17,8 @@ class CustomUserChangeForm(UserChangeForm):
 
 
 class RegisterUserForm(forms.Form):
-    first_name = forms.CharField(max_length=100,min_length=3,)
-    last_name = forms.CharField(max_length=100,min_length=3,)
+    first_name = forms.CharField(max_length=100,min_length=3)
+    last_name = forms.CharField(max_length=100,min_length=3)
     phonenumber = PhoneNumberField(region='IR')
     password = forms.CharField(max_length=64, min_length=8, required=True, widget=forms.PasswordInput())
     password2 = forms.CharField(max_length=64, min_length=8, required=True, widget=forms.PasswordInput())

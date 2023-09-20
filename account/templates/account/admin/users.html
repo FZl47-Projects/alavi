@@ -107,12 +107,12 @@
                   </tr>
                     {% for user in users %}
                     <tr>
-                      <td  class="name-table" id="user_id">{{user.id}}><a href="{{ user.get_absolute_url }}">{{user.first_name}}</a></td>
+                      <td  class="name-table" id="user_id"><a href="{{ user.get_absolute_url }}">{{user.first_name}}</a></td>
                       <td>{{ user.last_name }}</td> 
-                      <td>2981018541</td>
-                      <td>179</td>
-                      <td>57</td>
-                      <td>{{user.phonenumber}}</td> 
+                      <td>-</td>
+                      <td>-</td>
+                      <td>-</td>
+                      <td>{{user.get_raw_phonenumber }}</td> 
                       <td>
                          <span><i class="fa-solid  fa-trash"></i></span>
                          <span class="add-btn" style="padding-right:10px ;"><i class="fa-solid  fa-circle-plus"></i></span>
