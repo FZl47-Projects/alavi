@@ -27,6 +27,8 @@ class Diet_program_object(models.Model):
     quantity = models.PositiveIntegerField("quantity",default=0)
     energy = models.PositiveIntegerField("Energy",default= 0)
     info = models.TextField("Information")
+    created_time = models.DateField("Created_time", auto_now_add=True)
+    moified_time = models.DateField("Modified_time", auto_now=True)
 
 class Training_program_object(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE,related_name='user_training_program',default='')
@@ -35,3 +37,5 @@ class Training_program_object(models.Model):
     rep = models.PositiveIntegerField("Repeat",default=0)
     sets = models.PositiveIntegerField("Set",default= 0)
     info = models.TextField("Information")
+    created_time = models.DateField("Created_time", auto_now_add=True)
+    moified_time = models.DateField("Modified_time", auto_now=True)

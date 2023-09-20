@@ -105,3 +105,7 @@ class User(AbstractUser):
     def get_absolute_url(self):
         return reverse('account:user-profile',args=(self.id,))
     
+class user_info(models.Model):
+    national_code = models.PositiveIntegerField("height",default=0)
+    height = models.PositiveIntegerField("height",default=0)
+    weight = models.PositiveIntegerField("weightt",default=0)
