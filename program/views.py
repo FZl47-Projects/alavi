@@ -11,7 +11,7 @@ class Exercies(View):
     def get(self,request):
         user = User.get_user
         context = {
-            'user' : user
+            'user' : user,
         }
         return render(request,self.template_name, context)
 
