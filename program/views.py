@@ -14,7 +14,7 @@ class Exercies(LoginRequiredMixin,View):
     template_name = 'program/exercise.html'
     def get(self,request):
         user = request.user
-        program = user.days.training_program_objects
+        program =  user.user_diet_program
         context = {
             'user' : user,
             'program' : program
@@ -24,4 +24,10 @@ class Exercies(LoginRequiredMixin,View):
 class Diet_plan(View):
     template_name = 'program/diet-plan.html'
     def get(self,request):
-        return render(request,self.template_name)
+        user = request.user
+        program =  user.user_diet_program
+        context = {
+            'user' : user,
+            'program' : program
+        }
+        return render(request,self.template_name, context)

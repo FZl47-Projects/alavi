@@ -213,15 +213,21 @@ class Users(View):
         }
         return render(request,self.template_name,context)
 
-class Definition_diet(View):
+class Definition_diet(LoginRequiredMixin,View):
     template_name = 'account/admin/definition-of-diet.html'
     def get(self,request):
+        user = request.user
+
         return render(request,self.template_name)
 
-class Definition_training_program(View):
+class Definition_training_program(LoginRequiredMixin,View):
     template_name = 'account/admin/definition-of-training-program.html'
     def get(self,request):
-        return render(request,self.template_name)
+        user= request.user
+        context = {
+            'user' : user
+        }
+        return render(request,self.template_name,context)
 
 class User_profile(LoginRequiredMixin,View):
     template_name = 'account/admin/user-profile.html'

@@ -11,11 +11,11 @@ Day_choices= (
 
 
 class Days(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='days')
     day = models.CharField("Day",choices=Day_choices, max_length=10)
     
 
 class Diet_program_object(models.Model):
+    user = models.ForeignKey(User,on_delete=models.CASCADE,related_name='user_diet_program',default='')
     day = models.ForeignKey(Days, on_delete=models.CASCADE, related_name='diet_program_objects')
     food = models.CharField("food",blank=False,null=False,max_length=100)
     quantity = models.PositiveIntegerField("quantity",default=0)
@@ -23,6 +23,7 @@ class Diet_program_object(models.Model):
     info = models.TextField("Information")
 
 class Training_program_object(models.Model):
+    user = models.ForeignKey(User,on_delete=models.CASCADE,related_name='user_training_program',default='')
     day = models.ForeignKey(Days, on_delete=models.CASCADE, max_length=100, related_name='training_program_objects')
     name = models.CharField("Name",blank=False,null=False,max_length=100)
     rep = models.PositiveIntegerField("Repeat",default=0)
