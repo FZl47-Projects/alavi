@@ -18,7 +18,7 @@
            <nav class="ms-nav">
                <div class="user col-6">
                    <span><img src="{% static 'front/images/userimage.png' %}" alt=""></span>
-                   <span>نام و نام خانوادگی</span>
+                   <span>{{user.first_name}}</span>
                </div>
                <div class="logo col-6">
                    <img src="{% static 'front/images/22.png' %}" alt="">
@@ -35,8 +35,9 @@
            <div class="btn-item">جمعه</div>
           </div>
        <section class="table-two col-12 col-lg-11">
-           <div class="tables-content active">
+           <div class="tables-content active" id="day">{{day}}>
                   <table class="table">
+                    {%for program in programs%}
                       <tr>
                         <td>کاهو</td>
                         <td>100گرم</td> 
@@ -44,6 +45,7 @@
                         <td>توضیحات بیشتر</td>
                       </tr>
                       <tr>
+                        {%endfor%}
                           <td>کاهو</td>
                           <td>100گرم</td> 
                           <td>200کالری</td>

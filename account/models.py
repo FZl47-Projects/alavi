@@ -104,3 +104,8 @@ class User(AbstractUser):
 
     def get_absolute_url(self):
         return reverse('account:user-profile',args=(self.id,))
+    
+    def get_user(request):
+        user_id = request.session.get('user_id')
+        if user_id is not None:
+            return User.objects.get(id=user_id)

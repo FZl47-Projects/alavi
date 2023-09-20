@@ -9,12 +9,3 @@ class Index(View):
     def get(self,request):
         return render(request,self.template_name)
 
-class Exercies(View):
-    template_name = 'public/exercise.html'
-    def get(self,request):
-        return render(request,self.template_name)
-
-class Diet_plan(View):
-    template_name = 'public/diet-plan.html'
-    def get(self,request):
-        return render(request,self.template_name)
