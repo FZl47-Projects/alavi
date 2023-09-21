@@ -2,375 +2,137 @@
 {% load static %}
 
 {% block Title %}
-تعریف رژیم غذایی
+    تعریف رژیم غذایی
 {% endblock %}
 
 {% block Link %}
-  <link rel="stylesheet" href="{% static 'front/vendors/bootstrap.min.css' %}">
-  <link rel="stylesheet" href="{% static 'front/styles/user-profile.css' %}">
-  <link rel="stylesheet" href="{% static 'front/styles/all.css' %}">
+    <link rel="stylesheet" href="{% static 'front/vendors/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'front/styles/user-profile.css' %}">
+    <link rel="stylesheet" href="{% static 'front/styles/all.css' %}">
 {% endblock %}
 
 {% block Content %}
-<body class="content-main-admin" style="padding:10px ;">
-  <section class="main-page">
-      <main class="col-md-12 col-lg-12" >
-        <div class="col-12 col-lg-11 back-btn">
-        <span>لیست کاربران</span>
-        <span class="back"><img src="{% static 'front/images/back-icon.png' %}" alt=""></span>
-        </div>
-        <section class="user-profile col-12 col-lg-11">
-            <div class="col-2 col-md-1">
-             <div class="user-img">
-              <img src="{% static 'front/images/user.jpg' %}" alt="">
-             </div>
+    <body class="content-main-admin" style="padding:10px ;">
+    <section class="main-page">
+        <main class="col-md-12 col-lg-12">
+            <div class="col-12 col-lg-11 back-btn">
+                <span>مشخصات</span>
+                <span class="back"><img src="{% static 'front/images/back-icon.png' %}" alt=""></span>
             </div>
-            <div class="col-10 col-md-11">
-                <div class="specifications">
-                  <div class="col-4">
-                      <div class="specifications-item">
-                       {{user.first_name}}
-                      </div>
-                  </div>
-                  <div class="col-4">
-                   <div class="specifications-item">
-                   2981018541
-                   </div>
-               </div>
-               <div class="col-4">
-                   <div class="specifications-item">
-                    {{user.phonenumber}}
-                   </div>
-               </div>
-               <div class="col-4">
-                   <div class="specifications-item">
-                    48کیلوگرم
-                   </div>
-               </div>
-               <div class="col-4">
-                <div class="specifications-item">
-                 189
+            <section class="user-profile col-12 col-lg-11">
+                <div class="col-2 col-md-1">
+                    <div class="user-img">
+                        <img src="{{ user.get_image_url }}" alt="{{ user.get_full_name }}">
+                    </div>
+                    {% if user.is_normal_user %}
+                        <div class="text-center mt-4">
+                            <button class="btn btn-primary">تغییر مشخصات</button>
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="col-10 col-md-11">
+                    <div class="specifications">
+                        <div class="col-4">
+                            <div class="specifications-item">
+                                {{ user.get_full_name }}
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="specifications-item">
+                                {{ user.info.national_code|default:'ثبت نشده است' }}
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="specifications-item">
+                                {{ user.get_raw_phonenumber }}
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="specifications-item">
+                                {% if user.info.weight %}
+                                    {{ user.info.weight }}
+                                    کیلوگرم
+                                {% else %}
+                                    ثبت نشده است
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="specifications-item">
+                                {{ user.info.height|default:'ثبت نشده است' }}
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="specifications-item">
+                                {{ user.last_login }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <div class="d-flex justify-content-between align-items-center col-12 col-lg-11 mx-auto my-3">
+                <div class="table-title m-0">لیست برنامه های غذایی</div>
+                <div>
+                    <a href="{% url 'program:diet-plan' %}" class="btn btn-warning p-2">
+                        برنامه غذایی این هفته
+                    </a>
                 </div>
             </div>
-            <div class="col-4">
-                <div class="specifications-item">
-                 555
-                </div>
-            </div>
-            
-               
-              
-                </div>
-            </div>
-        </section>
-        <div class="table-title col-12 col-lg-11">لیست برنامه های غذایی</div>
-        <section class="table-two col-12 col-lg-11 ">
-           <table class="table">
-               <tr>
-                 <td>کاهو</td>
-                 <td>100گرم</td> 
-                 <td>200کالری</td>
-                 <td>توضیحات بیشتر</td>
-               </tr>
-               <tr>
-                   <td>کاهو</td>
-                   <td>100گرم</td> 
-                   <td>200کالری</td>
-                   <td>توضیحات بیشتر</td>
-                 </tr>
-                 <tr>
-                   <td>کاهو</td>
-                   <td>100گرم</td> 
-                   <td>200کالری</td>
-                   <td>توضیحات بیشتر</td>
-                 </tr> 
-                 <tr>
-                   <td>کاهو</td>
-                   <td>100گرم</td> 
-                   <td>200کالری</td>
-                   <td>توضیحات بیشتر</td>
-                 </tr>
-                 <tr>
-                   <td>کاهو</td>
-                   <td>100گرم</td> 
-                   <td>200کالری</td>
-                   <td>توضیحات بیشتر</td>
-                 </tr>
-                 <tr>
-                   <td>کاهو</td>
-                   <td>100گرم</td> 
-                   <td>200کالری</td>
-                   <td>توضیحات بیشتر</td>
-                 </tr>
-                 <tr>
-                   <td>کاهو</td>
-                   <td>100گرم</td> 
-                   <td>200کالری</td>
-                   <td>توضیحات بیشتر</td>
-                 </tr>
-                 <tr>
-                   <td>کاهو</td>
-                   <td>100گرم</td> 
-                   <td>200کالری</td>
-                   <td>توضیحات بیشتر</td>
-                 </tr>
-                 <tr>
-                   <td>کاهو</td>
-                   <td>100گرم</td> 
-                   <td>200کالری</td>
-                   <td>توضیحات بیشتر</td>
-                 </tr>
-                 <tr>
-                   <td>کاهو</td>
-                   <td>100گرم</td> 
-                   <td>200کالری</td>
-                   <td>توضیحات بیشتر</td>
-                 </tr>
-                 <tr>
-                   <td>کاهو</td>
-                   <td>100گرم</td> 
-                   <td>200کالری</td>
-                   <td>توضیحات بیشتر</td>
-                 </tr>
-                 <tr>
-                    <td>کاهو</td>
-                    <td>100گرم</td> 
-                    <td>200کالری</td>
-                    <td>توضیحات بیشتر</td>
-                  </tr>
-                  <tr>
-                    <td>کاهو</td>
-                    <td>100گرم</td> 
-                    <td>200کالری</td>
-                    <td>توضیحات بیشتر</td>
-                  </tr>
-                  <tr>
-                    <td>کاهو</td>
-                    <td>100گرم</td> 
-                    <td>200کالری</td>
-                    <td>توضیحات بیشتر</td>
-                  </tr>
-                  <tr>
-                    <td>کاهو</td>
-                    <td>100گرم</td> 
-                    <td>200کالری</td>
-                    <td>توضیحات بیشتر</td>
-                  </tr>
-                  <tr>
-                    <td>کاهو</td>
-                    <td>100گرم</td> 
-                    <td>200کالری</td>
-                    <td>توضیحات بیشتر</td>
-                  </tr>
-                  <tr>
-                   <td>کاهو</td>
-                   <td>100گرم</td> 
-                   <td>200کالری</td>
-                   <td>توضیحات بیشتر</td>
-                 </tr>
-                 <tr>
-                   <td>کاهو</td>
-                   <td>100گرم</td> 
-                   <td>200کالری</td>
-                   <td>توضیحات بیشتر</td>
-                 </tr>
-                 <tr>
-                   <td>کاهو</td>
-                   <td>100گرم</td> 
-                   <td>200کالری</td>
-                   <td>توضیحات بیشتر</td>
-                 </tr>
-                 <tr>
-                   <td>کاهو</td>
-                   <td>100گرم</td> 
-                   <td>200کالری</td>
-                   <td>توضیحات بیشتر</td>
-                 </tr>
-                 <tr>
-                   <td>کاهو</td>
-                   <td>100گرم</td> 
-                   <td>200کالری</td>
-                   <td>توضیحات بیشتر</td>
-                 </tr>
-                 <tr>
-                   <td>کاهو</td>
-                   <td>100گرم</td> 
-                   <td>200کالری</td>
-                   <td>توضیحات بیشتر</td>
-                 </tr>
-                 <tr>
-                   <td>کاهو</td>
-                   <td>100گرم</td> 
-                   <td>200کالری</td>
-                   <td>توضیحات بیشتر</td>
-                 </tr>
-                 <tr>
-                   <td>کاهو</td>
-                   <td>100گرم</td> 
-                   <td>200کالری</td>
-                   <td>توضیحات بیشتر</td>
-                 </tr>
-               
-           </table>
-       </section>
+            <section class="table-two col-12 col-lg-11 ">
+                <table class="table">
+                    {% for program in user.get_diet_programs %}
+                        <tr>
+                            <td>{{ program.food.name }}</td>
+                            <td>{{ program.amount }}گرم</td>
+                            <td>
+                                {{ program.energy }}
+                                کالری
+                            </td>
+                            <td>
+                                {{ program.description|default:'توضیحی وجود ندارد' }}
+                            </td>
+                            <td class="datetime-convert">{{ program.get_created_at }}</td>
+                        </tr>
+                    {% empty %}
+                        <div class="container-not-found-base">
+                            <p>برنامه ای یافت نشد</p>
+                        </div>
+                    {% endfor %}
+                </table>
+            </section>
 
-       <div class="table-title col-12 col-lg-11">لیست تمرین بدنی</div>
-       <section class="table-two col-12 col-lg-11">
-           <table class="table">
-               <tr>
-                 <td>کاهو</td>
-                 <td>100گرم</td> 
-                 <td>200کالری</td>
-                 <td>توضیحات بیشتر</td>
-               </tr>
-               <tr>
-                   <td>کاهو</td>
-                   <td>100گرم</td> 
-                   <td>200کالری</td>
-                   <td>توضیحات بیشتر</td>
-                 </tr>
-                 <tr>
-                   <td>کاهو</td>
-                   <td>100گرم</td> 
-                   <td>200کالری</td>
-                   <td>توضیحات بیشتر</td>
-                 </tr> 
-                 <tr>
-                   <td>کاهو</td>
-                   <td>100گرم</td> 
-                   <td>200کالری</td>
-                   <td>توضیحات بیشتر</td>
-                 </tr>
-                 <tr>
-                   <td>کاهو</td>
-                   <td>100گرم</td> 
-                   <td>200کالری</td>
-                   <td>توضیحات بیشتر</td>
-                 </tr>
-                 <tr>
-                   <td>کاهو</td>
-                   <td>100گرم</td> 
-                   <td>200کالری</td>
-                   <td>توضیحات بیشتر</td>
-                 </tr>
-                 <tr>
-                   <td>کاهو</td>
-                   <td>100گرم</td> 
-                   <td>200کالری</td>
-                   <td>توضیحات بیشتر</td>
-                 </tr>
-                 <tr>
-                   <td>کاهو</td>
-                   <td>100گرم</td> 
-                   <td>200کالری</td>
-                   <td>توضیحات بیشتر</td>
-                 </tr>
-                 <tr>
-                   <td>کاهو</td>
-                   <td>100گرم</td> 
-                   <td>200کالری</td>
-                   <td>توضیحات بیشتر</td>
-                 </tr>
-                 <tr>
-                   <td>کاهو</td>
-                   <td>100گرم</td> 
-                   <td>200کالری</td>
-                   <td>توضیحات بیشتر</td>
-                 </tr>
-                 <tr>
-                   <td>کاهو</td>
-                   <td>100گرم</td> 
-                   <td>200کالری</td>
-                   <td>توضیحات بیشتر</td>
-                 </tr>
-                 <tr>
-                    <td>کاهو</td>
-                    <td>100گرم</td> 
-                    <td>200کالری</td>
-                    <td>توضیحات بیشتر</td>
-                  </tr>
-                  <tr>
-                    <td>کاهو</td>
-                    <td>100گرم</td> 
-                    <td>200کالری</td>
-                    <td>توضیحات بیشتر</td>
-                  </tr>
-                  <tr>
-                    <td>کاهو</td>
-                    <td>100گرم</td> 
-                    <td>200کالری</td>
-                    <td>توضیحات بیشتر</td>
-                  </tr>
-                  <tr>
-                    <td>کاهو</td>
-                    <td>100گرم</td> 
-                    <td>200کالری</td>
-                    <td>توضیحات بیشتر</td>
-                  </tr>
-                  <tr>
-                    <td>کاهو</td>
-                    <td>100گرم</td> 
-                    <td>200کالری</td>
-                    <td>توضیحات بیشتر</td>
-                  </tr>
-                  <tr>
-                   <td>کاهو</td>
-                   <td>100گرم</td> 
-                   <td>200کالری</td>
-                   <td>توضیحات بیشتر</td>
-                 </tr>
-                 <tr>
-                   <td>کاهو</td>
-                   <td>100گرم</td> 
-                   <td>200کالری</td>
-                   <td>توضیحات بیشتر</td>
-                 </tr>
-                 <tr>
-                   <td>کاهو</td>
-                   <td>100گرم</td> 
-                   <td>200کالری</td>
-                   <td>توضیحات بیشتر</td>
-                 </tr>
-                 <tr>
-                   <td>کاهو</td>
-                   <td>100گرم</td> 
-                   <td>200کالری</td>
-                   <td>توضیحات بیشتر</td>
-                 </tr>
-                 <tr>
-                   <td>کاهو</td>
-                   <td>100گرم</td> 
-                   <td>200کالری</td>
-                   <td>توضیحات بیشتر</td>
-                 </tr>
-                 <tr>
-                   <td>کاهو</td>
-                   <td>100گرم</td> 
-                   <td>200کالری</td>
-                   <td>توضیحات بیشتر</td>
-                 </tr>
-                 <tr>
-                   <td>کاهو</td>
-                   <td>100گرم</td> 
-                   <td>200کالری</td>
-                   <td>توضیحات بیشتر</td>
-                 </tr>
-                 <tr>
-                   <td>کاهو</td>
-                   <td>100گرم</td> 
-                   <td>200کالری</td>
-                   <td>توضیحات بیشتر</td>
-                 </tr>
-               
-           </table>
-       </section>
+            <div class="d-flex justify-content-between align-items-center col-12 col-lg-11 mx-auto my-3">
+                <div class="table-title m-0">لیست تمرین بدنی</div>
+                <div>
+                    <a href="{% url 'program:exercise' %}" class="btn btn-warning p-2">
+                        برنامه تمرینی این هفته
+                    </a>
+                </div>
+            </div>
+            <section class="table-two col-12 col-lg-11">
+                <table class="table">
+                    {% for program in user.get_training_programs %}
+                        <tr>
+                            <td>{{ program.sport.name }}</td>
+                            <td>{{ program.re }}</td>
+                            <td>{{ program.sets }} ست</td>
+                            <td>{{ program.description }}</td>
+                            <td class="datetime-convert">{{ program.get_created_at }}</td>
+                        </tr>
+                    {% empty %}
+                        <div class="container-not-found-base">
+                            <p>تمرینی یافت نشد</p>
+                        </div>
+                    {% endfor %}
+                </table>
+            </section>
 
-       
-      </main>
-  </section>
-  <script src="{% static 'front/js/back.js' %}"></script>
-  <script src="{% static 'front/vendors/bootstrap.min.js' %}"></script>
-</body>
+
+        </main>
+    </section>
+    <script src="{% static 'front/js/back.js' %}"></script>
+    <script src="{% static 'front/vendors/bootstrap.min.js' %}"></script>
+    </body>
 {% endblock %}
 
 <!-- <!DOCTYPE html>

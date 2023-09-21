@@ -275,3 +275,7 @@ body {
     background: #0886a6;
     color: #fff;
 }
+
+.tr-active{
+    border: 1px solid #f29233;
+}

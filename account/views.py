@@ -1,10 +1,9 @@
 import json
 from django.contrib import messages
 from django.conf import settings
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import JsonResponse, HttpResponseBadRequest, Http404, HttpResponse
 from django.views.decorators.http import require_POST
-from django.core.paginator import Paginator
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import View
 from django.contrib.auth.decorators import login_required
@@ -183,13 +182,12 @@ def reset_password_set(request):
 
 @login_required
 def dashboard(request):
-
     context = {}
     return render(request, 'account/dashboard/index.html', context)
 
 
 class UserList(View):
-    #TODO should be completed
+    # TODO should be completed
     template_name = 'account/dashboard/user/list.html'
 
     @admin_required_cbv()
@@ -199,43 +197,55 @@ class UserList(View):
         }
         return render(request, self.template_name, context)
 
+
 class Home_admin(View):
     template_name = 'account/admin/home-admin.html'
-    def get(self,request):
-        return render(request,self.template_name)
+
+    @admin_required_cbv()
+    def get(self, request):
+        return render(request, self.template_name)
+
 
 class Users(View):
     template_name = 'account/admin/users.html'
-    def get(self,request):
+
+    @admin_required_cbv()
+    def get(self, request):
         users = User.normal_user.all()
         context = {
-            'users':users
+            'users': users
         }
-        return render(request,self.template_name,context)
+        return render(request, self.template_name, context)
 
-class Definition_diet(LoginRequiredMixin,View):
+
+class Definition_diet(LoginRequiredMixin, View):
     template_name = 'account/admin/definition-of-diet.html'
-    def get(self,request):
+
+    def get(self, request):
         user = request.user
 
-        return render(request,self.template_name)
+        return render(request, self.template_name)
 
-class Definition_training_program(LoginRequiredMixin,View):
+
+class Definition_training_program(LoginRequiredMixin, View):
     template_name = 'account/admin/definition-of-training-program.html'
-    def get(self,request):
-        user= request.user
-        context = {
-            'user' : user
-        }
-        return render(request,self.template_name,context)
 
-class User_profile(LoginRequiredMixin,View):
-    template_name = 'account/admin/user-profile.html'
-    def get(self,request,user_id):
-        
-        user = User.objects.get(id=user_id)
-        
+    def get(self, request):
+        user = request.user
         context = {
-            'user':user
+            'user': user
         }
-        return render(request,self.template_name,context)
+        return render(request, self.template_name, context)
+
+
+class User_profile(LoginRequiredMixin, View):
+    template_name = 'account/admin/user-profile.html'
+
+    def get(self, request, user_id):
+        user = get_object_or_404(User,id=user_id)
+        if request.user.is_normal_user and user != request.user:
+            raise Http404
+        context = {
+            'user': user
+        }
+        return render(request, self.template_name, context)

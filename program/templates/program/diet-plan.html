@@ -2,130 +2,249 @@
 {% load static %}
 
 {% block Title %}
-  برنامه غذایی
+    برنامه غذایی
 {% endblock %}
 
 {% block Link %}
-  <link rel="stylesheet" href="{% static 'front/vendors/bootstrap.min.css' %}">
-  <link rel="stylesheet" href="{% static 'front/styles/diet-plan.css' %}">
-  <link rel="stylesheet" href="{% static 'front/styles/all.css' %}">
+    <link rel="stylesheet" href="{% static 'front/vendors/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'front/styles/user-profile.css' %}">
+    <link rel="stylesheet" href="{% static 'front/styles/diet-plan.css' %}">
+    <link rel="stylesheet" href="{% static 'front/styles/all.css' %}">
 {% endblock %}
 {% block Content %}
-<body>
-  <section class="main-page">
-      <main class="col-md-12 col-lg-12 content-main-admin" >
-       <header class="ms-header">
-           <nav class="ms-nav">
-               <div class="user col-6">
-                   <span><img src="{% static 'front/images/userimage.png' %}" alt=""></span>
-                   <span>{{user.first_name}} {{user.last_name}}</span>
-               </div>
-               <div class="logo col-6">
-                   <img src="{% static 'front/images/22.png' %}" alt="">
-               </div>
-           </nav>
-       </header>
-       <div class="btns-table  col-12 col-lg-11"> 
-           <div class="btn-item active">شنبه</div>
-           <div class="btn-item">یکشنبه</div>
-           <div class="btn-item">دوشنبه</div>
-           <div class="btn-item">سه شنبه</div>
-           <div class="btn-item">چهارشنبه</div>
-           <div class="btn-item">پنج شنیه</div>
-           <div class="btn-item">جمعه</div>
-          </div>
-       <section class="table-two col-12 col-lg-11">
-           <div class="tables-content active">
-                  <table class="table">
-                    {% for program in programs0%}
-                      <tr>
-                        <td>{{program.food.name}}</td>
-                        <td>{{program.quantity}}</td> 
-                        <td>{{program.energy}}</td>
-                        <td>{{program.info}}</td>
-                      </tr>
-                      {% endfor %}
-                  </table>
-           </div>
-           <div class="tables-content">
-                  <table class="table">
-                    {% for program in programs1%}
-                      <tr>
-                        <td>{{program.food.name}}</td>
-                        <td>{{program.quantity}}</td> 
-                        <td>{{program.energy}}</td>
-                        <td>{{program.info}}</td>
-                      </tr>
-                      {% endfor %}
-                  </table>
-           </div>
-           <div class="tables-content">
-            <table class="table">
-              {% for program in programs2%}
-                <tr>
-                  <td>{{program.food.name}}</td>
-                  <td>{{program.quantity}}</td> 
-                  <td>{{program.energy}}</td>
-                  <td>{{program.info}}</td>
-                </tr>
-                {% endfor %}
-            </table>
-     </div>
-     <div class="tables-content">
-      <table class="table">
-        {% for program in programs3%}
-          <tr>
-            <td>{{program.food.name}}</td>
-            <td>{{program.quantity}}</td> 
-            <td>{{program.energy}}</td>
-            <td>{{program.info}}</td>
-          </tr>
-          {% endfor %}
-      </table>
-</div>
-           <div class="tables-content">
-                  <table class="table">
-                    {% for program in programs4%}
-                      <tr>
-                        <td>{{program.food.name}}</td>
-                        <td>{{program.quantity}}</td> 
-                        <td>{{program.energy}}</td>
-                        <td>{{program.info}}</td>
-                      </tr>
-                      {% endfor %}
-                  </table>
-           </div>
-           <div class="tables-content">
-            <table class="table">
-              {% for program in programs5%}
-                <tr>
-                  <td>{{program.food.name}}</td>
-                  <td>{{program.quantity}}</td> 
-                  <td>{{program.energy}}</td>
-                  <td>{{program.info}}</td>
-                </tr>
-                {% endfor %}
-            </table>
-     </div>
+    <body>
+    <section class="main-page">
+        <main class="col-md-12 col-lg-12 content-main-admin">
+            {% include 'base/components/header.html' %}
+            <h2 class="text-white m-4">برنامه غذایی</h2>
+
+            {% if user.is_admin_user %}
+                <section class="user-profile col-12 col-lg-11">
+                    <div class="col-2 col-md-1">
+                        <div class="user-img">
+                            <img src="{{ user_detail.get_image_url }}" alt="{{ user_detail.get_full_name }}">
+                        </div>
+                    </div>
+                    <div class="col-10 col-md-11">
+                        <div class="specifications">
+                            <div class="col-4">
+                                <div class="specifications-item">
+                                    {{ user_detail.get_full_name }}
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="specifications-item">
+                                    {{ user_detail.info.national_code|default:'ثبت نشده است' }}
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="specifications-item">
+                                    {{ user_detail.get_raw_phonenumber }}
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="specifications-item">
+                                    {% if user_detail.info.weight %}
+                                        {{ user_detail.info.weight }}
+                                        کیلوگرم
+                                    {% else %}
+                                        ثبت نشده است
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="specifications-item">
+                                    {{ user_detail.info.height|default:'ثبت نشده است' }}
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="specifications-item">
+                                    {{ user_detail.last_login }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            {% endif %}
+
+            <div class="btns-table  col-12 col-lg-11">
+                <div class="btn-item active">شنبه</div>
+                <div class="btn-item">یکشنبه</div>
+                <div class="btn-item">دوشنبه</div>
+                <div class="btn-item">سه شنبه</div>
+                <div class="btn-item">چهارشنبه</div>
+                <div class="btn-item">پنج شنیه</div>
+                <div class="btn-item">جمعه</div>
+            </div>
+            <section class="table-two col-12 col-lg-11">
+                <div class="tables-content active">
+                    <table class="table">
+                        {% for program in programs0 %}
+                            <tr class="{% if program.is_new %}tr-active{% endif %}">
+                                <td>{{ program.food.name }}</td>
+                                <td>
+                                    {{ program.amount }}
+                                    گرم
+                                </td>
+                                <td>
+                                    {{ program.energy }}
+                                    کالری
+                                </td>
+                                <td>{{ program.description }}</td>
+                                <td class="datetime-convert">{{ program.get_created_at }}</td>
+                            </tr>
+                        {% empty %}
+                            <div class="container-not-found-base">
+                                <p>چیزی یافت نشد</p>
+                            </div>
+                        {% endfor %}
+                    </table>
+                </div>
                 <div class="tables-content">
-                  <table class="table">
-                    {% for program in programs6%}
-                      <tr>
-                        <td>{{program.food.name}}</td>
-                        <td>{{program.quantity}}</td> 
-                        <td>{{program.energy}}</td>
-                        <td>{{program.info}}</td>
-                      </tr>
-                      {% endfor %}
-                  </table>
-           </div>
-               
-       </section>
-      </main>
-  </section>
-  <script src="{% static 'front/vendors/bootstrap.min.js' %}"></script>
-  <script src="{% static 'front/js/diet-plan.js' %}"></script>
-</body>
+                    <table class="table">
+                        {% for program in programs1 %}
+                            <tr class="{% if program.is_new %}tr-active{% endif %}">
+                                <td>{{ program.food.name }}</td>
+                                <td>
+                                    {{ program.amount }}
+                                    گرم
+                                </td>
+                                <td>
+                                    {{ program.energy }}
+                                    کالری
+                                </td>
+                                <td>{{ program.description }}</td>
+                                <td class="datetime-convert">{{ program.get_created_at }}</td>
+                            </tr>
+                        {% empty %}
+                            <div class="container-not-found-base">
+                                <p>چیزی یافت نشد</p>
+                            </div>
+                        {% endfor %}
+                    </table>
+                </div>
+                <div class="tables-content">
+                    <table class="table">
+                        {% for program in programs2 %}
+                            <tr class="{% if program.is_new %}tr-active{% endif %}">
+                                <td>{{ program.food.name }}</td>
+                                <td>
+                                    {{ program.amount }}
+                                    گرم
+                                </td>
+                                <td>
+                                    {{ program.energy }}
+                                    کالری
+                                </td>
+                                <td>{{ program.description }}</td>
+                                <td class="datetime-convert">{{ program.get_created_at }}</td>
+                            </tr>
+                        {% empty %}
+                            <div class="container-not-found-base">
+                                <p>چیزی یافت نشد</p>
+                            </div>
+                        {% endfor %}
+                    </table>
+                </div>
+                <div class="tables-content">
+                    <table class="table">
+                        {% for program in programs3 %}
+                            <tr class="{% if program.is_new %}tr-active{% endif %}">
+                                <td>{{ program.food.name }}</td>
+                                <td>
+                                    {{ program.amount }}
+                                    گرم
+                                </td>
+                                <td>
+                                    {{ program.energy }}
+                                    کالری
+                                </td>
+                                <td>{{ program.description }}</td>
+                                <td class="datetime-convert">{{ program.get_created_at }}</td>
+                            </tr>
+                        {% empty %}
+                            <div class="container-not-found-base">
+                                <p>چیزی یافت نشد</p>
+                            </div>
+                        {% endfor %}
+                    </table>
+                </div>
+                <div class="tables-content">
+                    <table class="table">
+                        {% for program in programs4 %}
+                            <tr class="{% if program.is_new %}tr-active{% endif %}">
+                                <td>{{ program.food.name }}</td>
+                                <td>
+                                    {{ program.amount }}
+                                    گرم
+                                </td>
+                                <td>
+                                    {{ program.energy }}
+                                    کالری
+                                </td>
+                                <td>{{ program.description }}</td>
+                                <td class="datetime-convert">{{ program.get_created_at }}</td>
+                            </tr>
+                        {% empty %}
+                            <div class="container-not-found-base">
+                                <p>چیزی یافت نشد</p>
+                            </div>
+                        {% endfor %}
+                    </table>
+                </div>
+                <div class="tables-content">
+                    <table class="table">
+                        {% for program in programs5 %}
+                            <tr class="{% if program.is_new %}tr-active{% endif %}">
+                                <td>{{ program.food.name }}</td>
+                                <td>
+                                    {{ program.amount }}
+                                    گرم
+                                </td>
+                                <td>
+                                    {{ program.energy }}
+                                    کالری
+                                </td>
+                                <td>{{ program.description }}</td>
+                                <td class="datetime-convert">{{ program.get_created_at }}</td>
+                            </tr>
+                        {% empty %}
+                            <div class="container-not-found-base">
+                                <p>چیزی یافت نشد</p>
+                            </div>
+                        {% endfor %}
+                    </table>
+                </div>
+                <div class="tables-content">
+                    <table class="table">
+                        {% for program in programs6 %}
+                            <tr class="{% if program.is_new %}tr-active{% endif %}">
+                                <td>{{ program.food.name }}</td>
+                                <td>
+                                    {{ program.amount }}
+                                    گرم
+                                </td>
+                                <td>
+                                    {{ program.energy }}
+                                    کالری
+                                </td>
+                                <td>{{ program.description }}</td>
+                                <td class="datetime-convert">{{ program.get_created_at }}</td>
+                            </tr>
+                        {% empty %}
+                            <div class="container-not-found-base">
+                                <p>چیزی یافت نشد</p>
+                            </div>
+                        {% endfor %}
+                    </table>
+                </div>
+
+            </section>
+        </main>
+    </section>
+    <script src="{% static 'front/vendors/bootstrap.min.js' %}"></script>
+    <script src="{% static 'front/js/diet-plan.js' %}"></script>
+    </body>
 {% endblock %}
 <!-- <!DOCTYPE html>
 <html lang="fa" dir="rtl">

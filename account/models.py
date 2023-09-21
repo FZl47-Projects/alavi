@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.base_user import BaseUserManager
 from django.contrib.auth.models import AbstractUser
 from django.urls import reverse
+from django.conf import settings
 from phonenumber_field.modelfields import PhoneNumberField
 
 
@@ -42,12 +43,6 @@ class NormalUserManager(models.Manager):
         return super().get_queryset().filter(role='normal_user')
 
 
-class FinancialUserManager(models.Manager):
-
-    def get_queryset(self):
-        return super().get_queryset().filter(role='financial_user')
-
-
 class SuperUserManager(models.Manager):
 
     def get_queryset(self):
@@ -57,13 +52,11 @@ class SuperUserManager(models.Manager):
 class User(AbstractUser):
     ROLE_USER_OPTIONS = (
         ('normal_user', 'normal_user'),
-        ('financial_user', 'financial_user'),
         ('super_user', 'super_user'),
     )
 
-    first_name = models.CharField("first name", max_length=150, blank=True,default="بدون نام")
     username = None
-    email = models.EmailField("email address", null=True, blank=True,unique=True)
+    email = models.EmailField("email address", null=True, blank=True, unique=True)
     phonenumber = PhoneNumberField(region='IR', unique=True)
     # type users|roles
     role = models.CharField(max_length=20, choices=ROLE_USER_OPTIONS, default='normal_user')
@@ -73,7 +66,6 @@ class User(AbstractUser):
 
     objects = CustomBaseUserManager()
     normal_user = NormalUserManager()
-    financial_user = FinancialUserManager()
     super_user = SuperUserManager()
 
     class Meta:
@@ -82,6 +74,14 @@ class User(AbstractUser):
     def __str__(self):
         return f'{self.role} - {self.phonenumber}'
 
+    @property
+    def is_normal_user(self):
+        return True if self.role in settings.USER_ROLES else False
+
+    @property
+    def is_admin_user(self):
+        return True if self.role in settings.ADMIN_USER_ROLES else False
+
     def get_raw_phonenumber(self):
         p = str(self.phonenumber).replace('+98', '')
         return p
@@ -89,13 +89,15 @@ class User(AbstractUser):
     def get_full_name(self):
         fl = f'{self.first_name} {self.last_name}'.strip() or 'بدون نام'
         return fl
-    
+
     def get_email(self):
-        return self.email or '-'
-    
+        return self.email
+
     def get_image_url(self):
-        # TODO: should be complete
-        return '/static/images/dashboard/client_img.png'
+        try:
+            return self.info.picture.url
+        except:
+            return '/static/front/images/userimage.png'
 
     def get_last_login(self):
         if self.last_login:
@@ -103,9 +105,21 @@ class User(AbstractUser):
         return '-'
 
     def get_absolute_url(self):
-        return reverse('account:user-profile',args=(self.id,))
-    
-class user_info(models.Model):
-    national_code = models.PositiveIntegerField("height",default=0)
-    height = models.PositiveIntegerField("height",default=0)
-    weight = models.PositiveIntegerField("weightt",default=0)
+        if self.is_normal_user:
+            return reverse('account:user-profile', args=(self.id,))
+        else:
+            return reverse('account:home-admin')
+
+    def get_diet_programs(self):
+        return self.user_diet_program.all()
+
+    def get_training_programs(self):
+        return self.user_training_program.all()
+
+
+class UserInfo(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='info')
+    picture = models.ImageField(upload_to='images/%Y/%m/%d/users')
+    national_code = models.PositiveIntegerField("height", default=0)
+    height = models.PositiveIntegerField("height", default=0)
+    weight = models.PositiveIntegerField("weight", default=0)
