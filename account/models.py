@@ -105,6 +105,7 @@ class User(AbstractUser):
         return '-'
 
     def get_absolute_url(self):
+
         if self.is_normal_user:
             return reverse('account:user-profile', args=(self.id,))
         else:

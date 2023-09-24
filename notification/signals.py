@@ -1,18 +1,30 @@
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from core.utils import send_email, send_sms
-from .models import NotificationUser, Notification
+from django.conf import settings
+from django.contrib.auth import get_user_model
+from core.utils import send_email
+from .models import NotificationUser
+from . import sms
+
+User = get_user_model()
+
+
+def handler_sms_notify(notification, phonenumber):
+    handler_pattern = sms.NOTIFICATION_USER_HANDLERS.get(notification.type, None)
+    if not handler_pattern:
+        return
+    handler_pattern(notification, phonenumber)
 
 
 @receiver(post_save, sender=NotificationUser)
 def handle_notification_user_notify(sender, instance, **kwargs):
     if instance.send_notify:
         user = instance.to_user
-        phone_number = user.phonenumber
+        phonenumber = user.phonenumber
         email = user.email
-        if phone_number:
-            send_sms(phone_number, instance.get_content())
+        if phonenumber:
+            handler_sms_notify(instance, phonenumber)
         if email:
-            send_email(email, instance.get_content())
-
+            subject = settings.EMAIL_SUBJECT.format(instance.title)
+            send_email(email, subject, instance.get_content())
 

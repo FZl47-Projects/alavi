@@ -1,15 +1,20 @@
 {% load static %}
 <header class="ms-header">
     <nav class="ms-nav">
-        <div class="user col-6">
-            {% if user.is_anonymous %}
-                <a href="{% url 'account:login_register' %}">ورود و ثبت نام</a>
-            {% else %}
-                <a href="{{ user.get_absolute_url }}">
-                    <span><img src="{% static 'front/images/userimage.png' %}" alt=""></span>
-                    <span>{{ user.get_full_name }}</span>
-                </a>
-            {% endif %}
+        <div class="user col-6 d-flex justify-content-start align-items-center">
+            <div>
+                {% if user.is_anonymous %}
+                    <a href="{% url 'account:login_register' %}">ورود و ثبت نام</a>
+                {% else %}
+                    <a href="{{ user.get_absolute_url }}">
+                        <span><img src="{% static 'front/images/userimage.png' %}" alt=""></span>
+                        <span>{{ user.get_full_name }}</span>
+                    </a>
+                {% endif %}
+            </div>
+            <div style="margin-right: 20px;">
+                <a  class="btn btn-success" href="{% url 'public:diet_free' %}">برنامه غذایی رایگان</a>
+            </div>
         </div>
         <div class="logo col-6">
             <img src="{% static 'front/images/22.png' %}" alt="">

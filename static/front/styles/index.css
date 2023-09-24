@@ -269,9 +269,9 @@ table {
 }
 table .name-table {
   cursor: pointer;
-  color: rgb(104, 182, 211);
 }
 table .name-table:hover {
+  color: #1ab268;
   font-weight: 600;
 }
 table td {
@@ -391,19 +391,6 @@ table tr th {
 }
 .content-modal .inner-modal form .item-input input::placeholder {
   color: #fff;
-}
-.content-modal .inner-modal form .register-btn {
-  display: flex;
-  justify-content: center;
-}
-.content-modal .inner-modal form .register-btn button {
-  padding: 3px 30px;
-  border-radius: 6px;
-  -webkit-border-radius: 6px;
-  -moz-border-radius: 6px;
-  -ms-border-radius: 6px;
-  -o-border-radius: 6px;
-  cursor: pointer;
 }
 
 @media (max-width: 500px) {
@@ -565,8 +552,8 @@ input {
   justify-content: end;
   flex-direction: column;
   font-size: 40px;
+  height: 10%;
   color: #fff;
-  height: 50%;
   padding: 10px;
   line-height: 1;
 }
@@ -574,10 +561,9 @@ input {
   font-weight: 500;
 }
 .main-page .content-main .services-content {
-  height: 50%;
+  height: 45%;
   display: flex;
   flex-direction: column;
-  padding: 10px;
 }
 .main-page .content-main .services-content .services-content-inner {
   display: flex;

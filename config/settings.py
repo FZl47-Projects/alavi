@@ -26,6 +26,11 @@ SECRET_KEY = 'django-insecure-#*g^+y5-plch-=q=@yre0go(@er5diu*!poca-()#p01*1#$qq
 DEBUG = True
 
 ALLOWED_HOSTS = []
+HOST_ADDRESS = 'http://127.0.0.1:8000'
+CSRF_TRUSTED_ORIGINS = [
+    HOST_ADDRESS,
+
+]
 
 
 # Application definition
@@ -37,7 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    #thir party apps
+    # third party apps
     'django_q',
     'phonenumber_field',
     # apps
@@ -131,7 +136,7 @@ STATICFILES_DIRS = [
     BASE_DIR / 'static',
 ]
 
-
+MEDIA_ROOT = BASE_DIR / 'media'
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
@@ -141,21 +146,13 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'account.User'
 LOGIN_URL = '/u/login-register'
 
-COMMON_ADMIN_USER_ROLES = [
-    'financial_user'
-]
-
 SUPER_ADMIN_ROLES = [
     'super_user'
 ]
-
 ADMIN_USER_ROLES = [
-    *COMMON_ADMIN_USER_ROLES,
     *SUPER_ADMIN_ROLES
 ]
-
 USER_ROLES = [
-    *ADMIN_USER_ROLES,
     'normal_user',
 ]
 
@@ -191,3 +188,10 @@ EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'fzl47.projects@gmail.com'
 EMAIL_HOST_PASSWORD = 'zrqxdunuaorfagaq'
+
+
+SMS_CONFIG = {
+    'API_KEY': 'ml23kKIXh-JXCBNfbs-6DWnU1ZaBJuVxcZGjLRnggvs=',
+    'API_URL': 'http://rest.ippanel.com/v1/messages/patterns/send',
+    'ORIGINATOR': '983000505'
+}

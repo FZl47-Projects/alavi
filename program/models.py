@@ -13,9 +13,41 @@ Day_choices = (
 class Food(models.Model):
     name = models.CharField("Name", max_length=100)
 
+    class Meta:
+        ordering = '-id',
+
 
 class Sport(models.Model):
     name = models.CharField("Name", max_length=100)
+
+    class Meta:
+        ordering = '-id',
+
+
+class Diet_program_object_free(models.Model):
+    day = models.CharField(max_length=15, choices=Day_choices)
+    food = models.ForeignKey(Food, on_delete=models.SET_NULL, related_name='food_diet_programs_free', null=True)
+    amount = models.PositiveIntegerField("amount", default=0)
+    energy = models.PositiveIntegerField("Energy", default=0)
+    description = models.TextField("Information", null=True)
+    created_time = models.DateTimeField("Created_time", auto_now_add=True)
+    moified_time = models.DateTimeField("Modified_time", auto_now=True)
+
+    class Meta:
+        ordering = '-id',
+
+    @property
+    def is_new(self):
+        t_weak = datetime.datetime.now() - datetime.timedelta(days=1)
+        if self.created_time > t_weak:
+            return True
+        return False
+
+    def get_created_at(self):
+        return self.created_time.strftime('%Y-%m-%d %H:%M:%S')
+
+    def get_created_at_timepast(self):
+        return get_timesince_persian(self.created_time)
 
 
 class Diet_program_object(models.Model):
@@ -33,7 +65,7 @@ class Diet_program_object(models.Model):
 
     @property
     def is_new(self):
-        t_weak = datetime.datetime.now() - datetime.timedelta(days=7)
+        t_weak = datetime.datetime.now() - datetime.timedelta(days=1)
         if self.created_time > t_weak:
             return True
         return False
@@ -60,7 +92,7 @@ class Training_program_object(models.Model):
 
     @property
     def is_new(self):
-        t_weak = datetime.datetime.now() - datetime.timedelta(days=7)
+        t_weak = datetime.datetime.now() - datetime.timedelta(days=1)
         if self.created_time > t_weak:
             return True
         return False

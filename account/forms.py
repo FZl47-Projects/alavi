@@ -1,7 +1,9 @@
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django import forms
 from phonenumber_field.formfields import PhoneNumberField
-from .models import User
+from .models import User, UserInfo
+from program.models import Diet_program_object, Training_program_object, Diet_program_object_free
+from public.models import Certificate
 
 
 class CustomUserCreationForm(UserCreationForm):
@@ -17,8 +19,8 @@ class CustomUserChangeForm(UserChangeForm):
 
 
 class RegisterUserForm(forms.Form):
-    first_name = forms.CharField(max_length=100,min_length=3)
-    last_name = forms.CharField(max_length=100,min_length=3)
+    first_name = forms.CharField(max_length=100, min_length=3)
+    last_name = forms.CharField(max_length=100, min_length=3)
     phonenumber = PhoneNumberField(region='IR')
     password = forms.CharField(max_length=64, min_length=8, required=True, widget=forms.PasswordInput())
     password2 = forms.CharField(max_length=64, min_length=8, required=True, widget=forms.PasswordInput())
@@ -71,3 +73,38 @@ class ResetPasswordSetForm(forms.Form):
             raise forms.ValidationError('passwords is not same')
         return p2
 
+
+class UserUpdateInfoForm(forms.ModelForm):
+    class Meta:
+        model = UserInfo
+        fields = ('height', 'weight', 'national_code', 'picture', 'user')
+
+
+class DietProgramFreeAdd(forms.ModelForm):
+    description = forms.CharField(max_length=500, required=False)
+
+    class Meta:
+        model = Diet_program_object_free
+        exclude = ('created_time', 'moified_time')
+
+
+class DietProgramAdd(forms.ModelForm):
+    description = forms.CharField(max_length=500, required=False)
+
+    class Meta:
+        model = Diet_program_object
+        exclude = ('created_time', 'moified_time')
+
+
+class TrainingProgramAdd(forms.ModelForm):
+    description = forms.CharField(max_length=500, required=False)
+
+    class Meta:
+        model = Training_program_object
+        exclude = ('created_time', 'moified_time')
+
+
+class CertificateAdd(forms.ModelForm):
+    class Meta:
+        model = Certificate
+        fields = '__all__'

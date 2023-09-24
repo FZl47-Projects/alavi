@@ -279,3 +279,19 @@ body {
 .tr-active{
     border: 1px solid #f29233;
 }
+
+.text-bold{
+    font-weight: bold;
+}
+
+.bg-danger-text{
+    background: #fff5fb;
+    color: #ef1a10;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.btn-white{
+    background: #fff!important;
+    color: #121212!important;
+}

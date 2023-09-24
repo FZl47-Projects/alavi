@@ -2,70 +2,46 @@
 {% load static %}
 
 {% block Title %}
-    برنامه غذایی
+     برنامه غذایی رایگان
 {% endblock %}
 
 {% block Link %}
     <link rel="stylesheet" href="{% static 'front/vendors/bootstrap.min.css' %}">
-    <link rel="stylesheet" href="{% static 'front/styles/user-profile.css' %}">
-    <link rel="stylesheet" href="{% static 'front/styles/diet-plan.css' %}">
+    <link rel="stylesheet" href="{% static 'front/styles/definition-of-diet.css' %}">
     <link rel="stylesheet" href="{% static 'front/styles/all.css' %}">
 {% endblock %}
+
+{% block Style %}
+    <style>
+        label {
+            color: #111;
+            margin-bottom: 5px;
+            font-size: 120%;
+        }
+
+        select[multiple] {
+            max-height: 250px;
+        }
+
+        .field {
+            padding: 5px;
+        }
+
+        .field > div {
+            margin: 2px;
+            border-radius: 10px;
+            padding: 10px;
+        }
+
+    </style>
+{% endblock %}
+
 {% block Content %}
     <body>
     <section class="main-page">
-        <main class="col-md-12 col-lg-12 content-main-admin">
+        <main class="col-md-12 content-main-admin">
             {% include 'base/components/header.html' %}
-            <h2 class="text-white m-4">برنامه غذایی</h2>
-            {% if user.is_admin_user %}
-                <section class="user-profile col-12 col-lg-11">
-                    <div class="col-2 col-md-1">
-                        <div class="user-img">
-                            <img src="{{ user_detail.get_image_url }}" alt="{{ user_detail.get_full_name }}">
-                        </div>
-                    </div>
-                    <div class="col-10 col-md-11">
-                        <div class="specifications">
-                            <div class="col-4">
-                                <div class="specifications-item">
-                                    {{ user_detail.get_full_name }}
-                                </div>
-                            </div>
-                            <div class="col-4">
-                                <div class="specifications-item">
-                                    {{ user_detail.info.national_code|default:'ثبت نشده است' }}
-                                </div>
-                            </div>
-                            <div class="col-4">
-                                <div class="specifications-item">
-                                    {{ user_detail.get_raw_phonenumber }}
-                                </div>
-                            </div>
-                            <div class="col-4">
-                                <div class="specifications-item">
-                                    {% if user_detail.info.weight %}
-                                        {{ user_detail.info.weight }}
-                                        کیلوگرم
-                                    {% else %}
-                                        ثبت نشده است
-                                    {% endif %}
-                                </div>
-                            </div>
-                            <div class="col-4">
-                                <div class="specifications-item">
-                                    {{ user_detail.info.height|default:'ثبت نشده است' }}
-                                </div>
-                            </div>
-                            <div class="col-4">
-                                <div class="specifications-item">
-                                    {{ user_detail.last_login }}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            {% endif %}
-
+            <h2 class="text-white m-4"> برنامه غذایی رایگان</h2>
             <div class="btns-table  col-12 col-lg-11">
                 <div class="btn-item active">شنبه</div>
                 <div class="btn-item">یکشنبه</div>
@@ -75,7 +51,7 @@
                 <div class="btn-item">پنج شنیه</div>
                 <div class="btn-item">جمعه</div>
             </div>
-            <section class="table-two col-12 col-lg-11">
+               <section class="table-two col-12 col-lg-11">
                 <div class="tables-content active">
                     <table class="table">
                         {% for program in programs0 %}
@@ -241,17 +217,9 @@
             </section>
         </main>
     </section>
+
+
     <script src="{% static 'front/vendors/bootstrap.min.js' %}"></script>
-    <script src="{% static 'front/js/diet-plan.js' %}"></script>
+    <script src="{% static 'front/js/admin/definition-of-diet.js' %}"></script>
     </body>
 {% endblock %}
-<!-- <!DOCTYPE html>
-<html lang="fa" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>برنامه غذایی</title>
-
-</head> -->
-<!-- </html> -->

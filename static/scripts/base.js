@@ -1,5 +1,3 @@
-
-
 function redirect(url) {
     window.location.href = url
 }
@@ -53,6 +51,12 @@ function getUrlParameter(sParam) {
     }
     return false;
 }
+
+function getHashValue(key) {
+    var matches = location.hash.match(new RegExp(key + '=([^&]*)'));
+    return matches ? matches[1] : null;
+}
+
 
 function randomString(length = 15) {
     let result = '';
@@ -143,7 +147,29 @@ for (let dt_el of all_datetime_convert) {
         hour: '2-digit',
         minute: '2-digit'
     });
-    if (dt_persian != 'Invalid Date'){
-       dt_el.innerHTML = dt_persian
+    if (dt_persian != 'Invalid Date') {
+        dt_el.innerHTML = dt_persian
     }
 }
+
+
+function activeMenuItem() {
+    let menu_items = document.querySelectorAll('.item-menu a')
+    for (let item of menu_items) {
+        let url = item.getAttribute('href')
+        let current_url = window.location.href
+        if (current_url.includes(url)) {
+            deactivateMenuItem()
+            item.classList.add('active')
+        }
+    }
+}
+
+function deactivateMenuItem() {
+    let menu_items = document.querySelectorAll('.item-menu a')
+    for (let item of menu_items) {
+        item.classList.remove('active')
+    }
+}
+
+activeMenuItem()

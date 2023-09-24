@@ -1,25 +1,36 @@
 /*------------------show and close modal comment user ------------------- */
 let btnsShowModal = document.querySelectorAll(".add-btn");
-let modals = document.querySelector("#add-modal");
-let overalyModals = document.querySelector("#add-modal .inner-modal");
+let modals = document.querySelectorAll(".add-modal");
+let overalyModals = document.querySelectorAll(".add-modal .inner-modal");
 // let closemodal = document.querySelectorAll("#close");
 
-btnsShowModal.forEach((item,index)=>{
-  item.addEventListener("click", () => {
-   
-    modals.classList.add("active");
-  });
-});
+for (let el of btnsShowModal) {
 
-    overalyModals.addEventListener("click", (e) => {
-    if (e.target.className === "inner-modal"){
-      modals.classList.remove("active");
+    el.addEventListener("click", () => {
+        let modal_id = el.getAttribute('modal-id')
+        document.querySelector(`#add-modal-${modal_id}`).classList.add("active");
+    });
+
+}
+
+
+for (let el of overalyModals) {
+    el.addEventListener("click", (e) => {
+        if (e.target.className === "inner-modal") {
+            hideAllModal()
+        }
+    });
+}
+
+function hideAllModal() {
+    for (let el of modals) {
+        el.classList.remove('d-none')
     }
-  });
+}
 
 // closemodal.forEach((item,index)=>{
 //     item.addEventListener("click", () => {
-     
+
 //       modals[index].classList.remove("active");
 //     });
 //   });

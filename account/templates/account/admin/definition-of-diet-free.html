@@ -2,70 +2,51 @@
 {% load static %}
 
 {% block Title %}
-    برنامه غذایی
+    تعریف برنامه غذایی رایگان
 {% endblock %}
 
 {% block Link %}
     <link rel="stylesheet" href="{% static 'front/vendors/bootstrap.min.css' %}">
-    <link rel="stylesheet" href="{% static 'front/styles/user-profile.css' %}">
-    <link rel="stylesheet" href="{% static 'front/styles/diet-plan.css' %}">
+    <link rel="stylesheet" href="{% static 'front/styles/definition-of-diet.css' %}">
     <link rel="stylesheet" href="{% static 'front/styles/all.css' %}">
 {% endblock %}
+
+{% block Style %}
+    <style>
+        label {
+            color: #111;
+            margin-bottom: 5px;
+            font-size: 120%;
+        }
+
+        select[multiple] {
+            max-height: 250px;
+        }
+
+        .field {
+            padding: 5px;
+        }
+
+        .field > div {
+            margin: 2px;
+            border-radius: 10px;
+            padding: 10px;
+        }
+
+    </style>
+{% endblock %}
+
 {% block Content %}
     <body>
     <section class="main-page">
-        <main class="col-md-12 col-lg-12 content-main-admin">
+        {% include 'account/admin/components/menu.html' %}
+        <main class="col-md-12 col-lg-10 content-main-admin">
             {% include 'base/components/header.html' %}
-            <h2 class="text-white m-4">برنامه غذایی</h2>
-            {% if user.is_admin_user %}
-                <section class="user-profile col-12 col-lg-11">
-                    <div class="col-2 col-md-1">
-                        <div class="user-img">
-                            <img src="{{ user_detail.get_image_url }}" alt="{{ user_detail.get_full_name }}">
-                        </div>
-                    </div>
-                    <div class="col-10 col-md-11">
-                        <div class="specifications">
-                            <div class="col-4">
-                                <div class="specifications-item">
-                                    {{ user_detail.get_full_name }}
-                                </div>
-                            </div>
-                            <div class="col-4">
-                                <div class="specifications-item">
-                                    {{ user_detail.info.national_code|default:'ثبت نشده است' }}
-                                </div>
-                            </div>
-                            <div class="col-4">
-                                <div class="specifications-item">
-                                    {{ user_detail.get_raw_phonenumber }}
-                                </div>
-                            </div>
-                            <div class="col-4">
-                                <div class="specifications-item">
-                                    {% if user_detail.info.weight %}
-                                        {{ user_detail.info.weight }}
-                                        کیلوگرم
-                                    {% else %}
-                                        ثبت نشده است
-                                    {% endif %}
-                                </div>
-                            </div>
-                            <div class="col-4">
-                                <div class="specifications-item">
-                                    {{ user_detail.info.height|default:'ثبت نشده است' }}
-                                </div>
-                            </div>
-                            <div class="col-4">
-                                <div class="specifications-item">
-                                    {{ user_detail.last_login }}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            {% endif %}
-
+            <h2 class="text-white m-4">تعریف برنامه غذایی رایگان</h2>
+            <button class="mt-1 btn btn-primary m-5 mb-0" data-bs-toggle="modal" data-bs-target="#add-food">
+                افزودن برنامه غذایی رایگان
+                <i class="fa fa-plus"></i>
+            </button>
             <div class="btns-table  col-12 col-lg-11">
                 <div class="btn-item active">شنبه</div>
                 <div class="btn-item">یکشنبه</div>
@@ -91,6 +72,12 @@
                                 </td>
                                 <td>{{ program.description }}</td>
                                 <td class="datetime-convert">{{ program.get_created_at }}</td>
+                                <td>
+                                    <a href="{% url 'account:definition-of-diet-free-delete' diet_free_id=program.id %}"
+                                       class="btn btn-danger">
+                                        <i class="fa fa-trash"></i>
+                                    </a>
+                                </td>
                             </tr>
                         {% empty %}
                             <div class="container-not-found-base">
@@ -114,6 +101,12 @@
                                 </td>
                                 <td>{{ program.description }}</td>
                                 <td class="datetime-convert">{{ program.get_created_at }}</td>
+                                <td>
+                                    <a href="{% url 'account:definition-of-diet-free-delete' diet_free_id=program.id %}"
+                                       class="btn btn-danger">
+                                        <i class="fa fa-trash"></i>
+                                    </a>
+                                </td>
                             </tr>
                         {% empty %}
                             <div class="container-not-found-base">
@@ -137,6 +130,12 @@
                                 </td>
                                 <td>{{ program.description }}</td>
                                 <td class="datetime-convert">{{ program.get_created_at }}</td>
+                                <td>
+                                    <a href="{% url 'account:definition-of-diet-free-delete' diet_free_id=program.id %}"
+                                       class="btn btn-danger">
+                                        <i class="fa fa-trash"></i>
+                                    </a>
+                                </td>
                             </tr>
                         {% empty %}
                             <div class="container-not-found-base">
@@ -160,6 +159,12 @@
                                 </td>
                                 <td>{{ program.description }}</td>
                                 <td class="datetime-convert">{{ program.get_created_at }}</td>
+                                <td>
+                                    <a href="{% url 'account:definition-of-diet-free-delete' diet_free_id=program.id %}"
+                                       class="btn btn-danger">
+                                        <i class="fa fa-trash"></i>
+                                    </a>
+                                </td>
                             </tr>
                         {% empty %}
                             <div class="container-not-found-base">
@@ -183,6 +188,12 @@
                                 </td>
                                 <td>{{ program.description }}</td>
                                 <td class="datetime-convert">{{ program.get_created_at }}</td>
+                                <td>
+                                    <a href="{% url 'account:definition-of-diet-free-delete' diet_free_id=program.id %}"
+                                       class="btn btn-danger">
+                                        <i class="fa fa-trash"></i>
+                                    </a>
+                                </td>
                             </tr>
                         {% empty %}
                             <div class="container-not-found-base">
@@ -206,6 +217,12 @@
                                 </td>
                                 <td>{{ program.description }}</td>
                                 <td class="datetime-convert">{{ program.get_created_at }}</td>
+                                <td>
+                                    <a href="{% url 'account:definition-of-diet-free-delete' diet_free_id=program.id %}"
+                                       class="btn btn-danger">
+                                        <i class="fa fa-trash"></i>
+                                    </a>
+                                </td>
                             </tr>
                         {% empty %}
                             <div class="container-not-found-base">
@@ -229,6 +246,12 @@
                                 </td>
                                 <td>{{ program.description }}</td>
                                 <td class="datetime-convert">{{ program.get_created_at }}</td>
+                                <td>
+                                    <a href="{% url 'account:definition-of-diet-free-delete' diet_free_id=program.id %}"
+                                       class="btn btn-danger">
+                                        <i class="fa fa-trash"></i>
+                                    </a>
+                                </td>
                             </tr>
                         {% empty %}
                             <div class="container-not-found-base">
@@ -241,17 +264,77 @@
             </section>
         </main>
     </section>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="add-food" tabindex="-1" aria-labelledby="add-food-Label" aria-hidden="true">
+        <div class="modal-dialog">
+            <form action="{% url 'account:definition-of-diet-free' %}" method="post">
+                {% csrf_token %}
+                <div class="modal-content col-11 mx-auto">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">برنامه غذایی رایگان</h5>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-12 field">
+                                <div>
+                                    <label for="">غذا</label>
+                                    <select name="food" id="" class="form-control form-select" required multiple>
+                                        {% for food in foods %}
+                                            <option value="{{ food.id }}">{{ food.name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 col-md-12 field">
+                                <div>
+                                    <label for="">مقدار</label>
+                                    <input type="number" class="form-control" name="amount" required>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-12 field">
+                                <div>
+                                    <label for="">انرژی</label>
+                                    <input type="number" class="form-control" name="energy" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 field">
+                                <div>
+                                    <label for="">روز</label>
+                                    <select name="day" id="" class="form-control form-select" required multiple>
+                                        <option value="0">شنبه</option>
+                                        <option value="1">یکشنبه</option>
+                                        <option value="2">دوشنبه</option>
+                                        <option value="3">سه شنبه</option>
+                                        <option value="4">چهارشنبه</option>
+                                        <option value="5">پنجشنبه</option>
+                                        <option value="6">جمعه</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-12 field">
+                                <div>
+                                    <label for="">توضیحات</label>
+                                    <textarea name="description" class="form-control" rows="3"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">لغو</button>
+                        <button type="submit" class="btn btn-primary">ثبت</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <script src="{% static 'front/vendors/bootstrap.min.js' %}"></script>
-    <script src="{% static 'front/js/diet-plan.js' %}"></script>
+    <script src="{% static 'front/js/admin/definition-of-diet.js' %}"></script>
     </body>
 {% endblock %}
-<!-- <!DOCTYPE html>
-<html lang="fa" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>برنامه غذایی</title>
-
-</head> -->
-<!-- </html> -->

@@ -2,732 +2,128 @@
 {% load static %}
 
 {% block Title %}
-تعریف رژیم غذایی
+    تعریف رژیم غذایی
 {% endblock %}
 
 {% block Link %}
-  <link rel="stylesheet" href="{% static 'front/vendors/bootstrap.min.css' %}">
-  <link rel="stylesheet" href="{% static 'front/styles/definition-of-diet.css' %}">
-  <link rel="stylesheet" href="{% static 'front/styles/all.css' %}">
+    <link rel="stylesheet" href="{% static 'front/vendors/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'front/styles/definition-of-diet.css' %}">
+    <link rel="stylesheet" href="{% static 'front/styles/all.css' %}">
 {% endblock %}
-{% block Content %}
-<body>
-  <div class="content-modal moda-add-tamrin">
-    <div class="inner-modal">
-      <form class="px-4 pt-2">
-        <div class="py-2">
-          <div class="title">
-            <div>تعریف غذای جدید</div>
-          </div>
-          <div class="item-input">
-            <input type="text" placeholder="نام" >
-          </div>
-          <div class="item-input">
-            <input type="text" placeholder="مقدار" >
-          </div>
-          <div class="item-input">
-            <input type="text" placeholder="کالری" >
-          </div>
-          <textarea
-            name="modal"
-            class="input-modal"
-            id="text-post-add"
-            cols="30"
-            rows="7"
-            placeholder="متن را تایپ کنید"></textarea>
 
-            <div class="register-btn">
-              <button>ثبت</button>
-            </div>
-        </div>
-      </div>
-    </form>
-  </div>
-   <section class="main-page">
-    {% include 'account/admin/components/menu.html' %}
-       <main class="col-md-12 col-lg-10 content-main-admin" >
-        <header class="ms-header">
-            <nav class="ms-nav">
-                <div class="user col-6">
-                    <span><img src="{% static 'front/images/userimage.png' %}" alt=""></span>
-                    <span>نام و نام خانوادگی</span>
+{% block Style %}
+    <style>
+        label {
+            color: #fff;
+            margin-bottom: 5px;
+            font-size: 120%;
+        }
+
+        input, select, textarea {
+            background: #222 !important;
+            color: #fff !important;
+        }
+
+        select[multiple] {
+            max-height: 250px;
+        }
+
+        .field {
+            padding:5px;
+        }
+
+        .field > div {
+            margin: 10px;
+            border: 1px solid #333;
+            border-radius: 10px;
+            padding: 10px;
+        }
+
+    </style>
+{% endblock %}
+
+{% block Content %}
+    <body>
+    <section class="main-page">
+        {% include 'account/admin/components/menu.html' %}
+        <main class="col-md-12 col-lg-10 content-main-admin">
+            {% include 'base/components/header.html' %}
+            <h2 class="text-white m-4">تعریف برنامه غذایی</h2>
+            <section class="table-two col-12 col-lg-11">
+                <div class="tables-content active p-5">
+                    <form action="{% url 'account:definition-of-diet' %}" method="post">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-12 col-md-6 field">
+                                <div>
+                                    <label for="">غذا</label>
+                                    <select name="food" id="" class="form-control form-select" required multiple>
+                                        {% for food in foods %}
+                                            <option value="{{ food.id }}">{{ food.name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6 field">
+                                <div>
+                                    <label for="">کاربر</label>
+                                    <select name="user" id="" class="form-control form-select" required multiple>
+                                        {% for user in users %}
+                                            <option value="{{ user.id }}">{{ user.get_full_name|truncatechars:15 }}-{{ user.get_raw_phonenumber }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 col-md-6 field">
+                                <div>
+                                    <label for="">مقدار</label>
+                                    <input type="number" class="form-control" name="amount" required>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6 field">
+                                <div>
+                                    <label for="">انرژی</label>
+                                    <input type="number" class="form-control" name="energy" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 field">
+                                <div>
+                                    <label for="">روز</label>
+                                    <select name="day" id="" class="form-control form-select" required multiple>
+                                        <option value="0">شنبه</option>
+                                        <option value="1">یکشنبه</option>
+                                        <option value="2">دوشنبه</option>
+                                        <option value="3">سه شنبه</option>
+                                        <option value="4">چهارشنبه</option>
+                                        <option value="5">پنجشنبه</option>
+                                        <option value="6">جمعه</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-12 field">
+                                <div>
+                                    <label for="">توضیحات</label>
+                                    <textarea name="description" class="form-control" rows="3"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="text-left">
+                                <button class="btn btn-success p-2" style="width: 110px">ثبت</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
-                <div class="logo col-6">
-                    <img src="{% static 'front/images/22.png' %}" alt="">
-                </div>
-            </nav>
-        </header>
-        <div class="btns-table  col-12 col-lg-11"> 
-            <div class="btn-item active">شنبه</div>
-            <div class="btn-item">یکشنبه</div>
-            <div class="btn-item">دوشنبه</div>
-            <div class="btn-item">سه شنبه</div>
-            <div class="btn-item">چهارشنبه</div>
-            <div class="btn-item">پنج شنیه</div>
-            <div class="btn-item">جمعه</div>
-           </div>
-        <section class="table-two col-12 col-lg-11">
-            <div class="tables-content active">
-                <div class="add-button">
-                    <div class="inner-add-button col-6 col-md-2">
-                       <div class="col-2 col-md-2">
-                           <img src="{% static 'front/images/add.png' %}" alt="">
-                        </div>
-                        <div class="text">اضافه کردن رژیم غذایی</div>
-                    </div>
-                   </div>
-                   <table class="table">
-                       <tr>
-                         <td>کاهو</td>
-                         <td>100گرم</td> 
-                         <td>200کالری</td>
-                         <td>توضیحات بیشتر</td>
-                       </tr>
-                       <tr>
-                           <td>کاهو</td>
-                           <td>100گرم</td> 
-                           <td>200کالری</td>
-                           <td>توضیحات بیشتر</td>
-                         </tr>
-                         <tr>
-                           <td>کاهو</td>
-                           <td>100گرم</td> 
-                           <td>200کالری</td>
-                           <td>توضیحات بیشتر</td>
-                         </tr> 
-                         <tr>
-                           <td>کاهو</td>
-                           <td>100گرم</td> 
-                           <td>200کالری</td>
-                           <td>توضیحات بیشتر</td>
-                         </tr>
-                         <tr>
-                           <td>کاهو</td>
-                           <td>100گرم</td> 
-                           <td>200کالری</td>
-                           <td>توضیحات بیشتر</td>
-                         </tr>
-                         <tr>
-                           <td>کاهو</td>
-                           <td>100گرم</td> 
-                           <td>200کالری</td>
-                           <td>توضیحات بیشتر</td>
-                         </tr>
-                         <tr>
-                           <td>کاهو</td>
-                           <td>100گرم</td> 
-                           <td>200کالری</td>
-                           <td>توضیحات بیشتر</td>
-                         </tr>
-                         <tr>
-                           <td>کاهو</td>
-                           <td>100گرم</td> 
-                           <td>200کالری</td>
-                           <td>توضیحات بیشتر</td>
-                         </tr>
-                         <tr>
-                           <td>کاهو</td>
-                           <td>100گرم</td> 
-                           <td>200کالری</td>
-                           <td>توضیحات بیشتر</td>
-                         </tr>
-                         <tr>
-                           <td>کاهو</td>
-                           <td>100گرم</td> 
-                           <td>200کالری</td>
-                           <td>توضیحات بیشتر</td>
-                         </tr>
-                         <tr>
-                           <td>کاهو</td>
-                           <td>100گرم</td> 
-                           <td>200کالری</td>
-                           <td>توضیحات بیشتر</td>
-                         </tr>
-                         <tr>
-                            <td>کاهو</td>
-                            <td>100گرم</td> 
-                            <td>200کالری</td>
-                            <td>توضیحات بیشتر</td>
-                          </tr>
-                          <tr>
-                            <td>کاهو</td>
-                            <td>100گرم</td> 
-                            <td>200کالری</td>
-                            <td>توضیحات بیشتر</td>
-                          </tr>
-                          <tr>
-                            <td>کاهو</td>
-                            <td>100گرم</td> 
-                            <td>200کالری</td>
-                            <td>توضیحات بیشتر</td>
-                          </tr>
-                          <tr>
-                            <td>کاهو</td>
-                            <td>100گرم</td> 
-                            <td>200کالری</td>
-                            <td>توضیحات بیشتر</td>
-                          </tr>
-                          <tr>
-                            <td>کاهو</td>
-                            <td>100گرم</td> 
-                            <td>200کالری</td>
-                            <td>توضیحات بیشتر</td>
-                          </tr>
-                       
-                   </table>
-            </div>
-            <div class="tables-content">
-                <div class="add-button">
-                    <div class="inner-add-button col-6 col-md-2">
-                       <div class="col-2 col-md-2">
-                           <img src="{% static 'front/images/add.png' %}" alt="">
-                        </div>
-                        <div class="text">اضافه کردن رژیم غذایی</div>
-                    </div>
-                   </div>
-                   <table class="table">
-                       <tr>
-                         <td>کاهو</td>
-                         <td>100گرم</td> 
-                         <td>200کالری</td>
-                         <td>توضیحات بیشتر</td>
-                       </tr>
-                       <tr>
-                           <td>کاهو</td>
-                           <td>100گرم</td> 
-                           <td>200کالری</td>
-                           <td>توضیحات بیشتر</td>
-                         </tr>
-                         <tr>
-                           <td>کاهو</td>
-                           <td>100گرم</td> 
-                           <td>200کالری</td>
-                           <td>توضیحات بیشتر</td>
-                         </tr> 
-                         <tr>
-                           <td>کاهو</td>
-                           <td>100گرم</td> 
-                           <td>200کالری</td>
-                           <td>توضیحات بیشتر</td>
-                         </tr>
-                         <tr>
-                           <td>کاهو</td>
-                           <td>100گرم</td> 
-                           <td>200کالری</td>
-                           <td>توضیحات بیشتر</td>
-                         </tr>
-                         <tr>
-                           <td>کاهو</td>
-                           <td>100گرم</td> 
-                           <td>200کالری</td>
-                           <td>توضیحات بیشتر</td>
-                         </tr>
-                         <tr>
-                           <td>کاهو</td>
-                           <td>100گرم</td> 
-                           <td>200کالری</td>
-                           <td>توضیحات بیشتر</td>
-                         </tr>
-                         <tr>
-                           <td>کاهو</td>
-                           <td>100گرم</td> 
-                           <td>200کالری</td>
-                           <td>توضیحات بیشتر</td>
-                         </tr>
-                         <tr>
-                           <td>کاهو</td>
-                           <td>100گرم</td> 
-                           <td>200کالری</td>
-                           <td>توضیحات بیشتر</td>
-                         </tr>
-                         <tr>
-                           <td>کاهو</td>
-                           <td>100گرم</td> 
-                           <td>200کالری</td>
-                           <td>توضیحات بیشتر</td>
-                         </tr>
-                         <tr>
-                           <td>کاهو</td>
-                           <td>100گرم</td> 
-                           <td>200کالری</td>
-                           <td>توضیحات بیشتر</td>
-                         </tr>
-                         <tr>
-                            <td>کاهو</td>
-                            <td>100گرم</td> 
-                            <td>200کالری</td>
-                            <td>توضیحات بیشتر</td>
-                          </tr>
-                          <tr>
-                            <td>کاهو</td>
-                            <td>100گرم</td> 
-                            <td>200کالری</td>
-                            <td>توضیحات بیشتر</td>
-                          </tr>
-                          <tr>
-                            <td>کاهو</td>
-                            <td>100گرم</td> 
-                            <td>200کالری</td>
-                            <td>توضیحات بیشتر</td>
-                          </tr>
-                          <tr>
-                            <td>کاهو</td>
-                            <td>100گرم</td> 
-                            <td>200کالری</td>
-                            <td>توضیحات بیشتر</td>
-                          </tr>
-                          <tr>
-                            <td>کاهو</td>
-                            <td>100گرم</td> 
-                            <td>200کالری</td>
-                            <td>توضیحات بیشتر</td>
-                          </tr>
-                       
-                   </table>
-            </div>
-            <div class="tables-content">
-                <div class="add-button">
-                    <div class="inner-add-button col-6 col-md-2">
-                       <div class="col-2 col-md-2">
-                           <img src=".{% static 'front/images/add.png' %}" alt="">
-                        </div>
-                        <div class="text">اضافه کردن رژیم غذایی</div>
-                    </div>
-                   </div>
-                   <table class="table">
-                       <tr>
-                         <td>کاهو</td>
-                         <td>100گرم</td> 
-                         <td>200کالری</td>
-                         <td>توضیحات بیشتر</td>
-                       </tr>
-                       <tr>
-                           <td>کاهو</td>
-                           <td>100گرم</td> 
-                           <td>200کالری</td>
-                           <td>توضیحات بیشتر</td>
-                         </tr>
-                         <tr>
-                           <td>کاهو</td>
-                           <td>100گرم</td> 
-                           <td>200کالری</td>
-                           <td>توضیحات بیشتر</td>
-                         </tr> 
-                         <tr>
-                           <td>کاهو</td>
-                           <td>100گرم</td> 
-                           <td>200کالری</td>
-                           <td>توضیحات بیشتر</td>
-                         </tr>
-                         <tr>
-                           <td>کاهو</td>
-                           <td>100گرم</td> 
-                           <td>200کالری</td>
-                           <td>توضیحات بیشتر</td>
-                         </tr>
-                         <tr>
-                           <td>کاهو</td>
-                           <td>100گرم</td> 
-                           <td>200کالری</td>
-                           <td>توضیحات بیشتر</td>
-                         </tr>
-                         <tr>
-                           <td>کاهو</td>
-                           <td>100گرم</td> 
-                           <td>200کالری</td>
-                           <td>توضیحات بیشتر</td>
-                         </tr>
-                         <tr>
-                           <td>کاهو</td>
-                           <td>100گرم</td> 
-                           <td>200کالری</td>
-                           <td>توضیحات بیشتر</td>
-                         </tr>
-                         <tr>
-                           <td>کاهو</td>
-                           <td>100گرم</td> 
-                           <td>200کالری</td>
-                           <td>توضیحات بیشتر</td>
-                         </tr>
-                         <tr>
-                           <td>کاهو</td>
-                           <td>100گرم</td> 
-                           <td>200کالری</td>
-                           <td>توضیحات بیشتر</td>
-                         </tr>
-                         <tr>
-                           <td>کاهو</td>
-                           <td>100گرم</td> 
-                           <td>200کالری</td>
-                           <td>توضیحات بیشتر</td>
-                         </tr>
-                         <tr>
-                            <td>کاهو</td>
-                            <td>100گرم</td> 
-                            <td>200کالری</td>
-                            <td>توضیحات بیشتر</td>
-                          </tr>
-                          <tr>
-                            <td>کاهو</td>
-                            <td>100گرم</td> 
-                            <td>200کالری</td>
-                            <td>توضیحات بیشتر</td>
-                          </tr>
-                          <tr>
-                            <td>کاهو</td>
-                            <td>100گرم</td> 
-                            <td>200کالری</td>
-                            <td>توضیحات بیشتر</td>
-                          </tr>
-                          <tr>
-                            <td>کاهو</td>
-                            <td>100گرم</td> 
-                            <td>200کالری</td>
-                            <td>توضیحات بیشتر</td>
-                          </tr>
-                          <tr>
-                            <td>کاهو</td>
-                            <td>100گرم</td> 
-                            <td>200کالری</td>
-                            <td>توضیحات بیشتر</td>
-                          </tr>
-                       
-                   </table>
-            </div>
-            <div class="tables-content">
-                <div class="add-button">
-                    <div class="inner-add-button col-6 col-md-2">
-                       <div class="col-2 col-md-2">
-                           <img src="{% static 'front/images/add.png' %}" alt="">
-                        </div>
-                        <div class="text">اضافه کردن رژیم غذایی</div>
-                    </div>
-                   </div>
-                   <table class="table">
-                       <tr>
-                         <td>کاهو</td>
-                         <td>100گرم</td> 
-                         <td>200کالری</td>
-                         <td>توضیحات بیشتر</td>
-                       </tr>
-                       <tr>
-                           <td>کاهو</td>
-                           <td>100گرم</td> 
-                           <td>200کالری</td>
-                           <td>توضیحات بیشتر</td>
-                         </tr>
-                         <tr>
-                           <td>کاهو</td>
-                           <td>100گرم</td> 
-                           <td>200کالری</td>
-                           <td>توضیحات بیشتر</td>
-                         </tr> 
-                         <tr>
-                           <td>کاهو</td>
-                           <td>100گرم</td> 
-                           <td>200کالری</td>
-                           <td>توضیحات بیشتر</td>
-                         </tr>
-                         <tr>
-                           <td>کاهو</td>
-                           <td>100گرم</td> 
-                           <td>200کالری</td>
-                           <td>توضیحات بیشتر</td>
-                         </tr>
-                         <tr>
-                           <td>کاهو</td>
-                           <td>100گرم</td> 
-                           <td>200کالری</td>
-                           <td>توضیحات بیشتر</td>
-                         </tr>
-                         <tr>
-                           <td>کاهو</td>
-                           <td>100گرم</td> 
-                           <td>200کالری</td>
-                           <td>توضیحات بیشتر</td>
-                         </tr>
-                         <tr>
-                           <td>کاهو</td>
-                           <td>100گرم</td> 
-                           <td>200کالری</td>
-                           <td>توضیحات بیشتر</td>
-                         </tr>
-                         <tr>
-                           <td>کاهو</td>
-                           <td>100گرم</td> 
-                           <td>200کالری</td>
-                           <td>توضیحات بیشتر</td>
-                         </tr>
-                         <tr>
-                           <td>کاهو</td>
-                           <td>100گرم</td> 
-                           <td>200کالری</td>
-                           <td>توضیحات بیشتر</td>
-                         </tr>
-                         <tr>
-                           <td>کاهو</td>
-                           <td>100گرم</td> 
-                           <td>200کالری</td>
-                           <td>توضیحات بیشتر</td>
-                         </tr>
-                         <tr>
-                            <td>کاهو</td>
-                            <td>100گرم</td> 
-                            <td>200کالری</td>
-                            <td>توضیحات بیشتر</td>
-                          </tr>
-                          <tr>
-                            <td>کاهو</td>
-                            <td>100گرم</td> 
-                            <td>200کالری</td>
-                            <td>توضیحات بیشتر</td>
-                          </tr>
-                          <tr>
-                            <td>کاهو</td>
-                            <td>100گرم</td> 
-                            <td>200کالری</td>
-                            <td>توضیحات بیشتر</td>
-                          </tr>
-                          <tr>
-                            <td>کاهو</td>
-                            <td>100گرم</td> 
-                            <td>200کالری</td>
-                            <td>توضیحات بیشتر</td>
-                          </tr>
-                          <tr>
-                            <td>کاهو</td>
-                            <td>100گرم</td> 
-                            <td>200کالری</td>
-                            <td>توضیحات بیشتر</td>
-                          </tr>
-                       
-                   </table>
-            </div>
-            <div class="tables-content">
-                <div class="add-button">
-                    <div class="inner-add-button col-6 col-md-2">
-                       <div class="col-2 col-md-2">
-                           <img src="{% static 'front/images/add.png' %}" alt="">
-                        </div>
-                        <div class="text">اضافه کردن رژیم غذایی</div>
-                    </div>
-                   </div>
-                   <table class="table">
-                       <tr>
-                         <td>کاهو</td>
-                         <td>100گرم</td> 
-                         <td>200کالری</td>
-                         <td>توضیحات بیشتر</td>
-                       </tr>
-                       <tr>
-                           <td>کاهو</td>
-                           <td>100گرم</td> 
-                           <td>200کالری</td>
-                           <td>توضیحات بیشتر</td>
-                         </tr>
-                         <tr>
-                           <td>کاهو</td>
-                           <td>100گرم</td> 
-                           <td>200کالری</td>
-                           <td>توضیحات بیشتر</td>
-                         </tr> 
-                         <tr>
-                           <td>کاهو</td>
-                           <td>100گرم</td> 
-                           <td>200کالری</td>
-                           <td>توضیحات بیشتر</td>
-                         </tr>
-                         <tr>
-                           <td>کاهو</td>
-                           <td>100گرم</td> 
-                           <td>200کالری</td>
-                           <td>توضیحات بیشتر</td>
-                         </tr>
-                         <tr>
-                           <td>کاهو</td>
-                           <td>100گرم</td> 
-                           <td>200کالری</td>
-                           <td>توضیحات بیشتر</td>
-                         </tr>
-                         <tr>
-                           <td>کاهو</td>
-                           <td>100گرم</td> 
-                           <td>200کالری</td>
-                           <td>توضیحات بیشتر</td>
-                         </tr>
-                         <tr>
-                           <td>کاهو</td>
-                           <td>100گرم</td> 
-                           <td>200کالری</td>
-                           <td>توضیحات بیشتر</td>
-                         </tr>
-                         <tr>
-                           <td>کاهو</td>
-                           <td>100گرم</td> 
-                           <td>200کالری</td>
-                           <td>توضیحات بیشتر</td>
-                         </tr>
-                         <tr>
-                           <td>کاهو</td>
-                           <td>100گرم</td> 
-                           <td>200کالری</td>
-                           <td>توضیحات بیشتر</td>
-                         </tr>
-                         <tr>
-                           <td>کاهو</td>
-                           <td>100گرم</td> 
-                           <td>200کالری</td>
-                           <td>توضیحات بیشتر</td>
-                         </tr>
-                         <tr>
-                            <td>کاهو</td>
-                            <td>100گرم</td> 
-                            <td>200کالری</td>
-                            <td>توضیحات بیشتر</td>
-                          </tr>
-                          <tr>
-                            <td>کاهو</td>
-                            <td>100گرم</td> 
-                            <td>200کالری</td>
-                            <td>توضیحات بیشتر</td>
-                          </tr>
-                          <tr>
-                            <td>کاهو</td>
-                            <td>100گرم</td> 
-                            <td>200کالری</td>
-                            <td>توضیحات بیشتر</td>
-                          </tr>
-                          <tr>
-                            <td>کاهو</td>
-                            <td>100گرم</td> 
-                            <td>200کالری</td>
-                            <td>توضیحات بیشتر</td>
-                          </tr>
-                          <tr>
-                            <td>کاهو</td>
-                            <td>100گرم</td> 
-                            <td>200کالری</td>
-                            <td>توضیحات بیشتر</td>
-                          </tr>
-                       
-                   </table>
-            </div>
-            <div class="tables-content">
-                <div class="add-button">
-                    <div class="inner-add-button col-6 col-md-2">
-                       <div class="col-2 col-md-2">
-                           <img src="{% static 'front/images/add.png' %}" alt="">
-                        </div>
-                        <div class="text">اضافه کردن رژیم غذایی</div>
-                    </div>
-                   </div>
-                   <table class="table">
-                       <tr>
-                         <td>کاهو</td>
-                         <td>100گرم</td> 
-                         <td>200کالری</td>
-                         <td>توضیحات بیشتر</td>
-                       </tr>
-                       <tr>
-                           <td>کاهو</td>
-                           <td>100گرم</td> 
-                           <td>200کالری</td>
-                           <td>توضیحات بیشتر</td>
-                         </tr>
-                         <tr>
-                           <td>کاهو</td>
-                           <td>100گرم</td> 
-                           <td>200کالری</td>
-                           <td>توضیحات بیشتر</td>
-                         </tr> 
-                         <tr>
-                           <td>کاهو</td>
-                           <td>100گرم</td> 
-                           <td>200کالری</td>
-                           <td>توضیحات بیشتر</td>
-                         </tr>
-                         <tr>
-                           <td>کاهو</td>
-                           <td>100گرم</td> 
-                           <td>200کالری</td>
-                           <td>توضیحات بیشتر</td>
-                         </tr>
-                         <tr>
-                           <td>کاهو</td>
-                           <td>100گرم</td> 
-                           <td>200کالری</td>
-                           <td>توضیحات بیشتر</td>
-                         </tr>
-                         <tr>
-                           <td>کاهو</td>
-                           <td>100گرم</td> 
-                           <td>200کالری</td>
-                           <td>توضیحات بیشتر</td>
-                         </tr>
-                         <tr>
-                           <td>کاهو</td>
-                           <td>100گرم</td> 
-                           <td>200کالری</td>
-                           <td>توضیحات بیشتر</td>
-                         </tr>
-                         <tr>
-                           <td>کاهو</td>
-                           <td>100گرم</td> 
-                           <td>200کالری</td>
-                           <td>توضیحات بیشتر</td>
-                         </tr>
-                         <tr>
-                           <td>کاهو</td>
-                           <td>100گرم</td> 
-                           <td>200کالری</td>
-                           <td>توضیحات بیشتر</td>
-                         </tr>
-                         <tr>
-                           <td>کاهو</td>
-                           <td>100گرم</td> 
-                           <td>200کالری</td>
-                           <td>توضیحات بیشتر</td>
-                         </tr>
-                         <tr>
-                            <td>کاهو</td>
-                            <td>100گرم</td> 
-                            <td>200کالری</td>
-                            <td>توضیحات بیشتر</td>
-                          </tr>
-                          <tr>
-                            <td>کاهو</td>
-                            <td>100گرم</td> 
-                            <td>200کالری</td>
-                            <td>توضیحات بیشتر</td>
-                          </tr>
-                          <tr>
-                            <td>کاهو</td>
-                            <td>100گرم</td> 
-                            <td>200کالری</td>
-                            <td>توضیحات بیشتر</td>
-                          </tr>
-                          <tr>
-                            <td>کاهو</td>
-                            <td>100گرم</td> 
-                            <td>200کالری</td>
-                            <td>توضیحات بیشتر</td>
-                          </tr>
-                          <tr>
-                            <td>کاهو</td>
-                            <td>100گرم</td> 
-                            <td>200کالری</td>
-                            <td>توضیحات بیشتر</td>
-                          </tr>
-                       
-                   </table>
-            </div>
-                
-        </section>
-       </main>
-   </section>
-   <script src="{% static 'front/vendors/bootstrap.min.js' %}"></script>
-   <script src="{% static 'front/js/admin/definition-of-diet.js' %}"></script>
-</body>
+            </section>
+        </main>
+    </section>
+    <script src="{% static 'front/vendors/bootstrap.min.js' %}"></script>
+    <script src="{% static 'front/js/admin/definition-of-diet.js' %}"></script>
+    </body>
 {% endblock %}
 <!-- <!DOCTYPE html>
 <html lang="fa" dir="rtl">

@@ -8,12 +8,14 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import View
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, get_user_model, logout as logout_handler
-from core.utils import add_prefix_phonenum, random_str, form_validate_err
+from core.utils import add_prefix_phonenum, random_str, random_num, form_validate_err
 from core.auth.decorators import admin_required, admin_required_cbv
 from core.redis_py import set_value_expire, remove_key, get_value
 
 from notification.models import NotificationUser
-from . import forms
+from program.models import Food, Sport, Diet_program_object, Diet_program_object_free
+from public.models import Certificate
+from . import forms, models
 
 User = get_user_model()
 RESET_PASSWORD_CONFIG = settings.RESET_PASSWORD_CONFIG
@@ -21,6 +23,7 @@ RESET_PASSWORD_CONFIG = settings.RESET_PASSWORD_CONFIG
 
 def login_register(request):
     def login_perform(request, data):
+        user = None
         phonenumber = data.get('phonenumber', None)
         password = data.get('password', None)
         if phonenumber and password:
@@ -34,7 +37,7 @@ def login_register(request):
             return redirect('public:index')
         else:
             messages.error(request, 'لطفا فیلد هارا به درستی وارد نمایید')
-        return redirect('account:login_register')
+        return redirect(user.get_absolute_url())
 
     def register_perform(request, data):
         f = forms.RegisterUserForm(data=data)
@@ -74,7 +77,7 @@ def login_register(request):
 
 def logout(request):
     logout_handler(request)
-    return redirect('public:home')
+    return redirect('public:index')
 
 
 def reset_password(request):
@@ -95,7 +98,7 @@ def reset_password_send(request):
         user = User.objects.get(phonenumber=phonenumber)
     except:
         raise Http404
-    code = random_str(RESET_PASSWORD_CONFIG['CODE_LENGTH'])
+    code = random_num(RESET_PASSWORD_CONFIG['CODE_LENGTH'])
     key = RESET_PASSWORD_CONFIG['STORE_BY'].format(phonenumber)
     # check code state set
     if get_value(key) is not None:
@@ -105,6 +108,10 @@ def reset_password_send(request):
     set_value_expire(key, code, RESET_PASSWORD_CONFIG['TIMEOUT'])
     # send code
     NotificationUser.objects.create(
+        type='RESET_PASSWORD_CODE_SENT',
+        kwargs={
+            'code': code
+        },
         to_user=user,
         title='بازیابی رمز عبور',
         description=f"""
@@ -170,6 +177,7 @@ def reset_password_set(request):
     user.save()
     remove_key(key)
     NotificationUser.objects.create(
+        type='PASSWORD_CHANGED_SUCCESSFULLY',
         to_user=user,
         title='رمز عبور شما تغییر کرد',
         description="""
@@ -178,24 +186,6 @@ def reset_password_set(request):
         send_notify=True
     )
     return JsonResponse({})
-
-
-@login_required
-def dashboard(request):
-    context = {}
-    return render(request, 'account/dashboard/index.html', context)
-
-
-class UserList(View):
-    # TODO should be completed
-    template_name = 'account/dashboard/user/list.html'
-
-    @admin_required_cbv()
-    def get(self, request):
-        context = {
-            'users': User.normal_user.all()
-        }
-        return render(request, self.template_name, context)
 
 
 class Home_admin(View):
@@ -218,34 +208,248 @@ class Users(View):
         return render(request, self.template_name, context)
 
 
+class Foods(View):
+    template_name = 'account/admin/foods.html'
+
+    @admin_required_cbv()
+    def get(self, request):
+        foods = Food.objects.all()
+        context = {
+            'foods': foods
+        }
+        return render(request, self.template_name, context)
+
+
+class Sports(View):
+    template_name = 'account/admin/sports.html'
+
+    @admin_required_cbv()
+    def get(self, request):
+        sports = Sport.objects.all()
+        context = {
+            'sports': sports
+        }
+        return render(request, self.template_name, context)
+
+
+class Certificates(View):
+    template_name = 'account/admin/certificates.html'
+
+    @admin_required_cbv()
+    def get(self, request):
+        certificates = Certificate.objects.all()
+        context = {
+            'certificates': certificates
+        }
+        return render(request, self.template_name, context)
+
+
+class CertificateAdd(View):
+
+    @admin_required_cbv()
+    def post(self, request):
+        data = request.POST
+        f = forms.CertificateAdd(data, request.FILES)
+        if form_validate_err(request, f) is False:
+            return redirect('account:certificates')
+        f.save()
+        messages.success(request, 'مدرک با موفقیت اضافه شد')
+        return redirect('account:certificates')
+
+
+class CertificateDelete(View):
+
+    @admin_required_cbv()
+    def get(self, request, certificate_id):
+        certificate = get_object_or_404(Certificate, id=certificate_id)
+        certificate.delete()
+        messages.success(request, 'مدرک با موفقیت حذف شد')
+        return redirect('account:certificates')
+
+
+class Definition_diet_free(LoginRequiredMixin, View):
+    template_name = 'account/admin/definition-of-diet-free.html'
+
+    @admin_required_cbv()
+    def get(self, request):
+        programs0 = Diet_program_object_free.objects.filter(day='0')
+        programs1 = Diet_program_object_free.objects.filter(day='1')
+        programs2 = Diet_program_object_free.objects.filter(day='2')
+        programs3 = Diet_program_object_free.objects.filter(day='3')
+        programs4 = Diet_program_object_free.objects.filter(day='4')
+        programs5 = Diet_program_object_free.objects.filter(day='5')
+        programs6 = Diet_program_object_free.objects.filter(day='6')
+
+        context = {
+            'programs0': programs0,
+            'programs1': programs1,
+            'programs2': programs2,
+            'programs3': programs3,
+            'programs4': programs4,
+            'programs5': programs5,
+            'programs6': programs6,
+            'foods': Food.objects.all()
+        }
+        return render(request, self.template_name, context)
+
+    @admin_required_cbv()
+    def post(self, request):
+        data = request.POST.copy()
+        food_ids = data.getlist('food', [])
+        days = data.getlist('day', [])
+        foods = Food.objects.filter(id__in=food_ids)
+        for day in days:
+            for food in foods:
+                data_detail = data
+                data_detail['day'] = day
+                data_detail['food'] = food
+                f = forms.DietProgramFreeAdd(data_detail)
+                if form_validate_err(request, f) is False:
+                    return redirect('account:definition-of-diet-free')
+                f.save()
+        messages.success(request, 'برنامه غذایی رایگان با موفقیت ثبت شد')
+        return redirect('account:definition-of-diet-free')
+
+
+class Definition_diet_free_delete(LoginRequiredMixin, View):
+
+    @admin_required_cbv()
+    def get(self, request, diet_free_id):
+        diet_obj = get_object_or_404(Diet_program_object_free, id=diet_free_id)
+        diet_obj.delete()
+        messages.success(request, 'برنامه غذایی با موفقیت حذف شد')
+        return redirect('account:definition-of-diet-free')
+
+
 class Definition_diet(LoginRequiredMixin, View):
     template_name = 'account/admin/definition-of-diet.html'
 
+    @admin_required_cbv()
     def get(self, request):
-        user = request.user
+        context = {
+            'users': User.normal_user.all(),
+            'foods': Food.objects.all()
+        }
+        return render(request, self.template_name, context)
 
-        return render(request, self.template_name)
+    @admin_required_cbv()
+    def post(self, request):
+        data = request.POST.copy()
+        user_ids = data.getlist('user', [])
+        food_ids = data.getlist('food', [])
+        days = data.getlist('day', [])
+        foods = Food.objects.filter(id__in=food_ids)
+        users = User.normal_user.filter(id__in=user_ids)
+        for user in users:
+            for day in days:
+                for food in foods:
+                    data_detail = data
+                    data_detail['user'] = user
+                    data_detail['day'] = day
+                    data_detail['food'] = food
+                    f = forms.DietProgramAdd(data_detail)
+                    if form_validate_err(request, f) is False:
+                        return redirect('account:definition-of-diet')
+                    f.save()
+            # create notify for user
+            NotificationUser.objects.create(
+                type='DIET_PROGRAM_ADD',
+                to_user=user,
+                title='برنامه غذایی جدید برای شما ثبت شده است',
+                description="""
+                        برنامه غذایی جدید برای شما ثبت شده است
+                    """,
+                send_notify=True
+            )
+
+        messages.success(request, 'برنامه غذایی با موفقیت ثبت شد')
+        return redirect('account:definition-of-diet')
 
 
 class Definition_training_program(LoginRequiredMixin, View):
     template_name = 'account/admin/definition-of-training-program.html'
 
+    @admin_required_cbv()
     def get(self, request):
-        user = request.user
         context = {
-            'user': user
+            'users': User.normal_user.all(),
+            'sports': Sport.objects.all()
         }
         return render(request, self.template_name, context)
+
+    @admin_required_cbv()
+    def post(self, request):
+        data = request.POST.copy()
+        user_ids = data.getlist('user', [])
+        sport_ids = data.getlist('sport', [])
+        days = data.getlist('day', [])
+        sports = Sport.objects.filter(id__in=sport_ids)
+        users = User.normal_user.filter(id__in=user_ids)
+        for user in users:
+            for day in days:
+                for sport in sports:
+                    data_detail = data
+                    data_detail['user'] = user
+                    data_detail['day'] = day
+                    data_detail['sport'] = sport
+                    f = forms.TrainingProgramAdd(data_detail)
+                    if form_validate_err(request, f) is False:
+                        return redirect('account:definition-of-training-program')
+                    f.save()
+            # create notify for user
+            NotificationUser.objects.create(
+                type='TRAINING_PROGRAM_ADD',
+                to_user=user,
+                title='برنامه تمرینی جدید برای شما ثبت شده است',
+                description="""
+                            برنامه تمرینی جدید برای شما ثبت شده است
+                        """,
+                send_notify=True
+            )
+        messages.success(request, 'برنامه تمرینی با موفقیت ثبت شد')
+        return redirect('account:definition-of-training-program')
 
 
 class User_profile(LoginRequiredMixin, View):
-    template_name = 'account/admin/user-profile.html'
+    template_name = 'account/user-profile.html'
 
     def get(self, request, user_id):
-        user = get_object_or_404(User,id=user_id)
+        user = get_object_or_404(User, id=user_id)
         if request.user.is_normal_user and user != request.user:
             raise Http404
         context = {
-            'user': user
+            'user_detail': user,
+            'sports': Sport.objects.all(),
+            'foods': Food.objects.all()
         }
         return render(request, self.template_name, context)
+
+
+class User_profile_update(LoginRequiredMixin, View):
+
+    def post(self, request):
+        data = request.POST.copy()
+        # set data
+        user = request.user
+        data['user'] = user
+        user_info = None
+        try:
+            user_info = user.info
+        except:
+            pass
+        f = forms.UserUpdateInfoForm(data, request.FILES, instance=user_info)
+        if form_validate_err(request, f) is False:
+            return redirect(user.get_absolute_url())
+        f.save()
+        messages.success(request, 'مشخصات شما با موفقیت بروزرسانی شد')
+        return redirect(user.get_absolute_url())
+
+
+class User_profile_delete(LoginRequiredMixin, View):
+
+    @admin_required_cbv()
+    def post(self, request, user_id):
+        user = get_object_or_404(User, id=user_id)
+        user.delete()
+        messages.success(request, 'کاربر موفقیت حذف شد')
+        return redirect('account:users')

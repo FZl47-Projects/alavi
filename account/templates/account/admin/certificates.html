@@ -1,0 +1,95 @@
+{% extends 'base/base_template.html' %}
+{% load static %}
+
+{% block Title %}
+    لیست مدرک ها
+{% endblock %}
+
+{% block Link %}
+    <link rel="stylesheet" href="{% static 'front/vendors/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'front/styles/users.css' %}">
+    <link rel="stylesheet" href="{% static 'front/styles/all.css' %}">
+{% endblock %}
+
+{% block Style %}
+    <style>
+        .certificate{
+            display: inline-block;
+            border: 2px solid #fff;
+            border-radius: 10px;
+            position: relative;
+            margin: 10px auto;
+        }
+
+        .certificate .cnt-btns{
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
+
+        .certificate .cnt-btns i{
+            font-size: 120%;
+        }
+    </style>
+{% endblock %}
+
+{% block Content %}
+    <body>
+
+    <section class="main-page">
+        {% include 'account/admin/components/menu.html' %}
+        <main class="col-md-12 col-lg-10 content-main-admin">
+            {% include 'base/components/header.html' %}
+            <div class="m-3">
+                <h3 class="text-white">لیست مدرک ها</h3>
+                <button class="mt-1 btn btn-primary" data-bs-toggle="modal" data-bs-target="#add-food">
+                    افزودن مدرک
+                    <i class="fa fa-plus"></i>
+                </button>
+            </div>
+            <section class="row col-12 col-lg-11 mx-auto">
+                {% for certificate in certificates %}
+                    <div class="certificate col-11 col-md-4 col-lg-3">
+                        <div class="cnt-btns">
+                            <a class="btn btn-danger" href="{% url 'account:certificate_delete' certificate_id=certificate.id %}">
+                                <i class="fa fa-trash"></i>
+                            </a>
+                        </div>
+                        <img src="{{ certificate.picture.url }}" alt="">
+                    </div>
+                {% endfor %}
+            </section>
+        </main>
+    </section>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="add-food" tabindex="-1" aria-labelledby="add-food-Label" aria-hidden="true">
+        <div class="modal-dialog">
+            <form action="{% url 'account:certificate_add' %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="modal-content col-11 mx-auto">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">افزودن مدرک</h5>
+                    </div>
+                    <div class="modal-body">
+                        <div>
+                            <label for="">عکس</label>
+                            <input type="file" accept="image/*" class="form-control" required name="picture">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">لغو</button>
+                        <button type="submit" class="btn btn-primary">ثبت</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    </body>
+{% endblock %}
+
+{% block Script %}
+    <script src="{% static 'front/vendors/bootstrap.min.js' %}"></script>
+{% endblock %}

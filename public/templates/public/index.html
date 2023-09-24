@@ -7,107 +7,160 @@
 
 
 {% block Link %}
-<link rel="stylesheet" href="{% static 'front/vendors/bootstrap.min.css' %}">
-<link rel="stylesheet" href="{% static 'front/styles/index.css' %} ">
-<link rel="stylesheet" href="{% static 'front/vendors/swiper.css' %}">
+    <link rel="stylesheet" href="{% static 'front/vendors/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'front/styles/index.css' %} ">
+    <link rel="stylesheet" href="{% static 'front/vendors/swiper.css' %}">
 {% endblock %}
 
 {% block Content %}
-<body>
+    <body>
     <section class="main-page">
         <!-- START HEADER -->
         {% include 'base/components/header.html' %}
         <!-- END HEADER -->
-        <main class="container-fluid" >
-          <section class="content-main">
-              <!-- Title -->
-            <div class="title">
-             <span>مجـــموعــه</span>
-             <span> ورزشــــی عـــلـــوی</span>  
-            </div>
-             <!-- Title -->
-             <!-- Start services content -->
-            <div class="services-content">
-                <div class="services-content-inner">
-                 <!-- Slider -->
-                 <div class="swiper" id="services-slider">
-                     <div class="swiper-wrapper">
-                       <!--each slide service  -->
-                      <div class="swiper-slide">
-                         <a href="{% url 'program:exercise' %}">
-                             <div class="services-item">
-                                 <div class="image-services-item">
-                                     <img src="{% static 'front/images/item4.png' %}" alt="">
-                                 </div>
-                                 <div class="title-services">
-                                     <span>برنـامــــه</span>
-                                     <span>تمرینـی</span>
-                                 </div>
-                                 <div class="description">
-                                     لورم ایپسوم متن ساختگی با  تولیـــد سادگــــی نامــفهــوم،لورم ایپسوم متن ساختگی با  تولیـــد سادگــــی نامــفهــوم
-                                 </div>
-                         </div>
-                         </a>
-                      </div>
-                      <!--each slide service  -->
-                      <div class="swiper-slide">
-                          <a href="{% url 'program:diet-plan' %}" style="cursor:pointer;">
-                             <div class="services-item">
-                                 <div class="image-services-item">
-                                     <img src="{% static 'front/images/item3.png' %}" alt="">
-                                 </div>
-                                 <div class="title-services">
-                                     <span>برنـامــــه</span>
-                                     <span>غـــذایی</span>
-                                 </div>
-                                 <div class="description">
-                                     لورم ایپسوم متن ساختگی با  تولیـــد سادگــــی نامــفهــوم،لورم ایپسوم متن ساختگی با  تولیـــد سادگــــی نامــفهــوم
-                                 </div>
-                             </div>
-                          </a>
-                        
-                      </div>
-                      <div class="swiper-slide">
-                         <div class="services-item">
-                             <div class="image-services-item">
-                                 <img src="{% static 'front/images/item2.png' %}" alt="">
-                             </div>
-                             <div class="title-services">
-                                 <span>آنــالیـــــز</span>
-                                 <span>بــــــدن</span>
-                             </div>
-                             <div class="description"> لورم ایپسوم متن ساختگی با  تولیـــد سادگــــی نامــفهــوم،لورم ایپسوم متن ساختگی با  تولیـــد سادگــــی نامــفهــوم</div>
-                         </div>
-                      </div>
-                      <div class="swiper-slide">
-                         <div class="services-item f">
-                             <div class="image-services-item">
-                                 <img src="{% static 'front/images/item1.png' %}" alt="">
-                             </div>
-                             <div class="title-services">
-                                 <span>اجــرای صــحــیــح</span>
-                                 <span>حــرکـــــات</span>
-                             </div>
-                             <div class="description">لورم ایپسوم متن ساختگی با  تولیـــد سادگــــی نامــفهــوم،لورم ایپسوم متن ساختگی با  تولیـــد سادگــــی نامــفهــوم</div>
-                         </div>
-                      </div>
-                     </div>
-                      <!-- btn next & prev slider certificate -->
-                      <div class="swiper-button-prev"></div>
-                      <div class="swiper-button-next"></div>
-                       <!-- btn next & prev slider certificate --> 
-                 </div>
-                  <!-- Slider -->
+        <main class="container-fluid">
+            <section class="content-main">
+                <!-- Title -->
+                <div class="title">
+                    <span>مجـــموعــه</span>
+                    <span> ورزشــــی عـــلـــوی</span>
                 </div>
-            </div>
-            <!-- Start services content -->
-          </section>  
+                <!-- Title -->
+                <!-- Start services content -->
+                <div class="services-content">
+                    <div class="services-content-inner">
+                        <!-- Slider -->
+                        <div class="swiper" id="services-slider">
+                            <div class="swiper-wrapper">
+                                <!--each slide service  -->
+                                <div class="swiper-slide">
+                                    <a href="{% url 'program:exercise' %}">
+                                        <div class="services-item">
+                                            <div class="image-services-item">
+                                                <img src="{% static 'front/images/item4.png' %}" alt="">
+                                            </div>
+                                            <div class="title-services">
+                                                <span>برنـامــــه</span>
+                                                <span>تمرینـی</span>
+                                            </div>
+                                            <div class="description">
+                                                لورم ایپسوم متن ساختگی با تولیـــد سادگــــی نامــفهــوم،لورم ایپسوم متن
+                                                ساختگی با تولیـــد سادگــــی نامــفهــوم
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <!--each slide service  -->
+                                <div class="swiper-slide">
+                                    <a href="{% url 'program:diet-plan' %}" style="cursor:pointer;">
+                                        <div class="services-item">
+                                            <div class="image-services-item">
+                                                <img src="{% static 'front/images/item3.png' %}" alt="">
+                                            </div>
+                                            <div class="title-services">
+                                                <span>برنـامــــه</span>
+                                                <span>غـــذایی</span>
+                                            </div>
+                                            <div class="description">
+                                                لورم ایپسوم متن ساختگی با تولیـــد سادگــــی نامــفهــوم،لورم ایپسوم متن
+                                                ساختگی با تولیـــد سادگــــی نامــفهــوم
+                                            </div>
+                                        </div>
+                                    </a>
+
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="services-item">
+                                        <div class="image-services-item">
+                                            <img src="{% static 'front/images/item2.png' %}" alt="">
+                                        </div>
+                                        <div class="title-services">
+                                            <span>آنــالیـــــز</span>
+                                            <span>بــــــدن</span>
+                                        </div>
+                                        <div class="description"> لورم ایپسوم متن ساختگی با تولیـــد سادگــــی
+                                            نامــفهــوم،لورم ایپسوم متن ساختگی با تولیـــد سادگــــی نامــفهــوم
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="services-item f">
+                                        <div class="image-services-item">
+                                            <img src="{% static 'front/images/item1.png' %}" alt="">
+                                        </div>
+                                        <div class="title-services">
+                                            <span>اجــرای صــحــیــح</span>
+                                            <span>حــرکـــــات</span>
+                                        </div>
+                                        <div class="description">لورم ایپسوم متن ساختگی با تولیـــد سادگــــی
+                                            نامــفهــوم،لورم ایپسوم متن ساختگی با تولیـــد سادگــــی نامــفهــوم
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- btn next & prev slider certificate -->
+                            <div class="swiper-button-prev"></div>
+                            <div class="swiper-button-next"></div>
+                            <!-- btn next & prev slider certificate -->
+                        </div>
+                        <!-- Slider -->
+                    </div>
+                </div>
+                <!-- Start services content -->
+
+                <div class="services-content">
+                    <h1 class="text-white mb-3">مدرک ها</h1>
+                    <div class="services-content-inner">
+                        <!-- Slider -->
+
+                        <div class="swiper" id="certificate-slider">
+                            <div class="swiper-wrapper">
+                                <!--each slide service  -->
+                                {% for certificate in certificates %}
+                                    <div class="swiper-slide">
+                                        <a href="#">
+                                            <div class="services-item">
+                                                <img src="{{ certificate.picture.url }}" alt="">
+                                            </div>
+                                        </a>
+                                    </div>
+                                {% endfor %}
+
+                                <!--each slide service  -->
+                                                                <div class="swiper-slide">
+                                                                    <a href="#" style="cursor:pointer;">
+                                                                        <div class="services-item">
+                                                                            <img src="{% static 'front/images/certificate.jpg' %}" alt="">
+                                                                        </div>
+                                                                    </a>
+                                                                </div>
+{#                                                                <div class="swiper-slide">#}
+{#                                                                    <div class="services-item">#}
+{#                                                                        <img src="{% static 'front/images/certificate.jpg' %}" alt="">#}
+{#                                                                    </div>#}
+{#                                                                </div>#}
+{#                                                                <div class="swiper-slide">#}
+{#                                                                    <div class="services-item f">#}
+{#                                                                        <img src="{% static 'front/images/certificate.jpg' %}" alt="">#}
+{#                                                                    </div>#}
+{#                                                                </div>#}
+                            </div>
+                            <!-- btn next & prev slider certificate -->
+                            <div class="swiper-button-prev"></div>
+                            <div class="swiper-button-next"></div>
+                            <!-- btn next & prev slider certificate -->
+                        </div>
+                        <!-- Slider -->
+                    </div>
+                </div>
+
+            </section>
         </main>
     </section>
     <script src="{% static 'front/vendors/swiper.js' %}"></script>
     <script src="{% static 'front/vendors/bootstrap.min.js' %}"></script>
     <script src="{% static 'front/js/main.js' %}"></script>
- </body>
+    </body>
 {% endblock %}
 
 {% block Script %}

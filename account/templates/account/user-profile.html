@@ -1,0 +1,350 @@
+{% extends 'base/base_template.html' %}
+{% load static %}
+
+{% block Title %}
+    تعریف رژیم غذایی
+{% endblock %}
+
+{% block Link %}
+    <link rel="stylesheet" href="{% static 'front/vendors/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'front/styles/user-profile.css' %}">
+    <link rel="stylesheet" href="{% static 'front/styles/all.css' %}">
+{% endblock %}
+
+{% block Style %}
+    <style>
+
+        .field {
+            margin: 10px 0;
+        }
+
+        .field label {
+            margin-bottom: 10px;
+        }
+
+        select {
+            max-height: 250px;
+        }
+
+    </style>
+{% endblock %}
+
+{% block Content %}
+    <body class="content-main-admin" style="padding:10px ;">
+    <section class="main-page">
+        <main class="col-md-12 col-lg-12">
+            <div class="col-12 col-lg-11 back-btn">
+                <span>مشخصات</span>
+                <span class="back"><img src="{% static 'front/images/back-icon.png' %}" alt=""></span>
+            </div>
+            <section class="user-profile col-12 col-lg-11">
+                <div class="col-2 col-md-1">
+                    <div class="user-img">
+                        <img src="{{ user_detail.get_image_url }}" alt="{{ user.get_full_name }}">
+                    </div>
+                    {% if user_detail == user %}
+                        <div class="text-center mt-4">
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                    data-bs-target="#edit-info-user">
+                                تغییر مشخصات
+                            </button>
+                            <a href="{% url 'account:logout' %}" class="btn btn-danger mt-3">
+                                خروج
+                            </a>
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="col-10 col-md-11">
+                    <div class="specifications">
+                        <div class="col-4">
+                            <div class="specifications-item">
+                                {{ user_detail.get_full_name }}
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="specifications-item">
+                                {{ user_detail.info.national_code|default:'ثبت نشده است' }}
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="specifications-item">
+                                {{ user_detail.get_raw_phonenumber }}
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="specifications-item">
+                                {% if user_detail.info.weight %}
+                                    {{ user_detail.info.weight }}
+                                    کیلوگرم
+                                {% else %}
+                                    ثبت نشده است
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="specifications-item">
+                                {{ user_detail.info.height|default:'ثبت نشده است' }}
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="specifications-item">
+                                {{ user_detail.last_login }}
+                            </div>
+                        </div>
+                        {% if user.is_admin_user %}
+                            <div class="col-12 text-left mt-3">
+                                <div class="">
+                                    <button class="btn btn-white m-1 p-2" data-bs-toggle="modal"
+                                            data-bs-target="#diet-program-add">ایجاد برنامه غذایی
+                                    </button>
+                                    <button class="btn btn-white m-1 p-2" data-bs-toggle="modal"
+                                            data-bs-target="#training-program-add">ایجاد برنامه تمرینی
+                                    </button>
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </section>
+            <div class="d-flex justify-content-between align-items-center col-12 col-lg-11 mx-auto my-3">
+                <div class="table-title m-0">لیست برنامه های غذایی</div>
+                <div>
+                    {% if user.is_admin_user %}
+                        <a href="{% url 'program:diet-plan' user_id=user_detail.id %}" class="btn btn-warning p-2">
+                            برنامه غذایی این هفته
+                        </a>
+                    {% else %}
+                        <a href="{% url 'program:diet-plan' %}" class="btn btn-warning p-2">
+                            برنامه غذایی این هفته
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+            <section class="table-two col-12 col-lg-11 ">
+                <table class="table">
+                    {% for program in user_detail.get_diet_programs %}
+                        <tr>
+                            <td>{{ program.food.name }}</td>
+                            <td>{{ program.amount }}گرم</td>
+                            <td>
+                                {{ program.energy }}
+                                کالری
+                            </td>
+                            <td>
+                                {{ program.description|default:'توضیحی وجود ندارد' }}
+                            </td>
+                            <td class="datetime-convert">{{ program.get_created_at }}</td>
+                        </tr>
+                    {% empty %}
+                        <div class="container-not-found-base">
+                            <p>برنامه ای یافت نشد</p>
+                        </div>
+                    {% endfor %}
+                </table>
+            </section>
+
+            <div class="d-flex justify-content-between align-items-center col-12 col-lg-11 mx-auto my-3">
+                <div class="table-title m-0">لیست تمرین بدنی</div>
+                <div>
+                    {% if user.is_admin_user %}
+                        <a href="{% url 'program:exercise' user_id=user_detail.id %}" class="btn btn-warning p-2">
+                            برنامه تمرینی این هفته
+                        </a>
+                    {% else %}
+                        <a href="{% url 'program:exercise' %}" class="btn btn-warning p-2">
+                            برنامه تمرینی این هفته
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+            <section class="table-two col-12 col-lg-11">
+                <table class="table">
+                    {% for program in user_detail.get_training_programs %}
+                        <tr>
+                            <td>{{ program.sport.name }}</td>
+                            <td>{{ program.rep }} تکرار </td>
+                            <td>{{ program.sets }} ست</td>
+                            <td>{{ program.description }}</td>
+                            <td class="datetime-convert">{{ program.get_created_at }}</td>
+                        </tr>
+                    {% empty %}
+                        <div class="container-not-found-base">
+                            <p>تمرینی یافت نشد</p>
+                        </div>
+                    {% endfor %}
+                </table>
+            </section>
+
+
+        </main>
+    </section>
+
+    <!-- Modal -->
+    <div class="modal fade" id="edit-info-user" tabindex="-1" aria-labelledby="edit-info-user-label" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <form action="{% url 'account:user-profile-update' %}" enctype="multipart/form-data" method="post">
+                {% csrf_token %}
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">تغییر مشخصات</h5>
+                    </div>
+                    <div class="modal-body col-11 mx-auto">
+                        <div class="my-3">
+                            <label for="">کد ملی</label>
+                            <input type="text" placeholder="کد ملی خود را وارد نمایید" class="form-control"
+                                   name="national_code" required value="{{ user.info.national_code }}">
+                        </div>
+                        <div class="my-3">
+                            <label for="">قد(سانتی متر)</label>
+                            <input type="number" placeholder="قد خود را وارد نمایید" class="form-control" name="height"
+                                   required value="{{ user.info.height }}">
+                        </div>
+                        <div class="my-3">
+                            <label for="">وزن(کیلوگرم)</label>
+                            <input type="number" placeholder="وزن خود را وارد نمایید" class="form-control" name="weight"
+                                   required value="{{ user.info.weight }}">
+                        </div>
+                        <div class="my-3">
+                            <label for="">عکس</label>
+                            <input type="file" accept="image/*" class="form-control" name="picture">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">لغو</button>
+                        <button type="submit" class="btn btn-primary">ثبت و بروزرسانی</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modals -->
+    <div class="modal fade" id="diet-program-add" tabindex="-1" aria-labelledby="diet-program-add-label"
+         aria-hidden="true">
+         <div class="modal-dialog modal-lg">
+            <form action="{% url 'program:diet-user-add' user_id=user_detail.id %}" method="post">
+                  {% csrf_token %}
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="training-program-add-label">تعریف برنامه غذایی</h5>
+                    </div>
+                    <div class="modal-body col-11 mx-auto">
+                        <div class="field">
+                            <label for="">غذا</label>
+                            <select name="food" class="form-control form-select" required multiple>
+                                {% for food in foods %}
+                                    <option value="{{ food.id }}">{{ food.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="field">
+                            <label for="">روز</label>
+                            <select name="day" class="form-control form-select" required multiple>
+                                <option value="0">شنبه</option>
+                                <option value="1">یکشنبه</option>
+                                <option value="2">دوشنبه</option>
+                                <option value="3">سه شنبه</option>
+                                <option value="4">چهارشنبه</option>
+                                <option value="5">پنجشنبه</option>
+                                <option value="6">جمعه</option>
+                            </select>
+                        </div>
+                        <div class="field">
+
+                            <label for="">مقدار</label>
+                            <input type="number" class="form-control" name="amount" required="">
+
+                        </div>
+                        <div class="field">
+                            <label for="">انرژی</label>
+                            <input type="number" class="form-control" name="energy" required="">
+
+                        </div>
+                        <div class="field">
+                            <label for="">توضیحات</label>
+                            <textarea name="description" class="form-control" rows="3"></textarea>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">لغو</button>
+                        <button type="submit" class="btn btn-primary">ثبت</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal fade" id="training-program-add" tabindex="-1" aria-labelledby="training-program-add-label"
+         aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <form action="{% url 'program:training-user-add' user_id=user_detail.id %}" method="post">
+                  {% csrf_token %}
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="training-program-add-label">تعریف برنامه تمرینی</h5>
+                    </div>
+                    <div class="modal-body col-11 mx-auto">
+                        <div class="field">
+                            <label for="">ورزش</label>
+                            <select name="sport" class="form-control form-select" required multiple>
+                                {% for sport in sports %}
+                                    <option value="{{ sport.id }}">{{ sport.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="field">
+                            <label for="">روز</label>
+                            <select name="day" class="form-control form-select" required multiple>
+                                <option value="0">شنبه</option>
+                                <option value="1">یکشنبه</option>
+                                <option value="2">دوشنبه</option>
+                                <option value="3">سه شنبه</option>
+                                <option value="4">چهارشنبه</option>
+                                <option value="5">پنجشنبه</option>
+                                <option value="6">جمعه</option>
+                            </select>
+                        </div>
+                        <div class="field">
+
+                            <label for="">تکرار</label>
+                            <input type="number" class="form-control" name="rep" required="">
+
+                        </div>
+                        <div class="field">
+                            <label for="">ست</label>
+                            <input type="number" class="form-control" name="sets" required="">
+
+                        </div>
+                        <div class="field">
+                            <label for="">توضیحات</label>
+                            <textarea name="description" class="form-control" rows="3"></textarea>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">لغو</button>
+                        <button type="submit" class="btn btn-primary">ثبت</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    </body>
+{% endblock %}
+
+{% block Script %}
+    <script src="{% static 'front/js/back.js' %}"></script>
+    <script src="{% static 'front/vendors/bootstrap.min.js' %}"></script>
+    <script>
+        if (getUrlParameter('diet-add')) {
+            let modal = new bootstrap.Modal(document.getElementById('diet-program-add'))
+            modal.show()
+        }
+        if (getUrlParameter('training-add')) {
+            let modal = new bootstrap.Modal(document.getElementById('training-program-add'))
+            modal.show()
+        }
+    </script>
+{% endblock %}
