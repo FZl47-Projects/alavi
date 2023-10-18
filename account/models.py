@@ -61,7 +61,7 @@ class User(AbstractUser):
     # type users|roles
     role = models.CharField(max_length=20, choices=ROLE_USER_OPTIONS, default='normal_user')
 
-    USERNAME_FIELD = "phonenumber"
+    USERNAME_FIELD = 'phonenumber'
     REQUIRED_FIELDS = []
 
     objects = CustomBaseUserManager()
@@ -96,7 +96,7 @@ class User(AbstractUser):
     def get_image_url(self):
         try:
             return self.info.picture.url
-        except:
+        except AttributeError:
             return '/static/front/images/userimage.png'
 
     def get_last_login(self):

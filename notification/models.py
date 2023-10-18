@@ -43,17 +43,14 @@ class NotificationUser(BaseModel):
             {self.description}
         """
 
-    def get_absolute_url(self):
-        return reverse('notification:notification_dashboard_detail', args=(self.id,))
-
     def get_link(self):
         try:
             return self.kwargs['link']
-        except:
-            return self.get_absolute_url()
+        except KeyError:
+            return ''
 
     def get_image(self):
         try:
             return self.image.url
-        except:
+        except AttributeError:
             return None

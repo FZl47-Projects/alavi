@@ -3,6 +3,7 @@ from . import views
 
 
 app_name = 'account'
+
 urlpatterns = [
     # login logout and register
     path('login-register',views.login_register,name='login_register'),
@@ -13,7 +14,7 @@ urlpatterns = [
     path('reset-password/check-code',views.reset_password_check,name='reset_password_check_code'),
     path('reset-password/set',views.reset_password_set,name='reset_password_set'),
 
-    #club admin
+    # club admin
     path('club-admin/home-admin', views.Home_admin.as_view(),name='home-admin'),
     path('club-admin/users', views.Users.as_view(),name='users'),
     path('club-admin/foods', views.Foods.as_view(),name='foods'),
@@ -29,5 +30,4 @@ urlpatterns = [
     path('club-user/user-profile/<int:user_id>', views.User_profile.as_view(),name='user-profile'),
     path('club-user/user-profile/update', views.User_profile_update.as_view(),name='user-profile-update'),
     path('club-user/user-profile/<int:user_id>/delete', views.User_profile_delete.as_view(),name='user-profile-delete'),
-
 ]
