@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import View
 from account.models import User
-from program.models import Diet_program_object_free, Food
+from program.models import DietProgramFree, Food
 from . import models
 
 
@@ -19,13 +19,13 @@ class DietFree(View):
     template_name = 'public/diet-free.html'
 
     def get(self, request):
-        programs0 = Diet_program_object_free.objects.filter(day='0')
-        programs1 = Diet_program_object_free.objects.filter(day='1')
-        programs2 = Diet_program_object_free.objects.filter(day='2')
-        programs3 = Diet_program_object_free.objects.filter(day='3')
-        programs4 = Diet_program_object_free.objects.filter(day='4')
-        programs5 = Diet_program_object_free.objects.filter(day='5')
-        programs6 = Diet_program_object_free.objects.filter(day='6')
+        programs0 = DietProgramFree.objects.filter(day='0')
+        programs1 = DietProgramFree.objects.filter(day='1')
+        programs2 = DietProgramFree.objects.filter(day='2')
+        programs3 = DietProgramFree.objects.filter(day='3')
+        programs4 = DietProgramFree.objects.filter(day='4')
+        programs5 = DietProgramFree.objects.filter(day='5')
+        programs6 = DietProgramFree.objects.filter(day='6')
 
         context = {
             'programs0': programs0,

@@ -1,4 +1,3 @@
-import json
 from django.contrib import messages
 from django.conf import settings
 from django.shortcuts import render, redirect, get_object_or_404
@@ -6,16 +5,16 @@ from django.http import JsonResponse, HttpResponseBadRequest, Http404, HttpRespo
 from django.views.decorators.http import require_POST
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import View
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, get_user_model, logout as logout_handler
-from core.utils import add_prefix_phonenum, random_str, random_num, form_validate_err
-from core.auth.decorators import admin_required, admin_required_cbv
+from core.utils import add_prefix_phonenum, random_num, form_validate_err
+from core.auth.decorators import admin_required_cbv
 from core.redis_py import set_value_expire, remove_key, get_value
-
 from notification.models import NotificationUser
-from program.models import Food, Sport, Diet_program_object, Diet_program_object_free
+from program.models import Food, Sport, DietProgram, DietProgramFree
 from public.models import Certificate
-from . import forms, models
+from . import forms
+import json
+
 
 User = get_user_model()
 RESET_PASSWORD_CONFIG = settings.RESET_PASSWORD_CONFIG
@@ -272,13 +271,13 @@ class Definition_diet_free(LoginRequiredMixin, View):
 
     @admin_required_cbv()
     def get(self, request):
-        programs0 = Diet_program_object_free.objects.filter(day='0')
-        programs1 = Diet_program_object_free.objects.filter(day='1')
-        programs2 = Diet_program_object_free.objects.filter(day='2')
-        programs3 = Diet_program_object_free.objects.filter(day='3')
-        programs4 = Diet_program_object_free.objects.filter(day='4')
-        programs5 = Diet_program_object_free.objects.filter(day='5')
-        programs6 = Diet_program_object_free.objects.filter(day='6')
+        programs0 = DietProgramFree.objects.filter(day='0')
+        programs1 = DietProgramFree.objects.filter(day='1')
+        programs2 = DietProgramFree.objects.filter(day='2')
+        programs3 = DietProgramFree.objects.filter(day='3')
+        programs4 = DietProgramFree.objects.filter(day='4')
+        programs5 = DietProgramFree.objects.filter(day='5')
+        programs6 = DietProgramFree.objects.filter(day='6')
 
         context = {
             'programs0': programs0,
@@ -315,7 +314,7 @@ class Definition_diet_free_delete(LoginRequiredMixin, View):
 
     @admin_required_cbv()
     def get(self, request, diet_free_id):
-        diet_obj = get_object_or_404(Diet_program_object_free, id=diet_free_id)
+        diet_obj = get_object_or_404(DietProgramFree, id=diet_free_id)
         diet_obj.delete()
         messages.success(request, 'برنامه غذایی با موفقیت حذف شد')
         return redirect('account:definition-of-diet-free')
