@@ -1,19 +1,22 @@
 from django.shortcuts import render, get_object_or_404, Http404, redirect
-from django.contrib import messages
-from django.views.generic import View
 from django.contrib.auth.mixins import LoginRequiredMixin
-from account.models import User
-from account.forms import TrainingProgramAdd, DietProgramAdd
+from django.views.generic import View
+from django.contrib import messages
+from django.db.models import Q
+
+
+from core.utils import form_validate_err, add_prefix_phonenum
 from core.auth.decorators import admin_required_cbv
-from core.utils import form_validate_err
+
+from account.forms import TrainingProgramAdd, DietProgramAdd
+from account.models import User
+
+from .models import Food, Sport, DietProgramCategory, TrainingProgramCategory
 from notification.models import NotificationUser
-from .models import Food, Sport
 from . import forms
 
 
-# Create your views here.
-
-class Exercies(LoginRequiredMixin, View):
+class Exercises(LoginRequiredMixin, View):
     template_name = 'program/exercise.html'
 
     def get(self, request, user_id=None):
@@ -47,7 +50,7 @@ class Exercies(LoginRequiredMixin, View):
         return render(request, self.template_name, context)
 
 
-class Diet_plan(LoginRequiredMixin, View):
+class DietPlan(LoginRequiredMixin, View):
     template_name = 'program/diet-plan.html'
 
     def get(self, request, user_id=None):
@@ -107,9 +110,11 @@ class SportAdd(View):
     @admin_required_cbv()
     def post(self, request):
         data = request.POST
+
         f = forms.SportAdd(data)
         if form_validate_err(request, f) is False:
             return redirect('account:sports')
+
         f.save()
         messages.success(request, 'ورزش با موفقیت اضافه شد')
         return redirect('account:sports')
@@ -131,9 +136,11 @@ class DietUserAdd(View):
     def post(self, request, user_id):
         user = get_object_or_404(User, id=user_id)
         data = request.POST.copy()
+
         food_ids = data.getlist('food', [])
         days = data.getlist('day', [])
         foods = Food.objects.filter(id__in=food_ids)
+
         for day in days:
             for food in foods:
                 data_detail = data
@@ -144,7 +151,8 @@ class DietUserAdd(View):
                 if form_validate_err(request, f) is False:
                     return redirect(user.get_absolute_url())
                 f.save()
-        # create notify for user
+
+        # Create notify for user
         NotificationUser.objects.create(
             type='DIET_PROGRAM_ADD',
             to_user=user,
@@ -154,6 +162,7 @@ class DietUserAdd(View):
                         """,
             send_notify=True
         )
+
         messages.success(request, 'برنامه غذایی با موفقیت ثبت شد')
         return redirect(user.get_absolute_url())
 
@@ -177,6 +186,7 @@ class TrainingUserAdd(View):
                 if form_validate_err(request, f) is False:
                     return redirect(user.get_absolute_url())
                 f.save()
+
         # create notify for user
         NotificationUser.objects.create(
             type='TRAINING_PROGRAM_ADD',
@@ -189,3 +199,69 @@ class TrainingUserAdd(View):
         )
         messages.success(request, 'برنامه تمرینی با موفقیت ثبت شد')
         return redirect(user.get_absolute_url())
+
+
+# All DietProgramCategoryView
+class DietProgramCategoryView(View):
+    template_name = 'program/diet_prog_categories.html'
+
+    @admin_required_cbv()
+    def get(self, request):
+        categories = DietProgramCategory.objects.all()
+
+        # Create template context
+        context = {
+            'users': User.normal_user.all(),
+            'categories': categories,
+        }
+
+        return render(request, self.template_name, context)
+
+    @admin_required_cbv()
+    def post(self, request):
+        data = request.POST.get('q')
+
+        # Search by user phone_number and last_name
+        categories = DietProgramCategory.objects.filter(
+            Q(user__last_name__icontains=data) | Q(user__phonenumber=add_prefix_phonenum(data))
+        )
+
+        if not categories:
+            messages.error(request, 'کاربری یافت نشد')
+
+        # Create template context
+        context = {'users': User.normal_user.all(), 'categories': categories}
+
+        return render(request, self.template_name, context)
+
+
+# Add DietCategoryView
+class AddDietProgramCategoryView(View):
+
+    @admin_required_cbv()
+    def post(self, request):
+        data = request.POST
+
+        form = forms.DietProgramCategoryForm(data)
+        if not form_validate_err(request, form):
+            return redirect('program:diet_category')
+
+        # Save new DietProgramCategory
+        form.save()
+        messages.success(request, 'دسته بندی با موفقیت ثبت شد')
+
+        return redirect('program:diet_category')
+
+
+# Delete DietCategoryView
+class DelDietProgramCategoryView(View):
+
+    @admin_required_cbv()
+    def get(self, request, pk):
+        category = get_object_or_404(DietProgramCategory, id=pk)
+        category.delete()
+
+        # Delete current DietProgramCategory
+        messages.success(request, 'دسته بندی با موفقیت حذف شد')
+
+        return redirect('program:diet_category')

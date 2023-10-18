@@ -10,7 +10,7 @@ from core.utils import add_prefix_phonenum, random_num, form_validate_err
 from core.auth.decorators import admin_required_cbv
 from core.redis_py import set_value_expire, remove_key, get_value
 from notification.models import NotificationUser
-from program.models import Food, Sport, DietProgram, DietProgramFree
+from program.models import Food, Sport, DietProgramFree
 from public.models import Certificate
 from . import forms
 import json
@@ -149,10 +149,12 @@ def reset_password_set(request):
     # AJAX view
     data = json.loads(request.body)
     f = forms.ResetPasswordSetForm(data)
-    # validate data
+
+    # Validate data
     if f.is_valid() is False:
         return HttpResponseBadRequest()
     clean_data = f.cleaned_data
+
     # phonenumber must get from data (not clean_data)
     phonenumber = data['phonenumber']
     code = clean_data['code']
@@ -187,7 +189,7 @@ def reset_password_set(request):
     return JsonResponse({})
 
 
-class Home_admin(View):
+class HomeAdmin(View):
     template_name = 'account/admin/home-admin.html'
 
     @admin_required_cbv()
@@ -205,6 +207,16 @@ class Users(View):
             'users': users
         }
         return render(request, self.template_name, context)
+
+
+class UserProfileDelete(LoginRequiredMixin, View):
+
+    @admin_required_cbv()
+    def post(self, request, user_id):
+        user = get_object_or_404(User, id=user_id)
+        user.delete()
+        messages.success(request, 'کاربر موفقیت حذف شد')
+        return redirect('account:users')
 
 
 class Foods(View):
@@ -266,7 +278,7 @@ class CertificateDelete(View):
         return redirect('account:certificates')
 
 
-class Definition_diet_free(LoginRequiredMixin, View):
+class DefinitionDietFree(LoginRequiredMixin, View):
     template_name = 'account/admin/definition-of-diet-free.html'
 
     @admin_required_cbv()
@@ -310,7 +322,7 @@ class Definition_diet_free(LoginRequiredMixin, View):
         return redirect('account:definition-of-diet-free')
 
 
-class Definition_diet_free_delete(LoginRequiredMixin, View):
+class DefinitionDietFreeDelete(LoginRequiredMixin, View):
 
     @admin_required_cbv()
     def get(self, request, diet_free_id):
@@ -320,7 +332,7 @@ class Definition_diet_free_delete(LoginRequiredMixin, View):
         return redirect('account:definition-of-diet-free')
 
 
-class Definition_diet(LoginRequiredMixin, View):
+class DefinitionDiet(LoginRequiredMixin, View):
     template_name = 'account/admin/definition-of-diet.html'
 
     @admin_required_cbv()
@@ -365,7 +377,7 @@ class Definition_diet(LoginRequiredMixin, View):
         return redirect('account:definition-of-diet')
 
 
-class Definition_training_program(LoginRequiredMixin, View):
+class DefinitionTrainingProgram(LoginRequiredMixin, View):
     template_name = 'account/admin/definition-of-training-program.html'
 
     @admin_required_cbv()
@@ -409,7 +421,7 @@ class Definition_training_program(LoginRequiredMixin, View):
         return redirect('account:definition-of-training-program')
 
 
-class User_profile(LoginRequiredMixin, View):
+class UserProfile(LoginRequiredMixin, View):
     template_name = 'account/user-profile.html'
 
     def get(self, request, user_id):
@@ -424,7 +436,7 @@ class User_profile(LoginRequiredMixin, View):
         return render(request, self.template_name, context)
 
 
-class User_profile_update(LoginRequiredMixin, View):
+class UserProfileUpdate(LoginRequiredMixin, View):
 
     def post(self, request):
         data = request.POST.copy()
@@ -442,13 +454,3 @@ class User_profile_update(LoginRequiredMixin, View):
         f.save()
         messages.success(request, 'مشخصات شما با موفقیت بروزرسانی شد')
         return redirect(user.get_absolute_url())
-
-
-class User_profile_delete(LoginRequiredMixin, View):
-
-    @admin_required_cbv()
-    def post(self, request, user_id):
-        user = get_object_or_404(User, id=user_id)
-        user.delete()
-        messages.success(request, 'کاربر موفقیت حذف شد')
-        return redirect('account:users')

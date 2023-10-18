@@ -1,7 +1,12 @@
 {% load static %}
+
 <nav class="menu-fixed-right col-2">
     <div class="inner-menu-fixed-right">
-        <div class="logo"><img src="{% static 'front/images/22.png' %}" alt=""></div>
+        <div class="logo">
+            <a href="{% url 'public:index' %}">
+                <img src="{% static 'front/images/22.png' %}" alt="">
+            </a>
+        </div>
         <div class="up-menu">
             <ul class="list">
                 <li class="item-menu">
@@ -32,6 +37,12 @@
                     <a href="{% url 'account:definition-of-diet-free' %}">
                         <span><i class="fa-solid fa-bowl-food"></i></span>
                         <span>تعریف برنامه غذایی رایگان</span>
+                    </a>
+                </li>
+                <li class="item-menu">
+                    <a href="{% url 'program:diet_category' %}">
+                        <span><i class="fa-solid fa-boxes-stacked"></i></span>
+                        <span>دسته بندی برنامه غذایی</span>
                     </a>
                 </li>
                 <li class="item-menu">

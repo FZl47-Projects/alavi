@@ -1,6 +1,6 @@
 
 function createNotify({
-    title, message, theme, positionClass='nfc-top-right', closeOnClick=true, showDuration=5000
+    title, message, theme, positionClass='nfc-bottom-left', closeOnClick=true, showDuration=5000
 }) {
     // delete old notify elements
     document.querySelectorAll('.ncf-container').forEach((e) => {
