@@ -32,7 +32,7 @@
                     </tr>
                     {% for sport in sports %}
                         <tr>
-                            <td>{{ sport.name }}</td>
+                            <td>{{ sport.title }}</td>
                             <td>
                                 <a href="{% url 'program:sport_delete' sport_id=sport.id %}" class="btn btn-danger">
                                     <span><i class="fa fa-trash"></i></span>
@@ -67,7 +67,7 @@
                     <div class="modal-body">
                         <div>
                             <label for="">نام ورزش</label>
-                            <input type="text" class="form-control" required name="name">
+                            <input type="text" class="form-control" required name="title">
                         </div>
                     </div>
                     <div class="modal-footer">

@@ -19,7 +19,6 @@ urlpatterns = [
     path('club-admin/home-admin', views.HomeAdmin.as_view(), name='home-admin'),
     path('club-admin/users', views.Users.as_view(), name='users'),
 
-    path('club-admin/foods', views.Foods.as_view(), name='foods'),
     path('club-admin/sports', views.Sports.as_view(), name='sports'),
 
     path('club-admin/certificates', views.Certificates.as_view(), name='certificates'),

@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="{% static 'front/styles/users.css' %}">
     <link rel="stylesheet" href="{% static 'front/styles/all.css' %}">
 {% endblock %}
+
 {% block Content %}
     <body>
 
@@ -27,14 +28,16 @@
             <section class="table-two col-12 col-lg-11">
                 <table class="table">
                     <tr>
-                        <th>نام</th>
-                        <th>عملیات</th>
+                        <th>عنوان</th>
+                        <th>کالری(به ازای هر گرم)</th>
+                        <th>حذف</th>
                     </tr>
                     {% for food in foods %}
                         <tr>
-                            <td>{{ food.name }}</td>
+                            <td>{{ food.title }}</td>
+                            <td>{{ food.calories }}</td>
                             <td>
-                                <a href="{% url 'program:food_delete' food_id=food.id %}" class="btn btn-danger">
+                                <a href="{% url 'program:food_del' food_id=food.id %}" class="btn btn-danger">
                                     <span><i class="fa fa-trash"></i></span>
                                 </a>
                             </td>
@@ -49,7 +52,6 @@
                         </tr>
                     {% endfor %}
                 </table>
-                </div>
             </section>
         </main>
     </section>
@@ -66,8 +68,12 @@
                     </div>
                     <div class="modal-body">
                         <div>
-                            <label for="">نام غذا</label>
-                            <input type="text" class="form-control" required name="name">
+                            <label for="title">نام غذا</label>
+                            <input type="text" id="title" class="form-control" name="title" required>
+                        </div>
+                        <div>
+                            <label for="calories">کالری(به ازای هر گرم)</label>
+                            <input type="number" id="calories" class="form-control" name="calories" required>
                         </div>
                     </div>
                     <div class="modal-footer">

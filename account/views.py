@@ -219,18 +219,6 @@ class UserProfileDelete(LoginRequiredMixin, View):
         return redirect('account:users')
 
 
-class Foods(View):
-    template_name = 'account/admin/foods.html'
-
-    @admin_required_cbv()
-    def get(self, request):
-        foods = Food.objects.all()
-        context = {
-            'foods': foods
-        }
-        return render(request, self.template_name, context)
-
-
 class Sports(View):
     template_name = 'account/admin/sports.html'
 

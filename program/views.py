@@ -82,17 +82,34 @@ class DietPlan(LoginRequiredMixin, View):
         return render(request, self.template_name, context)
 
 
-class FoodAdd(View):
+class FoodsView(View):
+    template_name = 'program/foods.html'
+
+    @admin_required_cbv()
+    def get(self, request):
+        foods = Food.objects.all()
+
+        # Create template contexts
+        context = {'foods': foods}
+
+        return render(request, self.template_name, context)
+
+
+class FoodAddView(View):
 
     @admin_required_cbv()
     def post(self, request):
         data = request.POST
-        f = forms.FoodAdd(data)
-        if form_validate_err(request, f) is False:
-            return redirect('account:foods')
-        f.save()
+        form = forms.FoodAdd(data)
+
+        if form_validate_err(request, form) is False:
+            return redirect('program:foods')
+
+        # Add new food
+        form.save()
         messages.success(request, 'غذا با موفقیت اضافه شد')
-        return redirect('account:foods')
+
+        return redirect('program:foods')
 
 
 class FoodDelete(View):
@@ -101,8 +118,10 @@ class FoodDelete(View):
     def get(self, request, food_id):
         food = get_object_or_404(Food, id=food_id)
         food.delete()
+
         messages.success(request, 'غذا با موفقیت حذف شد')
-        return redirect('account:foods')
+
+        return redirect('program:foods')
 
 
 class SportAdd(View):
@@ -236,7 +255,7 @@ class DietProgramCategoryView(View):
 
 
 # Add DietCategoryView
-class AddDietProgramCategoryView(View):
+class DietProgramCategoryAddView(View):
 
     @admin_required_cbv()
     def post(self, request):
@@ -254,14 +273,13 @@ class AddDietProgramCategoryView(View):
 
 
 # Delete DietCategoryView
-class DelDietProgramCategoryView(View):
+class DietProgramCategoryDelView(View):
 
     @admin_required_cbv()
     def get(self, request, pk):
         category = get_object_or_404(DietProgramCategory, id=pk)
         category.delete()
 
-        # Delete current DietProgramCategory
         messages.success(request, 'دسته بندی با موفقیت حذف شد')
 
         return redirect('program:diet_category')

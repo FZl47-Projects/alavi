@@ -7,7 +7,7 @@
                 <img src="{% static 'front/images/22.png' %}" alt="">
             </a>
         </div>
-        <div class="up-menu">
+        <div class="up-menu" style="overflow-y: scroll">
             <ul class="list">
                 <li class="item-menu">
                     <a href="{% url 'account:home-admin' %}">
@@ -46,9 +46,15 @@
                     </a>
                 </li>
                 <li class="item-menu">
-                    <a href="{% url 'account:foods' %}">
+                    <a href="{% url 'program:foods' %}">
                         <span><i class="fa-sharp fa-solid fa-bowl-food"></i></span>
                         <span>غذاها</span>
+                    </a>
+                </li>
+                <li class="item-menu">
+                    <a href="#">
+                        <span><i class="fa-sharp fa-solid fa-bowl-food"></i></span>
+                        <span>وعده های غذایی</span>
                     </a>
                 </li>
                 <li class="item-menu">
