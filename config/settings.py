@@ -1,4 +1,6 @@
+from django.utils.translation import gettext_lazy as _
 from pathlib import Path
+
 import os
 
 
@@ -15,7 +17,7 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-#*g^+y5-plch-=q=@yre0go(@e
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG', True)
 
-ALLOWED_HOSTS = os.getenv('"ALLOWED_HOSTS"', '*').split(',')
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '*').split(',')
 
 HOST_ADDRESS = os.getenv('HOST_ADDRESS', 'http://127.0.0.1:8000')
 
@@ -108,11 +110,21 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGES = [
+    ('fa', _("Persian")),
+]
+
+LOCALE_PATHS = [
+    os.getenv('LOCALE_PATHS', BASE_DIR / 'locale'),
+]
+
+LANGUAGE_CODE = 'fa'
 
 TIME_ZONE = 'Asia/Tehran'
 
 USE_I18N = True
+
+USE_L10N = True
 
 USE_TZ = False
 
