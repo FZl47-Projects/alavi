@@ -209,7 +209,7 @@ class DailyProgram(models.Model):
 # Daily Diet Program Meals model
 class DailyMeal(models.Model):
     daily_program = models.ForeignKey(DailyProgram, on_delete=models.CASCADE, verbose_name=_('Daily program'), related_name='daily_meals')
-    meal = models.ForeignKey(Meal, on_delete=models.SET_DEFAULT, default=_('Unknown meal'), verbose_name=_('Meal'), related_name='daily_meals')
+    meal = models.ForeignKey(Meal, on_delete=models.PROTECT, verbose_name=_('Meal'), related_name='daily_meals')
 
     created_at = models.DateTimeField('Create time', auto_now_add=True)
     modified_at = models.DateTimeField('Modify time', auto_now=True)
@@ -226,7 +226,7 @@ class DailyMeal(models.Model):
 # Daily Meal Foods model
 class MealFood(models.Model):
     daily_meal = models.ForeignKey(DailyMeal, on_delete=models.CASCADE, verbose_name=_('Daily meal'), related_name='meal_foods')
-    food = models.ForeignKey(Food, on_delete=models.SET_DEFAULT, default=_('Unknown food'), verbose_name=_('Food'), related_name='meal_foods')
+    food = models.ForeignKey(Food, on_delete=models.PROTECT, verbose_name=_('Food'), related_name='meal_foods')
     amount = models.PositiveBigIntegerField(_('Amount'), default=0)
     amout_unit = models.CharField(_('Amount unit'), max_length=128, null=True, blank=True, help_text=_('example: (gram, milligram, glass, ...)'))
     energy = models.PositiveBigIntegerField(_('Energy'), default=0)
