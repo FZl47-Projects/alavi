@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-20 14:50+0330\n"
+"POT-Creation-Date: 2023-10-20 23:13+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -42,7 +42,7 @@ msgstr "شماره تلفن"
 msgid "User role"
 msgstr "نقش کاربر"
 
-#: .\config\settings\base.py:107
+#: .\config\settings\base.py:108
 msgid "Persian"
 msgstr "فارسی"
 
@@ -57,6 +57,18 @@ msgstr "پنل مدیریت"
 #: .\core\admin.py:22
 msgid "Alavi gym"
 msgstr "باشگاه علوی"
+
+#: .\program\admin.py:37
+msgid "Program Title"
+msgstr "عنوان برنامه"
+
+#: .\program\admin.py:57
+msgid "User phone"
+msgstr "تلفن کاربر"
+
+#: .\program\admin.py:62
+msgid "User name"
+msgstr "نام کاربر"
 
 #: .\program\enums.py:7
 msgid "Saturday"
@@ -86,7 +98,7 @@ msgstr "پنجشنبه"
 msgid "Friday"
 msgstr "جمعه"
 
-#: .\program\models.py:15 .\program\models.py:233
+#: .\program\models.py:15 .\program\models.py:220
 msgid "Food"
 msgstr "غذا"
 
@@ -94,7 +106,7 @@ msgstr "غذا"
 msgid "Foods"
 msgstr "غذاها"
 
-#: .\program\models.py:29 .\program\models.py:216
+#: .\program\models.py:29 .\program\models.py:203
 msgid "Meal"
 msgstr "وعده"
 
@@ -102,104 +114,99 @@ msgstr "وعده"
 msgid "Meals"
 msgstr "وعده ها"
 
-#: .\program\models.py:145
+#: .\program\models.py:148
 msgid "User"
 msgstr "کاربر"
 
-#: .\program\models.py:146
+#: .\program\models.py:149
 msgid "Title"
 msgstr "عنوان"
 
-#: .\program\models.py:152 .\program\models.py:175
-msgid "Diet program"
-msgstr "برنامه غذایی"
-
-#: .\program\models.py:153
-msgid "Diet programs"
-msgstr "برنامه های غذایی"
-
-#: .\program\models.py:176
-msgid "Program title"
-msgstr "عنوان برنامه"
-
-#: .\program\models.py:176
-msgid "example: Program of first month"
+#: .\program\models.py:149
+msgid "example: program of first month"
 msgstr "مثال: برنامه ماه اول"
 
-#: .\program\models.py:178 .\program\models.py:197 .\program\models.py:238
-#: .\program\models.py:255
-msgid "Create time"
-msgstr "زمان ایجاد"
+#: .\program\models.py:155
+msgid "User's diet program"
+msgstr "برنامه غذایی کاربر"
 
-#: .\program\models.py:179 .\program\models.py:198
-msgid "Modify time"
-msgstr "زمان ویرایش"
+#: .\program\models.py:156
+msgid "User's diet programs"
+msgstr "برنامه های غذایی کاربران"
 
-#: .\program\models.py:182 .\program\models.py:194
-msgid "Program"
-msgstr "برنامه"
+#: .\program\models.py:181
+msgid "User program"
+msgstr "برنامه کاربر"
 
-#: .\program\models.py:183
-msgid "Programs"
-msgstr "برنامه ها"
-
-#: .\program\models.py:195
+#: .\program\models.py:182
 msgid "Day of weak"
 msgstr "روز هفته"
 
-#: .\program\models.py:201 .\program\models.py:215
+#: .\program\models.py:184 .\program\models.py:225 .\program\models.py:242
+msgid "Create time"
+msgstr "زمان ایجاد"
+
+#: .\program\models.py:185
+msgid "Modify time"
+msgstr "زمان ویرایش"
+
+#: .\program\models.py:188
+msgid "User's daily program"
+msgstr "برنامه روزانه"
+
+#: .\program\models.py:189
+msgid "User's daily programs"
+msgstr "برنامه های روزانه کابر"
+
+#: .\program\models.py:202
 msgid "Daily program"
 msgstr "برنامه روزانه"
 
-#: .\program\models.py:202
-msgid "Daily programs"
-msgstr "برنامه های روزانه"
-
-#: .\program\models.py:222 .\program\models.py:232
+#: .\program\models.py:209 .\program\models.py:219
 msgid "Daily meal"
 msgstr "وعده روزانه"
 
-#: .\program\models.py:223
+#: .\program\models.py:210
 msgid "Daily meals"
 msgstr "وعده های روزانه"
 
-#: .\program\models.py:234
+#: .\program\models.py:221
 msgid "Amount"
 msgstr "مقدار"
 
-#: .\program\models.py:235
+#: .\program\models.py:222
 msgid "Amount unit"
 msgstr "واحد مقدار"
 
-#: .\program\models.py:235
+#: .\program\models.py:222
 msgid "example: (gram, milligram, glass, ...)"
 msgstr "مثال: گرم، میلی گرم، لیوان و..."
 
-#: .\program\models.py:236
+#: .\program\models.py:223
 msgid "Energy"
 msgstr "انرژی"
 
-#: .\program\models.py:242
+#: .\program\models.py:229
 msgid "Meal's food"
 msgstr "غذای وعده"
 
-#: .\program\models.py:243
+#: .\program\models.py:230
 msgid "Meal's foods"
 msgstr "غذاهای وعده"
 
-#: .\program\models.py:252
+#: .\program\models.py:239
 msgid "Diet Program"
 msgstr "برنامه غذایی"
 
-#: .\program\models.py:253
+#: .\program\models.py:240
 msgid "Recommendation"
 msgstr "توصیه"
 
-#: .\program\models.py:258
+#: .\program\models.py:245
 msgid "Recommend"
 msgstr "توصیه"
 
-#: .\program\models.py:259
+#: .\program\models.py:246
 msgid "Recommends"
 msgstr "توصیه ها"
 
@@ -210,6 +217,3 @@ msgstr ""
 #: .\templates\admin\base_site.html:15
 msgid "Django administration"
 msgstr ""
-
-#~ msgid "Messages"
-#~ msgstr "پیام ها"
