@@ -191,7 +191,7 @@ class WeaklyProgram(models.Model):
 class DailyProgram(models.Model):
     DAY_CHOICES = DayChoices
 
-    weakly_program = models.ForeignKey(WeaklyProgram, on_delete=models.CASCADE, verbose_name=_('Program'), related_name=_('daily_programs'))
+    weakly_program = models.ForeignKey(WeaklyProgram, on_delete=models.CASCADE, verbose_name=_('Program'), related_name='daily_programs')
     day = models.CharField(_('Day of weak'), max_length=32, choices=DAY_CHOICES.choices, default=DAY_CHOICES.SATURDAY)
 
     created_at = models.DateTimeField(_('Create time'), auto_now_add=True)
