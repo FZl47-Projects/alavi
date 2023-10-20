@@ -1,3 +1,4 @@
+from django.utils.translation import gettext as _
 from django.db import models
 from django.contrib.auth.base_user import BaseUserManager
 from django.contrib.auth.models import AbstractUser
@@ -13,7 +14,7 @@ class CustomBaseUserManager(BaseUserManager):
         Create and save a normal_user with the given phonenumber and password.
         """
         if not phonenumber:
-            raise ValueError("The phonenumber must be set")
+            raise ValueError(_("The phonenumber must be set"))
         email = self.normalize_email(email)
         user = self.model(email=email, phonenumber=phonenumber, **extra_fields)
         user.set_password(password)
@@ -51,15 +52,15 @@ class SuperUserManager(models.Manager):
 
 class User(AbstractUser):
     ROLE_USER_OPTIONS = (
-        ('normal_user', 'normal_user'),
-        ('super_user', 'super_user'),
+        ('normal_user', _('normal_user')),
+        ('super_user', _('super_user')),
     )
 
     username = None
-    email = models.EmailField("email address", null=True, blank=True, unique=True)
-    phonenumber = PhoneNumberField(region='IR', unique=True)
+    email = models.EmailField(_("Email address"), null=True, blank=True, unique=True)
+    phonenumber = PhoneNumberField(verbose_name=_('Phone number'), region='IR', unique=True)
     # type users|roles
-    role = models.CharField(max_length=20, choices=ROLE_USER_OPTIONS, default='normal_user')
+    role = models.CharField(_('User role'), max_length=20, choices=ROLE_USER_OPTIONS, default='normal_user')
 
     USERNAME_FIELD = 'phonenumber'
     REQUIRED_FIELDS = []
