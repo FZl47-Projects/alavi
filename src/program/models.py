@@ -12,6 +12,8 @@ class Food(models.Model):
     calories = models.PositiveIntegerField('Calories', default=0)
 
     class Meta:
+        verbose_name = _('Food')
+        verbose_name_plural = _('Foods')
         ordering = ('-id',)
 
     def __str__(self) -> str:
@@ -24,6 +26,8 @@ class Meal(models.Model):
     time = models.TimeField('Meal time', max_length=64, null=True, blank=True)
 
     class Meta:
+        verbose_name = _('Meal')
+        verbose_name_plural = _('Meals')
         ordering = ('-id',)
 
     def __str__(self) -> str:
