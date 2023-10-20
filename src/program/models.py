@@ -30,9 +30,12 @@ class Meal(models.Model):
         verbose_name_plural = _('Meals')
         ordering = ('-id',)
 
+    @property
+    def get_time(self):
+        return self.time.strftime('%H:%M') if self.time else '-'
+
     def __str__(self) -> str:
-        return f'{self.title} - {self.time}'
-    
+        return f'{self.title} - {self.get_time}'
 
 
 # Sports model
@@ -142,15 +145,15 @@ class DietProgramFree(models.Model):
 
 # DietProgram model(one program for each user)
 class DietProgram(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, verbose_name=_('User'), related_name='diet_programs')
-    title = models.CharField(_('Title'), max_length=64, null=True, blank=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name=_('User'), related_name='diet_programs')
+    title = models.CharField(_('Title'), max_length=64, help_text=_('example: program of first month'))
 
     created_at = models.DateTimeField('Create time', auto_now_add=True)
     modified_at = models.DateTimeField('Modify time', auto_now=True)
 
     class Meta:
-        verbose_name = _('Diet program')
-        verbose_name_plural = _('Diet programs')
+        verbose_name = _("User's diet program")
+        verbose_name_plural = _("User's diet programs")
         ordering = '-id',
 
     @property
@@ -167,39 +170,23 @@ class DietProgram(models.Model):
         return get_timesince_persian(self.created_at)
     
     def __str__(self) -> str:
-        return f'{self.user.get_raw_phonenumber()}'
-    
-
-# WeaklyDietProgram model (This is actually the main programs for user)
-class WeaklyProgram(models.Model):
-    diet_program = models.ForeignKey(DietProgram, on_delete=models.CASCADE, verbose_name=_('Diet program'), related_name='programs')
-    title = models.CharField(_('Program title'), max_length=128, help_text=_('example: Program of first month'))
-
-    created_at = models.DateTimeField(_('Create time'), auto_now_add=True)
-    modified_at = models.DateTimeField(_('Modify time'), auto_now=True)
-
-    class Meta:
-        verbose_name = _('Program')
-        verbose_name_plural = _('Programs')
-        ordering = ('-created_at',)
-
-    def __str__(self) -> str:
-        return f'{self.diet_program} - {self.title}'
+        user_phone = self.user.get_raw_phonenumber()
+        return f'{user_phone} - {self.user.get_full_name()}'
     
 
 # DailyDietProgram model
-class DailyProgram(models.Model):
+class DailyDietProgram(models.Model):
     DAY_CHOICES = DayChoices
 
-    weakly_program = models.ForeignKey(WeaklyProgram, on_delete=models.CASCADE, verbose_name=_('Program'), related_name='daily_programs')
-    day = models.CharField(_('Day of weak'), max_length=32, choices=DAY_CHOICES.choices, default=DAY_CHOICES.SATURDAY)
+    diet_program = models.ForeignKey(DietProgram, on_delete=models.CASCADE, verbose_name=_('User program'), related_name='daily_programs')
+    day = models.CharField(_('Day of weak'), max_length=32, choices=DAY_CHOICES.choices)
 
     created_at = models.DateTimeField(_('Create time'), auto_now_add=True)
     modified_at = models.DateTimeField(_('Modify time'), auto_now=True)
 
     class Meta:
-        verbose_name = _('Daily program')
-        verbose_name_plural = _('Daily programs')
+        verbose_name = _("User's daily program")
+        verbose_name_plural = _("User's daily programs")
         ordering = ('-created_at',)
     
     @property
@@ -207,12 +194,12 @@ class DailyProgram(models.Model):
         return self.get_day_display()
 
     def __str__(self) -> str:
-        return f'{self.weakly_program} - {self.get_day_label}'
+        return f'{self.diet_program} - {self.get_day_label}'
 
 
 # Daily Diet Program Meals model
-class DailyMeal(models.Model):
-    daily_program = models.ForeignKey(DailyProgram, on_delete=models.CASCADE, verbose_name=_('Daily program'), related_name='daily_meals')
+class DailyDietMeal(models.Model):
+    daily_program = models.ForeignKey(DailyDietProgram, on_delete=models.CASCADE, verbose_name=_('Daily program'), related_name='daily_diet_meals')
     meal = models.ForeignKey(Meal, on_delete=models.PROTECT, verbose_name=_('Meal'), related_name='daily_meals')
 
     created_at = models.DateTimeField('Create time', auto_now_add=True)
@@ -229,10 +216,10 @@ class DailyMeal(models.Model):
 
 # Daily Meal Foods model
 class MealFood(models.Model):
-    daily_meal = models.ForeignKey(DailyMeal, on_delete=models.CASCADE, verbose_name=_('Daily meal'), related_name='meal_foods')
+    daily_meal = models.ForeignKey(DailyDietMeal, on_delete=models.CASCADE, verbose_name=_('Daily meal'), related_name='meal_foods')
     food = models.ForeignKey(Food, on_delete=models.PROTECT, verbose_name=_('Food'), related_name='meal_foods')
     amount = models.PositiveBigIntegerField(_('Amount'), default=0)
-    amout_unit = models.CharField(_('Amount unit'), max_length=128, null=True, blank=True, help_text=_('example: (gram, milligram, glass, ...)'))
+    amount_unit = models.CharField(_('Amount unit'), max_length=128, null=True, blank=True, help_text=_('example: (gram, milligram, glass, ...)'))
     energy = models.PositiveBigIntegerField(_('Energy'), default=0)
 
     created_at = models.DateTimeField(_('Create time'), auto_now_add=True)
