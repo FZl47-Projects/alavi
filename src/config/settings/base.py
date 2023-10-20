@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     # Third party apps
     'django_q',
     'phonenumber_field',
+    'nested_admin',
 
     # Apps
     'account',
@@ -140,10 +141,12 @@ MEDIA_ROOT = os.getenv('MEDIA_ROOT', BASE_DIR / 'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
 AUTH_USER_MODEL = 'account.User'
 LOGIN_URL = '/u/login-register'
 
+TIME_INPUT_FORMATS = [
+    '%H:%M',
+]
 
 SUPER_ADMIN_ROLES = [
     'super_user'
