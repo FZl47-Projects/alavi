@@ -57,7 +57,7 @@ class User(AbstractUser):
     )
 
     username = None
-    email = models.EmailField(_("Email address"), null=True, blank=True, unique=True)
+    email = models.EmailField(_("Email address"), null=True, blank=True, unique=False)
     phonenumber = PhoneNumberField(verbose_name=_('Phone number'), region='IR', unique=True)
     # type users|roles
     role = models.CharField(_('User role'), max_length=20, choices=ROLE_USER_OPTIONS, default='normal_user')
