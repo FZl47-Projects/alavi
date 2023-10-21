@@ -1,0 +1,66 @@
+
+.main-p-box {
+    height: 32rem;
+    overflow-y: scroll;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 1rem;
+}
+
+.main-p-box::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
+
+.main-p-box::-webkit-scrollbar-track {
+    display: none;
+}
+
+.daily-p-box {
+    display: flex;
+    flex-direction: column;
+    border: 2px #1ab268 solid;
+    border-radius: 0.5rem;
+}
+
+.daily-p-header-box {
+    width: 100%;
+    height: fit-content;
+    color: white;
+    background-color: #1ab268;
+    padding: 0.5rem;
+}
+
+.daily-p-main-meal-box {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    background-color: #f6f6f6;
+    padding: 1rem 0.5rem;
+    border-radius: 0 0 0.5rem 0.5rem;
+}
+
+.daily-p-meal-box {
+    min-height: 16rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    min-width: 12rem;
+    border: 2px #1ab268 solid;
+    border-radius: 0.3rem;
+}
+
+.daily-p-meal-food-main-box {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    padding: 1rem 0.5rem;
+}
+
+.daily-p-meal-food-box {
+    color: black;
+    font-size: 1em;
+}
