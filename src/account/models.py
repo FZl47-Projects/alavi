@@ -113,7 +113,7 @@ class User(AbstractUser):
             return reverse('account:home-admin')
 
     def get_diet_programs(self):
-        return self.user_diet_program.all()
+        return self.diet_programs.all()
 
     def get_training_programs(self):
         return self.user_training_program.all()

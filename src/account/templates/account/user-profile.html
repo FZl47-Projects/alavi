@@ -94,12 +94,12 @@
                         {% if user.is_admin_user %}
                             <div class="col-12 text-left mt-3">
                                 <div class="">
-                                    <button class="btn btn-white m-1 p-2" data-bs-toggle="modal"
-                                            data-bs-target="#diet-program-add">ایجاد برنامه غذایی
-                                    </button>
-                                    <button class="btn btn-white m-1 p-2" data-bs-toggle="modal"
-                                            data-bs-target="#training-program-add">ایجاد برنامه تمرینی
-                                    </button>
+                                    <a href="/admin/program/dietprogram/add" class="btn btn-white m-1 p-2">
+                                        ایجاد برنامه غذایی
+                                    </a>
+                                    <a href="#" class="btn btn-white m-1 p-2">
+                                        ایجاد برنامه تمرینی
+                                    </a>
                                 </div>
                             </div>
                         {% endif %}
@@ -108,21 +108,10 @@
             </section>
             <div class="d-flex justify-content-between align-items-center col-12 col-lg-11 mx-auto my-3">
                 <div class="table-title m-0">لیست برنامه های غذایی</div>
-                <div>
-                    {% if user.is_admin_user %}
-                        <a href="{% url 'program:diet-plan' user_id=user_detail.id %}" class="btn btn-warning p-2">
-                            برنامه غذایی این هفته
-                        </a>
-                    {% else %}
-                        <a href="{% url 'program:diet-plan' %}" class="btn btn-warning p-2">
-                            برنامه غذایی این هفته
-                        </a>
-                    {% endif %}
-                </div>
             </div>
             <section class="table-two col-12 col-lg-11 ">
                 <table class="table">
-                    {% for program in user_detail.get_diet_programs %}
+                    {% for program in "" %}
                         <tr>
                             <td>{{ program.food.name }}</td>
                             <td>{{ program.amount }}گرم</td>
@@ -145,17 +134,6 @@
 
             <div class="d-flex justify-content-between align-items-center col-12 col-lg-11 mx-auto my-3">
                 <div class="table-title m-0">لیست تمرین بدنی</div>
-                <div>
-                    {% if user.is_admin_user %}
-                        <a href="{% url 'program:exercise' user_id=user_detail.id %}" class="btn btn-warning p-2">
-                            برنامه تمرینی این هفته
-                        </a>
-                    {% else %}
-                        <a href="{% url 'program:exercise' %}" class="btn btn-warning p-2">
-                            برنامه تمرینی این هفته
-                        </a>
-                    {% endif %}
-                </div>
             </div>
             <section class="table-two col-12 col-lg-11">
                 <table class="table">

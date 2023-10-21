@@ -7,7 +7,7 @@
                 <img src="{% static 'front/images/22.png' %}" alt="">
             </a>
         </div>
-        <div class="up-menu" style="overflow-y: scroll">
+        <div class="up-menu">
             <ul class="list">
                 <li class="item-menu">
                     <a href="{% url 'account:home-admin' %}">
@@ -22,37 +22,13 @@
                     </a>
                 </li>
                 <li class="item-menu">
-                    <a href="{% url 'account:definition-of-diet' %}">
-                        <span><i class="fa-solid fa-bowl-food"></i></span>
-                        <span>تعریف برنامه غذایی</span>
-                    </a>
-                </li>
-                <li class="item-menu">
-                    <a href="{% url 'account:definition-of-training-program' %}">
-                        <span><i class="fa-sharp fa-solid fa-dumbbell"></i></span>
-                        <span>تعریف برنامه تمرینی</span>
-                    </a>
-                </li>
-                <li class="item-menu">
-                    <a href="{% url 'account:definition-of-diet-free' %}">
-                        <span><i class="fa-solid fa-bowl-food"></i></span>
-                        <span>تعریف برنامه غذایی رایگان</span>
-                    </a>
-                </li>
-                <li class="item-menu">
-                    <a href="{% url 'program:diet_category' %}">
-                        <span><i class="fa-solid fa-boxes-stacked"></i></span>
-                        <span>دسته بندی برنامه غذایی</span>
-                    </a>
-                </li>
-                <li class="item-menu">
-                    <a href="{% url 'program:foods' %}">
+                    <a href="/admin/program/food">
                         <span><i class="fa-sharp fa-solid fa-bowl-food"></i></span>
                         <span>غذاها</span>
                     </a>
                 </li>
                 <li class="item-menu">
-                    <a href="#">
+                    <a href="/admin/program/meal">
                         <span><i class="fa-sharp fa-solid fa-bowl-food"></i></span>
                         <span>وعده های غذایی</span>
                     </a>
@@ -67,6 +43,12 @@
                     <a href="{% url 'account:certificates' %}">
                         <span><i class="fa-sharp fa-solid fa-file"></i></span>
                         <span>مدارک</span>
+                    </a>
+                </li>
+                <li class="item-menu">
+                    <a href="{% url 'admin:index' %}">
+                        <span><i class="fa-sharp fa-solid fa-gears"></i></span>
+                        <span>پنل مدیریت</span>
                     </a>
                 </li>
                 <li class="item-menu d-none">

@@ -23,7 +23,7 @@ urlpatterns = [
 
     path('club-admin/certificates', views.Certificates.as_view(), name='certificates'),
     path('club-admin/certificate/add', views.CertificateAdd.as_view(), name='certificate_add'),
-    path('club-admin/certificate/<int:certificate_id>/delete', views.CertificateDelete.as_view(),name='certificate_delete'),
+    path('club-admin/certificate/<int:certificate_id>/delete', views.CertificateDelete.as_view(), name='certificate_delete'),
 
     path('club-admin/definition-of-diet', views.DefinitionDiet.as_view(), name='definition-of-diet'),
     path('club-admin/definition-of-diet-free', views.DefinitionDietFree.as_view(), name='definition-of-diet-free'),  # add
@@ -31,7 +31,7 @@ urlpatterns = [
 
     path('club-admin/definition-of-training-program', views.DefinitionTrainingProgram.as_view(), name='definition-of-training-program'),
 
-    path('club-user/user-profile/<int:user_id>', views.UserProfile.as_view(), name='user-profile'),
-    path('club-user/user-profile/update', views.UserProfileUpdate.as_view(), name='user-profile-update'),
-    path('club-user/user-profile/<int:user_id>/delete', views.UserProfileDelete.as_view(), name='user-profile-delete'),
+    path('user-profile/<int:user_id>', views.UserProfile.as_view(), name='user-profile'),
+    path('user-profile/update', views.UserProfileUpdate.as_view(), name='user-profile-update'),
+    path('user-profile/<int:user_id>/delete', views.UserProfileDelete.as_view(), name='user-profile-delete'),
 ]
