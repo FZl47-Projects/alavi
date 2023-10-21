@@ -19,7 +19,7 @@
                 <div class="content">
                     <div class="content-inner">
                         <div class="col-6">
-                            <a href="/admin/program/dietprogram/add">
+                            <a href="{% url 'admin:program_dietprogram_add' %}">
                                 <div class="modal-item">
                                     <span style="padding-left:5px ;"><i class="fa-solid fa-bowl-food"></i></span>
                                     <span>تعریف برنامه غذایی</span>
@@ -27,7 +27,7 @@
                             </a>
                         </div>
                         <div class="col-6">
-                            <a href="{% url 'account:user-profile' user_id=user.id %}?training-add">
+                            <a href="{% url 'admin:exercise_exerciseprogram_add' %}">
                                 <div class="modal-item">
                                     <span style="padding-left:5px ;"><i
                                             class="fa-sharp fa-solid fa-dumbbell"></i></span>
@@ -79,8 +79,6 @@
             </section>
         </main>
     </section>
-
-
 
     {% for user in users %}
         <div class="modal fade" id="delete-user-{{ user.id }}" tabindex="-1"
