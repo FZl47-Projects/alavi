@@ -126,6 +126,9 @@ class DietProgram(models.Model):
             return True
         return False
 
+    def get_program_recommends(self):
+        return self.recommends.all()
+
     def get_created_at(self):
         return self.created_at.strftime('%Y-%m-%d %H:%M')
 
@@ -211,7 +214,7 @@ class DietRecommend(models.Model):
     class Meta:
         verbose_name = _('Recommend')
         verbose_name_plural = _('Recommends')
-        ordering = ('-created_at',)
+        ordering = ('id',)
 
     def __str__(self) -> str:
         return f'{self.diet_program} - {self.text[:16]}'
