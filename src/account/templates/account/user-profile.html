@@ -116,7 +116,7 @@
                             <td>{{ program.title }}</td>
                             <td class="datetime-convert">{{ program.get_created_at }}</td>
                             <td>
-                                <a href="#" title="مشاهده برنامه" class="add-btn btn btn-primary"><i
+                                <a href="{% url 'program:diet_program' program.pk %}" title="مشاهده برنامه" class="add-btn btn btn-primary"><i
                                         class="fa-solid  fa-eye"></i>
                                 </a>
                             </td>
