@@ -8,8 +8,8 @@ import datetime
 
 # Foods model
 class Food(models.Model):
-    title = models.CharField('Food title', max_length=128)
-    calories = models.PositiveIntegerField('Calories', default=0)
+    title = models.CharField(_('Food title'), max_length=128)
+    calories = models.PositiveIntegerField(_('Calories'), default=0)
 
     class Meta:
         verbose_name = _('Food')
@@ -22,8 +22,8 @@ class Food(models.Model):
 
 # Meals model
 class Meal(models.Model):
-    title = models.CharField('Meal title', max_length=128)
-    time = models.TimeField('Meal time', max_length=64, null=True, blank=True)
+    title = models.CharField(_('Meal title'), max_length=128)
+    time = models.TimeField(_('Meal time'), max_length=64, null=True, blank=True)
 
     class Meta:
         verbose_name = _('Meal')
@@ -40,7 +40,7 @@ class Meal(models.Model):
 
 # Sports model
 class Sport(models.Model):
-    title = models.CharField('Title', max_length=128)
+    title = models.CharField(_('Title'), max_length=128)
 
     class Meta:
         ordering = '-id',
@@ -127,7 +127,7 @@ class DietProgram(models.Model):
         return False
 
     def get_created_at(self):
-        return self.created_at.strftime('%Y-%m-%d %H:%M:%S')
+        return self.created_at.strftime('%Y-%m-%d %H:%M')
 
     def get_created_at_time_past(self):
         return get_timesince_persian(self.created_at)
@@ -175,7 +175,7 @@ class DailyDietMeal(models.Model):
     class Meta:
         verbose_name = _('Daily meal')
         verbose_name_plural = _('Daily meals')
-        ordering = ('-created_at',)
+        ordering = ('created_at',)
 
     def __str__(self) -> str:
         return f'{self.daily_program} - {self.meal}'
@@ -195,7 +195,7 @@ class MealFood(models.Model):
     class Meta:
         verbose_name = _("Meal's food")
         verbose_name_plural = _("Meal's foods")
-        ordering = ('-created_at',)
+        ordering = ('created_at',)
 
     def __str__(self) -> str:
         return f'{self.daily_meal} - {self.food.title}'
