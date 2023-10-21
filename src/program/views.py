@@ -1,9 +1,7 @@
 from django.shortcuts import render, get_object_or_404, Http404, redirect
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import View
+from django.views.generic import View, TemplateView
 from django.contrib import messages
-from django.db.models import Q
-
 
 from core.utils import form_validate_err, add_prefix_phonenum
 from core.auth.decorators import admin_required_cbv
@@ -11,8 +9,8 @@ from core.auth.decorators import admin_required_cbv
 from account.forms import TrainingProgramAdd, DietProgramAdd
 from account.models import User
 
-from .models import Food, Sport
 from notification.models import NotificationUser
+from .models import Food, Sport, DietProgram
 from . import forms
 
 
@@ -50,36 +48,17 @@ class Exercises(LoginRequiredMixin, View):
         return render(request, self.template_name, context)
 
 
-class DietPlan(LoginRequiredMixin, View):
-    template_name = 'program/diet-plan.html'
+class UserDietProgram(LoginRequiredMixin, TemplateView):
+    template_name = 'program/diet_program.html'
 
-    def get(self, request, user_id=None):
-        if user_id:
-            user = get_object_or_404(User, id=user_id)
-            if not request.user.is_admin_user:
-                raise Http404
-        else:
-            user = request.user
-            if user.is_admin_user:
-                return redirect('account:definition-of-diet')
-        programs0 = user.user_diet_program.filter(day='0')
-        programs1 = user.user_diet_program.filter(day='1')
-        programs2 = user.user_diet_program.filter(day='2')
-        programs3 = user.user_diet_program.filter(day='3')
-        programs4 = user.user_diet_program.filter(day='4')
-        programs5 = user.user_diet_program.filter(day='5')
-        programs6 = user.user_diet_program.filter(day='6')
-        context = {
-            'user_detail': user,
-            'programs0': programs0,
-            'programs1': programs1,
-            'programs2': programs2,
-            'programs3': programs3,
-            'programs4': programs4,
-            'programs5': programs5,
-            'programs6': programs6,
-        }
-        return render(request, self.template_name, context)
+    def get_context_data(self, **kwargs):
+        contexts = super().get_context_data(**kwargs)
+
+        pk = kwargs.get('pk')
+        program = get_object_or_404(DietProgram, pk=pk)
+
+        contexts['diet_program'] = program
+        return contexts
 
 
 class FoodsView(View):

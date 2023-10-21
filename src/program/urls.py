@@ -5,11 +5,8 @@ from . import views
 app_name = 'program'
 
 urlpatterns = [
-    path('exercise/<user_id>/', views.Exercises.as_view(), name='exercise'),
-    path('diet-plan/<user_id>/', views.DietPlan.as_view(), name='diet-plan'),
-
-    path('exercise-plan/', views.Exercises.as_view(), name='exercise'),
-    path('diet-plan/', views.DietPlan.as_view(), name='diet-plan'),
+    path('exercise-program/<int:pk>/', views.Exercises.as_view(), name='exercise_program'),
+    path('diet-program/<int:pk>/', views.UserDietProgram.as_view(), name='diet_program'),
 
     path('foods/', views.FoodsView.as_view(), name='foods'),
     path('food/add', views.FoodAddView.as_view(), name='food_add'),
