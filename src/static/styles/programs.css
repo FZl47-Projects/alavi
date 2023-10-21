@@ -4,6 +4,7 @@
     overflow-y: scroll;
     scrollbar-width: none;
     -ms-overflow-style: none;
+    scroll-behavior: smooth;
     display: flex;
     flex-direction: column;
     gap: 2rem;

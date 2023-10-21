@@ -60,6 +60,20 @@
                 {% empty %}
 
                 {% endfor %}
+
+                <div class="daily-p-box" style="margin-top: 2rem;">
+                    <div class="daily-p-header-box">
+                        <h3 style="margin-top: 0.4rem; margin-right: 0.5rem;">توصیه های کلی</h3>
+                    </div>
+                    <div style="background-color: white; padding: 0.5rem; border-radius: 0 0 0.5rem 0.5rem;">
+                        {% for recommend in diet_program.get_program_recommends %}
+                            <div style="font-size: 12pt; margin-top: 0.5rem;">
+                                <i class="fa fa-square" style="font-size: 0.6em; margin-left: 0.5rem;"></i>
+                                <span>{{ recommend.text }}</span>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
             </div>
         </main>
     </section>
