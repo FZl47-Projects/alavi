@@ -38,7 +38,7 @@ class Meal(models.Model):
         return f'{self.title} - {self.get_time}'
 
 
-# DietProgram model(one program for each user)
+# DietProgram model
 class DietProgram(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name=_('User'), related_name='diet_programs')
     title = models.CharField(_('Title'), max_length=64, help_text=_('example: program of first month'))
@@ -77,7 +77,7 @@ class DailyDietProgram(models.Model):
     DAY_CHOICES = DayChoices
 
     diet_program = models.ForeignKey(DietProgram, on_delete=models.CASCADE, verbose_name=_('User program'), related_name='daily_programs')
-    day = models.CharField(_('Day of weak'), max_length=32, choices=DAY_CHOICES.choices)
+    day = models.CharField(_('Day of week'), max_length=32, choices=DAY_CHOICES.choices)
 
     created_at = models.DateTimeField(_('Create time'), auto_now_add=True)
     modified_at = models.DateTimeField(_('Modify time'), auto_now=True)
