@@ -12,6 +12,7 @@ urlpatterns = [
     path('u/', include('account.urls', namespace='account')),
     path('', include('public.urls', namespace='public')),
     path('program/', include('program.urls', namespace='program')),
+    path('exercise/', include('exercise.urls', namespace='exercise'))
 ]
 
 # Serve static files on dev
