@@ -150,7 +150,7 @@ class DailyDietProgram(models.Model):
     class Meta:
         verbose_name = _("User's daily program")
         verbose_name_plural = _("User's daily programs")
-        ordering = ('-created_at',)
+        ordering = ('day',)
 
         constraints = [
             models.UniqueConstraint(fields=['diet_program', 'day'], name='unique_day_per_program')
