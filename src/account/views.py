@@ -209,16 +209,6 @@ class Users(View):
         return render(request, self.template_name, context)
 
 
-class UserProfileDelete(LoginRequiredMixin, View):
-
-    @admin_required_cbv()
-    def post(self, request, user_id):
-        user = get_object_or_404(User, id=user_id)
-        user.delete()
-        messages.success(request, 'کاربر موفقیت حذف شد')
-        return redirect('account:users')
-
-
 class Sports(View):
     template_name = 'account/admin/sports.html'
 
@@ -442,3 +432,13 @@ class UserProfileUpdate(LoginRequiredMixin, View):
         f.save()
         messages.success(request, 'مشخصات شما با موفقیت بروزرسانی شد')
         return redirect(user.get_absolute_url())
+
+
+class UserProfileDelete(LoginRequiredMixin, View):
+
+    @admin_required_cbv()
+    def post(self, request, user_id):
+        user = get_object_or_404(User, id=user_id)
+        user.delete()
+        messages.success(request, 'کاربر موفقیت حذف شد')
+        return redirect('account:users')
