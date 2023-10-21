@@ -49,7 +49,7 @@ class Exercises(LoginRequiredMixin, View):
 
 
 class UserDietProgram(LoginRequiredMixin, TemplateView):
-    template_name = 'program/diet_program.html'
+    template_name = 'program/diet-program.html'
 
     def get_context_data(self, **kwargs):
         contexts = super().get_context_data(**kwargs)
