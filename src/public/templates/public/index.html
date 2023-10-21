@@ -34,7 +34,8 @@
                             <div class="swiper-wrapper">
                                 <!--each slide service  -->
                                 <div class="swiper-slide">
-                                    <a href="#">
+                                    <a href="{% if user.is_authenticated %}{% url 'account:user-profile' user.id %}
+                                        {% else %}{% url 'account:login_register' %}{% endif %}">
                                         <div class="services-item">
                                             <div class="image-services-item">
                                                 <img src="{% static 'front/images/item4.png' %}" alt="">
@@ -52,7 +53,7 @@
                                 </div>
                                 <!--each slide service  -->
                                 <div class="swiper-slide">
-                                    <a href="{% if user.is_authenticated %}{% url 'program:diet_program' user.id %}
+                                    <a href="{% if user.is_authenticated %}{% url 'account:user-profile' user.id %}
                                         {% else %}{% url 'account:login_register' %}{% endif %}" style="cursor:pointer;">
                                         <div class="services-item">
                                             <div class="image-services-item">

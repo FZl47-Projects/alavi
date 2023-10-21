@@ -2,7 +2,6 @@ from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django import forms
 from phonenumber_field.formfields import PhoneNumberField
 from .models import User, UserInfo
-from program.models import DietProgram, TrainingProgram, DietProgramFree
 from public.models import Certificate
 
 
@@ -78,30 +77,6 @@ class UserUpdateInfoForm(forms.ModelForm):
     class Meta:
         model = UserInfo
         fields = ('height', 'weight', 'national_code', 'picture', 'user')
-
-
-class DietProgramFreeAdd(forms.ModelForm):
-    description = forms.CharField(max_length=500, required=False)
-
-    class Meta:
-        model = DietProgramFree
-        exclude = ('created_time', 'moified_time')
-
-
-class DietProgramAdd(forms.ModelForm):
-    description = forms.CharField(max_length=500, required=False)
-
-    class Meta:
-        model = DietProgram
-        exclude = ('created_time', 'moified_time')
-
-
-class TrainingProgramAdd(forms.ModelForm):
-    description = forms.CharField(max_length=500, required=False)
-
-    class Meta:
-        model = TrainingProgram
-        exclude = ('created_time', 'moified_time')
 
 
 class CertificateAdd(forms.ModelForm):

@@ -94,7 +94,7 @@
                         {% if user.is_admin_user %}
                             <div class="col-12 text-left mt-3">
                                 <div class="">
-                                    <a href="/admin/program/dietprogram/add" class="btn btn-white m-1 p-2">
+                                    <a href="{% url 'admin:program_dietprogram_add' %}" class="btn btn-white m-1 p-2">
                                         ایجاد برنامه غذایی
                                     </a>
                                     <a href="#" class="btn btn-white m-1 p-2">
@@ -134,13 +134,9 @@
             </div>
             <section class="table-two col-12 col-lg-11" style="border-radius: 1rem">
                 <table class="table">
-                    {% for program in user_detail.get_training_programs %}
+                    {% for program in '' %}
                         <tr>
                             <td>{{ program.sport.name }}</td>
-                            <td>{{ program.rep }} تکرار </td>
-                            <td>{{ program.sets }} ست</td>
-                            <td>{{ program.description }}</td>
-                            <td class="datetime-convert">{{ program.get_created_at }}</td>
                         </tr>
                     {% empty %}
                         <div class="container-not-found-base">
@@ -187,119 +183,6 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">لغو</button>
                         <button type="submit" class="btn btn-primary">ثبت و بروزرسانی</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <!-- Modals -->
-    <div class="modal fade" id="diet-program-add" tabindex="-1" aria-labelledby="diet-program-add-label"
-         aria-hidden="true">
-         <div class="modal-dialog modal-lg">
-            <form action="{% url 'program:diet-user-add' user_id=user_detail.id %}" method="post">
-                  {% csrf_token %}
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="training-program-add-label">تعریف برنامه غذایی</h5>
-                    </div>
-                    <div class="modal-body col-11 mx-auto">
-                        <div class="field">
-                            <label for="">غذا</label>
-                            <select name="food" class="form-control form-select" required multiple>
-                                {% for food in foods %}
-                                    <option value="{{ food.id }}">{{ food.name }}</option>
-                                {% endfor %}
-                            </select>
-                        </div>
-                        <div class="field">
-                            <label for="">روز</label>
-                            <select name="day" class="form-control form-select" required multiple>
-                                <option value="0">شنبه</option>
-                                <option value="1">یکشنبه</option>
-                                <option value="2">دوشنبه</option>
-                                <option value="3">سه شنبه</option>
-                                <option value="4">چهارشنبه</option>
-                                <option value="5">پنجشنبه</option>
-                                <option value="6">جمعه</option>
-                            </select>
-                        </div>
-                        <div class="field">
-
-                            <label for="">مقدار</label>
-                            <input type="number" class="form-control" name="amount" required="">
-
-                        </div>
-                        <div class="field">
-                            <label for="">انرژی</label>
-                            <input type="number" class="form-control" name="energy" required="">
-
-                        </div>
-                        <div class="field">
-                            <label for="">توضیحات</label>
-                            <textarea name="description" class="form-control" rows="3"></textarea>
-                        </div>
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">لغو</button>
-                        <button type="submit" class="btn btn-primary">ثبت</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <div class="modal fade" id="training-program-add" tabindex="-1" aria-labelledby="training-program-add-label"
-         aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <form action="{% url 'program:training-user-add' user_id=user_detail.id %}" method="post">
-                  {% csrf_token %}
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="training-program-add-label">تعریف برنامه تمرینی</h5>
-                    </div>
-                    <div class="modal-body col-11 mx-auto">
-                        <div class="field">
-                            <label for="">ورزش</label>
-                            <select name="sport" class="form-control form-select" required multiple>
-                                {% for sport in sports %}
-                                    <option value="{{ sport.id }}">{{ sport.name }}</option>
-                                {% endfor %}
-                            </select>
-                        </div>
-                        <div class="field">
-                            <label for="">روز</label>
-                            <select name="day" class="form-control form-select" required multiple>
-                                <option value="0">شنبه</option>
-                                <option value="1">یکشنبه</option>
-                                <option value="2">دوشنبه</option>
-                                <option value="3">سه شنبه</option>
-                                <option value="4">چهارشنبه</option>
-                                <option value="5">پنجشنبه</option>
-                                <option value="6">جمعه</option>
-                            </select>
-                        </div>
-                        <div class="field">
-
-                            <label for="">تکرار</label>
-                            <input type="number" class="form-control" name="rep" required="">
-
-                        </div>
-                        <div class="field">
-                            <label for="">ست</label>
-                            <input type="number" class="form-control" name="sets" required="">
-
-                        </div>
-                        <div class="field">
-                            <label for="">توضیحات</label>
-                            <textarea name="description" class="form-control" rows="3"></textarea>
-                        </div>
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">لغو</button>
-                        <button type="submit" class="btn btn-primary">ثبت</button>
                     </div>
                 </div>
             </form>
