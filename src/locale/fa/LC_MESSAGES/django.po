@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-20 23:13+0330\n"
+"POT-Creation-Date: 2023-10-21 19:17+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -42,7 +42,7 @@ msgstr "شماره تلفن"
 msgid "User role"
 msgstr "نقش کاربر"
 
-#: .\config\settings\base.py:108
+#: .\config\settings\base.py:109
 msgid "Persian"
 msgstr "فارسی"
 
@@ -58,17 +58,143 @@ msgstr "پنل مدیریت"
 msgid "Alavi gym"
 msgstr "باشگاه علوی"
 
-#: .\program\admin.py:37
-msgid "Program Title"
-msgstr "عنوان برنامه"
-
-#: .\program\admin.py:57
+#: .\exercise\admin.py:68 .\program\admin.py:92
 msgid "User phone"
 msgstr "تلفن کاربر"
 
-#: .\program\admin.py:62
+#: .\exercise\admin.py:69 .\program\admin.py:93
 msgid "User name"
 msgstr "نام کاربر"
+
+#: .\exercise\apps.py:8 .\exercise\models.py:100 .\exercise\models.py:101
+msgid "Exercise"
+msgstr "ورزش"
+
+#: .\exercise\enums.py:7
+msgid "Easy"
+msgstr "آسان"
+
+#: .\exercise\enums.py:8
+msgid "Normal"
+msgstr "عادی"
+
+#: .\exercise\enums.py:9
+msgid "Hard"
+msgstr "سخت"
+
+#: .\exercise\enums.py:14
+msgid "First week"
+msgstr "هفته اول"
+
+#: .\exercise\enums.py:15
+msgid "Second week"
+msgstr "هفته دوم"
+
+#: .\exercise\enums.py:16
+msgid "Third week"
+msgstr "هفته سوم"
+
+#: .\exercise\enums.py:17
+msgid "Fourth week"
+msgstr "هفته چهارم"
+
+#: .\exercise\models.py:12
+msgid "Workout title"
+msgstr "عنوان ورزش"
+
+#: .\exercise\models.py:13
+msgid "Level (optional)"
+msgstr "سطح (اختیاری)"
+
+#: .\exercise\models.py:16 .\exercise\models.py:92
+msgid "Workout"
+msgstr "ورزش"
+
+#: .\exercise\models.py:17
+msgid "Workouts"
+msgstr "ورزش ها"
+
+#: .\exercise\models.py:25 .\program\models.py:43
+msgid "User"
+msgstr "کاربر"
+
+#: .\exercise\models.py:26 .\program\models.py:44
+msgid "Title"
+msgstr "عنوان"
+
+#: .\exercise\models.py:26
+msgid "example: exercise program of first month"
+msgstr "مثال: برنامه ورزشی ماه اول"
+
+#: .\exercise\models.py:28 .\exercise\models.py:50 .\exercise\models.py:75
+#: .\exercise\models.py:97 .\program\models.py:82 .\program\models.py:127
+#: .\program\models.py:144
+msgid "Create time"
+msgstr "زمان ایجاد"
+
+#: .\exercise\models.py:29 .\exercise\models.py:51 .\program\models.py:83
+msgid "Modify time"
+msgstr "زمان ویرایش"
+
+#: .\exercise\models.py:32 .\exercise\models.py:47
+msgid "Exercise program"
+msgstr "برنامه ورزشی"
+
+#: .\exercise\models.py:33
+msgid "Exercise programs"
+msgstr "برنامه های ورزشی کاربران"
+
+#: .\exercise\models.py:48
+msgid "Week"
+msgstr "هفته"
+
+#: .\exercise\models.py:54 .\exercise\models.py:70
+msgid "Weekly program"
+msgstr "برنامه هفتگی"
+
+#: .\exercise\models.py:55
+msgid "Weekly programs"
+msgstr "برنامه هفتگی"
+
+#: .\exercise\models.py:71 .\program\models.py:80
+msgid "Day of week"
+msgstr "روز هفته"
+
+#: .\exercise\models.py:72
+msgid "Warm up time (Minute)"
+msgstr "زمان گرم کردن (دقیقه)"
+
+#: .\exercise\models.py:72 .\exercise\models.py:73
+msgid "example: 5 - 10"
+msgstr "مثال: 5 - 10"
+
+#: .\exercise\models.py:73
+msgid "Cool down time (Minute)"
+msgstr "زمان سرد کردن (دقیقه)"
+
+#: .\exercise\models.py:78 .\exercise\models.py:91 .\program\models.py:104
+msgid "Daily program"
+msgstr "برنامه روزانه"
+
+#: .\exercise\models.py:79
+msgid "Daily programs"
+msgstr "برنامه های روزانه"
+
+#: .\exercise\models.py:93
+msgid "Sets"
+msgstr "ست"
+
+#: .\exercise\models.py:94
+msgid "Numbers in a set"
+msgstr "تعداد در هر ست"
+
+#: .\exercise\models.py:95
+msgid "Rest time (Seconds)"
+msgstr "زمان استراحت (ثانیه)"
+
+#: .\program\admin.py:51
+msgid "Program Title"
+msgstr "عنوان برنامه"
 
 #: .\program\enums.py:7
 msgid "Saturday"
@@ -98,7 +224,15 @@ msgstr "پنجشنبه"
 msgid "Friday"
 msgstr "جمعه"
 
-#: .\program\models.py:15 .\program\models.py:220
+#: .\program\models.py:11
+msgid "Food title"
+msgstr "عنوان غذا"
+
+#: .\program\models.py:12
+msgid "Calories"
+msgstr "کالری"
+
+#: .\program\models.py:15 .\program\models.py:122
 msgid "Food"
 msgstr "غذا"
 
@@ -106,7 +240,15 @@ msgstr "غذا"
 msgid "Foods"
 msgstr "غذاها"
 
-#: .\program\models.py:29 .\program\models.py:203
+#: .\program\models.py:25
+msgid "Meal title"
+msgstr "عنوان وعده"
+
+#: .\program\models.py:26
+msgid "Meal time"
+msgstr "زمان وعده"
+
+#: .\program\models.py:29 .\program\models.py:105
 msgid "Meal"
 msgstr "وعده"
 
@@ -114,99 +256,75 @@ msgstr "وعده"
 msgid "Meals"
 msgstr "وعده ها"
 
-#: .\program\models.py:148
-msgid "User"
-msgstr "کاربر"
-
-#: .\program\models.py:149
-msgid "Title"
-msgstr "عنوان"
-
-#: .\program\models.py:149
+#: .\program\models.py:44
 msgid "example: program of first month"
 msgstr "مثال: برنامه ماه اول"
 
-#: .\program\models.py:155
+#: .\program\models.py:50
 msgid "User's diet program"
 msgstr "برنامه غذایی کاربر"
 
-#: .\program\models.py:156
+#: .\program\models.py:51
 msgid "User's diet programs"
 msgstr "برنامه های غذایی کاربران"
 
-#: .\program\models.py:181
+#: .\program\models.py:79
 msgid "User program"
 msgstr "برنامه کاربر"
 
-#: .\program\models.py:182
-msgid "Day of weak"
-msgstr "روز هفته"
-
-#: .\program\models.py:184 .\program\models.py:225 .\program\models.py:242
-msgid "Create time"
-msgstr "زمان ایجاد"
-
-#: .\program\models.py:185
-msgid "Modify time"
-msgstr "زمان ویرایش"
-
-#: .\program\models.py:188
+#: .\program\models.py:86
 msgid "User's daily program"
 msgstr "برنامه روزانه"
 
-#: .\program\models.py:189
+#: .\program\models.py:87
 msgid "User's daily programs"
 msgstr "برنامه های روزانه کابر"
 
-#: .\program\models.py:202
-msgid "Daily program"
-msgstr "برنامه روزانه"
-
-#: .\program\models.py:209 .\program\models.py:219
+#: .\program\models.py:111 .\program\models.py:121
 msgid "Daily meal"
 msgstr "وعده روزانه"
 
-#: .\program\models.py:210
+#: .\program\models.py:112
 msgid "Daily meals"
 msgstr "وعده های روزانه"
 
-#: .\program\models.py:221
+#: .\program\models.py:123
 msgid "Amount"
 msgstr "مقدار"
 
-#: .\program\models.py:222
+#: .\program\models.py:124
 msgid "Amount unit"
 msgstr "واحد مقدار"
 
-#: .\program\models.py:222
+#: .\program\models.py:124
 msgid "example: (gram, milligram, glass, ...)"
 msgstr "مثال: گرم، میلی گرم، لیوان و..."
 
-#: .\program\models.py:223
+#: .\program\models.py:125
 msgid "Energy"
 msgstr "انرژی"
 
-#: .\program\models.py:229
+#: .\program\models.py:131
 msgid "Meal's food"
 msgstr "غذای وعده"
 
-#: .\program\models.py:230
+#: .\program\models.py:132
 msgid "Meal's foods"
 msgstr "غذاهای وعده"
 
-#: .\program\models.py:239
+#: .\program\models.py:141
 msgid "Diet Program"
 msgstr "برنامه غذایی"
 
-#: .\program\models.py:240
+#: .\program\models.py:142
 msgid "Recommendation"
 msgstr "توصیه"
 
-#: .\program\models.py:245
+#: .\program\models.py:147
 msgid "Recommend"
 msgstr "توصیه"
 
-#: .\program\models.py:246
+#: .\program\models.py:148
 msgid "Recommends"
 msgstr "توصیه ها"
 
