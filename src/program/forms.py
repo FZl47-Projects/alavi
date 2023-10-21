@@ -14,12 +14,3 @@ class SportAdd(forms.ModelForm):
     class Meta:
         model = models.Sport
         fields = '__all__'
-
-
-# Add DietProgramCategory form
-class DietProgramCategoryForm(forms.ModelForm):
-    class Meta:
-        model = models.DietProgramCategory
-        fields = '__all__'
-
-    

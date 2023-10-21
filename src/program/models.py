@@ -44,49 +44,12 @@ class Sport(models.Model):
 
     class Meta:
         ordering = '-id',
-
-
-# Diet program categories
-class DietProgramCategory(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='diet_program_category')
-    title = models.CharField('Title', max_length=256)
-
-    created_at = models.DateTimeField('Create time', auto_now_add=True)
-    modified_at = models.DateTimeField('Modify time', auto_now=True)
-
-    class Meta:
-        ordering = ('id',)
-
-    def get_created_at_time_past(self):
-        return get_timesince_persian(self.created_at)
-
-    def __str__(self):
-        return f'{self.user} - {self.title}'
-
-
-# Training program categories
-class TrainingProgramCategory(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='training_program_category')
-    title = models.CharField('Title', max_length=256)
-
-    created_at = models.DateTimeField('Create time', auto_now_add=True)
-    modified_at = models.DateTimeField('Modify time', auto_now=True)
-
-    class Meta:
-        ordering = ('id',)
-
-    def get_created_at_time_past(self):
-        return get_timesince_persian(self.created_at)
-
-    def __str__(self):
-        return f'{self.user} - {self.title}'
     
 
 class TrainingProgram(models.Model):
     DAY_CHOICES = DayChoices
 
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_training_program', default='')
-    category = models.ForeignKey(TrainingProgramCategory, on_delete=models.CASCADE, related_name='training_program_object')
     day = models.CharField(max_length=15, choices=DayChoices.choices, default=DayChoices.SATURDAY)
     sport = models.ForeignKey(Sport, on_delete=models.SET_NULL, related_name='sport_training_programs', null=True)
     rep = models.PositiveIntegerField('Repeat', default=0)

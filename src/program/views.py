@@ -11,7 +11,7 @@ from core.auth.decorators import admin_required_cbv
 from account.forms import TrainingProgramAdd, DietProgramAdd
 from account.models import User
 
-from .models import Food, Sport, DietProgramCategory, TrainingProgramCategory
+from .models import Food, Sport
 from notification.models import NotificationUser
 from . import forms
 
@@ -218,68 +218,3 @@ class TrainingUserAdd(View):
         )
         messages.success(request, 'برنامه تمرینی با موفقیت ثبت شد')
         return redirect(user.get_absolute_url())
-
-
-# All DietProgramCategoryView
-class DietProgramCategoryView(View):
-    template_name = 'program/diet_prog_categories.html'
-
-    @admin_required_cbv()
-    def get(self, request):
-        categories = DietProgramCategory.objects.all()
-
-        # Create template context
-        context = {
-            'users': User.normal_user.all(),
-            'categories': categories,
-        }
-
-        return render(request, self.template_name, context)
-
-    @admin_required_cbv()
-    def post(self, request):
-        data = request.POST.get('q')
-
-        # Search by user phone_number and last_name
-        categories = DietProgramCategory.objects.filter(
-            Q(user__last_name__icontains=data) | Q(user__phonenumber=add_prefix_phonenum(data))
-        )
-
-        if not categories:
-            messages.error(request, 'کاربری یافت نشد')
-
-        # Create template context
-        context = {'users': User.normal_user.all(), 'categories': categories}
-
-        return render(request, self.template_name, context)
-
-
-# Add DietCategoryView
-class DietProgramCategoryAddView(View):
-
-    @admin_required_cbv()
-    def post(self, request):
-        data = request.POST
-
-        form = forms.DietProgramCategoryForm(data)
-        if not form_validate_err(request, form):
-            return redirect('program:diet_category')
-
-        # Save new DietProgramCategory
-        form.save()
-        messages.success(request, 'دسته بندی با موفقیت ثبت شد')
-
-        return redirect('program:diet_category')
-
-
-# Delete DietCategoryView
-class DietProgramCategoryDelView(View):
-
-    @admin_required_cbv()
-    def get(self, request, pk):
-        category = get_object_or_404(DietProgramCategory, id=pk)
-        category.delete()
-
-        messages.success(request, 'دسته بندی با موفقیت حذف شد')
-
-        return redirect('program:diet_category')
