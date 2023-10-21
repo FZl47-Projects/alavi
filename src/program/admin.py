@@ -1,5 +1,6 @@
 from nested_admin import NestedStackedInline, NestedTabularInline, NestedModelAdmin
 from django.utils.translation import gettext as _
+from django.shortcuts import redirect, reverse
 from django.db import models as a_model
 from django.contrib import admin
 from django import forms
@@ -49,6 +50,22 @@ class DailyDietProgramAdmin(NestedModelAdmin):
 
     get_user_diet_program_title.short_description = _("Program Title")
 
+    def response_add(self, request, obj, post_url_continue=None):
+        """ Custom redirection after add obj """
+        if "_save" in request.POST:
+            return redirect(f'/admin/program/dietprogram/{obj.diet_program.id}/change')
+
+        # Call the parent class's response_add method for other actions
+        return super().response_add(request, obj, post_url_continue)
+
+    def response_change(self, request, obj):
+        """ Custom redirection after change obj """
+        if "_save" in request.POST:
+            return redirect(f'/admin/program/dietprogram/{obj.diet_program.id}/change')
+
+        # Call the parent class's response_change method for other actions
+        return super().response_change(request, obj)
+
 
 # DailyDietProgram as inline
 class DailyDietProgramInline(admin.TabularInline):
@@ -74,6 +91,13 @@ class DietProgramAdmin(admin.ModelAdmin):
 
     get_user_phone.short_description = _("User phone")
     get_user_fullname.short_description = _("User name")
+
+    def get_view_on_site_url(self, obj=None):
+        """ Custom redirection for "View on site" button """
+        if obj:
+            return reverse("account:user-profile", args=(obj.user.id,))
+
+        return reverse("account:users")
 
 
 # Register Foods
