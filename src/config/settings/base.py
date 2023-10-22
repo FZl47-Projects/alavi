@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'public',
     'program',
     'exercise',
+    'package',
     'notification',
 ]
 
