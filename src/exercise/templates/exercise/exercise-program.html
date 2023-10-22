@@ -1,0 +1,114 @@
+{% extends 'base/base_template.html' %}
+{% load static %}
+
+{% block Title %}
+    برنامه ورزشی
+{% endblock %}
+
+{% block Link %}
+    <link rel="stylesheet" href="{% static 'front/vendors/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'front/styles/user-profile.css' %}">
+    <link rel="stylesheet" href="{% static 'front/styles/diet-plan.css' %}">
+    <link rel="stylesheet" href="{% static 'front/styles/all.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/programs.css' %}">
+{% endblock %}
+
+{% block Content %}
+    <body>
+    <section class="main-page">
+        <main class="col-md-12 col-lg-12 content-main-admin">
+            {% include 'base/components/header.html' %}
+
+            <div style="display: flex; justify-content: space-between;">
+                <h2 class="text-white m-4">
+                    برنامه ورزشی
+                    <span style="font-size: 0.6em">({{ exercise_program.title }})</span>
+                </h2>
+                <a href="{% url 'account:user-profile' exercise_program.user.id %}" class="m-4">
+                    <i class="fa fa-arrow-left" style="font-size: 24pt; color: white"></i>
+                </a>
+            </div>
+
+            <div class="main-p-box">
+                {% for weekly_program in exercise_program.get_weekly_programs %}
+                    <div class="daily-p-box">
+                        <div class="daily-p-header-box">
+                            <h3 style="margin-top: 0.4rem; margin-right: 0.5rem;">{{ weekly_program.get_week_label }}</h3>
+                        </div>
+
+                        <div style="background-color: #3d3d3d; color: white; font-size: 1.1em;">
+                            <div style="display: flex; justify-content: center; margin: 0.5rem 0;">
+                                <span>گرم کردن </span>
+                                <h6 style="margin: 0.25rem 0.5rem;">
+                                    {% if weekly_program.warm_up %}
+                                        {{ weekly_program.warm_up }}
+                                    {% else %}
+                                        -
+                                    {% endif %}
+                                </h6>
+                                <span> دقیقه</span>
+                            </div>
+                        </div>
+
+                        <div class="daily-p-main-box">
+                            {% for daily_program in weekly_program.daily_programs.all %}
+                                <div class="daily-p-main-inner-box">
+                                    <div style="display: flex; flex-direction: column; align-items: center; border: 1px #1ab268 solid; background-color: #1ab268; padding: 0.5rem;">
+                                        <h5 style="color: white;">{{ daily_program.get_day_label }}</h5>
+                                        <span style="color: white; font-size: medium;"> - </span>
+                                    </div>
+                                    <div class="daily-p-main-inner-inner-box">
+                                        {% for exercise in daily_program.exercises.all %}
+                                            <div style="display: flex; justify-content: space-between;">
+                                                <span class="p-box">
+                                                    <i class="fa fa-square" style="font-size: 0.6em; margin-left: 0.5rem;"></i>
+                                                    <span>{{ exercise.workout.title }} - </span>
+                                                    <span style="margin: 0 0.25rem;">{{ exercise.sets }} ست</span>
+                                                    <span>{{ exercise.number }} تایی</span>
+                                                </span>
+                                                <span class="rest-box">
+                                                    {{ exercise.rest }}s
+                                                </span>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+
+                        <div style="background-color: #3d3d3d; color: white; font-size: 1.1em;">
+                            <div style="display: flex; justify-content: center; margin: 0.5rem 0;">
+                                <span>سرد کردن </span>
+                                <h6 style="margin: 0.25rem 0.5rem;">
+                                    {% if weekly_program.warm_up %}{{ weekly_program.warm_up }}{% else %}-{% endif %}
+                                </h6>
+                                <span> دقیقه</span>
+                            </div>
+                        </div>
+
+                    </div>
+                {% empty %}
+
+                {% endfor %}
+
+                <div class="daily-p-box" style="margin-top: 2rem;">
+                    <div class="daily-p-header-box">
+                        <h3 style="margin-top: 0.4rem; margin-right: 0.5rem;">توصیه های کلی</h3>
+                    </div>
+                    <div style="background-color: white; padding: 0.5rem; border-radius: 0 0 0.5rem 0.5rem;">
+                        {% for recommend in '' %}
+                            <div style="font-size: 12pt; margin-top: 0.5rem;">
+                                <i class="fa fa-square" style="font-size: 0.6em; margin-left: 0.5rem;"></i>
+                                <span>{{ recommend.text }}</span>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </main>
+    </section>
+
+    <script src="{% static 'front/vendors/bootstrap.min.js' %}"></script>
+    <script src="{% static 'front/js/diet-plan.js' %}"></script>
+    </body>
+{% endblock %}
