@@ -1,5 +1,6 @@
 from django.utils.translation import gettext as _
 from .enums import WorkoutLevelChoices, WeekChoices
+from core.utils import get_timesince_persian
 from program.enums import DayChoices
 from account.models import User
 from django.db import models
@@ -31,6 +32,12 @@ class ExerciseProgram(models.Model):
     class Meta:
         verbose_name = _('Exercise program')
         verbose_name_plural = _('Exercise programs')
+
+    def get_created_at(self):
+        return self.created_at.strftime('%Y-%m-%d %H:%M')
+
+    def get_created_at_time_past(self):
+        return get_timesince_persian(self.created_at)
 
     def get_weekly_programs(self):
         programs = self.weekly_programs.all()
