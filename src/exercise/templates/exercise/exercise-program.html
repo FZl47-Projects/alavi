@@ -96,10 +96,10 @@
                         <h3 style="margin-top: 0.4rem; margin-right: 0.5rem;">توصیه های کلی</h3>
                     </div>
                     <div style="background-color: white; padding: 0.5rem; border-radius: 0 0 0.5rem 0.5rem;">
-                        {% for recommend in '' %}
+                        {% for recommend in exercise_program.recommends.all %}
                             <div style="font-size: 12pt; margin-top: 0.5rem;">
                                 <i class="fa fa-square" style="font-size: 0.6em; margin-left: 0.5rem;"></i>
-                                <span>{{ recommend.text }}</span>
+                                <span style="font-weight: 400;">{{ recommend.text }}</span>
                             </div>
                         {% endfor %}
                     </div>
