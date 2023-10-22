@@ -6,6 +6,7 @@ from django.urls import reverse
 from django.db import models
 
 from phonenumber_field.modelfields import PhoneNumberField
+from package.models import Package
 
 
 class CustomBaseUserManager(BaseUserManager):
@@ -65,6 +66,7 @@ class User(AbstractUser):
     phonenumber = PhoneNumberField(verbose_name=_('Phone number'), region='IR', unique=True)
     # type users|roles
     role = models.CharField(_('User role'), max_length=20, choices=ROLE_USER_OPTIONS, default='normal_user')
+    packages = models.ManyToManyField(Package, verbose_name=_('Packages'), related_name='users', blank=True)
 
     USERNAME_FIELD = 'phonenumber'
     REQUIRED_FIELDS = []

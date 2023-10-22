@@ -15,9 +15,11 @@ class CustomUserAdmin(UserAdmin):
     list_display = ('get_raw_phonenumber', 'email', 'first_name', 'last_name', 'role', 'is_active', 'is_staff')
     list_filter = ('is_active', 'is_staff', 'is_superuser', 'role')
     search_fields = ('email', 'phonenumber')
-    ordering = ('email', 'phonenumber')
+    ordering = ('phonenumber', 'email')
+    filter_horizontal = ('packages',)
     fieldsets = (
         (None, {'fields': ('phonenumber', 'email', 'first_name', 'last_name', 'role')}),
+        (_('Packages'), {'fields': ('packages',)}),
         (_('Permissions'), {'fields': ('is_staff', 'is_active', 'is_superuser', 'user_permissions')}),
         (_('Dates'), {'fields': ('last_login', 'date_joined')})
     )
@@ -30,7 +32,7 @@ class CustomUserAdmin(UserAdmin):
     
     def has_change_permission(self, request, obj=None):
         """ Prevent staff users from changing super_users obj. """
-        if obj is not None and request.user.is_staff and obj.is_superuser:
+        if obj is not None and not request.user.is_superuser and obj.is_superuser:
             return False
         
         return super().has_change_permission(request, obj)
@@ -41,6 +43,6 @@ class CustomUserAdmin(UserAdmin):
             return []
 
         fields = obj.get_model_fields()
-        excludes = ['first_name', 'last_name']
+        excludes = ['packages']
 
         return [field.name for field in fields if field.name not in excludes]
