@@ -416,8 +416,15 @@ table tr th {
   color: #fff;
   font-weight: bold;
 }
-.back-btn:nth-child(1) {
-  cursor: pointer;
+
+.back-btn .back {
+  padding: 0.2rem 0.6rem;
+  border-radius: 0.5rem;
+  font-size: 18pt;
+}
+
+.back-btn .back:hover {
+  box-shadow: 0 0 10px rgb(229, 229, 229);
 }
 
 .content-modal {

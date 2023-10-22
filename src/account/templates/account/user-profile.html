@@ -35,7 +35,9 @@
         <main class="col-md-12 col-lg-12">
             <div class="col-12 col-lg-11 back-btn">
                 <span>مشخصات</span>
-                <span class="back"><img src="{% static 'front/images/back-icon.png' %}" alt=""></span>
+                <button onclick="window.location ='{% if user.is_admin_user %}{% url 'account:home-admin' %}{% else %}{% url 'public:index' %}{% endif %}'" class="back">
+                    <i class="fa fa-arrow-left"></i>
+                </button>
             </div>
             <section class="user-profile col-12 col-lg-11">
                 <div class="col-2 col-md-1">
@@ -200,7 +202,7 @@
 {% endblock %}
 
 {% block Script %}
-    <script src="{% static 'front/js/back.js' %}"></script>
+{#    <script src="{% static 'front/js/back.js' %}"></script>#}
     <script src="{% static 'front/vendors/bootstrap.min.js' %}"></script>
     <script>
         if (getUrlParameter('diet-add')) {
