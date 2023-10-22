@@ -427,6 +427,17 @@ table tr th {
   box-shadow: 0 0 10px rgb(229, 229, 229);
 }
 
+.back-2 {
+  background-color: white;
+  border-radius: 0.5rem;
+  padding: 0 0.75rem;
+  font-size: 2rem;
+}
+
+.back-2:hover {
+  box-shadow: 0 0 10px rgb(229, 229, 229);
+}
+
 .content-modal {
   display: none;
   width: 100%;
