@@ -1,9 +1,10 @@
 from django.utils.translation import gettext as _
-from django.db import models
 from django.contrib.auth.base_user import BaseUserManager
 from django.contrib.auth.models import AbstractUser
-from django.urls import reverse
 from django.conf import settings
+from django.urls import reverse
+from django.db import models
+
 from phonenumber_field.modelfields import PhoneNumberField
 
 
@@ -22,8 +23,9 @@ class CustomBaseUserManager(BaseUserManager):
         return user
 
     def create_financial_user(self, phonenumber, password, email=None, **extra_fields):
-        return self.create_user(phonenumber=phonenumber, password=password, role='financial_user', email=email,
-                                **extra_fields)
+        return self.create_user(
+            phonenumber=phonenumber, password=password, role='financial_user', email=email, **extra_fields
+        )
 
     def create_superuser(self, phonenumber, password, email=None, **extra_fields):
         extra_fields.setdefault("is_staff", True)
@@ -34,8 +36,10 @@ class CustomBaseUserManager(BaseUserManager):
             raise ValueError("Superuser must have is_staff=True.")
         if extra_fields.get("is_superuser") is not True:
             raise ValueError("Superuser must have is_superuser=True.")
-        return self.create_user(phonenumber=phonenumber, password=password, role='super_user', email=email,
-                                **extra_fields)
+
+        return self.create_user(
+            phonenumber=phonenumber, password=password, role='super_user', email=email, **extra_fields
+        )
 
 
 class NormalUserManager(models.Manager):
@@ -70,10 +74,12 @@ class User(AbstractUser):
     super_user = SuperUserManager()
 
     class Meta:
+        verbose_name = _('User')
+        verbose_name_plural = _('Users')
         ordering = '-id',
 
     def __str__(self):
-        return f'{self.role} - {self.phonenumber}'
+        return f'{self.get_full_name()} - {self.get_raw_phonenumber()}'
 
     @property
     def is_normal_user(self):
@@ -86,6 +92,8 @@ class User(AbstractUser):
     def get_raw_phonenumber(self):
         p = str(self.phonenumber).replace('+98', '')
         return p
+
+    get_raw_phonenumber.short_description = _('Phone number')
 
     def get_full_name(self):
         fl = f'{self.first_name} {self.last_name}'.strip() or 'بدون نام'
@@ -106,7 +114,6 @@ class User(AbstractUser):
         return '-'
 
     def get_absolute_url(self):
-
         if self.is_normal_user:
             return reverse('account:user-profile', args=(self.id,))
         else:
@@ -117,6 +124,9 @@ class User(AbstractUser):
 
     def get_exercise_programs(self):
         return self.exercise_programs.all()
+
+    def get_model_fields(self):
+        return self._meta.get_fields()
 
 
 class UserInfo(models.Model):
