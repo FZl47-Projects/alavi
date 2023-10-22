@@ -117,3 +117,17 @@ class Exercise(models.Model):
 
     def __str__(self) -> str:
         return f'{self.workout.title[:14]}'
+
+
+# ExerciseRecommends model
+class ExerciseRecommend(models.Model):
+    exercise_program = models.ForeignKey(ExerciseProgram, on_delete=models.CASCADE, verbose_name=_('Exercise program'), related_name='recommends')
+    text = models.CharField(_('Recommendation'), max_length=128)
+
+    class Meta:
+        verbose_name = _('Exercise recommend')
+        verbose_name_plural = _('Exercise recommends')
+        ordering = ('id',)
+
+    def __str__(self) -> str:
+        return f'{self.exercise_program} - {self.text[:10]}'
