@@ -1,8 +1,9 @@
 {% extends 'base/base_template.html' %}
 {% load static %}
+{% load filters %}
 
 {% block Title %}
-    تعریف رژیم غذایی
+    پروفایل کاربر
 {% endblock %}
 
 {% block Link %}
@@ -114,21 +115,27 @@
             </div>
             <section class="table-two col-12 col-lg-11" style="border-radius: 1rem">
                 <table class="table">
-                    {% for program in user_detail.get_diet_programs %}
-                        <tr>
-                            <td>{{ program.title }}</td>
-                            <td class="datetime-convert">{{ program.get_created_at }}</td>
-                            <td>
-                                <a href="{% url 'program:diet_program' program.pk %}" title="مشاهده برنامه" class="add-btn btn btn-primary"><i
-                                        class="fa-solid  fa-eye"></i>
-                                </a>
-                            </td>
-                        </tr>
-                    {% empty %}
+                    {% if user.is_admin_user or user|has_package:'diet' %}
+                        {% for program in user_detail.get_diet_programs %}
+                            <tr>
+                                <td>{{ program.title }}</td>
+                                <td class="datetime-convert">{{ program.get_created_at }}</td>
+                                <td>
+                                    <a href="{% url 'program:diet_program' program.pk %}" title="مشاهده برنامه" class="add-btn btn btn-primary"><i
+                                            class="fa-solid  fa-eye"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        {% empty %}
+                            <div class="container-not-found-base">
+                                <p>برنامه ای یافت نشد</p>
+                            </div>
+                        {% endfor %}
+                    {% else %}
                         <div class="container-not-found-base">
-                            <p>برنامه ای یافت نشد</p>
+                            <p>شما پکیج برنامه غذایی را تهیه نکرده اید</p>
                         </div>
-                    {% endfor %}
+                    {% endif %}
                 </table>
             </section>
 
@@ -137,24 +144,29 @@
             </div>
             <section class="table-two col-12 col-lg-11" style="border-radius: 1rem">
                 <table class="table">
-                    {% for program in user_detail.get_exercise_programs %}
-                        <tr>
-                            <td>{{ program.title }}</td>
-                            <td class="datetime-convert">{{ program.get_created_at }}</td>
-                            <td>
-                                <a href="{% url 'exercise:exercise_program' program.pk %}" title="مشاهده برنامه" class="add-btn btn btn-primary"><i
-                                        class="fa-solid  fa-eye"></i>
-                                </a>
-                            </td>
-                        </tr>
-                    {% empty %}
+                    {% if user.is_admin_user or user|has_package:'workout' %}
+                        {% for program in user_detail.get_exercise_programs %}
+                            <tr>
+                                <td>{{ program.title }}</td>
+                                <td class="datetime-convert">{{ program.get_created_at }}</td>
+                                <td>
+                                    <a href="{% url 'exercise:exercise_program' program.pk %}" title="مشاهده برنامه" class="add-btn btn btn-primary"><i
+                                            class="fa-solid  fa-eye"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        {% empty %}
+                            <div class="container-not-found-base">
+                                <p>تمرینی یافت نشد</p>
+                            </div>
+                        {% endfor %}
+                    {% else %}
                         <div class="container-not-found-base">
-                            <p>تمرینی یافت نشد</p>
+                            <p>شما پکیج بدنسازی را تهیه نکرده اید</p>
                         </div>
-                    {% endfor %}
+                    {% endif %}
                 </table>
             </section>
-
 
         </main>
     </section>
