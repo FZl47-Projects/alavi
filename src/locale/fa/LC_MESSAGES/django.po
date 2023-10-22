@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-22 16:03+0330\n"
+"POT-Creation-Date: 2023-10-22 21:52+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,36 +18,54 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
+#: .\account\admin.py:21
+msgid "Permissions"
+msgstr ""
+
+#: .\account\admin.py:22
+msgid "Dates"
+msgstr ""
+
 #: .\account\apps.py:8
 msgid "Account"
 msgstr "حساب کاربری"
 
-#: .\account\models.py:17
+#: .\account\models.py:18
 msgid "The phonenumber must be set"
 msgstr "شماره تلفن باید وارد شود"
 
-#: .\account\models.py:55
+#: .\account\models.py:59
 msgid "normal_user"
 msgstr "کاربر عادی"
 
-#: .\account\models.py:56
+#: .\account\models.py:60
 msgid "super_user"
 msgstr "کاربر ادمین"
 
-#: .\account\models.py:60
+#: .\account\models.py:64
 #: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1847
 msgid "Email address"
 msgstr "آدرس ایمیل"
 
-#: .\account\models.py:61
+#: .\account\models.py:65 .\account\models.py:96
 msgid "Phone number"
 msgstr "شماره تلفن"
 
-#: .\account\models.py:63
+#: .\account\models.py:67
 msgid "User role"
 msgstr "نقش کاربر"
 
-#: .\config\settings\base.py:109
+#: .\account\models.py:77 .\exercise\models.py:26 .\program\models.py:43
+msgid "User"
+msgstr "کاربر"
+
+#: .\account\models.py:78
+#, fuzzy
+#| msgid "User"
+msgid "Users"
+msgstr "کاربر"
+
+#: .\config\settings\base.py:110
 msgid "Persian"
 msgstr "فارسی"
 
@@ -119,10 +137,6 @@ msgstr "ورزش"
 msgid "Workouts"
 msgstr "ورزش ها"
 
-#: .\exercise\models.py:26 .\program\models.py:43
-msgid "User"
-msgstr "کاربر"
-
 #: .\exercise\models.py:27 .\program\models.py:44
 msgid "Title"
 msgstr "عنوان"
@@ -132,12 +146,13 @@ msgid "example: exercise program of first month"
 msgstr "مثال: برنامه ورزشی ماه اول"
 
 #: .\exercise\models.py:29 .\exercise\models.py:59 .\exercise\models.py:86
-#: .\exercise\models.py:112 .\program\models.py:82 .\program\models.py:127
-#: .\program\models.py:144
+#: .\exercise\models.py:112 .\package\models.py:13 .\program\models.py:82
+#: .\program\models.py:127 .\program\models.py:144
 msgid "Create time"
 msgstr "زمان ایجاد"
 
-#: .\exercise\models.py:30 .\exercise\models.py:60 .\program\models.py:83
+#: .\exercise\models.py:30 .\exercise\models.py:60 .\package\models.py:14
+#: .\program\models.py:83
 msgid "Modify time"
 msgstr "زمان ویرایش"
 
@@ -209,13 +224,61 @@ msgstr "توصیه ورزشی"
 msgid "Exercise recommends"
 msgstr "توصیه های ورزشی"
 
+#: .\package\admin.py:24
+msgid "Price (Rials)"
+msgstr "قیمت (ریال)"
+
+#: .\package\apps.py:8 .\package\models.py:17
+msgid "Package"
+msgstr "پکیج"
+
+#: .\package\enums.py:7 .\program\apps.py:8
+msgid "Diet"
+msgstr "رژیم غذایی"
+
+#: .\package\enums.py:8
+msgid "workout"
+msgstr "بدنسازی"
+
+#: .\package\enums.py:9
+msgid "Crossfit"
+msgstr "کراسفیت"
+
+#: .\package\enums.py:10
+msgid "Workout + Diet"
+msgstr "بدنسازی + رژیم غذایی"
+
+#: .\package\enums.py:11
+msgid "Crossfit + Diet"
+msgstr "کراسفیت + رژیم غذایی"
+
+#: .\package\enums.py:12
+msgid "Any sport + Diet"
+msgstr "هر نوع ورزش + رژیم غذایی"
+
+#: .\package\enums.py:13
+msgid "Offline"
+msgstr "آفلاین"
+
+#: .\package\models.py:10
+msgid "Package type"
+msgstr "نوع پکیج"
+
+#: .\package\models.py:11
+msgid "Price"
+msgstr "قیمت"
+
+#: .\package\models.py:11
+msgid "Rials"
+msgstr "ریال"
+
+#: .\package\models.py:18
+msgid "Packages"
+msgstr "پکیج ها"
+
 #: .\program\admin.py:51
 msgid "Program Title"
 msgstr "عنوان برنامه"
-
-#: .\program\apps.py:8
-msgid "Diet"
-msgstr "رژیم غذایی"
 
 #: .\program\enums.py:7 .\venv\Lib\site-packages\django\utils\dates.py:12
 msgid "Saturday"
@@ -1616,7 +1679,10 @@ msgstr ""
 msgid "Delete?"
 msgstr ""
 
-msgid "Please correct the error below."
-msgid_plural "Please correct the errors below."
-msgstr[0] "لطفا خطای زیر را درست کنید."
-msgstr[1] "لطفا خطاهای زیر را درست کنید."
+#~ msgid "Exercise + Diet"
+#~ msgstr "بدنسازی + رژیم غذایی"
+
+#~ msgid "Please correct the error below."
+#~ msgid_plural "Please correct the errors below."
+#~ msgstr[0] "لطفا خطای زیر را درست کنید."
+#~ msgstr[1] "لطفا خطاهای زیر را درست کنید."
