@@ -7,6 +7,12 @@ from django import forms
 from . import models
 
 
+# ExerciseRecommend as inline
+class ExerciseRecommendInline(admin.TabularInline):
+    model = models.ExerciseRecommend
+    extra = 1
+
+
 # ExerciseInline as inline
 class ExerciseInline(NestedStackedInline):
     model = models.Exercise
@@ -69,7 +75,7 @@ class ExerciseProgramAdmin(admin.ModelAdmin):
     list_display_links = ('get_user_phone', 'get_user_fullname')
     search_fields = ('user__phonenumber', 'user__last_name')
     autocomplete_fields = ('user',)
-    inlines = (WeeklyExerciseProgramInline,)
+    inlines = (WeeklyExerciseProgramInline, ExerciseRecommendInline)
 
     def get_user_phone(self, obj):
         return obj.user.get_raw_phonenumber() if obj.user else None
