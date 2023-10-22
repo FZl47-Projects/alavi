@@ -130,6 +130,12 @@ class User(AbstractUser):
     def get_model_fields(self):
         return self._meta.get_fields()
 
+    def has_package(self, package_name):
+        for package in self.packages.all():
+            if package_name == package.type or package_name in package.type:
+                return True
+        return False
+
 
 class UserInfo(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='info')
