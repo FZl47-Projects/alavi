@@ -52,6 +52,12 @@
                                 خروج
                             </a>
                         </div>
+                    {% else %}
+                        <div class="specifications-item mt-3">
+                            <a href="#" class="btn btn-primary p-2">
+                                همه اطلاعات
+                            </a>
+                        </div>
                     {% endif %}
                 </div>
                 <div class="col-10 col-md-11">
@@ -84,11 +90,6 @@
                         <div class="col-4">
                             <div class="specifications-item">
                                 {{ user_detail.info.height|default:'ثبت نشده است' }}
-                            </div>
-                        </div>
-                        <div class="col-4">
-                            <div class="specifications-item">
-                                {{ user_detail.last_login }}
                             </div>
                         </div>
                         {% if user.is_admin_user %}
@@ -134,9 +135,15 @@
             </div>
             <section class="table-two col-12 col-lg-11" style="border-radius: 1rem">
                 <table class="table">
-                    {% for program in '' %}
+                    {% for program in user_detail.get_exercise_programs %}
                         <tr>
-                            <td>{{ program.sport.name }}</td>
+                            <td>{{ program.title }}</td>
+                            <td class="datetime-convert">{{ program.get_created_at }}</td>
+                            <td>
+                                <a href="{% url 'exercise:exercise_program' program.pk %}" title="مشاهده برنامه" class="add-btn btn btn-primary"><i
+                                        class="fa-solid  fa-eye"></i>
+                                </a>
+                            </td>
                         </tr>
                     {% empty %}
                         <div class="container-not-found-base">

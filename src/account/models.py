@@ -115,8 +115,8 @@ class User(AbstractUser):
     def get_diet_programs(self):
         return self.diet_programs.all()
 
-    def get_training_programs(self):
-        return self.user_training_program.all()
+    def get_exercise_programs(self):
+        return self.exercise_programs.all()
 
 
 class UserInfo(models.Model):
