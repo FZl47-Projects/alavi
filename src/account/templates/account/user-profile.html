@@ -124,6 +124,9 @@
                                     <a href="{% url 'program:diet_program' program.pk %}" title="مشاهده برنامه" class="add-btn btn btn-primary"><i
                                             class="fa-solid  fa-eye"></i>
                                     </a>
+                                    <a href="{% url 'admin:program_dietprogram_change' program.pk %}" title="ویرایش برنامه" class="add-btn btn btn-warning"><i
+                                            class="fa-solid  fa-pen"></i>
+                                    </a>
                                 </td>
                             </tr>
                         {% empty %}
@@ -133,7 +136,7 @@
                         {% endfor %}
                     {% else %}
                         <div class="container-not-found-base">
-                            <p>شما پکیج برنامه غذایی را تهیه نکرده اید</p>
+                            <p>شما پکیج رژیم غذایی را تهیه نکرده اید</p>
                         </div>
                     {% endif %}
                 </table>
@@ -152,6 +155,9 @@
                                 <td>
                                     <a href="{% url 'exercise:exercise_program' program.pk %}" title="مشاهده برنامه" class="add-btn btn btn-primary"><i
                                             class="fa-solid  fa-eye"></i>
+                                    </a>
+                                    <a href="{% url 'admin:exercise_exerciseprogram_change' program.pk %}" title="ویرایش برنامه" class="add-btn btn btn-warning"><i
+                                            class="fa-solid  fa-pen"></i>
                                     </a>
                                 </td>
                             </tr>
