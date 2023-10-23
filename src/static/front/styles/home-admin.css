@@ -45,7 +45,7 @@
 /*START BORDER COLOR*/
 /*END BORDER COLOR*/
 .content-main-admin {
-  margin-right: auto;
+  /*margin-right: auto;*/
 }
 
 * {
@@ -116,19 +116,49 @@ input {
 /*END BG COLORS*/
 /*START BORDER COLOR*/
 /*END BORDER COLOR*/
+
+.w-100 {
+    width: 100%;
+}
+
+.sidebar-btn {
+  display: none;
+  position: fixed;
+  top: 2.5rem;
+  padding: 0.5rem;
+  border-radius: 0.5rem 0 0 0.5rem;
+}
+
 .menu-fixed-right {
+  width: 17%;
   position: fixed;
   top: 0;
   right: 0;
+  z-index: 5;
 }
+
 .menu-fixed-right .inner-menu-fixed-right {
+  background-color: #2b2a29;
+  width: 100%;
+  height: 100vh;
   display: flex;
   justify-content: start;
   align-items: center;
   flex-direction: column;
-  height: 100vh;
-  background-color: #2b2a29;
+  overflow-y: scroll;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
+
+.menu-fixed-right .inner-menu-fixed-right::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
+
+.menu-fixed-right .inner-menu-fixed-right::-webkit-scrollbar-track {
+    display: none;
+}
+
 .menu-fixed-right .logo {
   padding: 40px 10px;
   display: flex;
@@ -149,7 +179,6 @@ input {
   align-items: center;
   flex-direction: column;
   width: 100%;
-  padding: 0;
   margin: 0;
   padding: 0 30px 0 0;
 }
@@ -432,12 +461,21 @@ table tr th {
 }
 @media (max-width: 991px) {
   .menu-fixed-right {
-    right: -280px;
+    right: -240px;
+    width: 230px;
     -webkit-transition: 0.5s;
     transition: 0.5s;
     top: 0;
-    width: 280px;
-    background: #fff;
+    z-index: 4;
+    /*background: #fff;*/
+  }
+
+  .sidebar-btn {
+    display: block;
+    z-index: 4;
+    right: 0;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
   }
 }
 
