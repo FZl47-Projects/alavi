@@ -30,11 +30,11 @@
             </div>
 
             <div class="main-p-box">
-                {% for daily_program in diet_program.daily_programs.all %}
+                {% for daily_program in diet_program.get_daily_programs %}
                     <div class="daily-p-box">
                         <div class="daily-p-header-box">
                             {% if user.is_admin_user %}
-                                <a href="{% url 'admin:program_dailydietprogram_change' daily_program.pk %}">
+                                <a href="{{ daily_program.get_absolute_url }}">
                                     <h3 style="margin-top: 0.4rem; margin-right: 0.5rem;">{{ daily_program.get_day_label }}</h3>
                                 </a>
                             {% else %}

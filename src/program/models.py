@@ -1,6 +1,7 @@
 from django.utils.translation import gettext as _
 from core.utils import get_timesince_persian
 from account.models import User
+from django.shortcuts import reverse
 from .enums import DayChoices
 from django.db import models
 import datetime
@@ -66,6 +67,12 @@ class DietProgram(models.Model):
 
     def get_created_at_time_past(self):
         return get_timesince_persian(self.created_at)
+
+    def get_daily_programs(self):
+        return self.daily_programs.all()
+
+    def get_absolute_url(self):
+        return reverse('admin:program_dietprogram_change', args=(self.id,))
     
     def __str__(self) -> str:
         user_phone = self.user.get_raw_phonenumber()
@@ -95,6 +102,9 @@ class DailyDietProgram(models.Model):
     def get_day_label(self) -> str:
         return self.get_day_display()
 
+    def get_absolute_url(self):
+        return reverse('admin:program_dailydietprogram_change', args=(self.id,))
+
     def __str__(self) -> str:
         return f'{self.diet_program} - {self.get_day_label}'
 
@@ -111,6 +121,9 @@ class DailyDietMeal(models.Model):
         verbose_name = _('Daily meal')
         verbose_name_plural = _('Daily meals')
         ordering = ('created_at',)
+
+    def get_absolute_url(self):
+        return reverse('admin:program_dailydietmeal_change', args=(self.id,))
 
     def __str__(self) -> str:
         return f'{self.daily_program} - {self.meal}'
@@ -131,6 +144,9 @@ class MealFood(models.Model):
         verbose_name = _("Meal's food")
         verbose_name_plural = _("Meal's foods")
         ordering = ('created_at',)
+
+    def get_absolute_url(self):
+        return reverse('admin:program_mealfood_change', args=(self.id,))
 
     def __str__(self) -> str:
         return f'{self.daily_meal} - {self.food.title}'

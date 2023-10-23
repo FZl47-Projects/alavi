@@ -1,4 +1,5 @@
 from django.utils.translation import gettext as _
+from django.shortcuts import reverse
 from django.db import models
 
 from program.enums import DayChoices
@@ -33,6 +34,9 @@ class FreeDietProgram(models.Model):
     def get_daily_programs(self):
         return self.free_daily_diet_programs.all()
 
+    def get_absolute_url(self):
+        return reverse('admin:public_freedietprogram_change', args=(self.id,))
+
     def __str__(self) -> str:
         return f'{_("Free diet program")} - {self.id}'
 
@@ -56,6 +60,9 @@ class FreeDailyDietProgram(models.Model):
     def get_day_label(self):
         return self.get_day_display()
 
+    def get_absolute_url(self):
+        return reverse('admin:public_freedailydietprogram_change', args=(self.id,))
+
     def __str__(self) -> str:
         return f'{self.diet_program} - {self.get_day_label()}'
 
@@ -69,6 +76,9 @@ class FreeDietMeal(models.Model):
         verbose_name = _('Diet meal')
         verbose_name_plural = _('Diet meals')
         ordering = ('meal__time',)
+
+    def get_absolute_url(self):
+        return reverse('admin:public_freedietmeal_change', args=(self.id,))
 
     def __str__(self) -> str:
         return f'{self.daily_program.get_day_label()} - {self.meal.title}'

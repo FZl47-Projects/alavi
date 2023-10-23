@@ -1,6 +1,7 @@
 from django.utils.translation import gettext as _
 from .enums import WorkoutLevelChoices, WeekChoices
 from core.utils import get_timesince_persian
+from django.shortcuts import reverse
 from program.enums import DayChoices
 from account.models import User
 from django.db import models
@@ -40,8 +41,10 @@ class ExerciseProgram(models.Model):
         return get_timesince_persian(self.created_at)
 
     def get_weekly_programs(self):
-        programs = self.weekly_programs.all()
-        return programs
+        return self.weekly_programs.all()
+
+    def get_absolute_url(self):
+        return reverse('admin:exercise_exerciseprogram_change', args=(self.id,))
 
     def __str__(self) -> str:
         return f'{self.user} - {self.title}'
@@ -72,6 +75,9 @@ class WeeklyExerciseProgram(models.Model):
     def get_week_label(self):
         return self.get_week_display()
 
+    def get_absolute_url(self):
+        return reverse('admin:exercise_weeklyexerciseprogram_change', args=(self.id,))
+
     def __str__(self) -> str:
         return f'{self.exercise_program} - {self.get_week_label}'
 
@@ -97,6 +103,9 @@ class DailyExerciseProgram(models.Model):
     def get_day_label(self):
         return self.get_day_display()
 
+    def get_absolute_url(self):
+        return reverse('admin:exercise_dailyexerciseprogram_change', args=(self.id,))
+
     def __str__(self) -> str:
         return f'{self.weekly_program.get_week_label} - {self.get_day_label()}'
 
@@ -114,6 +123,9 @@ class Exercise(models.Model):
     class Meta:
         verbose_name = _('Exercise')
         verbose_name_plural = _('Exercise')
+
+    def get_absolute_url(self):
+        return reverse('admin:exercise_exercise_change', args=(self.id,))
 
     def __str__(self) -> str:
         return f'{self.workout.title[:14]}'

@@ -29,7 +29,7 @@
                     <div class="daily-p-box">
                         <div class="daily-p-header-box">
                             {% if user.is_admin_user %}
-                                <a href="{% url 'admin:public_freedailydietprogram_change' daily_program.id %}">
+                                <a href="{{ daily_program.get_absolute_url }}">
                                     <h3 style="margin-top: 0.4rem; margin-right: 0.5rem;">{{ daily_program.get_day_label }}</h3>
                                 </a>
                             {% else %}
