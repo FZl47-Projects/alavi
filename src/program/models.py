@@ -10,7 +10,7 @@ import datetime
 # Foods model
 class Food(models.Model):
     title = models.CharField(_('Food title'), max_length=128)
-    calories = models.PositiveIntegerField(_('Calories'), default=0)
+    calories = models.PositiveIntegerField(_('Calories'), default=0, help_text=_('Calories in a unit'))
 
     class Meta:
         verbose_name = _('Food')
@@ -24,7 +24,7 @@ class Food(models.Model):
 # Meals model
 class Meal(models.Model):
     title = models.CharField(_('Meal title'), max_length=128)
-    time = models.TimeField(_('Meal time'), max_length=64, null=True, blank=True)
+    time = models.TimeField(_('Meal time'), max_length=64, null=True, blank=True, help_text=_('example: 15:30'))
 
     class Meta:
         verbose_name = _('Meal')
