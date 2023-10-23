@@ -1,13 +1,14 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import View, TemplateView
+from django.views.generic import TemplateView
 from django.shortcuts import get_object_or_404
 
-from notification.models import NotificationUser
+from package.mixins import PackageRequiredMixin
 from .models import DietProgram
 
 
-class UserDietProgram(LoginRequiredMixin, TemplateView):
+class UserDietProgram(LoginRequiredMixin, PackageRequiredMixin, TemplateView):
     template_name = 'program/diet-program.html'
+    package_type = 'diet'
 
     def get_context_data(self, **kwargs):
         contexts = super().get_context_data(**kwargs)
