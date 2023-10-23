@@ -133,9 +133,9 @@ class DailyDietMeal(models.Model):
 class MealFood(models.Model):
     daily_meal = models.ForeignKey(DailyDietMeal, on_delete=models.CASCADE, verbose_name=_('Daily meal'), related_name='meal_foods')
     food = models.ForeignKey(Food, on_delete=models.PROTECT, verbose_name=_('Food'), related_name='meal_foods')
-    amount = models.PositiveBigIntegerField(_('Amount'), default=0)
+    amount = models.PositiveIntegerField(_('Amount'), default=0)
     amount_unit = models.CharField(_('Amount unit'), max_length=128, null=True, blank=True, help_text=_('example: (gram, milligram, glass, ...)'))
-    energy = models.PositiveBigIntegerField(_('Energy'), default=0)
+    energy = models.PositiveIntegerField(_('Energy'), default=0)
 
     created_at = models.DateTimeField(_('Create time'), auto_now_add=True)
     modified_at = models.DateTimeField('Modify time', auto_now=True)
@@ -147,6 +147,16 @@ class MealFood(models.Model):
 
     def get_absolute_url(self):
         return reverse('admin:program_mealfood_change', args=(self.id,))
+
+    def save(self, *args, **kwargs):
+        """ Extra things before saving obj """
+        if self.amount:
+            self.energy = self.amount * self.food.calories
+        
+        if not self.amount_unit:
+            self.amount_unit = _('number')
+            
+        super(MealFood, self).save(args, kwargs)
 
     def __str__(self) -> str:
         return f'{self.daily_meal} - {self.food.title}'
