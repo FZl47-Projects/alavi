@@ -1,16 +1,16 @@
-from django.shortcuts import render
-from django.views.generic import View
-from . import models
+from django.views.generic import TemplateView
+from .models import Certificate
 
 
-class Index(View):
+# Render Index View
+class IndexView(TemplateView):
     template_name = 'public/index.html'
 
-    def get(self, request):
-        context = {
-            'certificates': models.Certificate.objects.all()
-        }
-        return render(request, self.template_name, context)
+    def get_context_data(self, **kwargs):
+        contexts = super().get_context_data(**kwargs)
+        contexts['certificates'] = Certificate.objects.all()
+
+        return contexts
 
 
 # class DietFree(View):
