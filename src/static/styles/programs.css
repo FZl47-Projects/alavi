@@ -23,7 +23,7 @@
 .daily-p-box {
     display: flex;
     flex-direction: column;
-    border: 2px #1ab268 solid;
+    border: 3px #1ab268 solid;
     border-radius: 0.5rem;
 }
 
@@ -33,6 +33,10 @@
     color: white;
     background-color: #1ab268;
     padding: 0.5rem;
+}
+
+.daily-p-header-box a:hover, .daily-p-header-box a:focus {
+    text-shadow: 0 0 14px #ffffff;
 }
 
 .daily-p-main-box {

@@ -33,7 +33,13 @@
                 {% for daily_program in diet_program.daily_programs.all %}
                     <div class="daily-p-box">
                         <div class="daily-p-header-box">
-                            <h3 style="margin-top: 0.4rem; margin-right: 0.5rem;">{{ daily_program.get_day_label }}</h3>
+                            {% if user.is_admin_user %}
+                                <a href="{% url 'admin:program_dailydietprogram_change' daily_program.pk %}">
+                                    <h3 style="margin-top: 0.4rem; margin-right: 0.5rem;">{{ daily_program.get_day_label }}</h3>
+                                </a>
+                            {% else %}
+                                <h3 style="margin-top: 0.4rem; margin-right: 0.5rem;">{{ daily_program.get_day_label }}</h3>
+                            {% endif %}
                         </div>
 
                         <div class="daily-p-main-box">
