@@ -14,9 +14,9 @@ class CustomUserAdmin(UserAdmin):
 
     list_display = ('get_raw_phonenumber', 'email', 'first_name', 'last_name', 'role', 'is_active', 'is_staff')
     list_filter = ('is_active', 'is_staff', 'is_superuser', 'role')
-    search_fields = ('email', 'phonenumber')
+    search_fields = ('email', 'phonenumber', 'last_name')
     ordering = ('phonenumber', 'email')
-    filter_horizontal = ('packages',)
+    filter_horizontal = ('packages', 'user_permissions')
     fieldsets = (
         (None, {'fields': ('phonenumber', 'email', 'first_name', 'last_name', 'role')}),
         (_('Packages'), {'fields': ('packages',)}),
