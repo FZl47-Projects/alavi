@@ -25,9 +25,13 @@ class FreeDietProgram(models.Model):
     class Meta:
         verbose_name = _('Free diet program')
         verbose_name_plural = _('Free diet programs')
+        ordering = ('id',)
 
     def get_created_at(self):
         return self.created_at.strftime('%Y-%m-%d %H:%M')
+
+    def get_daily_programs(self):
+        return self.free_daily_diet_programs.all()
 
     def __str__(self) -> str:
         return f'{_("Free diet program")} - {self.id}'
