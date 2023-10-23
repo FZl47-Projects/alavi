@@ -69,7 +69,10 @@ class FreeDietProgramAdmin(admin.ModelAdmin):
 
     def get_view_on_site_url(self, obj=None):
         """ Custom redirection for "View on site" button """
-        pass
+        if obj:
+            return reverse('public:free_diet')
+        
+        return super().get_view_on_site_url(obj)
 
 
 admin.site.register(models.Certificate)
