@@ -59,10 +59,17 @@
                         <div class="daily-p-main-box">
                             {% for daily_program in weekly_program.daily_programs.all %}
                                 <div class="daily-p-main-inner-box">
-                                    <div style="display: flex; flex-direction: column; align-items: center; border: 1px #1ab268 solid; background-color: #1ab268; padding: 0.5rem;">
-                                        <h5 style="color: white;">{{ daily_program.get_day_label }}</h5>
+                                    <div class="daily-p-main-inner-box-header">
+                                        {% if user.is_admin_user %}
+                                            <a href="{{ daily_program.get_absolute_url }}">
+                                                <h5 style="color: white;">{{ daily_program.get_day_label }}</h5>
+                                            </a>
+                                        {% else %}
+                                            <h5 style="color: white;">{{ daily_program.get_day_label }}</h5>
+                                        {% endif %}
                                         <span style="color: white; font-size: medium;"> . </span>
                                     </div>
+
                                     <div class="daily-p-main-inner-inner-box">
                                         {% for exercise in daily_program.exercises.all %}
                                             <div style="display: flex; justify-content: space-between;">

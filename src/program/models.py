@@ -145,9 +145,6 @@ class MealFood(models.Model):
         verbose_name_plural = _("Meal's foods")
         ordering = ('created_at',)
 
-    def get_absolute_url(self):
-        return reverse('admin:program_mealfood_change', args=(self.id,))
-
     def save(self, *args, **kwargs):
         """ Extra things before saving obj """
         if self.amount:

@@ -52,6 +52,9 @@ class FreeDailyDietProgramAdmin(NestedModelAdmin):
         # Call the parent class's response_change method for other actions
         return super().response_change(request, obj)
 
+    def response_delete(self, request, obj_display, obj_id):
+        return redirect('/admin/public/freedietprogram/')
+
 
 # DailyDietProgram as inline
 class FreeDailyDietProgramInline(admin.TabularInline):

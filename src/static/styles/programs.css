@@ -58,6 +58,19 @@
     border-radius: 0.3rem;
 }
 
+.daily-p-main-inner-box-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px #1ab268 solid;
+    background-color: #1ab268;
+    padding: 0.5rem;
+}
+
+.daily-p-main-inner-box-header a:hover, .daily-p-main-inner-box-header a:focus {
+    text-shadow: 0 0 14px #ffffff;
+}
+
 .daily-p-main-inner-inner-box {
     display: flex;
     flex-direction: column;

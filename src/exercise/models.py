@@ -124,9 +124,6 @@ class Exercise(models.Model):
         verbose_name = _('Exercise')
         verbose_name_plural = _('Exercise')
 
-    def get_absolute_url(self):
-        return reverse('admin:exercise_exercise_change', args=(self.id,))
-
     def __str__(self) -> str:
         return f'{self.workout.title[:14]}'
 

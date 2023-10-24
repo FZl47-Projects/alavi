@@ -19,6 +19,42 @@ class ExerciseInline(NestedStackedInline):
     extra = 0
 
 
+# Register DailyExerciseProgram Model Admin
+@admin.register(models.DailyExerciseProgram)
+class DailyExerciseProgramAdmin(NestedModelAdmin):
+    readonly_fields = ('weekly_program', 'day')
+    inlines = (ExerciseInline,)
+
+    def has_module_permission(self, request):
+        return False
+
+    def response_add(self, request, obj, post_url_continue=None):
+        """ Custom redirection after add obj """
+        if "_save" in request.POST:
+            return redirect(f'/admin/exercise/weeklyexerciseprogram/{obj.weekly_program.id}/change')
+
+        # Call the parent class's response_add method for other actions
+        return super().response_add(request, obj, post_url_continue)
+
+    def response_change(self, request, obj):
+        """ Custom redirection after change obj """
+        if "_save" in request.POST:
+            return redirect(f'/admin/exercise/weeklyexerciseprogram/{obj.weekly_program.id}/change')
+
+        # Call the parent class's response_change method for other actions
+        return super().response_change(request, obj)
+
+    def response_delete(self, request, obj_display, obj_id):
+        return redirect('/admin/exercise/exerciseprogram/')
+
+    def get_view_on_site_url(self, obj=None):
+        """ Custom redirection for "View on site" button """
+        if obj:
+            return reverse("exercise:exercise_program", args=(obj.weekly_program.exercise_program.id,))
+
+        return reverse("account:users")
+
+
 # DailyExerciseProgram as inline
 class DailyExerciseProgramInline(NestedStackedInline):
     model = models.DailyExerciseProgram
@@ -58,6 +94,9 @@ class WeeklyExerciseProgramAdmin(NestedModelAdmin):
 
         # Call the parent class's response_change method for other actions
         return super().response_change(request, obj)
+
+    def response_delete(self, request, obj_display, obj_id):
+        return redirect('/admin/exercise/exerciseprogram/')
 
 
 # WeeklyExerciseProgram as inline

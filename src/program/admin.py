@@ -25,6 +25,42 @@ class MealFoodInline(NestedStackedInline):
     }
 
 
+# Register DailyDietMeal Model Admin
+@admin.register(models.DailyDietMeal)
+class DailyDietMealAdmin(NestedModelAdmin):
+    readonly_fields = ('daily_program', 'meal')
+    inlines = (MealFoodInline,)
+
+    def has_module_permission(self, request):
+        return False
+
+    def response_add(self, request, obj, post_url_continue=None):
+        """ Custom redirection after add obj """
+        if "_save" in request.POST:
+            return redirect(f'/admin/program/dailydietprogram/{obj.daily_program.id}/change')
+
+        # Call the parent class's response_add method for other actions
+        return super().response_add(request, obj, post_url_continue)
+
+    def response_change(self, request, obj):
+        """ Custom redirection after change obj """
+        if "_save" in request.POST:
+            return redirect(f'/admin/program/dailydietprogram/{obj.daily_program.id}/change')
+
+        # Call the parent class's response_change method for other actions
+        return super().response_change(request, obj)
+
+    def response_delete(self, request, obj_display, obj_id):
+        return redirect('/admin/program/dietprogram/')
+
+    def get_view_on_site_url(self, obj=None):
+        """ Custom redirection for "View on site" button """
+        if obj:
+            return reverse("program:diet_program", args=(obj.daily_program.diet_program.id,))
+
+        return reverse("account:users")
+
+
 # DailyDietMeal as inline
 class DailyDietMealInline(NestedStackedInline):
     model = models.DailyDietMeal
@@ -65,6 +101,9 @@ class DailyDietProgramAdmin(NestedModelAdmin):
 
         # Call the parent class's response_change method for other actions
         return super().response_change(request, obj)
+
+    def response_delete(self, request, obj_display, obj_id):
+        return redirect('/admin/program/dietprogram/')
 
 
 # DailyDietProgram as inline
