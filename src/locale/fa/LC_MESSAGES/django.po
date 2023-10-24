@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-23 14:17+0330\n"
+"POT-Creation-Date: 2023-10-23 19:06+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -149,7 +149,7 @@ msgstr "مثال: برنامه ورزشی ماه اول"
 
 #: .\exercise\models.py:30 .\exercise\models.py:62 .\exercise\models.py:92
 #: .\exercise\models.py:121 .\package\models.py:13 .\program\models.py:89
-#: .\program\models.py:140 .\program\models.py:160 .\public\models.py:23
+#: .\program\models.py:140 .\program\models.py:170 .\public\models.py:23
 #: .\public\models.py:95
 msgid "Create time"
 msgstr "زمان ایجاد"
@@ -216,7 +216,7 @@ msgstr "تعداد در هر ست"
 msgid "Rest time (Seconds)"
 msgstr "زمان استراحت (ثانیه)"
 
-#: .\exercise\models.py:137 .\program\models.py:158
+#: .\exercise\models.py:137 .\program\models.py:168
 msgid "Recommendation"
 msgstr "توصیه"
 
@@ -405,14 +405,18 @@ msgid "Meal's foods"
 msgstr "غذاهای وعده"
 
 #: .\program\models.py:157
+msgid "number"
+msgstr "عدد"
+
+#: .\program\models.py:167
 msgid "Diet Program"
 msgstr "برنامه غذایی"
 
-#: .\program\models.py:163
+#: .\program\models.py:173
 msgid "Recommend"
 msgstr "توصیه"
 
-#: .\program\models.py:164
+#: .\program\models.py:174
 msgid "Recommends"
 msgstr "توصیه ها"
 
