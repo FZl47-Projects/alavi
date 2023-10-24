@@ -14,7 +14,6 @@
 
 {% block Style %}
     <style>
-
         .field {
             margin: 10px 0;
         }
@@ -26,12 +25,11 @@
         select {
             max-height: 250px;
         }
-
     </style>
 {% endblock %}
 
 {% block Content %}
-    <body class="content-main-admin" style="padding:10px ;">
+    <body class="content-main-admin" style="padding:10px;">
     <section class="main-page">
         <main class="col-md-12 col-lg-12">
             <div class="col-12 col-lg-11 back-btn">
@@ -184,7 +182,7 @@
     <!-- Modal -->
     <div class="modal fade" id="edit-info-user" tabindex="-1" aria-labelledby="edit-info-user-label" aria-hidden="true">
         <div class="modal-dialog modal-lg">
-            <form action="{% url 'account:user-profile-update' %}" enctype="multipart/form-data" method="post">
+            <form action="" enctype="multipart/form-data" method="post">
                 {% csrf_token %}
                 <div class="modal-content">
                     <div class="modal-header">

@@ -201,24 +201,24 @@ class UserProfile(LoginRequiredMixin, View):
         return render(request, self.template_name, context)
 
 
-class UserProfileUpdate(LoginRequiredMixin, View):
-
-    def post(self, request):
-        data = request.POST.copy()
-        # set data
-        user = request.user
-        data['user'] = user
-        user_info = None
-        try:
-            user_info = user.info
-        except:
-            pass
-        f = forms.UserUpdateInfoForm(data, request.FILES, instance=user_info)
-        if form_validate_err(request, f) is False:
-            return redirect(user.get_absolute_url())
-        f.save()
-        messages.success(request, 'مشخصات شما با موفقیت بروزرسانی شد')
-        return redirect(user.get_absolute_url())
+# class UserProfileUpdate(LoginRequiredMixin, View):
+#
+#     def post(self, request):
+#         data = request.POST.copy()
+#         # set data
+#         user = request.user
+#         data['user'] = user
+#         user_info = None
+#         try:
+#             user_info = user.info
+#         except:
+#             pass
+#         f = forms.UserUpdateInfoForm(data, request.FILES, instance=user_info)
+#         if form_validate_err(request, f) is False:
+#             return redirect(user.get_absolute_url())
+#         f.save()
+#         messages.success(request, 'مشخصات شما با موفقیت بروزرسانی شد')
+#         return redirect(user.get_absolute_url())
 
 
 class UserProfileDelete(LoginRequiredMixin, View):

@@ -7,6 +7,7 @@ from django.db import models
 
 from phonenumber_field.modelfields import PhoneNumberField
 from package.models import Package
+from program.enums import DayChoices
 
 
 class CustomBaseUserManager(BaseUserManager):
@@ -137,9 +138,76 @@ class User(AbstractUser):
         return False
 
 
-class UserInfo(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='info')
-    picture = models.ImageField(upload_to='images/%Y/%m/%d/users')
-    national_code = models.PositiveIntegerField("height", default=0)
-    height = models.PositiveIntegerField("height", default=0)
-    weight = models.PositiveIntegerField("weight", default=0)
+# ExerciseDays model
+class ExerciseDay(models.Model):
+    DAYS = DayChoices
+    name = models.CharField(_('Day of week'), max_length=16, choices=DAYS.choices)
+
+    class Meta:
+        verbose_name = _('Exercise day')
+        verbose_name_plural = _('Exercise days')
+        ordering = ('id',)
+
+    def __str__(self) -> str:
+        return self.name
+
+
+# UserProfiles models
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, verbose_name=_('User'), related_name='user_profile')
+    picture = models.ImageField(_('User picture'), null=True, blank=True, upload_to='images/%Y/%m/%d/users')
+    national_code = models.PositiveIntegerField(_('National code'), default=0)
+
+    # Survey
+    last_exercise = models.TextField(_('Last time exercise'), null=True, blank=True)
+    goal_of_program = models.TextField(_('Goal of getting program'), null=True, blank=True)
+    exercise_systems = models.TextField(_('Exercise system experience'), null=True, blank=True)
+    additional_explain = models.TextField(_('Additional explanations'), null=True, blank=True)
+
+    # Body info
+    weight = models.PositiveIntegerField(_('Weight'), default=0, help_text=_('Kg'))
+    height = models.PositiveIntegerField(_('Height'), default=0, help_text=_('cm'))
+    waist_size = models.PositiveIntegerField(_('Waist size'), null=True, blank=True, default=0, help_text=_('cm'))
+    hip_size = models.PositiveIntegerField(_('Hip size'), null=True, blank=True, default=0, help_text=_('cm'))
+    arm_size = models.PositiveIntegerField(_('Arm size'), null=True, blank=True, default=0, help_text=_('cm'))
+
+    # Disease history
+    family_disease = models.BooleanField(_('Family disease history'), default=False)
+    special_disease = models.BooleanField(_('Special disease'), default=False)
+    special_medicine = models.BooleanField(_('Special medicine'), default=False)
+
+    # Food/Supplement info
+    breakfast_time = models.CharField(_('Breakfast time willing'), max_length=8, default='07:00')  # Between (06:00 - 10:00)
+    snack_time = models.CharField(_('Snack time willing'), max_length=8, default='10:00')  # Between (10:00 - 12:00)
+    launch_time = models.CharField(_('Launch time willing'), max_length=8, default='12:30')  # Between (12:30 - 17:00)
+    dinner_time = models.CharField(_('Dinner time willing'), max_length=8, default='18:00')  # Between (18:30 - 21:00)
+
+    use_supplement = models.BooleanField(_('Use supplement'), default=False)
+    want_supplement = models.BooleanField(_('Want supplement'), default=False)
+    used_steroids = models.BooleanField(_('Used steroids'), default=False)
+    in_diet = models.BooleanField(_('Had/Has diet'), default=False)
+    vegetarian = models.BooleanField(_('Vegetarian'), default=False)
+
+    # Exercise info
+    physical_damage = models.BooleanField(_('Physical damage'), default=False)
+    regular_exercise = models.BooleanField(_('Regular/Pro exercise'), default=False)
+    doing_exercise = models.CharField(_('Doing exercise'), max_length=64, default=_('I do not exercise'))  # Should be choices (3 choices)
+    exercise_days = models.ManyToManyField(ExerciseDay, verbose_name=_('Exercise days willing'), related_name='user_profile')
+
+    # Documents
+    body_composition = models.ImageField(_('Body composition'), null=True, blank=True, upload_to='images/users/docs')
+    body_checkup = models.ImageField(_('Body checkup'), null=True, blank=True, upload_to='images/users/docs')
+    body_picture = models.ImageField(_('Body picture'), null=True, blank=True, upload_to='images/users/docs')
+
+    verified = models.BooleanField(_('Verified'), default=False)
+
+    create_time = models.DateTimeField(_('Create time'), auto_now_add=True)
+    modified_time = models.DateTimeField(_('Modify time'), auto_now=True)
+
+    class Meta:
+        verbose_name = _('User profile')
+        verbose_name_plural = _('User profiles')
+        ordering = ('-id',)
+
+    def __str__(self) -> str:
+        return f'{self.user}'

@@ -1,7 +1,7 @@
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django import forms
 from phonenumber_field.formfields import PhoneNumberField
-from .models import User, UserInfo
+from .models import User, UserProfile
 from public.models import Certificate
 
 
@@ -73,10 +73,10 @@ class ResetPasswordSetForm(forms.Form):
         return p2
 
 
-class UserUpdateInfoForm(forms.ModelForm):
-    class Meta:
-        model = UserInfo
-        fields = ('height', 'weight', 'national_code', 'picture', 'user')
+# class UserUpdateInfoForm(forms.ModelForm):
+#     class Meta:
+#         model = UserInfo
+#         fields = ('height', 'weight', 'national_code', 'picture', 'user')
 
 
 class CertificateAdd(forms.ModelForm):
