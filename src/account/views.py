@@ -92,15 +92,18 @@ class GetUserProfileInfo(View):
 
     def post(self, request, pk):
         data = request.POST
-        user = User.objects.get(id=pk)
-        profile = UserProfile.objects.get(user=user)
+        try:
+            user = User.objects.get(id=pk)
+            profile = user.user_profile
+        except (User.DoesNotExists, AttributeError):
+            raise Http404
 
         # Get exercise days and set them in profile
         selected_days = data.getlist('exercise_days')
         days = ExerciseDay.objects.filter(name__in=selected_days)
         profile.exercise_days.set(days)
 
-        form = forms.UserProfileUpdateForm(data=data, files=request.FILES, instance=profile)
+        form = forms.UserProfileUpdateForm(data, request.FILES, instance=profile)
         if not form_validate_err(request, form):
             return redirect(reverse('account:register_profile', args=(user.id,)))
         form.save()
@@ -239,24 +242,26 @@ class UserProfileView(LoginRequiredMixin, View):
         return render(request, self.template_name, context)
 
 
-# class UserProfileUpdate(LoginRequiredMixin, View):
-#
-#     def post(self, request):
-#         data = request.POST.copy()
-#         # set data
-#         user = request.user
-#         data['user'] = user
-#         user_info = None
-#         try:
-#             user_info = user.info
-#         except:
-#             pass
-#         f = forms.UserUpdateInfoForm(data, request.FILES, instance=user_info)
-#         if form_validate_err(request, f) is False:
-#             return redirect(user.get_absolute_url())
-#         f.save()
-#         messages.success(request, 'مشخصات شما با موفقیت بروزرسانی شد')
-#         return redirect(user.get_absolute_url())
+class UserProfileUpdate(LoginRequiredMixin, View):
+    def post(self, request):
+        data = request.POST.copy()
+
+        # set data
+        user = request.user
+        data['user'] = user
+        profile = None
+        try:
+            profile = user.user_profile
+        except:
+            pass
+
+        form = forms.UserProfileInfoForm(data, request.FILES, instance=profile)
+        if form_validate_err(request, form) is False:
+            return redirect(user.get_absolute_url())
+        form.save()
+
+        messages.success(request, 'مشخصات شما با موفقیت بروزرسانی شد')
+        return redirect(user.get_absolute_url())
 
 
 class UserProfileDelete(LoginRequiredMixin, View):

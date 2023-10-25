@@ -25,6 +25,6 @@ urlpatterns = [
     # path('club-admin/certificate/<int:certificate_id>/delete', views.CertificateDelete.as_view(), name='certificate_delete'),
 
     path('user-profile/<int:user_id>', views.UserProfileView.as_view(), name='user-profile'),
-    # path('user-profile/update', views.UserProfileUpdate.as_view(), name='user-profile-update'),
+    path('user-profile/update/', views.UserProfileUpdate.as_view(), name='user_profile_update'),
     path('user-profile/<int:user_id>/delete', views.UserProfileDelete.as_view(), name='user-profile-delete'),
 ]

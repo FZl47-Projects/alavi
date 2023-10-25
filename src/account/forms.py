@@ -80,6 +80,13 @@ class UserProfileUpdateForm(forms.ModelForm):
         exclude = ('exercise_days', 'user')
 
 
+# UserProfileUpdate form
+class UserProfileInfoForm(forms.ModelForm):
+    class Meta:
+        model = UserProfile
+        fields = ('national_code', 'weight', 'height', 'picture')
+
+
 class CertificateAdd(forms.ModelForm):
     class Meta:
         model = Certificate

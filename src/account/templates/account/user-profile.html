@@ -182,7 +182,7 @@
     <!-- Modal -->
     <div class="modal fade" id="edit-info-user" tabindex="-1" aria-labelledby="edit-info-user-label" aria-hidden="true">
         <div class="modal-dialog modal-lg">
-            <form action="" enctype="multipart/form-data" method="post">
+            <form action="{% url 'account:user_profile_update' %}" enctype="multipart/form-data" method="post">
                 {% csrf_token %}
                 <div class="modal-content">
                     <div class="modal-header">

@@ -11,7 +11,7 @@
 
 {% block Content %}
     <section class="container">
-        <form method="POST" action="{% url 'account:register_profile' user.id %}" class="main-box">
+        <form method="POST" action="{% url 'account:register_profile' user.id %}" enctype="multipart/form-data" class="main-box">
             {% csrf_token %}
             <div class="main-box-title">
                 <h3>فرم تکمیل اطلاعات کاربری</h3>
