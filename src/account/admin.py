@@ -2,7 +2,7 @@ from django.utils.translation import gettext as _
 from django.contrib.auth.admin import UserAdmin
 from django.contrib import admin
 from .forms import CustomUserCreationForm, CustomUserChangeForm
-from .models import User, UserProfile
+from .models import User, UserProfile, ExerciseDay
 
 
 @admin.register(User)
@@ -53,18 +53,22 @@ class CustomUserAdmin(UserAdmin):
 class UserProfileAdmin(admin.ModelAdmin):
     list_display = ('user', 'national_code', 'verified')
     list_display_links = ('user',)
-    readonly_fields = ('national_code',)
+    readonly_fields = ('national_code', 'created_at', 'modified_at')
     list_filter = ('verified',)
     search_fields = ('user__phonenumber', 'user__last_name')
 
     fieldsets = (
         (None, {'fields': ('user', 'national_code', 'picture')}),
         (_('Survey'), {'fields': ('last_exercise', 'goal_of_program', 'exercise_systems', 'additional_explain')}),
-        (_('Body info'), {'fields': ('weight', 'height', 'waist_size', 'hip_size', 'arm_size')}),
+        (_('Body info'), {'fields': ('weight', 'height', 'waist_size', 'hip_size', 'arm_size', 'chest_size')}),
         (_('Disease history'), {'fields': ('family_disease', 'special_disease', 'special_medicine')}),
         (_('Food/Supplement info'), {'fields': ('breakfast_time', 'snack_time', 'launch_time', 'dinner_time')}),
         (_('Continue food info'), {'fields': ('use_supplement', 'want_supplement', 'used_steroids', 'in_diet', 'vegetarian')}),
-        (_('Exercise info'), {'fields': ('physical_damage', 'regular_exercise', 'doing_exercise',)}),
+        (_('Exercise info'), {'fields': ('physical_damage', 'regular_exercise', 'doing_exercise', 'exercise_days')}),
         (_('Documents'), {'fields': ('body_composition', 'body_checkup', 'body_picture')}),
+        (_('Important dates'), {'fields': ('created_at', 'modified_at')}),
         (_('Verification'), {'fields': ('verified',)}),
     )
+
+
+# admin.site.register(ExerciseDay)
