@@ -6,8 +6,9 @@ app_name = 'account'
 
 urlpatterns = [
     # login logout and register
-    path('login-register', views.login_register, name='login_register'),
-    path('logout', views.logout, name='logout'),
+    path('login-register/', views.login_register, name='login_register'),
+    path('logout/', views.logout, name='logout'),
+    path('register/<int:pk>/profile/', views.GetUserProfileInfo.as_view(), name='register_profile'),
 
     # reset password
     path('reset-password', views.reset_password, name='reset_password'),
@@ -23,7 +24,7 @@ urlpatterns = [
     # path('club-admin/certificate/add', views.CertificateAdd.as_view(), name='certificate_add'),
     # path('club-admin/certificate/<int:certificate_id>/delete', views.CertificateDelete.as_view(), name='certificate_delete'),
 
-    path('user-profile/<int:user_id>', views.UserProfile.as_view(), name='user-profile'),
+    path('user-profile/<int:user_id>', views.UserProfileView.as_view(), name='user-profile'),
     # path('user-profile/update', views.UserProfileUpdate.as_view(), name='user-profile-update'),
     path('user-profile/<int:user_id>/delete', views.UserProfileDelete.as_view(), name='user-profile-delete'),
 ]

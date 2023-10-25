@@ -1,6 +1,7 @@
 from django.contrib import messages
 from django.conf import settings
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404, reverse
+from django.utils.translation import gettext as _
 from django.http import JsonResponse, HttpResponseBadRequest, Http404, HttpResponse
 from django.views.decorators.http import require_POST
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -11,6 +12,7 @@ from core.auth.decorators import admin_required_cbv
 from core.redis_py import set_value_expire, remove_key, get_value
 from notification.models import NotificationUser
 from public.models import Certificate
+from .models import ExerciseDay, UserProfile
 from . import forms
 import json
 
@@ -30,6 +32,11 @@ def login_register(request):
             if user is None:
                 messages.error(request, 'کاربری با این مشخصات یافت نشد')
                 return redirect('account:login_register')
+
+            # Check UserProfile verification
+            if not user.is_superuser and not user.user_profile.verified:
+                return redirect(reverse('account:register_profile', args=(user.id,)))
+
             login(request, user)
             messages.success(request, 'خوش امدید')
             return redirect('public:index')
@@ -56,10 +63,9 @@ def login_register(request):
         )
         user.set_password(password)
         user.save()
-        # login
-        login(request, user)
-        messages.success(request, 'حساب شما با موفقیت ایجاد شد')
-        return redirect('public:index')
+
+        # Send to UserProfile register form
+        return redirect(reverse('account:register_profile', args=(user.id,)))
 
     if request.method == 'GET':
         return render(request, 'account/login-register.html')
@@ -71,6 +77,38 @@ def login_register(request):
             return login_perform(request, data)
         elif type_page == 'register':
             return register_perform(request, data)
+
+
+# Render UserProfileInfo View
+class GetUserProfileInfo(View):
+    """ Get UserProfile data before finishing user register """
+    def get(self, request, pk):
+        try:
+            user = User.objects.get(id=pk)
+        except User.DoesNotExists:
+            raise Http404
+
+        return render(request, 'account/profile-info-form.html', {'user': user})
+
+    def post(self, request, pk):
+        data = request.POST
+        user = User.objects.get(id=pk)
+        profile = UserProfile.objects.get(user=user)
+
+        # Get exercise days and set them in profile
+        selected_days = data.getlist('exercise_days')
+        days = ExerciseDay.objects.filter(name__in=selected_days)
+        profile.exercise_days.set(days)
+
+        form = forms.UserProfileUpdateForm(data=data, files=request.FILES, instance=profile)
+        if not form_validate_err(request, form):
+            return redirect(reverse('account:register_profile', args=(user.id,)))
+        form.save()
+
+        login(request, user)
+        messages.success(request, _('Welcome'))
+
+        return redirect('public:index')
 
 
 def logout(request):
@@ -188,7 +226,7 @@ def reset_password_set(request):
     return JsonResponse({})
 
 
-class UserProfile(LoginRequiredMixin, View):
+class UserProfileView(LoginRequiredMixin, View):
     template_name = 'account/user-profile.html'
 
     def get(self, request, user_id):

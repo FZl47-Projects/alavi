@@ -1,0 +1,474 @@
+{% extends 'base/base_template.html' %}
+{% load static %}
+
+{% block Title %}
+    تکمیل اطلاعات کاربری
+{% endblock %}
+
+{% block Link %}
+    <link rel="stylesheet" href="{% static 'front/styles/profile-form.css' %}">
+{% endblock %}
+
+{% block Content %}
+    <section class="container">
+        <form method="POST" action="{% url 'account:register_profile' user.id %}" class="main-box">
+            {% csrf_token %}
+            <div class="main-box-title">
+                <h3>فرم تکمیل اطلاعات کاربری</h3>
+                <span>کاربر گرامی، لطفا با دقت به سوالات زیر نسبت به خود پاسخ دهید.</span>
+            </div>
+
+            <!-- Survey form -->
+            <div id="form-0" class="form-box d-block">
+                <div class="form-box-title">
+                    <h4>فرم نظرسنجی کاربر</h4>
+                </div>
+                <div class="form">
+                    <div class="input-section">
+                        <label class="d-flex flex-column gap-2">
+                            <span>
+                                آخرین جلسه ای که به صورت منظم ورزش کرده اید چه زمانی بوده است؟ <span class="necessary">(الزامی)</span>
+                            </span>
+                            <textarea name="last_exercise" rows="3" required placeholder="مثال: یک ماه پیش، در حال حاضر ورزش منظم دارم و..." class="form-control input textarea"></textarea>
+                        </label>
+                    </div>
+                    <div class="input-section">
+                        <label class="d-flex flex-column gap-2">
+                            <span>
+                                هدف شما از گرفتن برنامه چیست؟ <span class="necessary">(الزامی)</span>
+                            </span>
+                            <textarea name="goal_of_program" rows="3" required placeholder="مثال: افزایش یا کاهش وزن، آمادگی برای ورزش خاص و..." class="form-control input textarea"></textarea>
+                        </label>
+                    </div>
+                    <div class="input-section">
+                        <label class="d-flex flex-column gap-2">
+                            <span>
+                                سیستم های تمرینی که تاکنون تجربه کرده اید به همراه سطح آنها را بنویسید:
+                            </span>
+                            <textarea name="exercise_systems" rows="3" placeholder="اختیاری" class="form-control input textarea"></textarea>
+                        </label>
+                    </div>
+                    <div class="input-section">
+                        <label class="d-flex flex-column gap-2">
+                            <span>
+                                توضیحات تکمیلی
+                            </span>
+                            <textarea name="additional_explain" rows="3" placeholder="می‌توانید هرگونه توضیح یا مطلبی که فکر می‌کنید در روند تهیه برنامه موًثر می‌باشد را ذکر کنید." class="form-control input textarea"></textarea>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Body info form -->
+            <div id="form-1" class="form-box d-block">
+                <div class="form-box-title">
+                    <h4>اطلاعات ترکیب بدنی</h4>
+                </div>
+                <div class="form">
+                    <div class="input-section">
+                        <div class="inner-input-section">
+                            <label class="d-flex flex-column gap-2 flex-grow-1">
+                                <span>
+                                    وزن <span class="necessary">(الزامی)</span>
+                                </span>
+                                <input type="number" name="weight" required placeholder="کیلوگرم" class="form-control input number-input">
+                            </label>
+                            <label class="d-flex flex-column gap-2 flex-grow-1">
+                                <span>
+                                    قد <span class="necessary">(الزامی)</span>
+                                </span>
+                                <input type="number" name="height" required placeholder="سانتی متر" class="form-control input number-input">
+                            </label>
+                        </div>
+                    </div>
+                    <div class="input-section">
+                        <div class="inner-input-section">
+                            <label class="d-flex flex-column gap-2 flex-grow-1">
+                                <span>
+                                    سایز کمر <span class="necessary">(الزامی)</span>
+                                </span>
+                                <input type="number" name="waist_size" required placeholder="سانتی متر" class="form-control input number-input">
+                            </label>
+                            <label class="d-flex flex-column gap-2 flex-grow-1">
+                                <span>
+                                    سایز لگن
+                                </span>
+                                <input type="number" name="hip_size" placeholder="سانتی متر" class="form-control input number-input">
+                            </label>
+                        </div>
+                    </div>
+                    <div class="input-section">
+                        <div class="inner-input-section">
+                            <label class="d-flex flex-column gap-2 flex-grow-1">
+                                <span>
+                                    سایز بازو
+                                </span>
+                                <input type="number" name="arm_size" placeholder="سانتی متر" class="form-control input number-input">
+                            </label>
+                            <label class="d-flex flex-column gap-2 flex-grow-1">
+                                <span>
+                                    سایز قفسه سینه
+                                </span>
+                                <input type="number" name="chest_size" placeholder="سانتی متر" class="form-control input number-input">
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!--
+                <div class="btn-box">
+                    <button type="button" onclick="nextForm(-1)" class="continue-btn">
+                        قبل
+                    </button>
+                    <button type="button" onclick="nextForm(1)" class="continue-btn">
+                        ادامه
+                    </button>
+                </div>
+                -->
+            </div>
+
+            <!-- Disease history form -->
+            <div id="form-2" class="form-box d-block">
+                <div class="form-box-title">
+                    <h4>تاریخجه بیماری</h4>
+                </div>
+                <div class="form">
+                    <div class="input-section">
+                        <span class="input-section-title">
+                            آیا سابقه بیماری خاصی در خانواده خود دارید؟ <span>(بیماری قلبی، دیابت و...)</span>
+                        </span>
+                        <div class="radio-input-section">
+                            <label class="radio-input-label">
+                                خیر
+                                <input type="radio" checked name="family_disease" value="false" class="input">
+                            </label>
+                            <label class="radio-input-section">
+                                بله
+                                <input type="radio" name="family_disease" value="true" class="input">
+                            </label>
+                        </div>
+                    </div>
+                    <div class="input-section">
+                        <span class="input-section-title">
+                            آیا بیماری خاصی دارید؟
+                        </span>
+                        <div class="radio-input-section">
+                            <label class="radio-input-label">
+                                خیر
+                                <input type="radio" checked name="special_disease" value="false" class="input">
+                            </label>
+                            <label class="radio-input-section">
+                                بله
+                                <input type="radio" name="special_disease" value="true" class="input">
+                            </label>
+                        </div>
+                    </div>
+                    <div class="input-section">
+                        <span class="input-section-title">
+                            آیا در حال حاضر داروی خاصی مصرف می‌کنید؟
+                        </span>
+                        <div class="radio-input-section">
+                            <label class="radio-input-label">
+                                خیر
+                                <input type="radio" checked name="special_medicine" value="false" class="input">
+                            </label>
+                            <label class="radio-input-section">
+                                بله
+                                <input type="radio" name="special_medicine" value="true" class="input">
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Food/Supplement form -->
+            <div id="form-3" class="form-box d-block">
+                <div class="form-box-title">
+                    <h4>اطلاعات غذایی / مکملی</h4>
+                </div>
+                <div class="form">
+                    <div class="input-section">
+                        <span class="input-section-title">
+                            ترجیح می‌دهید وعده های غذایی را در چه ساعت‌هایی از روز میل کنید؟
+                        </span>
+                        <div class="main-select-box-section">
+                            <label class="input-section-label d-flex flex-column gap-2">
+                                <span>صبحانه:</span>
+                                <select name="breakfast_time" class="select-input form-control">
+                                    <option value="06:00">06:00</option>
+                                    <option value="06:30">06:30</option>
+                                    <option value="07:00">07:00</option>
+                                    <option value="07:30">07:30</option>
+                                    <option value="08:00">08:00</option>
+                                    <option value="08:30">08:30</option>
+                                    <option value="09:00">09:00</option>
+                                    <option value="09:30">09:30</option>
+                                    <option value="10:00">10:00</option>
+                                </select>
+                            </label>
+                        </div>
+                        <div class="main-select-box-section">
+                            <label class="input-section-label d-flex flex-column gap-2">
+                                <span>میان وعده:</span>
+                                <select name="snack_time" class="select-input form-control">
+                                    <option value="10:00">10:00</option>
+                                    <option value="10:30">10:30</option>
+                                    <option value="11:00">11:00</option>
+                                    <option value="11:30">11:30</option>
+                                    <option value="12:00">12:00</option>
+                                    <option value="12:30">12:30</option>
+                                </select>
+                            </label>
+                        </div>
+                        <div class="main-select-box-section">
+                            <label class="input-section-label d-flex flex-column gap-2">
+                                <span>ناهار:</span>
+                                <select name="launch_time" class="select-input form-control">
+                                    <option value="12:30">12:30</option>
+                                    <option value="13:00">13:00</option>
+                                    <option value="13:30">13:30</option>
+                                    <option value="14:00">14:00</option>
+                                    <option value="14:30">14:30</option>
+                                    <option value="15:00">15:00</option>
+                                    <option value="15:30">15:30</option>
+                                    <option value="16:00">16:00</option>
+                                    <option value="16:30">16:30</option>
+                                </select>
+                            </label>
+                        </div>
+                        <div class="main-select-box-section">
+                            <label class="input-section-label d-flex flex-column gap-2">
+                                <span>شام:</span>
+                                <select name="dinner_time" class="select-input form-control">
+                                    <option value="18:30">18:30</option>
+                                    <option value="19:00">19:00</option>
+                                    <option value="19:30">19:30</option>
+                                    <option value="20:00">20:00</option>
+                                    <option value="20:30">20:30</option>
+                                    <option value="21:00">21:00</option>
+                                    <option value="21:30">21:30</option>
+                                </select>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="input-section" style="padding-top: 1rem;">
+                        <span class="input-section-title">
+                            آیا در حال حاضر از مکمل های ورزشی و غذایی استفاده می‌کنید؟
+                        </span>
+                        <div class="radio-input-section">
+                            <label class="radio-input-label">
+                                خیر
+                                <input type="radio" checked name="use_supplement" value="false" class="input">
+                            </label>
+                            <label class="radio-input-section">
+                                بله
+                                <input type="radio" name="use_supplement" value="true" class="input">
+                            </label>
+                        </div>
+                    </div>
+                    <div class="input-section" style="padding-top: 1rem;">
+                        <span class="input-section-title">
+                            آیا تمایل یا امکان مصرف مکمل های ورزشی را دارید؟
+                        </span>
+                        <div class="radio-input-section">
+                            <label class="radio-input-label">
+                                خیر
+                                <input type="radio" checked name="want_supplement" value="false" class="input">
+                            </label>
+                            <label class="radio-input-section">
+                                بله
+                                <input type="radio" name="want_supplement" value="true" class="input">
+                            </label>
+                        </div>
+                    </div>
+                    <div class="input-section" style="padding-top: 1rem;">
+                        <span class="input-section-title">
+                            آیا تاکنون داروهای استروئیدی مصرف کرده‌اید؟
+                        </span>
+                        <div class="radio-input-section">
+                            <label class="radio-input-label">
+                                خیر
+                                <input type="radio" checked name="used_steroids" value="false" class="input">
+                            </label>
+                            <label class="radio-input-section">
+                                بله
+                                <input type="radio" name="used_steroids" value="true" class="input">
+                            </label>
+                        </div>
+                    </div>
+                    <div class="input-section" style="padding-top: 1rem;">
+                        <span class="input-section-title">
+                            آیا تاکنون رژیم غذایی خاصی داشته‌اید یا اکنون دارید؟
+                        </span>
+                        <div class="radio-input-section">
+                            <label class="radio-input-label">
+                                خیر
+                                <input type="radio" checked name="in_diet" value="false" class="input">
+                            </label>
+                            <label class="radio-input-section">
+                                بله
+                                <input type="radio" name="in_diet" value="true" class="input">
+                            </label>
+                        </div>
+                    </div>
+                    <div class="input-section" style="padding-top: 1rem;">
+                        <span class="input-section-title">
+                            آیا گیاه‌خوار هستید؟
+                        </span>
+                        <div class="radio-input-section">
+                            <label class="radio-input-label">
+                                خیر
+                                <input type="radio" checked name="vegetarian" value="false" class="input">
+                            </label>
+                            <label class="radio-input-section">
+                                بله
+                                <input type="radio" name="vegetarian" value="true" class="input">
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exercise info form -->
+            <div id="form-4" class="form-box d-block">
+                <div class="form-box-title">
+                    <h4>اطلاعات تمرینی</h4>
+                </div>
+                <div class="form">
+                    <div class="input-section">
+                        <span class="input-section-title">
+                            آیا تاکنون آسیبی در ناحیه عضلات، تاندون و مفاصل داشته اید؟
+                        </span>
+                        <div class="radio-input-section">
+                            <label class="radio-input-label">
+                                خیر
+                                <input type="radio" checked name="physical_damage" value="false" class="input">
+                            </label>
+                            <label class="radio-input-section">
+                                بله
+                                <input type="radio" name="physical_damage" value="true" class="input">
+                            </label>
+                        </div>
+                    </div>
+                    <div class="input-section">
+                        <span class="input-section-title">
+                            آیا سابقه ورزش حرفه‌ای و منظم دارید؟
+                        </span>
+                        <div class="radio-input-section">
+                            <label class="radio-input-label">
+                                خیر
+                                <input type="radio" checked name="regular_exercise" value="false" class="input">
+                            </label>
+                            <label class="radio-input-section">
+                                بله
+                                <input type="radio" name="regular_exercise" value="true" class="input">
+                            </label>
+                        </div>
+                    </div>
+                    <div class="input-section">
+                        <span class="input-section-title">
+                            آیا تحت نظر دکتر، مربی دیگری و یا به صورت شخصی تمرین می‌کنید؟
+                        </span>
+                        <div class="radio-input-section">
+                            <label class="radio-input-label">
+                                تمرین ورزشی ندارم
+                                <input type="radio" checked name="doing_exercise" value="تمرین ورزشی ندارم" class="input">
+                            </label>
+                            <label class="radio-input-label">
+                                در باشگاه تمرین می‌کنم
+                                <input type="radio" name="doing_exercise" value="در باشگاه تمرین می‌کنم" class="input">
+                            </label>
+                            <label class="radio-input-label">
+                                در خانه تمرین می‌کنم
+                                <input type="radio" name="doing_exercise" value="در خانه تمرین می‌کنم" class="input">
+                            </label>
+                        </div>
+                    </div>
+                    <div class="input-section">
+                        <span class="input-section-title">
+                            چه روزهایی در هفته ترجیح می‌دهید تمرین کنید؟
+                        </span>
+                        <div class="radio-input-section">
+                            <label class="radio-input-label">
+                                <input type="checkbox" name="exercise_days" value="شنبه" class="input">
+                                شنبه
+                            </label>
+                            <label class="radio-input-label">
+                                <input type="checkbox" name="exercise_days" value="یکشنبه" class="input">
+                                یکشنبه
+                            </label>
+                            <label class="radio-input-label">
+                                <input type="checkbox" name="exercise_days" value="دوشنبه" class="input">
+                                دوشنبه
+                            </label>
+                            <label class="radio-input-label">
+                                <input type="checkbox" name="exercise_days" value="سه‌شنبه" class="input">
+                                سه‌شنبه
+                            </label>
+                            <label class="radio-input-label">
+                                <input type="checkbox" name="exercise_days" value="چهارشنبه" class="input">
+                                چهارشنبه
+                            </label>
+                            <label class="radio-input-label">
+                                <input type="checkbox" name="exercise_days" value="پنجشنبه" class="input">
+                                پنجشنبه
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Documents form -->
+            <div id="form-5" class="form-box d-block">
+                <div class="form-box-title d-flex gap-1">
+                    <h4>ارسال مدارک</h4><span class="mt-1">(اختیاری)</span>
+                </div>
+                <div class="form">
+                    <div class="input-section">
+                        <label class="d-flex flex-column gap-2">
+                            <span>
+                                تصویر یا فایل آزمایش ترکیب بدنی <span class="necessary">(Body composition)</span>
+                            </span>
+                            <input type="file" name="body_composition" class="form-control input">
+                        </label>
+                    </div>
+                    <div class="input-section">
+                        <label class="d-flex flex-column gap-2">
+                            <span>
+                                تصویر یا فایل آخرین چکاب یا آزمایش خون، قند و...
+                            </span>
+                            <input type="file" name="body_checkup" class="form-control input">
+                        </label>
+                    </div>
+                    <div class="input-section">
+                        <label class="d-flex flex-column gap-2">
+                            <span>
+                                عکس بدن <span class="necessary">(گردن به پایین و حتما با رعایت شئونات اسلامی)</span>
+                            </span>
+                            <input type="file" name="body_picture" class="form-control input">
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="verify-section">
+                <div>اینجانب <span class="user-name">{{ user.get_full_name }}</span></div>
+                <div class="verify-explanation">
+                    در کمال صحت و سلامت عقل متعهد می‌شوم اطلاعات را به صورت کامل و صحیح وارد کرده‌ام و تمامی اطلاعات مورد تاییدم می‌باشد و در صورت بروز مشکل این اطلاعات قابل استناد است و ارزش قانونی دارد.
+                </div>
+                <div class="btn-box">
+                    <label>
+                        تایید
+                        <input type="checkbox" name="verified" value="true" required class="input form-check-input">
+                    </label>
+                    <button type="submit" class="verify-btn">
+                        ثبت همه موارد
+                    </button>
+                </div>
+            </div>
+        </form>
+    </section>
+{% endblock %}
+
+{% block Script %}
+{% endblock %}

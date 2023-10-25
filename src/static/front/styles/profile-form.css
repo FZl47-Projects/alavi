@@ -1,0 +1,235 @@
+@font-face {
+    font-family: KalamehBlack;
+    src: url('../fonts/Kalameh_Black.woff');
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: Vazir;
+    src: url('../fonts/vazir/Vazir.ttf');
+    font-weight: normal;
+}
+
+body {
+    background-color: whitesmoke;
+}
+
+.main-box {
+    margin-top: 0.5rem;
+    font-family: KalamehBlack, sans-serif;
+}
+
+.main-box-title {
+    border-radius: 1.25rem 1.25rem 0 0;
+    background-color: #128851;
+    color: white;
+    padding: 1.5rem;
+}
+
+.main-box-title h3 {
+    font-size: xx-large;
+}
+
+.main-box-title span {
+    font-size: medium;
+}
+
+.form-box {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2rem;
+}
+
+.form-box-title {
+    background-color: #ff6d29;
+    color: white;
+    margin-top: 0.5rem;
+    padding: 1rem 1.5rem 0.5rem 0;
+}
+
+.form {
+    border: 2px #d7d7d7 solid;
+    border-top: 0;
+    border-radius: 0 0 0.5rem 0.5rem;
+}
+
+.input-section:nth-child(odd) {
+    background-color: #eeeeee;
+    border-radius: 0 0 0.25rem 0.25rem;
+}
+
+.input-section {
+    font-family: Vazir, sans-serif;
+    padding: 1rem 1rem 2rem 1rem;
+}
+
+.inner-input-section {
+    display: flex;
+    gap: 1rem;
+}
+
+.input-section label {
+    font-size: medium;
+    font-weight: 500;
+}
+
+.input-section .input-section-title {
+    font-size: medium;
+    font-weight: 500;
+}
+
+.input-section-title span {
+    font-size: small;
+    font-weight: 500;
+    opacity: 0.8;
+}
+
+.input {
+    margin-top: 0.5rem;
+}
+
+.input::placeholder {
+    border-radius: 0.5rem 0.5rem 0.5rem 0;
+    opacity: 0.7;
+}
+
+.textarea {
+    font-size: small;
+}
+
+.number-input {
+    border-radius: 1.5rem;
+}
+
+.radio-input-section {
+    color: #c77a20;
+    margin-top: 0.25rem
+}
+
+.radio-input-label {
+    font-weight: bold;
+    margin-left: 1.5rem;
+}
+
+.main-select-box-section {
+    margin-top: 2rem;
+}
+
+.input-section-label span {
+    color: #484848;
+}
+
+.select-input {
+    width: 50%;
+    height: 1.85rem;
+    border-radius: 2rem;
+    font-size: 10pt;
+}
+
+.necessary {
+    color: #c77a20;
+    font-size: small;
+}
+
+.verify-section {
+    font-family: Vazir, sans-serif;
+}
+
+.user-name {
+    font-weight: 800;
+    margin-right: 0.5rem;
+}
+
+.verify-explanation {
+    margin: 0.5rem 0;
+    color: #cc0808;
+}
+
+.verify-section label {
+    font-size: 16pt;
+    font-weight: 600;
+}
+
+.verify-section label input {
+    margin-top: 0.25rem;
+}
+
+.btn-box {
+    display: flex;
+    justify-content: space-between;
+}
+
+.continue-btn {
+    width: 6rem;
+    background-color: #ff6d29;
+    color: white;
+    font-size: large;
+    border: none;
+    border-radius: 0.5rem;
+    padding: 0.35rem 0.25rem;
+    margin: 1rem 0;
+}
+
+.continue-btn:hover, .continue-btn:focus {
+    box-shadow: 0 0 8px 1px orangered;
+}
+
+.verify-btn {
+    font-family: KalamehBlack, sans-serif;
+    background-color: #007918;
+    color: #ffffff;
+    font-size: large;
+    border: none;
+    border-radius: 0.5rem;
+    padding: 0.35rem 0.75rem;
+    margin: 1rem 0;
+    display: flex;
+    justify-self: center;
+}
+
+.verify-btn:hover {
+    box-shadow: 0 0 6px 3px #084d27;
+}
+
+@media (min-width: 760px) {
+    .main-box {
+        margin: 3rem;
+    }
+}
+
+@media (max-width: 620px) {
+    .main-box-title h3 {
+        font-size: x-large;
+    }
+
+    .main-box-title span {
+        font-size: small;
+    }
+
+    .input-section label {
+        font-size: small;
+        font-weight: 500;
+    }
+
+    .textarea {
+        font-size: x-small;
+    }
+
+    .number-input {
+        border-radius: 15rem;
+        width: 100%;
+    }
+
+    .continue-btn {
+        font-size: medium;
+    }
+
+    .select-input {
+        width: 100%;
+    }
+
+    .inner-input-section {
+        display: flex;
+        gap: 0.25rem;
+    }
+}
