@@ -34,7 +34,7 @@ def login_register(request):
                 return redirect('account:login_register')
 
             # Check UserProfile verification
-            if not user.is_superuser and not user.user_profile.verified:
+            if not user.is_admin_user and not user.user_profile.verified:
                 return redirect(reverse('account:register_profile', args=(user.id,)))
 
             login(request, user)
