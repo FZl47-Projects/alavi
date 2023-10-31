@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-26 00:39+0330\n"
+"POT-Creation-Date: 2023-10-31 23:18+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: .\account\admin.py:22 .\account\models.py:69 .\package\models.py:18
+#: .\account\admin.py:22 .\account\models.py:70 .\package\models.py:18
 msgid "Packages"
 msgstr "پکیج ها"
 
@@ -70,214 +70,222 @@ msgstr "تاییدیه"
 msgid "Account"
 msgstr "حساب کاربری"
 
-#: .\account\models.py:19
+#: .\account\models.py:20
 msgid "The phonenumber must be set"
 msgstr "شماره تلفن باید وارد شود"
 
-#: .\account\models.py:60
+#: .\account\models.py:61
 msgid "normal_user"
 msgstr "کاربر عادی"
 
-#: .\account\models.py:61
+#: .\account\models.py:62
 msgid "super_user"
 msgstr "کاربر ادمین"
 
-#: .\account\models.py:65
+#: .\account\models.py:66
 #: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1847
 msgid "Email address"
 msgstr "آدرس ایمیل"
 
-#: .\account\models.py:66 .\account\models.py:98
+#: .\account\models.py:67 .\account\models.py:99
 msgid "Phone number"
 msgstr "شماره تلفن"
 
-#: .\account\models.py:68
+#: .\account\models.py:69
 msgid "User role"
 msgstr "نقش کاربر"
 
-#: .\account\models.py:79 .\account\models.py:155 .\exercise\models.py:27
+#: .\account\models.py:80 .\account\models.py:156 .\exercise\models.py:27
 #: .\program\models.py:44
 msgid "User"
 msgstr "کاربر"
 
-#: .\account\models.py:80
+#: .\account\models.py:81
 msgid "Users"
 msgstr "کاربران"
 
-#: .\account\models.py:142 .\exercise\models.py:90 .\program\models.py:87
+#: .\account\models.py:143 .\exercise\models.py:90 .\program\models.py:87
 msgid "Day of week"
 msgstr "روز هفته"
 
-#: .\account\models.py:145
+#: .\account\models.py:146
 msgid "Exercise day"
 msgstr "روز تمرین"
 
-#: .\account\models.py:146
+#: .\account\models.py:147
 msgid "Exercise days"
 msgstr "روزهای تمرین"
 
-#: .\account\models.py:156
+#: .\account\models.py:157
+msgid "Profile token"
+msgstr "توکن پروفایل"
+
+#: .\account\models.py:159
 msgid "User picture"
 msgstr "تصویر کاربر"
 
-#: .\account\models.py:157
+#: .\account\models.py:160
 msgid "National code"
 msgstr "کد ملی"
 
-#: .\account\models.py:160
+#: .\account\models.py:163
 msgid "Last time exercise"
 msgstr "آخرین زمان ورزش"
 
-#: .\account\models.py:161
+#: .\account\models.py:164
 msgid "Goal of getting program"
 msgstr "هدف دریافت برنامه"
 
-#: .\account\models.py:162
+#: .\account\models.py:165
 msgid "Exercise system experience"
 msgstr "سیستم های تمرینی تجربه شده"
 
-#: .\account\models.py:163
+#: .\account\models.py:166
 msgid "Additional explanations"
 msgstr "توضیحات تکمیلی"
 
-#: .\account\models.py:166
+#: .\account\models.py:169
 msgid "Weight"
 msgstr "وزن"
 
-#: .\account\models.py:166
+#: .\account\models.py:169
 msgid "Kg"
 msgstr "کیلوگرم"
 
-#: .\account\models.py:167
+#: .\account\models.py:170
 msgid "Height"
 msgstr "قد"
 
-#: .\account\models.py:167 .\account\models.py:168 .\account\models.py:169
-#: .\account\models.py:170 .\account\models.py:171
+#: .\account\models.py:170 .\account\models.py:171 .\account\models.py:172
+#: .\account\models.py:173 .\account\models.py:174
 msgid "cm"
 msgstr "سانتی متر"
 
-#: .\account\models.py:168
+#: .\account\models.py:171
 msgid "Waist size"
 msgstr "سایز کمر"
 
-#: .\account\models.py:169
+#: .\account\models.py:172
 msgid "Hip size"
 msgstr "سایز ران"
 
-#: .\account\models.py:170
+#: .\account\models.py:173
 msgid "Arm size"
 msgstr "سایز بازو"
 
-#: .\account\models.py:171
+#: .\account\models.py:174
 msgid "Chest size"
 msgstr "سایز قفسه سینه"
 
-#: .\account\models.py:174
+#: .\account\models.py:177
 msgid "Family disease history"
 msgstr "سابقه بیماری خانوادگی"
 
-#: .\account\models.py:175
+#: .\account\models.py:178
 msgid "Special disease"
 msgstr "دارای بیماری خاص"
 
-#: .\account\models.py:176
+#: .\account\models.py:179
 msgid "Special medicine"
 msgstr "استفاده از داروی خاص"
 
-#: .\account\models.py:179
+#: .\account\models.py:180
+msgid "Special medicine name"
+msgstr "نام داروی خاص"
+
+#: .\account\models.py:183
 msgid "Breakfast time willing"
 msgstr "زمان ترجیحی صبحانه"
 
-#: .\account\models.py:180
+#: .\account\models.py:184
 msgid "Snack time willing"
 msgstr "زمان ترجیحی میان وعده"
 
-#: .\account\models.py:181
+#: .\account\models.py:185
 msgid "Launch time willing"
 msgstr "زمان ترجیجی ناهار"
 
-#: .\account\models.py:182
+#: .\account\models.py:186
 msgid "Dinner time willing"
 msgstr "زمان ترجیحی شام"
 
-#: .\account\models.py:184
+#: .\account\models.py:188
 msgid "Use supplement"
 msgstr "درحال مصرف مکمل ورزشی/غذایی"
 
-#: .\account\models.py:185
+#: .\account\models.py:189
 msgid "Want supplement"
 msgstr "خواستار مکمل ورزشی/غذایی"
 
-#: .\account\models.py:186
+#: .\account\models.py:190
 msgid "Used steroids"
 msgstr "سابقه استفاده از داروی استروییدی"
 
-#: .\account\models.py:187
+#: .\account\models.py:191
 msgid "Had/Has diet"
 msgstr "رژیم غذایی داشته/دارد"
 
-#: .\account\models.py:188
+#: .\account\models.py:192
 msgid "Vegetarian"
 msgstr "گیاه خوار"
 
-#: .\account\models.py:191
+#: .\account\models.py:195
 msgid "Physical damage"
 msgstr "سابقه آسیب فیزیکی"
 
-#: .\account\models.py:192
+#: .\account\models.py:196
 msgid "Regular/Pro exercise"
 msgstr "سابقه تمرین منظم/حرفه ای"
 
-#: .\account\models.py:193
+#: .\account\models.py:197
 msgid "Doing exercise"
 msgstr "انجام تمرین ورزشی"
 
-#: .\account\models.py:193
+#: .\account\models.py:197
 msgid "I do not exercise"
 msgstr "تمرین ورزشی ندارم"
 
-#: .\account\models.py:194
+#: .\account\models.py:198
 msgid "Exercise days willing"
 msgstr "روزهای ترجیحی تمرین ورزشی"
 
-#: .\account\models.py:197
+#: .\account\models.py:201
 msgid "Body composition"
 msgstr "آزمایش ترکیب بدنی"
 
-#: .\account\models.py:198
+#: .\account\models.py:202
 msgid "Body checkup"
 msgstr "آزمایش چکاپ بدن"
 
-#: .\account\models.py:199
+#: .\account\models.py:203
 msgid "Body picture"
 msgstr "تصویر بدن"
 
-#: .\account\models.py:201
+#: .\account\models.py:205
 msgid "Verified"
 msgstr "تایید شده"
 
-#: .\account\models.py:203 .\exercise\models.py:30 .\exercise\models.py:62
+#: .\account\models.py:207 .\exercise\models.py:30 .\exercise\models.py:62
 #: .\exercise\models.py:92 .\exercise\models.py:121 .\package\models.py:13
 #: .\program\models.py:89 .\program\models.py:140 .\program\models.py:167
 #: .\public\models.py:23 .\public\models.py:95
 msgid "Create time"
 msgstr "زمان ایجاد"
 
-#: .\account\models.py:204 .\exercise\models.py:31 .\exercise\models.py:63
+#: .\account\models.py:208 .\exercise\models.py:31 .\exercise\models.py:63
 #: .\package\models.py:14 .\program\models.py:90 .\public\models.py:24
 msgid "Modify time"
 msgstr "زمان ویرایش"
 
-#: .\account\models.py:207
+#: .\account\models.py:211
 msgid "User profile"
 msgstr "پروفایل کاربر"
 
-#: .\account\models.py:208
+#: .\account\models.py:212
 msgid "User profiles"
 msgstr "پروفایل کاربران"
 
-#: .\account\views.py:109
+#: .\account\views.py:47 .\account\views.py:134
 msgid "Welcome"
 msgstr "خوش آمدید"
 
