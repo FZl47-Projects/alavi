@@ -174,6 +174,7 @@ class UserProfile(models.Model):
     family_disease = models.BooleanField(_('Family disease history'), default=False)
     special_disease = models.BooleanField(_('Special disease'), default=False)
     special_medicine = models.BooleanField(_('Special medicine'), default=False)
+    medicine_name = models.CharField(_('Special medicine name'), max_length=128, null=True, blank=True)
 
     # Food/Supplement info
     breakfast_time = models.CharField(_('Breakfast time willing'), max_length=8, default='-')  # Between (06:00 - 10:00)

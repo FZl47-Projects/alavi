@@ -61,7 +61,7 @@ class UserProfileAdmin(admin.ModelAdmin):
         (None, {'fields': ('user', 'national_code', 'picture')}),
         (_('Survey'), {'fields': ('last_exercise', 'goal_of_program', 'exercise_systems', 'additional_explain')}),
         (_('Body info'), {'fields': ('weight', 'height', 'waist_size', 'hip_size', 'arm_size', 'chest_size')}),
-        (_('Disease history'), {'fields': ('family_disease', 'special_disease', 'special_medicine')}),
+        (_('Disease history'), {'fields': ('family_disease', 'special_disease', 'special_medicine', 'medicine_name')}),
         (_('Food/Supplement info'), {'fields': ('breakfast_time', 'snack_time', 'launch_time', 'dinner_time')}),
         (_('Continue food info'), {'fields': ('use_supplement', 'want_supplement', 'used_steroids', 'in_diet', 'vegetarian')}),
         (_('Exercise info'), {'fields': ('physical_damage', 'regular_exercise', 'doing_exercise', 'exercise_days')}),
