@@ -7,6 +7,7 @@ from django.db import models
 
 from phonenumber_field.modelfields import PhoneNumberField
 from package.models import Package
+import secrets
 
 
 class CustomBaseUserManager(BaseUserManager):
@@ -153,6 +154,8 @@ class ExerciseDay(models.Model):
 # UserProfiles models
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, verbose_name=_('User'), related_name='user_profile')
+    token = models.CharField(_("Profile token"), max_length=64, null=True, blank=True)
+
     picture = models.ImageField(_('User picture'), null=True, blank=True, upload_to='images/%Y/%m/%d/users')
     national_code = models.PositiveIntegerField(_('National code'), null=True, blank=True, default=0)
 
@@ -208,6 +211,17 @@ class UserProfile(models.Model):
         verbose_name = _('User profile')
         verbose_name_plural = _('User profiles')
         ordering = ('-id',)
+
+    def generate_token(self, byte: int = 12):
+        self.token = secrets.token_hex(byte)
+        self.save()
+
+    def clear_token(self, request):
+        if 'register_token' in request.session:
+            del request.session['register_token']
+
+        self.token = None
+        self.save()
 
     def __str__(self) -> str:
         return f'{self.user}'
