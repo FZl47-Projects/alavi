@@ -13,6 +13,7 @@ from core.redis_py import set_value_expire, remove_key, get_value
 from notification.models import NotificationUser
 from public.models import Certificate
 from .models import ExerciseDay, UserProfile
+from .mixins import LogoutRequiredMixin
 from . import forms
 import json
 
@@ -35,10 +36,16 @@ def login_register(request):
 
             # Check UserProfile verification
             if not user.is_admin_user and not user.user_profile.verified:
-                return redirect(reverse('account:register_profile', args=(user.id,)))
+                # Create unique token for UserProfile (to track user authentication)
+                user.user_profile.generate_token()
+
+                # Save token in sessions (temporary) and redirect user to GetProfileInfo view
+                request.session['register_token'] = user.user_profile.token
+                return redirect('account:register_profile')
 
             login(request, user)
             messages.success(request, _('Welcome'))
+
             return redirect('public:index')
         else:
             messages.error(request, 'لطفا فیلد هارا به درستی وارد نمایید')
@@ -64,8 +71,14 @@ def login_register(request):
         user.set_password(password)
         user.save()
 
+        # Create unique token for UserProfile (to track user authentication)
+        user.user_profile.generate_token()
+
+        # Save token in sessions (temporary)
+        request.session['register_token'] = user.user_profile.token
+
         # Redirect to UserProfile information form
-        return redirect(reverse('account:register_profile', args=(user.id,)))
+        return redirect('account:register_profile')
 
     if request.method == 'GET':
         return render(request, 'account/login-register.html')
@@ -80,24 +93,26 @@ def login_register(request):
 
 
 # Render UserProfileInfo View
-class GetUserProfileInfo(View):
-    """ Get UserProfile data before finishing user register """
-    def get(self, request, pk):
+class GetUserProfileInfo(LogoutRequiredMixin, View):
+    """ Get UserProfile info before finishing user register """
+    def get(self, request):
+        # Get register_token and get profile
         try:
-            user = User.objects.get(id=pk)
-            if user.user_profile.verified:
+            token = request.session.get('register_token')
+
+            profile = UserProfile.objects.get(token=token)
+            if profile.verified:
                 return redirect('public:index')
-        except User.DoesNotExist:
+        except UserProfile.DoesNotExist:
             raise Http404
 
-        return render(request, 'account/profile-info-form.html', {'user': user})
+        return render(request, 'account/profile-info-form.html', {'profile': profile})
 
-    def post(self, request, pk):
+    def post(self, request):
         data = request.POST
         try:
-            user = User.objects.get(id=pk)
-            profile = user.user_profile
-        except (User.DoesNotExist, AttributeError):
+            profile = UserProfile.objects.get(token=data.get('token'))
+        except (UserProfile.DoesNotExist, KeyError):
             raise Http404
 
         # Get exercise days and set them in profile
@@ -107,10 +122,15 @@ class GetUserProfileInfo(View):
 
         form = forms.UserProfileInfoForm(data, request.FILES, instance=profile)
         if not form_validate_err(request, form):
-            return redirect(reverse('account:register_profile', args=(user.id,)))
+            return redirect(reverse('account:register_profile'))
         form.save()
 
+        user = profile.user
         login(request, user)
+
+        # Remove register_token
+        profile.clear_token(request)
+
         messages.success(request, _('Welcome'))
 
         return redirect('public:index')

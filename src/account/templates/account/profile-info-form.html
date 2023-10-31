@@ -11,8 +11,10 @@
 
 {% block Content %}
     <section class="container">
-        <form method="POST" action="{% url 'account:register_profile' user.id %}" enctype="multipart/form-data" class="main-box">
+        <form method="POST" action="{% url 'account:register_profile' %}" enctype="multipart/form-data" class="main-box">
             {% csrf_token %}
+            <input type="hidden" name="token" value="{{ profile.token }}">
+
             <div class="main-box-title">
                 <h3>فرم تکمیل اطلاعات کاربری</h3>
                 <span>کاربر گرامی، لطفا با دقت به سوالات زیر نسبت به خود پاسخ دهید.</span>
@@ -460,7 +462,7 @@
             </div>
 
             <div class="verify-section">
-                <div>اینجانب <span class="user-name">{{ user.get_full_name }}</span></div>
+                <div>اینجانب <span class="user-name">{{ profile.user.get_full_name }}</span></div>
                 <div class="verify-explanation">
                     در کمال صحت و سلامت عقل متعهد می‌شوم اطلاعات را به صورت کامل و صحیح وارد کرده‌ام و تمامی اطلاعات مورد تاییدم می‌باشد و در صورت بروز مشکل این اطلاعات قابل استناد است و ارزش قانونی دارد.
                 </div>
