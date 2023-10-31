@@ -38,7 +38,7 @@ def login_register(request):
                 return redirect(reverse('account:register_profile', args=(user.id,)))
 
             login(request, user)
-            messages.success(request, 'خوش امدید')
+            messages.success(request, _('Welcome'))
             return redirect('public:index')
         else:
             messages.error(request, 'لطفا فیلد هارا به درستی وارد نمایید')
@@ -64,7 +64,7 @@ def login_register(request):
         user.set_password(password)
         user.save()
 
-        # Send to UserProfile register form
+        # Redirect to UserProfile information form
         return redirect(reverse('account:register_profile', args=(user.id,)))
 
     if request.method == 'GET':
@@ -85,7 +85,9 @@ class GetUserProfileInfo(View):
     def get(self, request, pk):
         try:
             user = User.objects.get(id=pk)
-        except User.DoesNotExists:
+            if user.user_profile.verified:
+                return redirect('public:index')
+        except User.DoesNotExist:
             raise Http404
 
         return render(request, 'account/profile-info-form.html', {'user': user})
@@ -95,7 +97,7 @@ class GetUserProfileInfo(View):
         try:
             user = User.objects.get(id=pk)
             profile = user.user_profile
-        except (User.DoesNotExists, AttributeError):
+        except (User.DoesNotExist, AttributeError):
             raise Http404
 
         # Get exercise days and set them in profile
@@ -103,7 +105,7 @@ class GetUserProfileInfo(View):
         days = ExerciseDay.objects.filter(name__in=selected_days)
         profile.exercise_days.set(days)
 
-        form = forms.UserProfileUpdateForm(data, request.FILES, instance=profile)
+        form = forms.UserProfileInfoForm(data, request.FILES, instance=profile)
         if not form_validate_err(request, form):
             return redirect(reverse('account:register_profile', args=(user.id,)))
         form.save()
@@ -255,7 +257,7 @@ class UserProfileUpdate(LoginRequiredMixin, View):
         except:
             pass
 
-        form = forms.UserProfileInfoForm(data, request.FILES, instance=profile)
+        form = forms.UserProfileUpdateForm(data, request.FILES, instance=profile)
         if form_validate_err(request, form) is False:
             return redirect(user.get_absolute_url())
         form.save()

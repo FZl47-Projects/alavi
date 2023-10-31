@@ -1,12 +1,12 @@
 @font-face {
     font-family: KalamehBlack;
-    src: url('../fonts/Kalameh_Black.woff');
+    src: url('../../fonts/Kalameh_Black.woff');
     font-weight: normal;
 }
 
 @font-face {
     font-family: Vazir;
-    src: url('../fonts/vazir/Vazir.ttf');
+    src: url('../../fonts/vazir/Vazir.ttf');
     font-weight: normal;
 }
 
@@ -189,6 +189,14 @@ body {
 
 .verify-btn:hover {
     box-shadow: 0 0 6px 3px #084d27;
+}
+
+.flex-wrap {
+    flex-wrap: wrap;
+}
+
+.flex-nowrap {
+    flex-wrap: nowrap;
 }
 
 @media (min-width: 760px) {

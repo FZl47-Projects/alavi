@@ -73,15 +73,15 @@ class ResetPasswordSetForm(forms.Form):
         return p2
 
 
-# UserProfileUpdate form
-class UserProfileUpdateForm(forms.ModelForm):
+# UserProfileInfo form
+class UserProfileInfoForm(forms.ModelForm):
     class Meta:
         model = UserProfile
         exclude = ('exercise_days', 'user')
 
 
 # UserProfileUpdate form
-class UserProfileInfoForm(forms.ModelForm):
+class UserProfileUpdateForm(forms.ModelForm):
     class Meta:
         model = UserProfile
         fields = ('national_code', 'weight', 'height', 'picture')

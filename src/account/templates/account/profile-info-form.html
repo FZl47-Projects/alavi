@@ -66,50 +66,50 @@
                 </div>
                 <div class="form">
                     <div class="input-section">
-                        <div class="inner-input-section">
+                        <div class="inner-input-section flex-wrap gap-4">
                             <label class="d-flex flex-column gap-2 flex-grow-1">
                                 <span>
                                     وزن <span class="necessary">(الزامی)</span>
                                 </span>
-                                <input type="number" name="weight" required placeholder="کیلوگرم" class="form-control input number-input">
+                                <input type="number" name="weight" required min="0" placeholder="کیلوگرم" class="form-control input number-input">
                             </label>
                             <label class="d-flex flex-column gap-2 flex-grow-1">
                                 <span>
                                     قد <span class="necessary">(الزامی)</span>
                                 </span>
-                                <input type="number" name="height" required placeholder="سانتی متر" class="form-control input number-input">
+                                <input type="number" name="height" required min="0" placeholder="سانتی متر" class="form-control input number-input">
                             </label>
                         </div>
                     </div>
                     <div class="input-section">
-                        <div class="inner-input-section">
+                        <div class="inner-input-section flex-wrap gap-4">
                             <label class="d-flex flex-column gap-2 flex-grow-1">
                                 <span>
                                     سایز کمر <span class="necessary">(الزامی)</span>
                                 </span>
-                                <input type="number" name="waist_size" required placeholder="سانتی متر" class="form-control input number-input">
+                                <input type="number" name="waist_size" required min="0" placeholder="سانتی متر" class="form-control input number-input">
                             </label>
                             <label class="d-flex flex-column gap-2 flex-grow-1">
                                 <span>
                                     سایز لگن
                                 </span>
-                                <input type="number" name="hip_size" placeholder="سانتی متر" class="form-control input number-input">
+                                <input type="number" name="hip_size" min="0" placeholder="سانتی متر" class="form-control input number-input">
                             </label>
                         </div>
                     </div>
                     <div class="input-section">
-                        <div class="inner-input-section">
+                        <div class="inner-input-section flex-wrap gap-4">
                             <label class="d-flex flex-column gap-2 flex-grow-1">
                                 <span>
                                     سایز بازو
                                 </span>
-                                <input type="number" name="arm_size" placeholder="سانتی متر" class="form-control input number-input">
+                                <input type="number" name="arm_size" min="0" placeholder="سانتی متر" class="form-control input number-input">
                             </label>
                             <label class="d-flex flex-column gap-2 flex-grow-1">
                                 <span>
                                     سایز قفسه سینه
                                 </span>
-                                <input type="number" name="chest_size" placeholder="سانتی متر" class="form-control input number-input">
+                                <input type="number" name="chest_size" min="0" placeholder="سانتی متر" class="form-control input number-input">
                             </label>
                         </div>
                     </div>
@@ -170,13 +170,21 @@
                         <div class="radio-input-section">
                             <label class="radio-input-label">
                                 خیر
-                                <input type="radio" checked name="special_medicine" value="false" class="input">
+                                <input type="radio" checked name="special_medicine" value="false" onchange="getMedicine(this.value)" class="input">
                             </label>
                             <label class="radio-input-section">
                                 بله
-                                <input type="radio" name="special_medicine" value="true" class="input">
+                                <input type="radio" name="special_medicine" value="true" onchange="getMedicine(this.value)" class="input">
                             </label>
                         </div>
+                    </div>
+                    <div id="medicineName" class="input-section d-none">
+                        <label class="d-flex flex-column gap-2">
+                            <span>
+                                 لطفا نام دارو را وارد نمایید <span class="necessary">(الزامی)</span>
+                            </span>
+                            <input type="text" name="medicine_name" placeholder="نام دارو" class="form-control input">
+                        </label>
                     </div>
                 </div>
             </div>
@@ -471,4 +479,18 @@
 {% endblock %}
 
 {% block Script %}
+    <script>
+        function getMedicine(value) {
+            const medicineSection = document.getElementById('medicineName');
+            const medicineInput = medicineSection.querySelector('input');
+
+            if (value === 'true') {
+                medicineSection.classList.remove('d-none');
+                medicineInput.setAttribute('required', 'required');
+            } else {
+                medicineSection.classList.add('d-none');
+                medicineInput.removeAttribute('required');
+            }
+        }
+    </script>
 {% endblock %}
