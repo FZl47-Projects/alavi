@@ -71,4 +71,4 @@ class UserProfileAdmin(admin.ModelAdmin):
     )
 
 
-# admin.site.register(ExerciseDay)
+admin.site.register(ExerciseDay)
