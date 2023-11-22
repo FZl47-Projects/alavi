@@ -198,9 +198,9 @@ class UserProfile(models.Model):
     exercise_days = models.ManyToManyField(ExerciseDay, verbose_name=_('Exercise days willing'), blank=True, related_name='user_profile')
 
     # Documents
-    body_composition = models.ImageField(_('Body composition'), null=True, blank=True, upload_to='images/users/docs')
-    body_checkup = models.ImageField(_('Body checkup'), null=True, blank=True, upload_to='images/users/docs')
-    body_picture = models.ImageField(_('Body picture'), null=True, blank=True, upload_to='images/users/docs')
+    body_composition = models.FileField(_('Body composition'), null=True, blank=True, upload_to='images/users/docs')
+    body_checkup = models.FileField(_('Body checkup'), null=True, blank=True, upload_to='images/users/docs')
+    body_picture = models.FileField(_('Body picture'), null=True, blank=True, upload_to='images/users/docs')
 
     verified = models.BooleanField(_('Verified'), default=False)
 

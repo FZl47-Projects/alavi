@@ -129,64 +129,91 @@
                 -->
             </div>
 
-            <!-- Disease history form -->
-            <div id="form-2" class="form-box d-block">
+            <!-- Exercise info form -->
+            <div id="form-4" class="form-box d-block">
                 <div class="form-box-title">
-                    <h4>تاریخجه بیماری</h4>
+                    <h4>اطلاعات تمرینی</h4>
                 </div>
                 <div class="form">
                     <div class="input-section">
                         <span class="input-section-title">
-                            آیا سابقه بیماری خاصی در خانواده خود دارید؟ <span>(بیماری قلبی، دیابت و...)</span>
+                            آیا تاکنون آسیبی در ناحیه عضلات، تاندون و مفاصل داشته اید؟
                         </span>
                         <div class="radio-input-section">
                             <label class="radio-input-label">
                                 خیر
-                                <input type="radio" checked name="family_disease" value="false" class="input">
+                                <input type="radio" checked name="physical_damage" value="false" class="input">
                             </label>
                             <label class="radio-input-section">
                                 بله
-                                <input type="radio" name="family_disease" value="true" class="input">
+                                <input type="radio" name="physical_damage" value="true" class="input">
                             </label>
                         </div>
                     </div>
                     <div class="input-section">
                         <span class="input-section-title">
-                            آیا بیماری خاصی دارید؟
+                            آیا سابقه ورزش حرفه‌ای و منظم دارید؟
                         </span>
                         <div class="radio-input-section">
                             <label class="radio-input-label">
                                 خیر
-                                <input type="radio" checked name="special_disease" value="false" class="input">
+                                <input type="radio" checked name="regular_exercise" value="false" class="input">
                             </label>
                             <label class="radio-input-section">
                                 بله
-                                <input type="radio" name="special_disease" value="true" class="input">
+                                <input type="radio" name="regular_exercise" value="true" class="input">
                             </label>
                         </div>
                     </div>
                     <div class="input-section">
                         <span class="input-section-title">
-                            آیا در حال حاضر داروی خاصی مصرف می‌کنید؟
+                            آیا تحت نظر دکتر، مربی دیگری و یا به صورت شخصی تمرین می‌کنید؟
                         </span>
                         <div class="radio-input-section">
                             <label class="radio-input-label">
-                                خیر
-                                <input type="radio" checked name="special_medicine" value="false" onchange="getMedicine(this.value)" class="input">
+                                تمرین ورزشی ندارم
+                                <input type="radio" checked name="doing_exercise" value="تمرین ورزشی ندارم" class="input">
                             </label>
-                            <label class="radio-input-section">
-                                بله
-                                <input type="radio" name="special_medicine" value="true" onchange="getMedicine(this.value)" class="input">
+                            <label class="radio-input-label">
+                                در باشگاه تمرین می‌کنم
+                                <input type="radio" name="doing_exercise" value="در باشگاه تمرین می‌کنم" class="input">
+                            </label>
+                            <label class="radio-input-label">
+                                در خانه تمرین می‌کنم
+                                <input type="radio" name="doing_exercise" value="در خانه تمرین می‌کنم" class="input">
                             </label>
                         </div>
                     </div>
-                    <div id="medicineName" class="input-section d-none">
-                        <label class="d-flex flex-column gap-2">
-                            <span>
-                                 لطفا نام دارو را وارد نمایید <span class="necessary">(الزامی)</span>
-                            </span>
-                            <input type="text" name="medicine_name" placeholder="نام دارو" class="form-control input">
-                        </label>
+                    <div class="input-section">
+                        <span class="input-section-title">
+                            چه روزهایی در هفته ترجیح می‌دهید تمرین کنید؟
+                        </span>
+                        <div class="radio-input-section">
+                            <label class="radio-input-label">
+                                <input type="checkbox" name="exercise_days" value="شنبه" class="input">
+                                شنبه
+                            </label>
+                            <label class="radio-input-label">
+                                <input type="checkbox" name="exercise_days" value="یکشنبه" class="input">
+                                یکشنبه
+                            </label>
+                            <label class="radio-input-label">
+                                <input type="checkbox" name="exercise_days" value="دوشنبه" class="input">
+                                دوشنبه
+                            </label>
+                            <label class="radio-input-label">
+                                <input type="checkbox" name="exercise_days" value="سه‌شنبه" class="input">
+                                سه‌شنبه
+                            </label>
+                            <label class="radio-input-label">
+                                <input type="checkbox" name="exercise_days" value="چهارشنبه" class="input">
+                                چهارشنبه
+                            </label>
+                            <label class="radio-input-label">
+                                <input type="checkbox" name="exercise_days" value="پنجشنبه" class="input">
+                                پنجشنبه
+                            </label>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -339,91 +366,64 @@
                 </div>
             </div>
 
-            <!-- Exercise info form -->
-            <div id="form-4" class="form-box d-block">
+            <!-- Disease history form -->
+            <div id="form-2" class="form-box d-block">
                 <div class="form-box-title">
-                    <h4>اطلاعات تمرینی</h4>
+                    <h4>تاریخجه بیماری</h4>
                 </div>
                 <div class="form">
                     <div class="input-section">
                         <span class="input-section-title">
-                            آیا تاکنون آسیبی در ناحیه عضلات، تاندون و مفاصل داشته اید؟
+                            آیا سابقه بیماری خاصی در خانواده خود دارید؟ <span>(بیماری قلبی، دیابت و...)</span>
                         </span>
                         <div class="radio-input-section">
                             <label class="radio-input-label">
                                 خیر
-                                <input type="radio" checked name="physical_damage" value="false" class="input">
+                                <input type="radio" checked name="family_disease" value="false" class="input">
                             </label>
                             <label class="radio-input-section">
                                 بله
-                                <input type="radio" name="physical_damage" value="true" class="input">
+                                <input type="radio" name="family_disease" value="true" class="input">
                             </label>
                         </div>
                     </div>
                     <div class="input-section">
                         <span class="input-section-title">
-                            آیا سابقه ورزش حرفه‌ای و منظم دارید؟
+                            آیا بیماری خاصی دارید؟
                         </span>
                         <div class="radio-input-section">
                             <label class="radio-input-label">
                                 خیر
-                                <input type="radio" checked name="regular_exercise" value="false" class="input">
+                                <input type="radio" checked name="special_disease" value="false" class="input">
                             </label>
                             <label class="radio-input-section">
                                 بله
-                                <input type="radio" name="regular_exercise" value="true" class="input">
+                                <input type="radio" name="special_disease" value="true" class="input">
                             </label>
                         </div>
                     </div>
                     <div class="input-section">
                         <span class="input-section-title">
-                            آیا تحت نظر دکتر، مربی دیگری و یا به صورت شخصی تمرین می‌کنید؟
+                            آیا در حال حاضر داروی خاصی مصرف می‌کنید؟
                         </span>
                         <div class="radio-input-section">
                             <label class="radio-input-label">
-                                تمرین ورزشی ندارم
-                                <input type="radio" checked name="doing_exercise" value="تمرین ورزشی ندارم" class="input">
+                                خیر
+                                <input type="radio" checked name="special_medicine" value="false" onchange="getMedicine(this.value)" class="input">
                             </label>
-                            <label class="radio-input-label">
-                                در باشگاه تمرین می‌کنم
-                                <input type="radio" name="doing_exercise" value="در باشگاه تمرین می‌کنم" class="input">
-                            </label>
-                            <label class="radio-input-label">
-                                در خانه تمرین می‌کنم
-                                <input type="radio" name="doing_exercise" value="در خانه تمرین می‌کنم" class="input">
+                            <label class="radio-input-section">
+                                بله
+                                <input type="radio" name="special_medicine" value="true" onchange="getMedicine(this.value)" class="input">
                             </label>
                         </div>
                     </div>
-                    <div class="input-section">
-                        <span class="input-section-title">
-                            چه روزهایی در هفته ترجیح می‌دهید تمرین کنید؟
-                        </span>
-                        <div class="radio-input-section">
-                            <label class="radio-input-label">
-                                <input type="checkbox" name="exercise_days" value="شنبه" class="input">
-                                شنبه
-                            </label>
-                            <label class="radio-input-label">
-                                <input type="checkbox" name="exercise_days" value="یکشنبه" class="input">
-                                یکشنبه
-                            </label>
-                            <label class="radio-input-label">
-                                <input type="checkbox" name="exercise_days" value="دوشنبه" class="input">
-                                دوشنبه
-                            </label>
-                            <label class="radio-input-label">
-                                <input type="checkbox" name="exercise_days" value="سه‌شنبه" class="input">
-                                سه‌شنبه
-                            </label>
-                            <label class="radio-input-label">
-                                <input type="checkbox" name="exercise_days" value="چهارشنبه" class="input">
-                                چهارشنبه
-                            </label>
-                            <label class="radio-input-label">
-                                <input type="checkbox" name="exercise_days" value="پنجشنبه" class="input">
-                                پنجشنبه
-                            </label>
-                        </div>
+                    <div id="medicineName" class="input-section d-none">
+                        <label class="d-flex flex-column gap-2">
+                            <span>
+                                 لطفا نام دارو را وارد نمایید <span class="necessary">(الزامی)</span>
+                            </span>
+                            <input type="text" name="medicine_name" placeholder="نام دارو" class="form-control input">
+                        </label>
                     </div>
                 </div>
             </div>
