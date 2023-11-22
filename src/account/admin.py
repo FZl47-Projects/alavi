@@ -1,5 +1,6 @@
 from django.utils.translation import gettext as _
 from django.contrib.auth.admin import UserAdmin
+from django.shortcuts import reverse
 from django.contrib import admin
 from .forms import CustomUserCreationForm, CustomUserChangeForm
 from .models import User, UserProfile, ExerciseDay
@@ -69,6 +70,10 @@ class UserProfileAdmin(admin.ModelAdmin):
         (_('Important dates'), {'fields': ('created_at', 'modified_at')}),
         (_('Verification'), {'fields': ('verified',)}),
     )
+
+    def get_view_on_site_url(self, obj=None):
+        if obj:
+            return reverse('account:user-profile', args=(obj.id,))
 
 
 admin.site.register(ExerciseDay)

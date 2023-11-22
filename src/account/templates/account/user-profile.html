@@ -55,7 +55,7 @@
                         </div>
                     {% else %}
                         <div class="specifications-item mt-3">
-                            <a href="#" class="btn btn-primary p-2">
+                            <a href="{% url 'admin:account_userprofile_change' user_detail.id %}" class="btn btn-primary p-2">
                                 همه اطلاعات
                             </a>
                         </div>
