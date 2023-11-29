@@ -1,5 +1,5 @@
 from django.views.generic import TemplateView
-from .models import Certificate, FreeDietProgram
+from .models import Certificate, FreeExerciseProgram
 
 
 # Render Index View
@@ -13,12 +13,17 @@ class IndexView(TemplateView):
         return contexts
 
 
-# Render FreeDietProgram
-class FreeDietProgramView(TemplateView):
-    template_name = 'public/diet-free.html'
+# Render FreeExerciseProgram
+class FreeExerciseProgramView(TemplateView):
+    template_name = 'public/exercise_free.html'
 
     def get_context_data(self, **kwargs):
         contexts = super().get_context_data(**kwargs)
-        contexts['diet_program'] = FreeDietProgram.objects.last()
+        try:
+            program = FreeExerciseProgram.objects.get(is_active=True)
+        except (FreeExerciseProgram.DoesNotExist, FreeExerciseProgram.MultipleObjectsReturned):
+            program = FreeExerciseProgram.objects.last()
+
+        contexts['exercise_program'] = program
 
         return contexts
