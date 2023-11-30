@@ -17,6 +17,7 @@ class ExerciseRecommendInline(admin.TabularInline):
 class ExerciseInline(NestedStackedInline):
     model = models.Exercise
     extra = 0
+    autocomplete_fields = ('workout',)
 
 
 # Register DailyExerciseProgram Model Admin
@@ -138,3 +139,4 @@ class ExerciseProgramAdmin(admin.ModelAdmin):
 class WorkoutAdmin(admin.ModelAdmin):
     list_display = ('title', 'level')
     list_display_links = ('title',)
+    search_fields = ('title',)

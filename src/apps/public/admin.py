@@ -1,8 +1,6 @@
 from nested_admin import NestedStackedInline, NestedModelAdmin
 from django.shortcuts import redirect, reverse
-from django.db import models as a_model
 from django.contrib import admin
-from django import forms
 from . import models
 
 
@@ -10,17 +8,16 @@ from . import models
 class FreeExerciseInline(NestedStackedInline):
     model = models.FreeExercise
     extra = 0
-
-    # Change formField attributes(size)
-    formfield_overrides = {
-        a_model.CharField: {"widget": forms.TextInput(attrs={"size": "17"})},
-    }
+    autocomplete_fields = ('workout',)
 
 
 # FreeDailyExercise Model Admin
 @admin.register(models.FreeDailyExercise)
 class FreeDailyExerciseAdmin(admin.ModelAdmin):
     inlines = (FreeExerciseInline,)
+
+    def has_module_permission(self, request):
+        return False
 
 
 # FreeDailyExercise as inline
