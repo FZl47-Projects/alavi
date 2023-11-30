@@ -499,6 +499,10 @@ body {
   font-family: pinar;
   font-size: 14px;
   font-weight: 300;
+  background-image: url("../images/background.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
 }
 
 ul {
@@ -538,10 +542,6 @@ input {
 .main-page {
   width: 100vw;
   height: 100vh;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  background-image: url("../images/background.png");
 }
 .main-page .content-main {
   padding: 0 100px;
@@ -625,6 +625,34 @@ input {
 .services-content .services-content-inner .swiper .swiper-button-prev:after {
   font-size: 23px !important;
   color: #fff;
+}
+
+/* Products' styles section */
+.product-main-box {
+  background-color: rgba(255, 255, 255, 0.01);
+  box-shadow: 0 0 6px #1a1a1a;
+  backdrop-filter: blur(4px);
+}
+
+.product-wrapper {
+  height: auto !important;
+}
+
+.product-slide-box {
+  background-color: rgba(7, 7, 7, 0.75);
+  padding: 1.1rem;
+  border-radius: 0.35rem;
+}
+
+.product-inner-box {
+  background-color: rgba(26, 178, 104, 0.05);
+  border-radius: 0.75rem;
+  transition: all 0.3s ease;
+  padding: 1rem 0;
+}
+
+.product-inner-box:hover {
+  scale: 104%;
 }
 
 @media (max-width: 500px) {
