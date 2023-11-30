@@ -40,13 +40,13 @@ INSTALLED_APPS = [
     'nested_admin',
 
     # Apps
-    'account',
-    'core',
-    'public',
-    'program',
-    'exercise',
-    'package',
-    'notification',
+    'apps.account',
+    'apps.core',
+    'apps.public',
+    'apps.program',
+    'apps.exercise',
+    'apps.package',
+    'apps.notification',
 ]
 
 MIDDLEWARE = [

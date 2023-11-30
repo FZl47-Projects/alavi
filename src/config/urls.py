@@ -3,16 +3,16 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
-from account.views import login_register
+from apps.account.views import login_register
 
 
 urlpatterns = [
     path('admin/login/', login_register, name='login_register'),
     path('admin/', admin.site.urls),
-    path('u/', include('account.urls', namespace='account')),
-    path('', include('public.urls', namespace='public')),
-    path('program/', include('program.urls', namespace='program')),
-    path('exercise/', include('exercise.urls', namespace='exercise'))
+    path('u/', include('apps.account.urls', namespace='account')),
+    path('', include('apps.public.urls', namespace='public')),
+    path('program/', include('apps.program.urls', namespace='program')),
+    path('exercise/', include('apps.exercise.urls', namespace='exercise'))
 ]
 
 # Serve static files on dev
