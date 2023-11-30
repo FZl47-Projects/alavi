@@ -6,7 +6,8 @@ register = template.Library()
 # Check if user has package (Filter)
 @register.filter
 def has_package(user, package_name):
-    return user.has_package(package_name)
+    if user.is_authenticated:
+        return user.has_package(package_name)
 
 
 # Price thousands separator (Filter)

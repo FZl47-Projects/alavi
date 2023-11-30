@@ -127,7 +127,11 @@
                                                 </span>
                                             </div>
                                             <div class="mb-3">
-                                                {% if user|has_package:package.type %}
+                                                {% if not user.is_authenticated %}
+                                                    <a href="{% url 'account:login_register' %}" class="btn btn-danger rounded-3 mt-3 px-4">
+                                                        خرید پکیج
+                                                    </a>
+                                                {% elif user|has_package:package.type %}
                                                     <span class="btn btn-secondary rounded-3 mt-3 px-4">
                                                         خریداری شده
                                                     </span>
