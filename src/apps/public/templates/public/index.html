@@ -1,5 +1,6 @@
 {% extends 'base/base_template.html' %}
 {% load static %}
+{% load filters %}
 
 {% block Title %}
     خانه
@@ -96,119 +97,49 @@
                 <div class="mt-4">
                     <section>
                         <div class="d-flex justify-content-between">
-                            <span class="fw-semibold text-white" style="font-size: 1.8em;">محصولات</span>
+                            <h3 class="fw-semibold text-white">محصولات</h3>
                             <a href="{% url 'package:list' %}" class="btn btn-success rounded-3 pt-2">همه محصولات</a>
                         </div>
                         <!-- Slider -->
-                        <div class="swiper product-main-box mt-2 rounded-1" id="products-swiper">
+                        <div class="swiper product-main-box mt-3 rounded-1" id="products-swiper">
                             <div class="swiper-wrapper product-wrapper">
-                                <div class="swiper-slide product-slide-box">
-                                    <div class="d-flex flex-column align-items-center product-inner-box">
-                                        <div class="d-flex justify-content-center align-items-center p-3">
-                                            <i class="fa fa-dumbbell fa-4x text-success"></i>
-                                        </div>
-                                        <div class="d-flex flex-column align-items-center gap-4 mt-1 mb-3 text-white inner-info-box">
-                                            <span class="fw-bold" style="font-size: 1.25em;">
-                                                پکیج <span>برنامه بدنسازی</span>
-                                            </span>
-                                            <span class="d-flex align-items-center gap-1" style="font-size: 1.1em;">
-                                                <span>299,000</span>
-                                                <span class="font-80">تومان</span>
-                                            </span>
-                                        </div>
-                                        <div class="mb-3">
-                                            <button class="btn btn-danger rounded-3 mt-3 px-4">
-                                                سفارش پکیج
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide product-slide-box">
-                                    <div class="d-flex flex-column align-items-center product-inner-box">
-                                        <div class="d-flex justify-content-center align-items-center p-3">
-                                            <i class="fa fa-utensils fa-4x text-success"></i>
-                                        </div>
-                                        <div class="d-flex flex-column align-items-center gap-4 mt-1 mb-3 text-white inner-info-box">
-                                            <span class="fw-bold" style="font-size: 1.25em;">
-                                                پکیج <span>برنامه غذایی</span>
-                                            </span>
-                                            <span class="d-flex align-items-center gap-1" style="font-size: 1.1em;">
-                                                <span>299,000</span>
-                                                <span class="font-80">تومان</span>
-                                            </span>
-                                        </div>
-                                        <div class="mb-3">
-                                            <button class="btn btn-danger rounded-3 mt-3 px-4">
-                                                سفارش پکیج
-                                            </button>
+                                {% for package in packages %}
+                                    <div class="swiper-slide product-slide-box">
+                                        <div class="d-flex flex-column align-items-center product-inner-box">
+                                            <div class="d-flex justify-content-center align-items-center p-3">
+                                                {% if package.icon %}
+                                                    <figure>
+                                                        <img src="{{ package.icon.url }}" alt="Package logo" width="60" height="48">
+                                                    </figure>
+                                                {% elif package.fw_class %}
+                                                    <i class="fa {{ package.fw_class }} fa-4x text-success"></i>
+                                                {% else %}
+                                                    <i class="fa fa-heart-circle-plus fa-4x text-success"></i>
+                                                {% endif %}
+                                            </div>
+                                            <div class="d-flex flex-column align-items-center gap-4 mt-1 mb-3 text-white inner-info-box">
+                                                <span class="fw-bold" style="font-size: 1.25em;">
+                                                    پکیج <span>{{ package.get_type_label }}</span>
+                                                </span>
+                                                <span class="d-flex align-items-center gap-1" style="font-size: 1.1em;">
+                                                    <span>{{ package.price|to_tooman|format_price }}</span>
+                                                    <span class="font-80">تومان</span>
+                                                </span>
+                                            </div>
+                                            <div class="mb-3">
+                                                {% if user|has_package:package.type %}
+                                                    <span class="btn btn-secondary rounded-3 mt-3 px-4">
+                                                        خریداری شده
+                                                    </span>
+                                                {% else %}
+                                                    <a href="{{ package.buy_link|default:'#' }}" class="btn btn-danger rounded-3 mt-3 px-4">
+                                                        خرید پکیج
+                                                    </a>
+                                                {% endif %}
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="swiper-slide product-slide-box">
-                                    <div class="d-flex flex-column align-items-center product-inner-box">
-                                        <div class="d-flex justify-content-center align-items-center p-3">
-                                            <i class="fa-solid fa-person-running fa-4x text-success"></i>
-                                        </div>
-                                        <div class="d-flex flex-column align-items-center gap-4 mt-1 mb-3 text-white inner-info-box">
-                                            <span class="fw-bold" style="font-size: 1.25em;">
-                                                پکیج <span>تمرین کراسفیت</span>
-                                            </span>
-                                            <span class="d-flex align-items-center gap-1" style="font-size: 1.1em;">
-                                                <span>449,000</span>
-                                                <span class="font-80">تومان</span>
-                                            </span>
-                                        </div>
-                                        <div class="mb-3">
-                                            <button class="btn btn-danger rounded-3 mt-3 px-4">
-                                                سفارش پکیج
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide product-slide-box">
-                                    <div class="d-flex flex-column align-items-center product-inner-box">
-                                        <div class="d-flex justify-content-center align-items-center gap-3 p-3 w-100">
-                                            <i class="fa fa-dumbbell fa-4x text-success"></i>
-                                            <i class="fa fa-utensils fa-4x text-success"></i>
-                                        </div>
-                                        <div class="d-flex flex-column align-items-center gap-4 mt-1 mb-3 text-white inner-info-box">
-                                            <span class="fw-bold" style="font-size: 1.25em;">
-                                                پکیج <span>بدنسازی + غذایی</span>
-                                            </span>
-                                            <span class="d-flex align-items-center gap-1" style="font-size: 1.1em;">
-                                                <span>499,000</span>
-                                                <span class="font-80">تومان</span>
-                                            </span>
-                                        </div>
-                                        <div class="mb-3">
-                                            <button class="btn btn-danger rounded-3 mt-3 px-4">
-                                                سفارش پکیج
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide product-slide-box">
-                                    <div class="d-flex flex-column align-items-center product-inner-box">
-                                        <div class="d-flex justify-content-center align-items-center gap-2 p-3 w-100">
-                                            <i class="fa fa-person-running fa-4x text-success"></i>
-                                            <i class="fa fa-utensils fa-4x text-success"></i>
-                                        </div>
-                                        <div class="d-flex flex-column align-items-center gap-4 mt-1 mb-3 text-white inner-info-box">
-                                            <span class="fw-bold" style="font-size: 1.25em;">
-                                                پکیج <span>کراسفیت + غذایی</span>
-                                            </span>
-                                            <span class="d-flex align-items-center gap-1" style="font-size: 1.1em;">
-                                                <span>649,000</span>
-                                                <span class="font-80">تومان</span>
-                                            </span>
-                                        </div>
-                                        <div class="mb-3">
-                                            <button class="btn btn-danger rounded-3 mt-3 px-4">
-                                                سفارش پکیج
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
+                                {% endfor %}
                             </div>
                         </div>
                     </section>

@@ -1,3 +1,9 @@
-from django.shortcuts import render
+from django.views.generic import ListView
+from .models import Package
 
-# Create your views here.
+
+# ProductsList view
+class ProductListView(ListView):
+    template_name = 'package/packages_list.html'
+    model = Package
+    context_object_name = 'packages'

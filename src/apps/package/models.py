@@ -9,6 +9,9 @@ class Package(models.Model):
 
     type = models.CharField(_('Package type'), max_length=128, choices=PACKAGES.choices, default=PACKAGES.DIET)
     price = models.IntegerField(_('Price'), default=0, help_text=_('Rials'))
+    buy_link = models.URLField(_('Purchase link'), null=True, blank=True)
+    icon = models.ImageField(_('Package icon'), upload_to='images/packages/icons', null=True, blank=True)
+    fw_class = models.CharField(_('FontAwesome css class'), max_length=64, null=True, blank=True)
 
     created_at = models.DateTimeField(_('Create time'), auto_now_add=True)
     modified_at = models.DateTimeField(_('Modify time'), auto_now=True)

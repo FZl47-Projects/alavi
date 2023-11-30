@@ -1,0 +1,74 @@
+{% extends 'base/base_template.html' %}
+{% load static %}
+{% load filters %}
+
+
+{% block Title %}لیست محصولات{% endblock %}
+
+{% block Style %}
+    <link rel="stylesheet" href="{% static 'front/styles/product-list.css' %} ">
+
+{% endblock %}
+
+{% block Content %}
+    <section class="main-page">
+        <!-- START HEADER -->
+        {% include 'base/components/header.html' %}
+        <!-- END HEADER -->
+
+        <main class="container-fluid">
+            <section class="content-main">
+                <div class="d-flex flex-column w-100">
+                    <h2 class="text-white">
+                        محصولات <span class="font-60">(پکیج‌ها)</span>
+                    </h2>
+
+                    <div class="d-flex flex-wrap justify-content-center gap-4 mt-3 pb-4 w-100">
+                        {% for package in packages %}
+                            <div class="product-box">
+                                <div class="d-flex flex-column align-items-center product-inner-box">
+                                    <div class="d-flex justify-content-center align-items-center gap-2 p-3 w-100">
+                                        {% if package.icon %}
+                                            <figure>
+                                                <img src="{{ package.icon.url }}" alt="Package logo" width="60" height="48">
+                                            </figure>
+                                        {% elif package.fw_class %}
+                                            <i class="fa {{ package.fw_class }} fa-4x text-success"></i>
+                                        {% else %}
+                                            <i class="fa fa-heart-circle-plus fa-4x text-success"></i>
+                                        {% endif %}
+                                    </div>
+                                    <div class="d-flex flex-column align-items-center gap-4 mt-1 mb-3 text-white inner-info-box">
+                                        <span class="fw-bold text-nowrap" style="font-size: 1.25em;">
+                                            پکیج <span>{{ package.get_type_label }}</span>
+                                        </span>
+                                        <span class="d-flex align-items-center gap-1" style="font-size: 1.1em;">
+                                            <span>{{ package.price|to_tooman|format_price }}</span>
+                                            <span class="font-80">تومان</span>
+                                        </span>
+                                    </div>
+                                    <div class="mb-3">
+                                        {% if user|has_package:package.type %}
+                                            <span class="btn btn-secondary rounded-3 mt-3 px-5">
+                                                خریداری شده
+                                            </span>
+                                        {% else %}
+                                            <a href="{{ package.buy_link|default:'#' }}" class="btn btn-danger rounded-3 mt-3 px-5">
+                                                خرید پکیج
+                                            </a>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </section>
+        </main>
+    </section>
+
+    <script src="{% static 'front/js/main.js' %}"></script>
+{% endblock %}
+
+{% block Script %}
+{% endblock %}
