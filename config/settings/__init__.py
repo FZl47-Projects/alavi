@@ -1,10 +1,10 @@
 from config.settings.base import *
+from os import getenv
 
 
-PRODUCTION = False
-
+PRODUCTION = getenv('PRODUCTION', False)
 
 if PRODUCTION:
     from config.settings.production import *
 else:
-    from config.settings.dev import *
+    from config.settings.development import *
