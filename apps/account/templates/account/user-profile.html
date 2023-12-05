@@ -147,7 +147,7 @@
             </div>
             <section class="table-two col-12 col-lg-11" style="border-radius: 1rem">
                 <table class="table">
-                    {% if user.is_admin_user or user|has_package:'workout' %}
+                    {% if user.is_admin_user or user|has_package:'workout' or user|has_package:'any' %}
                         {% for program in user_detail.get_exercise_programs %}
                             <tr>
                                 <td>{{ program.title }}</td>
