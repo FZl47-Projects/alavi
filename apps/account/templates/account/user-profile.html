@@ -14,10 +14,6 @@
 
 {% block Style %}
     <style>
-        .field {
-            margin: 10px 0;
-        }
-
         .field label {
             margin-bottom: 10px;
         }
@@ -40,7 +36,7 @@
             </div>
             <section class="user-profile col-12 col-lg-11">
                 <div class="col-2 col-md-1">
-                    <div class="user-img">
+                    <div class="user-img text-center">
                         <img src="{{ user_detail.get_image_url }}" alt="{{ user.get_full_name }}">
                     </div>
                     {% if user_detail == user %}
@@ -65,32 +61,35 @@
                     <div class="specifications">
                         <div class="col-4">
                             <div class="specifications-item">
-                                {{ user_detail.get_full_name }}
+                                <span>نام: </span>
+                                <span>{{ user_detail.get_full_name }}</span>
                             </div>
                         </div>
                         <div class="col-4">
                             <div class="specifications-item">
-                                {{ user_detail.info.national_code|default:'ثبت نشده است' }}
+                                <span>کد ملی: </span>
+                                <span>{{ user_detail.user_profile.national_code|default:'ثبت نشده' }}</span>
                             </div>
                         </div>
                         <div class="col-4">
                             <div class="specifications-item">
-                                {{ user_detail.get_raw_phonenumber }}
+                                <span>موبایل: </span>
+                                <span>{{ user_detail.get_raw_phonenumber|format_mobile }}</span>
                             </div>
                         </div>
                         <div class="col-4">
                             <div class="specifications-item">
-                                {% if user_detail.info.weight %}
-                                    {{ user_detail.info.weight }}
+                                <span>وزن: </span>
+                                <span>
+                                    {{ user_detail.user_profile.weight|default:'ثبت نشده' }}
                                     کیلوگرم
-                                {% else %}
-                                    ثبت نشده است
-                                {% endif %}
+                                </span>
                             </div>
                         </div>
                         <div class="col-4">
                             <div class="specifications-item">
-                                {{ user_detail.info.height|default:'ثبت نشده است' }}
+                                <span>قد: </span>
+                                <span>{{ user_detail.user_profile.height|default:'ثبت نشده' }} سانتی‌متر</span>
                             </div>
                         </div>
                         {% if user.is_admin_user %}
@@ -111,7 +110,7 @@
             <div class="d-flex justify-content-between align-items-center col-12 col-lg-11 mx-auto my-3">
                 <div class="table-title m-0">لیست برنامه های غذایی</div>
             </div>
-            <section class="table-two col-12 col-lg-11" style="border-radius: 1rem">
+            <section class="table-two col-12 col-lg-11 rounded-3">
                 <table class="table">
                     {% if user.is_admin_user or user|has_package:'diet' %}
                         {% for program in user_detail.get_diet_programs %}
@@ -145,7 +144,7 @@
             <div class="d-flex justify-content-between align-items-center col-12 col-lg-11 mx-auto my-3">
                 <div class="table-title m-0">لیست تمرینات ورزشی</div>
             </div>
-            <section class="table-two col-12 col-lg-11" style="border-radius: 1rem">
+            <section class="table-two col-12 col-lg-11 rounded-3">
                 <table class="table">
                     {% if user.is_admin_user or user|has_package:'workout' or user|has_package:'any' %}
                         {% for program in user_detail.get_exercise_programs %}
@@ -189,23 +188,23 @@
                         <h5 class="modal-title" id="exampleModalLabel">تغییر مشخصات</h5>
                     </div>
                     <div class="modal-body col-11 mx-auto">
-                        <div class="my-3">
-                            <label for="">کد ملی</label>
-                            <input type="text" placeholder="کد ملی خود را وارد نمایید" class="form-control"
-                                   name="national_code" required value="{{ user.info.national_code }}">
+                        <div class="my-3 form-group">
+                            <label for="" class="form-label">کد ملی</label>
+                            <input type="text" placeholder="کد ملی خود را وارد نمایید" class="form-control" maxlength="10"
+                                   name="national_code" required value="{{ user_detail.user_profile.national_code }}">
                         </div>
-                        <div class="my-3">
-                            <label for="">قد(سانتی متر)</label>
+                        <div class="my-3 form-group">
+                            <label for="" class="form-label">قد(سانتی متر)</label>
                             <input type="number" placeholder="قد خود را وارد نمایید" class="form-control" name="height"
-                                   required value="{{ user.info.height }}">
+                                   required value="{{ user_detail.user_profile.height }}">
                         </div>
-                        <div class="my-3">
-                            <label for="">وزن(کیلوگرم)</label>
+                        <div class="my-3 form-group">
+                            <label for="" class="form-label">وزن(کیلوگرم)</label>
                             <input type="number" placeholder="وزن خود را وارد نمایید" class="form-control" name="weight"
-                                   required value="{{ user.info.weight }}">
+                                   required value="{{ user_detail.user_profile.weight }}">
                         </div>
-                        <div class="my-3">
-                            <label for="">عکس</label>
+                        <div class="my-3 form-group">
+                            <label for="" class="form-label">عکس</label>
                             <input type="file" accept="image/*" class="form-control" name="picture">
                         </div>
                     </div>
@@ -222,7 +221,6 @@
 {% endblock %}
 
 {% block Script %}
-{#    <script src="{% static 'front/js/back.js' %}"></script>#}
     <script src="{% static 'front/vendors/bootstrap.min.js' %}"></script>
     <script>
         if (getUrlParameter('diet-add')) {

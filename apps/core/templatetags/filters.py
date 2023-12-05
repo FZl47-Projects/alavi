@@ -23,3 +23,10 @@ def to_tooman(value):
     if value:
         value = str(value)
         return value[:-1]
+
+
+# Separate mobile number (Filter)
+@register.filter
+def format_mobile(value):
+    if value:
+        return f'{value[6:]} {value[3:6]} {value[:3]}'
