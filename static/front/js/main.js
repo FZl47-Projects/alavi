@@ -118,7 +118,8 @@ const productsSwiper = new Swiper('#products-swiper', {
       pauseOnMouseEnter: true,
     },
     slidesPerView: 1,
-    // spaceBetween : 10,
+    spaceBetween : 15,
+
     breakpoints: {
       // when window width is >= 320px
       200: {

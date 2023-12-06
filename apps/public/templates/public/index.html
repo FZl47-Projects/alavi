@@ -149,20 +149,17 @@
                     </section>
                 </div>
 
-                <div class="services-content mt-5">
-                    <h1 class="text-white mb-3">مدرک ها</h1>
+                <section class="mt-5 pb-3">
+                    <h2 class="fw-semibold text-white mb-1">مدرک ها</h2>
                     <div class="services-content-inner">
                         <!-- Slider -->
-                        <div class="swiper" id="certificate-slider">
-                            <div class="swiper-wrapper">
-                                <!--each slide service  -->
+                        <div class="swiper mt-3" id="certificate-slider">
+                            <div class="swiper-wrapper product-wrapper">
                                 {% for certificate in certificates %}
-                                    <div class="swiper-slide">
-                                        <a href="#">
-                                            <div class="services-item">
-                                                <img src="{{ certificate.picture.url }}" alt="">
-                                            </div>
-                                        </a>
+                                    <div class="swiper-slide product-slide-box py-1">
+                                        <div class="d-flex flex-column align-items-center product-inner-box">
+                                            <img src="{{ certificate.picture.url }}" alt="">
+                                        </div>
                                     </div>
                                 {% endfor %}
                             </div>
@@ -173,7 +170,7 @@
                         </div>
                         <!-- Slider -->
                     </div>
-                </div>
+                </section>
 
             </section>
         </main>
