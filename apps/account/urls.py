@@ -20,10 +20,6 @@ urlpatterns = [
     path('club-admin/home-admin', views.HomeAdmin.as_view(), name='home-admin'),
     path('club-admin/users', views.Users.as_view(), name='users'),
 
-    # path('club-admin/certificates', views.Certificates.as_view(), name='certificates'),
-    # path('club-admin/certificate/add', views.CertificateAdd.as_view(), name='certificate_add'),
-    # path('club-admin/certificate/<int:certificate_id>/delete', views.CertificateDelete.as_view(), name='certificate_delete'),
-
     path('user-profile/<int:user_id>', views.UserProfileView.as_view(), name='user-profile'),
     path('user-profile/update/', views.UserProfileUpdate.as_view(), name='user_profile_update'),
     path('user-profile/<int:user_id>/delete', views.UserProfileDelete.as_view(), name='user-profile-delete'),

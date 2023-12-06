@@ -1,6 +1,7 @@
 {% extends 'base/base_template.html' %}
 {% load static %}
 
+
 {% block Title %}
     لیست کاربران
 {% endblock %}
@@ -13,16 +14,15 @@
 {% endblock %}
 
 {% block Content %}
-    <body>
     {% for user in users %}
         <div class="content-modal add-modal" id="add-modal-{{ user.id }}">
             <div class="inner-modal">
                 <div class="content">
-                    <div class="content-inner">
+                    <div class="content-inner rounded-3">
                         <div class="col-6">
-                            <a href="{% url 'admin:program_dietprogram_add' %}">
+                            <a href="{% url 'admin:diet_dietprogram_add' %}">
                                 <div class="modal-item">
-                                    <span style="padding-left:5px ;"><i class="fa-solid fa-bowl-food"></i></span>
+                                    <span style="padding-left: 5px;"><i class="fa-solid fa-bowl-food"></i></span>
                                     <span>تعریف برنامه غذایی</span>
                                 </div>
                             </a>
@@ -30,7 +30,7 @@
                         <div class="col-6">
                             <a href="{% url 'admin:exercise_exerciseprogram_add' %}">
                                 <div class="modal-item">
-                                    <span style="padding-left:5px ;"><i
+                                    <span style="padding-left :5px;"><i
                                             class="fa-sharp fa-solid fa-dumbbell"></i></span>
                                     <span> تعریف برنامه تمرینی</span>
                                 </div>
@@ -70,7 +70,7 @@
                                         data-bs-target="#delete-user-{{ user.id }}">
                                     <span><i class="fa-solid  fa-trash"></i></span>
                                 </button>
-                                <span class="add-btn btn btn-primary" style="margin-right: 10px;" modal-id="{{ user.id }}"><i
+                                <span class="add-btn btn btn-primary me-1" modal-id="{{ user.id }}"><i
                                         class="fa-solid  fa-circle-plus"></i>
                                 </span>
                             </td>
@@ -91,7 +91,7 @@
                             - {{ user.get_full_name|truncatechars:30 }}</h5>
                     </div>
                     <div class="modal-body">
-                        <p class="bg-danger-text text-bold">توجه کنید با حذف کاربر تمام محتویات مربوط با ان حذف خواهند
+                        <p class="bg-danger-text text-bold">توجه کنید با حذف کاربر تمام محتویات مربوط با آن حذف خواهند
                             شد</p>
                     </div>
                     <div class="modal-footer">
@@ -107,7 +107,6 @@
         </div>
     {% endfor %}
 
-    </body>
 {% endblock %}
 
 {% block Script %}

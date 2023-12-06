@@ -30,7 +30,8 @@
         <main class="col-md-12 col-lg-12">
             <div class="col-12 col-lg-11 back-btn">
                 <span>مشخصات</span>
-                <button onclick="window.location ='{% if user.is_admin_user %}{% url 'account:home-admin' %}{% else %}{% url 'public:index' %}{% endif %}'" class="back">
+                <button onclick="window.location ='{% if user.is_admin_user %}{% url 'account:users' %}{% else %}{% url 'public:index' %}{% endif %}'"
+                        class="back">
                     <i class="fa fa-arrow-left"></i>
                 </button>
             </div>
@@ -50,7 +51,7 @@
                             </a>
                         </div>
                     {% else %}
-                        <div class="specifications-item mt-3">
+                        <div class="specifications-item mt-3 text-center">
                             <a href="{% url 'admin:account_userprofile_change' user_detail.id %}" class="btn btn-primary p-2">
                                 همه اطلاعات
                             </a>
@@ -118,7 +119,7 @@
                                 <td>{{ program.title }}</td>
                                 <td class="datetime-convert">{{ program.get_created_at }}</td>
                                 <td>
-                                    <a href="{% url 'program:diet_program' program.pk %}" title="مشاهده برنامه" class="add-btn btn btn-primary"><i
+                                    <a href="{% url 'diet:diet_program' program.pk %}" title="مشاهده برنامه" class="add-btn btn btn-primary"><i
                                             class="fa-solid  fa-eye"></i>
                                     </a>
                                     {% if user.is_admin_user %}
@@ -146,7 +147,7 @@
             </div>
             <section class="table-two col-12 col-lg-11 rounded-3">
                 <table class="table">
-                    {% if user.is_admin_user or user|has_package:'workout' or user|has_package:'any' %}
+                    {% if user.is_admin_user or user|has_package:'workout' or user|has_package:'any' or user|has_package:'crossfit' %}
                         {% for program in user_detail.get_exercise_programs %}
                             <tr>
                                 <td>{{ program.title }}</td>

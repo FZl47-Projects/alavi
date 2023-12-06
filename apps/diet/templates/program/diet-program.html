@@ -14,31 +14,30 @@
 {% endblock %}
 
 {% block Content %}
-    <body>
     <section class="main-page">
         <main class="col-md-12 col-lg-12 content-main-admin">
             {% include 'base/components/header.html' %}
 
-            <div style="display: flex; justify-content: space-between;">
+            <div class="d-flex justify-content-between align-items-center">
                 <h2 class="text-white m-4">
                     برنامه غذایی
-                    <span style="font-size: 0.6em">({{ diet_program.title }})</span>
+                    <span class="font-60">({{ diet_program.title }})</span>
                 </h2>
-                <a href="{% url 'account:user-profile' diet_program.user.id %}" class="m-4 back-2">
-                    <i class="fa fa-arrow-left" style="margin-top: 0.15rem;"></i>
+                <a href="{% url 'account:user-profile' diet_program.user.id %}" class="d-flex align-items-center gap-1 text-center btn btn-danger mx-4">
+                    بازگشت<i class="fa fa-arrow-circle-left"></i>
                 </a>
             </div>
 
             <div class="main-p-box">
                 {% for daily_program in diet_program.get_daily_programs %}
                     <div class="daily-p-box">
-                        <div class="daily-p-header-box">
+                        <div class="daily-p-header-box py-3">
                             {% if user.is_admin_user %}
-                                <a href="{{ daily_program.get_absolute_url }}">
-                                    <h3 style="margin: 0.5rem;">{{ daily_program.get_day_label }}</h3>
+                                <a class="mx-1 h4" href="{{ daily_program.get_absolute_url }}">
+                                    {{ daily_program.get_day_label }}
                                 </a>
                             {% else %}
-                                <h3 style="margin: 0.5rem;">{{ daily_program.get_day_label }}</h3>
+                                <h3 class="mx-1">{{ daily_program.get_day_label }}</h3>
                             {% endif %}
                         </div>
 
@@ -48,13 +47,13 @@
                                     <div class="daily-p-main-inner-box-header">
                                         {% if user.is_admin_user %}
                                             <a href="{{ daily_meal.get_absolute_url }}">
-                                                <h5 style="color: white;">{{ daily_meal.meal.title }}</h5>
+                                                <h5 class="text-white">{{ daily_meal.meal.title }}</h5>
                                             </a>
                                         {% else %}
-                                            <h5 style="color: white;">{{ daily_meal.meal.title }}</h5>
+                                            <h5 class="text-white">{{ daily_meal.meal.title }}</h5>
                                         {% endif %}
 
-                                        <span style="color: white; font-size: medium;">{{ daily_meal.meal.get_time }}</span>
+                                        <span class="text-white" style="font-size: medium;">{{ daily_meal.meal.get_time }}</span>
                                     </div>
                                     <div class="daily-p-main-inner-inner-box">
                                         {% for meal_food in daily_meal.meal_foods.all %}
@@ -74,13 +73,13 @@
 
                 {% endfor %}
 
-                <div class="daily-p-box" style="margin-top: 2rem;">
+                <div class="daily-p-box mt-4">
                     <div class="daily-p-header-box">
-                        <h3 style="margin-top: 0.4rem; margin-right: 0.5rem;">توصیه های کلی</h3>
+                        <h3 class="mt-2 me-2">توصیه های کلی</h3>
                     </div>
-                    <div style="background-color: white; padding: 0.5rem; border-radius: 0 0 0.5rem 0.5rem;">
+                    <div class="bg-white" style="padding: 0.5rem; border-radius: 0 0 0.25rem 0.25rem;">
                         {% for recommend in diet_program.get_program_recommends %}
-                            <div style="font-size: 12pt; margin-top: 0.5rem;">
+                            <div class="mt-2" style="font-size: 12pt;">
                                 <i class="fa fa-square" style="font-size: 0.6em; margin-left: 0.5rem;"></i>
                                 <span style="font-weight: 400;">{{ recommend.text }}</span>
                             </div>
@@ -90,7 +89,7 @@
             </div>
         </main>
     </section>
+
     <script src="{% static 'front/vendors/bootstrap.min.js' %}"></script>
     <script src="{% static 'front/js/diet-plan.js' %}"></script>
-    </body>
 {% endblock %}

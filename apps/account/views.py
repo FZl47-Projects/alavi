@@ -314,38 +314,3 @@ class Users(View):
             'users': users
         }
         return render(request, self.template_name, context)
-
-
-class Certificates(View):
-    template_name = 'account/admin/certificates.html'
-
-    @admin_required_cbv()
-    def get(self, request):
-        certificates = Certificate.objects.all()
-        context = {
-            'certificates': certificates
-        }
-        return render(request, self.template_name, context)
-
-
-class CertificateAdd(View):
-
-    @admin_required_cbv()
-    def post(self, request):
-        data = request.POST
-        f = forms.CertificateAdd(data, request.FILES)
-        if form_validate_err(request, f) is False:
-            return redirect('account:certificates')
-        f.save()
-        messages.success(request, 'مدرک با موفقیت اضافه شد')
-        return redirect('account:certificates')
-
-
-class CertificateDelete(View):
-
-    @admin_required_cbv()
-    def get(self, request, certificate_id):
-        certificate = get_object_or_404(Certificate, id=certificate_id)
-        certificate.delete()
-        messages.success(request, 'مدرک با موفقیت حذف شد')
-        return redirect('account:certificates')
