@@ -37,7 +37,7 @@ class DailyDietMealAdmin(NestedModelAdmin):
     def response_add(self, request, obj, post_url_continue=None):
         """ Custom redirection after add obj """
         if "_save" in request.POST:
-            return redirect(f'/admin/program/dailydietprogram/{obj.daily_program.id}/change')
+            return redirect(f'/admin/diet/dailydietprogram/{obj.daily_program.id}/change')
 
         # Call the parent class's response_add method for other actions
         return super().response_add(request, obj, post_url_continue)
@@ -45,13 +45,13 @@ class DailyDietMealAdmin(NestedModelAdmin):
     def response_change(self, request, obj):
         """ Custom redirection after change obj """
         if "_save" in request.POST:
-            return redirect(f'/admin/program/dailydietprogram/{obj.daily_program.id}/change')
+            return redirect(f'/admin/diet/dailydietprogram/{obj.daily_program.id}/change')
 
         # Call the parent class's response_change method for other actions
         return super().response_change(request, obj)
 
     def response_delete(self, request, obj_display, obj_id):
-        return redirect('/admin/program/dietprogram/')
+        return redirect('/admin/diet/dietprogram/')
 
     def get_view_on_site_url(self, obj=None):
         """ Custom redirection for "View on site" button """

@@ -2,8 +2,8 @@ from django.utils.translation import gettext as _
 from django.shortcuts import reverse
 from django.db import models
 from apps.exercise.enums import WeekChoices
-from apps.program.enums import DayChoices
-from apps.program.models import Meal, Food
+from apps.diet.enums import DayChoices
+from apps.diet.models import Meal, Food
 from apps.exercise.models import Workout
 
 

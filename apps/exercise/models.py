@@ -2,7 +2,7 @@ from django.utils.translation import gettext as _
 from .enums import WorkoutLevelChoices, WeekChoices
 from apps.core.utils import get_timesince_persian
 from django.shortcuts import reverse
-from apps.program.enums import DayChoices
+from apps.diet.enums import DayChoices
 from apps.account.models import User
 from django.db import models
 

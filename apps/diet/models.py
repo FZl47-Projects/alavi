@@ -72,7 +72,7 @@ class DietProgram(models.Model):
         return self.daily_programs.all()
 
     def get_absolute_url(self):
-        return reverse('admin:program_dietprogram_change', args=(self.id,))
+        return reverse('admin:diet_dietprogram_change', args=(self.id,))
     
     def __str__(self) -> str:
         user_phone = self.user.get_raw_phonenumber()
@@ -103,7 +103,7 @@ class DailyDietProgram(models.Model):
         return self.get_day_display()
 
     def get_absolute_url(self):
-        return reverse('admin:program_dailydietprogram_change', args=(self.id,))
+        return reverse('admin:diet_dailydietprogram_change', args=(self.id,))
 
     def __str__(self) -> str:
         return f'{self.diet_program} - {self.get_day_label}'
@@ -123,7 +123,7 @@ class DailyDietMeal(models.Model):
         ordering = ('created_at',)
 
     def get_absolute_url(self):
-        return reverse('admin:program_dailydietmeal_change', args=(self.id,))
+        return reverse('admin:diet_dailydietmeal_change', args=(self.id,))
 
     def __str__(self) -> str:
         return f'{self.daily_program} - {self.meal}'

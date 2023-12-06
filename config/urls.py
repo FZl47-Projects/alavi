@@ -11,7 +11,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('u/', include('apps.account.urls', namespace='account')),
     path('', include('apps.public.urls', namespace='public')),
-    path('program/', include('apps.program.urls', namespace='program')),
+    path('diet/', include('apps.diet.urls', namespace='diet')),
     path('exercise/', include('apps.exercise.urls', namespace='exercise')),
     path('package/', include('apps.package.urls', namespace='package')),
 ]

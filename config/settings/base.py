@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'apps.account',
     'apps.core',
     'apps.public',
-    'apps.program',
+    'apps.diet',
     'apps.exercise',
     'apps.package',
     'apps.notification',
