@@ -19,10 +19,9 @@ DEBUG = os.getenv('DEBUG', True)
 
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '*').split(',')
 
-HOST_ADDRESS = os.getenv('HOST_ADDRESS', 'http://127.0.0.1:8000')
+HOST_ADDRESS = os.getenv('HOST_ADDRESS', 'http://127.0.0.1:8000').split(',')
 
-CSRF_TRUSTED_ORIGINS = [HOST_ADDRESS]
-
+CSRF_TRUSTED_ORIGINS = [*HOST_ADDRESS]
 
 # Application definition
 
@@ -167,8 +166,8 @@ IMAGE_FORMATS = [
 
 Q_CLUSTER = {
     'name': 'django-q',
-    'timeout': 60,
-    'orm': 'default',
+    'timeout': int(os.getenv('Q_CLUSTER_TIMEOUT', 60)),
+    'orm': os.getenv('Q_CLUSTER_ORM', 'default'),
 }
 
 MESSAGE_STORAGE = "django.contrib.messages.storage.cookie.CookieStorage"
@@ -179,8 +178,8 @@ REDIS_CONFIG = {
 }
 
 RESET_PASSWORD_CONFIG = {
-    'TIMEOUT': 60,  # by sec
-    'CODE_LENGTH': 6,
+    'TIMEOUT': int(os.getenv('RESET_PASS_CONFIG_TIMEOUT', 60)),  # by sec
+    'CODE_LENGTH': int(os.getenv('RESET_PASS_CONFIG_CODE_LENGTH', 6)),
     'STORE_BY': 'reset_password_phonenumber_{}'
 }
 
@@ -190,13 +189,13 @@ EMAIL_SUBJECT = f'اعلان از طرف سامانه علوی '
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
-EMAIL_PORT = os.getenv('EMAIL_PORT', 587)
+EMAIL_PORT = int(os.getenv('EMAIL_PORT', 587))
 EMAIL_HOST_USER = os.getenv('EMAIL_USER', 'fzl47.projects@gmail.com')
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_PASSWORD', 'zrqxdunuaorfagaq')
 
-
+# SMS configurations
 SMS_CONFIG = {
-    'API_KEY': 'ml23kKIXh-JXCBNfbs-6DWnU1ZaBJuVxcZGjLRnggvs=',
-    'API_URL': 'http://rest.ippanel.com/v1/messages/patterns/send',
-    'ORIGINATOR': '983000505'
+    'API_KEY': os.getenv('SMS_CONFIG_API_KEY', 'ml23kKIXh-JXCBNfbs-6DWnU1ZaBJuVxcZGjLRnggvs='),
+    'API_URL': os.getenv('SMS_CONFIG_API_URL', 'http://rest.ippanel.com/v1/messages/patterns/send'),
+    'ORIGINATOR': os.getenv('SMS_CONFIG_ORIGINATOR', '983000505')
 }
