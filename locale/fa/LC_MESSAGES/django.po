@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-30 23:20+0330\n"
+"POT-Creation-Date: 2023-12-06 12:22+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -477,10 +477,14 @@ msgid "Crossfit + Diet"
 msgstr "کراسفیت + رژیم غذایی"
 
 #: .\apps\package\enums.py:12
+msgid "Private workout + Diet"
+msgstr "بدنسازی خصوصی + غذایی"
+
+#: .\apps\package\enums.py:13
 msgid "Any sport + Diet"
 msgstr "هر ورزش تخصصی + غذایی"
 
-#: .\apps\package\enums.py:13
+#: .\apps\package\enums.py:14
 msgid "Offline"
 msgstr "آفلاین"
 
@@ -1984,9 +1988,6 @@ msgstr ""
 #: .\venv\Lib\site-packages\nested_admin\templates\nesting\admin\inlines\tabular.html:33
 msgid "Delete?"
 msgstr ""
-
-#~ msgid "Exercise + Diet"
-#~ msgstr "بدنسازی + رژیم غذایی"
 
 msgid "Please correct the error below."
 msgid_plural "Please correct the errors below."
