@@ -1,5 +1,6 @@
 from django.utils.translation import gettext as _
 from django.contrib.auth.admin import UserAdmin
+from django.utils.html import escape, mark_safe
 from django.shortcuts import reverse
 from django.contrib import admin
 from .forms import CustomUserCreationForm, CustomUserChangeForm
@@ -13,8 +14,9 @@ class CustomUserAdmin(UserAdmin):
 
     model = User
 
-    list_display = ('get_raw_phonenumber', 'email', 'first_name', 'last_name', 'role', 'is_active', 'is_staff')
-    list_filter = ('is_active', 'is_staff', 'is_superuser', 'role')
+    list_display = ('get_raw_phonenumber', 'email', 'first_name', 'last_name', 'role', 'is_active', 'is_staff', 'profile_link')
+    list_filter = ('is_active', 'is_staff', 'role')
+    date_hierarchy = 'date_joined'
     search_fields = ('email', 'phonenumber', 'last_name')
     ordering = ('phonenumber', 'email')
     filter_horizontal = ('packages', 'user_permissions')
@@ -48,6 +50,13 @@ class CustomUserAdmin(UserAdmin):
 
         return [field.name for field in fields if field.name not in excludes]
 
+    @admin.display(description=_('Profile'))
+    def profile_link(self, obj):
+        link = reverse("admin:account_userprofile_change", args=[obj.user_profile.id])
+        return mark_safe(f'<a href="{link}">{escape(_("View"))}</a>')
+
+    profile_link.allow_tags = True
+
 
 # UserProfile Model Admin
 @admin.register(UserProfile)
@@ -62,10 +71,10 @@ class UserProfileAdmin(admin.ModelAdmin):
         (None, {'fields': ('user', 'national_code', 'picture')}),
         (_('Survey'), {'fields': ('last_exercise', 'goal_of_program', 'exercise_systems', 'additional_explain')}),
         (_('Body info'), {'fields': ('weight', 'height', 'waist_size', 'hip_size', 'arm_size', 'chest_size')}),
-        (_('Disease history'), {'fields': ('family_disease', 'special_disease', 'special_medicine', 'medicine_name')}),
+        (_('Disease history'), {'fields': ('family_disease', 'family_disease_name', 'special_disease', 'special_disease_name', 'special_medicine', 'medicine_name')}),
         (_('Food/Supplement info'), {'fields': ('breakfast_time', 'snack_time', 'launch_time', 'dinner_time')}),
-        (_('Continue food info'), {'fields': ('use_supplement', 'want_supplement', 'used_steroids', 'in_diet', 'vegetarian')}),
-        (_('Exercise info'), {'fields': ('physical_damage', 'regular_exercise', 'doing_exercise', 'exercise_days')}),
+        (_('Continue food info'), {'fields': ('use_supplement', 'supplement_name', 'want_supplement', 'used_steroids', 'steroids_name', 'in_diet', 'diet_name', 'vegetarian')}),
+        (_('Exercise info'), {'fields': ('physical_damage', 'regular_exercise', 'exercise_name', 'doing_exercise', 'exercise_days')}),
         (_('Documents'), {'fields': ('body_composition', 'body_checkup', 'body_picture')}),
         (_('Important dates'), {'fields': ('created_at', 'modified_at')}),
         (_('Verification'), {'fields': ('verified',)}),
