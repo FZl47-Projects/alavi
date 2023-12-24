@@ -20,47 +20,6 @@
                 <span>کاربر گرامی، لطفا با دقت به سوالات زیر نسبت به خود پاسخ دهید.</span>
             </div>
 
-            <!-- Survey form -->
-            <div id="form-0" class="form-box d-block">
-                <div class="form-box-title">
-                    <h4>فرم نظرسنجی کاربر</h4>
-                </div>
-                <div class="form">
-                    <div class="input-section">
-                        <label class="d-flex flex-column gap-2">
-                            <span>
-                                آخرین جلسه ای که به صورت منظم ورزش کرده اید چه زمانی بوده است؟ <span class="necessary">(الزامی)</span>
-                            </span>
-                            <textarea name="last_exercise" rows="3" required placeholder="مثال: یک ماه پیش، در حال حاضر ورزش منظم دارم و..." class="form-control input textarea"></textarea>
-                        </label>
-                    </div>
-                    <div class="input-section">
-                        <label class="d-flex flex-column gap-2">
-                            <span>
-                                هدف شما از گرفتن برنامه چیست؟ <span class="necessary">(الزامی)</span>
-                            </span>
-                            <textarea name="goal_of_program" rows="3" required placeholder="مثال: افزایش یا کاهش وزن، آمادگی برای ورزش خاص و..." class="form-control input textarea"></textarea>
-                        </label>
-                    </div>
-                    <div class="input-section">
-                        <label class="d-flex flex-column gap-2">
-                            <span>
-                                سیستم های تمرینی که تاکنون تجربه کرده اید به همراه سطح آنها را بنویسید:
-                            </span>
-                            <textarea name="exercise_systems" rows="3" placeholder="اختیاری" class="form-control input textarea"></textarea>
-                        </label>
-                    </div>
-                    <div class="input-section">
-                        <label class="d-flex flex-column gap-2">
-                            <span>
-                                توضیحات تکمیلی
-                            </span>
-                            <textarea name="additional_explain" rows="3" placeholder="می‌توانید هرگونه توضیح یا مطلبی که فکر می‌کنید در روند تهیه برنامه موًثر می‌باشد را ذکر کنید." class="form-control input textarea"></textarea>
-                        </label>
-                    </div>
-                </div>
-            </div>
-
             <!-- Body info form -->
             <div id="form-1" class="form-box d-block">
                 <div class="form-box-title">
@@ -137,6 +96,29 @@
                 <div class="form">
                     <div class="input-section">
                         <span class="input-section-title">
+                            آیا سابقه ورزش حرفه‌ای و منظم دارید؟
+                        </span>
+                        <div class="radio-input-section">
+                            <label class="radio-input-label">
+                                خیر
+                                <input type="radio" checked name="regular_exercise" value="false" onchange="activeField('exerciseNameInput', this.value)" class="input">
+                            </label>
+                            <label class="radio-input-section">
+                                بله
+                                <input type="radio" name="regular_exercise" value="true" onchange="activeField('exerciseNameInput', this.value)" class="input">
+                            </label>
+                        </div>
+                        <div id="exerciseNameInput" class="mt-4 d-none">
+                            <label class="d-flex flex-column gap-2">
+                                <span>
+                                     لطفا نام ورزش یا تمرین را وارد نمایید <span class="necessary">(الزامی)</span>
+                                </span>
+                                <input type="text" name="exercise_name" placeholder="عنوان ورزش" class="form-control input">
+                            </label>
+                        </div>
+                    </div>
+                    <div class="input-section">
+                        <span class="input-section-title">
                             آیا تاکنون آسیبی در ناحیه عضلات، تاندون و مفاصل داشته اید؟
                         </span>
                         <div class="radio-input-section">
@@ -147,21 +129,6 @@
                             <label class="radio-input-section">
                                 بله
                                 <input type="radio" name="physical_damage" value="true" class="input">
-                            </label>
-                        </div>
-                    </div>
-                    <div class="input-section">
-                        <span class="input-section-title">
-                            آیا سابقه ورزش حرفه‌ای و منظم دارید؟
-                        </span>
-                        <div class="radio-input-section">
-                            <label class="radio-input-label">
-                                خیر
-                                <input type="radio" checked name="regular_exercise" value="false" class="input">
-                            </label>
-                            <label class="radio-input-section">
-                                بله
-                                <input type="radio" name="regular_exercise" value="true" class="input">
                             </label>
                         </div>
                     </div>
@@ -214,6 +181,125 @@
                                 پنجشنبه
                             </label>
                         </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Survey form -->
+            <div id="form-0" class="form-box d-block">
+                <div class="form-box-title">
+                    <h4>فرم نظرسنجی کاربر</h4>
+                </div>
+                <div class="form">
+                    <div class="input-section">
+                        <label class="d-flex flex-column gap-2">
+                            <span>
+                                آخرین جلسه ای که به صورت منظم ورزش کرده اید چه زمانی بوده است؟ <span class="necessary">(الزامی)</span>
+                            </span>
+                            <textarea name="last_exercise" rows="3" required placeholder="مثال: یک ماه پیش، در حال حاضر ورزش منظم دارم و..." class="form-control input textarea"></textarea>
+                        </label>
+                    </div>
+                    <div class="input-section">
+                        <label class="d-flex flex-column gap-2">
+                            <span>
+                                هدف شما از گرفتن برنامه چیست؟ <span class="necessary">(الزامی)</span>
+                            </span>
+                            <textarea name="goal_of_program" rows="3" required placeholder="مثال: افزایش یا کاهش وزن، آمادگی برای ورزش خاص و..." class="form-control input textarea"></textarea>
+                        </label>
+                    </div>
+                    <div class="input-section">
+                        <label class="d-flex flex-column gap-2">
+                            <span>
+                                سیستم های تمرینی که تاکنون تجربه کرده اید به همراه سطح آنها را بنویسید:
+                            </span>
+                            <textarea name="exercise_systems" rows="3" placeholder="اختیاری" class="form-control input textarea"></textarea>
+                        </label>
+                    </div>
+                    <div class="input-section">
+                        <label class="d-flex flex-column gap-2">
+                            <span>
+                                توضیحات تکمیلی
+                            </span>
+                            <textarea name="additional_explain" rows="3" placeholder="می‌توانید هرگونه توضیح یا مطلبی که فکر می‌کنید در روند تهیه برنامه موًثر می‌باشد را ذکر کنید." class="form-control input textarea"></textarea>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Disease history form -->
+            <div id="form-2" class="form-box d-block">
+                <div class="form-box-title">
+                    <h4>تاریخجه بیماری</h4>
+                </div>
+                <div class="form">
+                    <div class="input-section">
+                        <span class="input-section-title">
+                            آیا سابقه بیماری خاصی در خانواده خود دارید؟ <span>(بیماری قلبی، دیابت و...)</span>
+                        </span>
+                        <div class="radio-input-section">
+                            <label class="radio-input-label">
+                                خیر
+                                <input type="radio" checked name="family_disease" value="false" onchange="activeField('familyDiseaseNameInput', this.value)" class="input">
+                            </label>
+                            <label class="radio-input-section">
+                                بله
+                                <input type="radio" name="family_disease" value="true" onchange="activeField('familyDiseaseNameInput', this.value)" class="input">
+                            </label>
+                        </div>
+                        <div id="familyDiseaseNameInput" class="mt-4 d-none">
+                            <label class="d-flex flex-column gap-2">
+                                <span>
+                                     لطفا نام بیماری را وارد نمایید <span class="necessary">(الزامی)</span>
+                                </span>
+                                <input type="text" name="family_disease_name" placeholder="عنوان بیماری" class="form-control input">
+                            </label>
+                        </div>
+                    </div>
+                    <div class="input-section">
+                        <span class="input-section-title">
+                            آیا بیماری خاصی دارید؟
+                        </span>
+                        <div class="radio-input-section">
+                            <label class="radio-input-label">
+                                خیر
+                                <input type="radio" checked name="special_disease" value="false" onchange="activeField('specialDiseaseNameInput', this.value)" class="input">
+                            </label>
+                            <label class="radio-input-section">
+                                بله
+                                <input type="radio" name="special_disease" value="true" onchange="activeField('specialDiseaseNameInput', this.value)" class="input">
+                            </label>
+                        </div>
+                        <div id="specialDiseaseNameInput" class="mt-4 d-none">
+                            <label class="d-flex flex-column gap-2">
+                                <span>
+                                     لطفا نام بیماری را وارد نمایید <span class="necessary">(الزامی)</span>
+                                </span>
+                                <input type="text" name="special_disease_name" placeholder="عنوان بیماری" class="form-control input">
+                            </label>
+                        </div>
+                    </div>
+                    <div class="input-section">
+                        <span class="input-section-title">
+                            آیا در حال حاضر داروی خاصی مصرف می‌کنید؟
+                        </span>
+                        <div class="radio-input-section">
+                            <label class="radio-input-label">
+                                خیر
+                                <input type="radio" checked name="special_medicine" value="false" onchange="activeField('medicineNameInput', this.value)" class="input">
+                            </label>
+                            <label class="radio-input-section">
+                                بله
+                                <input type="radio" name="special_medicine" value="true" onchange="activeField('medicineNameInput', this.value)" class="input">
+                            </label>
+                        </div>
+                    </div>
+                    <div id="medicineNameInput" class="input-section d-none">
+                        <label class="d-flex flex-column gap-2">
+                            <span>
+                                 لطفا نام دارو را وارد نمایید <span class="necessary">(الزامی)</span>
+                            </span>
+                            <input type="text" name="medicine_name" placeholder="نام دارو" class="form-control input">
+                        </label>
                     </div>
                 </div>
             </div>
@@ -295,11 +381,19 @@
                         <div class="radio-input-section">
                             <label class="radio-input-label">
                                 خیر
-                                <input type="radio" checked name="use_supplement" value="false" class="input">
+                                <input type="radio" checked name="use_supplement" value="false" onchange="activeField('supplementNameInput', this.value)" class="input">
                             </label>
                             <label class="radio-input-section">
                                 بله
-                                <input type="radio" name="use_supplement" value="true" class="input">
+                                <input type="radio" name="use_supplement" value="true" onchange="activeField('supplementNameInput', this.value)" class="input">
+                            </label>
+                        </div>
+                        <div id="supplementNameInput" class="mt-4 d-none">
+                            <label class="d-flex flex-column gap-2">
+                                <span>
+                                     لطفا نام مکمل را وارد نمایید <span class="necessary">(الزامی)</span>
+                                </span>
+                                <input type="text" name="supplement_name" placeholder="عنوان مکمل" class="form-control input">
                             </label>
                         </div>
                     </div>
@@ -325,11 +419,19 @@
                         <div class="radio-input-section">
                             <label class="radio-input-label">
                                 خیر
-                                <input type="radio" checked name="used_steroids" value="false" class="input">
+                                <input type="radio" checked name="used_steroids" value="false" onchange="activeField('steroidsNameInput', this.value)" class="input">
                             </label>
                             <label class="radio-input-section">
                                 بله
-                                <input type="radio" name="used_steroids" value="true" class="input">
+                                <input type="radio" name="used_steroids" value="true" onchange="activeField('steroidsNameInput', this.value)" class="input">
+                            </label>
+                        </div>
+                        <div id="steroidsNameInput" class="mt-4 d-none">
+                            <label class="d-flex flex-column gap-2">
+                                <span>
+                                     لطفا نام دارو را وارد نمایید <span class="necessary">(الزامی)</span>
+                                </span>
+                                <input type="text" name="steroids_name" placeholder="عنوان دارو" class="form-control input">
                             </label>
                         </div>
                     </div>
@@ -340,11 +442,19 @@
                         <div class="radio-input-section">
                             <label class="radio-input-label">
                                 خیر
-                                <input type="radio" checked name="in_diet" value="false" class="input">
+                                <input type="radio" checked name="in_diet" value="false" onchange="activeField('dietNameInput', this.value)" class="input">
                             </label>
                             <label class="radio-input-section">
                                 بله
-                                <input type="radio" name="in_diet" value="true" class="input">
+                                <input type="radio" name="in_diet" value="true" onchange="activeField('dietNameInput', this.value)" class="input">
+                            </label>
+                        </div>
+                        <div id="dietNameInput" class="mt-4 d-none">
+                            <label class="d-flex flex-column gap-2">
+                                <span>
+                                     لطفا عنوان یا نوع رژیم را وارد نمایید <span class="necessary">(الزامی)</span>
+                                </span>
+                                <input type="text" name="diet_name" placeholder="عنوان رژیم" class="form-control input">
                             </label>
                         </div>
                     </div>
@@ -362,68 +472,6 @@
                                 <input type="radio" name="vegetarian" value="true" class="input">
                             </label>
                         </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Disease history form -->
-            <div id="form-2" class="form-box d-block">
-                <div class="form-box-title">
-                    <h4>تاریخجه بیماری</h4>
-                </div>
-                <div class="form">
-                    <div class="input-section">
-                        <span class="input-section-title">
-                            آیا سابقه بیماری خاصی در خانواده خود دارید؟ <span>(بیماری قلبی، دیابت و...)</span>
-                        </span>
-                        <div class="radio-input-section">
-                            <label class="radio-input-label">
-                                خیر
-                                <input type="radio" checked name="family_disease" value="false" class="input">
-                            </label>
-                            <label class="radio-input-section">
-                                بله
-                                <input type="radio" name="family_disease" value="true" class="input">
-                            </label>
-                        </div>
-                    </div>
-                    <div class="input-section">
-                        <span class="input-section-title">
-                            آیا بیماری خاصی دارید؟
-                        </span>
-                        <div class="radio-input-section">
-                            <label class="radio-input-label">
-                                خیر
-                                <input type="radio" checked name="special_disease" value="false" class="input">
-                            </label>
-                            <label class="radio-input-section">
-                                بله
-                                <input type="radio" name="special_disease" value="true" class="input">
-                            </label>
-                        </div>
-                    </div>
-                    <div class="input-section">
-                        <span class="input-section-title">
-                            آیا در حال حاضر داروی خاصی مصرف می‌کنید؟
-                        </span>
-                        <div class="radio-input-section">
-                            <label class="radio-input-label">
-                                خیر
-                                <input type="radio" checked name="special_medicine" value="false" onchange="getMedicine(this.value)" class="input">
-                            </label>
-                            <label class="radio-input-section">
-                                بله
-                                <input type="radio" name="special_medicine" value="true" onchange="getMedicine(this.value)" class="input">
-                            </label>
-                        </div>
-                    </div>
-                    <div id="medicineName" class="input-section d-none">
-                        <label class="d-flex flex-column gap-2">
-                            <span>
-                                 لطفا نام دارو را وارد نمایید <span class="necessary">(الزامی)</span>
-                            </span>
-                            <input type="text" name="medicine_name" placeholder="نام دارو" class="form-control input">
-                        </label>
                     </div>
                 </div>
             </div>
@@ -482,16 +530,16 @@
 
 {% block Script %}
     <script>
-        function getMedicine(value) {
-            const medicineSection = document.getElementById('medicineName');
-            const medicineInput = medicineSection.querySelector('input');
+        function activeField(id, state='false') {
+            const inputSection = document.getElementById(id);
+            const innerInput = inputSection.querySelector('input');
 
-            if (value === 'true') {
-                medicineSection.classList.remove('d-none');
-                medicineInput.setAttribute('required', 'required');
+            if (state === 'true') {
+                inputSection.classList.remove('d-none');
+                innerInput.setAttribute('required', 'required');
             } else {
-                medicineSection.classList.add('d-none');
-                medicineInput.removeAttribute('required');
+                inputSection.classList.add('d-none');
+                innerInput.removeAttribute('required');
             }
         }
     </script>
