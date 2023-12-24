@@ -65,7 +65,6 @@ class User(AbstractUser):
     username = None
     email = models.EmailField(_("Email address"), null=True, blank=True, unique=False)
     phonenumber = PhoneNumberField(verbose_name=_('Phone number'), region='IR', unique=True)
-    # type users|roles
     role = models.CharField(_('User role'), max_length=20, choices=ROLE_USER_OPTIONS, default='normal_user')
     packages = models.ManyToManyField(Package, verbose_name=_('Packages'), related_name='users', blank=True)
 
@@ -107,8 +106,8 @@ class User(AbstractUser):
 
     def get_image_url(self):
         try:
-            return self.info.picture.url
-        except AttributeError:
+            return self.user_profile.picture.url
+        except (AttributeError, ValueError):
             return '/static/front/images/userimage.png'
 
     def get_last_login(self):
@@ -159,12 +158,6 @@ class UserProfile(models.Model):
     picture = models.ImageField(_('User picture'), null=True, blank=True, upload_to='images/%Y/%m/%d/users')
     national_code = models.PositiveIntegerField(_('National code'), null=True, blank=True, default=0)
 
-    # Survey
-    last_exercise = models.TextField(_('Last time exercise'), null=True, blank=True)
-    goal_of_program = models.TextField(_('Goal of getting program'), null=True, blank=True)
-    exercise_systems = models.TextField(_('Exercise system experience'), null=True, blank=True)
-    additional_explain = models.TextField(_('Additional explanations'), null=True, blank=True)
-
     # Body info
     weight = models.PositiveIntegerField(_('Weight'), default=0, help_text=_('Kg'))
     height = models.PositiveIntegerField(_('Height'), default=0, help_text=_('cm'))
@@ -173,9 +166,24 @@ class UserProfile(models.Model):
     arm_size = models.PositiveIntegerField(_('Arm size'), null=True, blank=True, default=0, help_text=_('cm'))
     chest_size = models.PositiveIntegerField(_('Chest size'), null=True, blank=True, default=0, help_text=_('cm'))
 
+    # Exercise info
+    physical_damage = models.BooleanField(_('Physical damage'), default=False)
+    regular_exercise = models.BooleanField(_('Regular/Pro exercise'), default=False)
+    exercise_name = models.CharField(_('Exercise name'), max_length=128, null=True, blank=True)
+    doing_exercise = models.CharField(_('Doing exercise'), max_length=64, default=_('I do not exercise'))  # Should be choices (3 choices)
+    exercise_days = models.ManyToManyField(ExerciseDay, verbose_name=_('Exercise days willing'), blank=True, related_name='user_profile')
+
+    # Survey
+    last_exercise = models.TextField(_('Last time exercise'), null=True, blank=True)
+    goal_of_program = models.TextField(_('Goal of getting program'), null=True, blank=True)
+    exercise_systems = models.TextField(_('Exercise system experience'), null=True, blank=True)
+    additional_explain = models.TextField(_('Additional explanations'), null=True, blank=True)
+
     # Disease history
     family_disease = models.BooleanField(_('Family disease history'), default=False)
+    family_disease_name = models.CharField(_('Family disease name'), max_length=128, null=True, blank=True)
     special_disease = models.BooleanField(_('Special disease'), default=False)
+    special_disease_name = models.CharField(_('Special disease name'), max_length=128, null=True, blank=True)
     special_medicine = models.BooleanField(_('Special medicine'), default=False)
     medicine_name = models.CharField(_('Special medicine name'), max_length=128, null=True, blank=True)
 
@@ -186,16 +194,13 @@ class UserProfile(models.Model):
     dinner_time = models.CharField(_('Dinner time willing'), max_length=8, default='-')  # Between (18:30 - 21:30)
 
     use_supplement = models.BooleanField(_('Use supplement'), default=False)
+    supplement_name = models.CharField(_('Supplement name'), max_length=128, null=True, blank=True)
     want_supplement = models.BooleanField(_('Want supplement'), default=False)
     used_steroids = models.BooleanField(_('Used steroids'), default=False)
+    steroids_name = models.CharField(_('Steroid medicine name'), max_length=128, null=True, blank=True)
     in_diet = models.BooleanField(_('Had/Has diet'), default=False)
+    diet_name = models.CharField(_('Diet name'), max_length=128, null=True, blank=True)
     vegetarian = models.BooleanField(_('Vegetarian'), default=False)
-
-    # Exercise info
-    physical_damage = models.BooleanField(_('Physical damage'), default=False)
-    regular_exercise = models.BooleanField(_('Regular/Pro exercise'), default=False)
-    doing_exercise = models.CharField(_('Doing exercise'), max_length=64, default=_('I do not exercise'))  # Should be choices (3 choices)
-    exercise_days = models.ManyToManyField(ExerciseDay, verbose_name=_('Exercise days willing'), blank=True, related_name='user_profile')
 
     # Documents
     body_composition = models.FileField(_('Body composition'), null=True, blank=True, upload_to='images/users/docs')
