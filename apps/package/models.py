@@ -25,5 +25,21 @@ class Package(models.Model):
     def get_type_label(self):
         return self.get_type_display()
 
+    def get_package_info(self):
+        return self.package_info.all()
+
     def __str__(self) -> str:
         return f'{self.get_type_label} - {self.price}'
+
+
+# PackageInfo model
+class PackageInfo(models.Model):
+    package = models.ForeignKey(Package, on_delete=models.CASCADE, verbose_name=_('Package'), related_name='package_info')
+    text = models.CharField(_('Text'), max_length=255)
+
+    created_at = models.DateTimeField(_('Create time'), auto_now_add=True)
+    modified_at = models.DateTimeField(_('Modify time'), auto_now=True)
+
+    class Meta:
+        verbose_name = _('Package info')
+        verbose_name_plural = _('Package infos')

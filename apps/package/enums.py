@@ -9,6 +9,6 @@ class PackageChoices(TextChoices):
     CROSSFIT = 'crossfit', _('Crossfit')
     WORKOUT_DIET = 'workout_diet', _('Workout + Diet')
     CROSSFIT_DIET = 'crossfit_diet', _('Crossfit + Diet')
-    PRIVATE_WORKOUT_DIET = 'private_workout_diet', _('Private workout + Diet')
-    ANY_DIET = 'any_diet', _('Any sport + Diet')
+    PRIVATE_WORKOUT_DIET = 'private_workout_diet', _('Private workout')
+    ANY_DIET = 'any_diet', _('Any sport')
     OFFLINE = 'offline', _('Offline')

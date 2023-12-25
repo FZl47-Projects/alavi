@@ -7,7 +7,6 @@
 
 {% block Style %}
     <link rel="stylesheet" href="{% static 'front/styles/product-list.css' %} ">
-
 {% endblock %}
 
 {% block Content %}
@@ -25,7 +24,7 @@
 
                     <div class="d-flex flex-wrap justify-content-center gap-4 mt-3 pb-4 w-100">
                         {% for package in packages %}
-                            <div class="product-box">
+                            <div class="position-relative product-box">
                                 <div class="d-flex flex-column align-items-center product-inner-box">
                                     <div class="d-flex justify-content-center align-items-center gap-2 p-3 w-100">
                                         {% if package.icon %}
@@ -62,6 +61,17 @@
                                             </a>
                                         {% endif %}
                                     </div>
+                                    <div class="mt-2">
+                                        <span role="button" class="text-white open-info-btn" onclick="showInfo({{ package.id }})">توضیحات</span>
+                                    </div>
+                                </div>
+                                <div id="package-{{ package.id }}" class="package-info-box text-white">
+                                    {% for info in package.get_package_info %}
+                                        <div class="d-flex align-items-center gap-2 p-1">
+                                            <i class="fa fa-square fa-xs"></i>
+                                            <span>{{ info.text }}</span>
+                                        </div>
+                                    {% endfor %}
                                 </div>
                             </div>
                         {% endfor %}
@@ -75,4 +85,10 @@
 {% endblock %}
 
 {% block Script %}
+    <script>
+        function showInfo(id){
+            let box = document.getElementById(`package-${id}`);
+            box.classList.toggle('package-info-box-opened');
+        }
+    </script>
 {% endblock %}
