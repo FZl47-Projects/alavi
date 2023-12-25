@@ -35,6 +35,7 @@ INSTALLED_APPS = [
 
     # Third party apps
     'django_q',
+    'ckeditor',
     'phonenumber_field',
     'nested_admin',
 
