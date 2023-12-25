@@ -2,18 +2,18 @@
 <header class="ms-header">
     <nav class="ms-nav">
         <div class="user col-6 d-flex justify-content-start align-items-center">
-            <div>
+            <div class="d-flex align-items-center gap-2">
                 {% if user.is_anonymous %}
+                    <span><img src="{% static 'front/images/userimage.png' %}" alt="Default profile pic"></span>
                     <a href="{% url 'account:login_register' %}">ورود و ثبت نام</a>
                 {% else %}
-                    <a href="{{ user.get_absolute_url }}">
-                        <span><img src="{% static 'front/images/userimage.png' %}" alt=""></span>
-                        <span>{{ user.get_full_name }}</span>
+                    <a href="{{ user.get_absolute_url }}" class="d-flex align-items-center gap-2">
+                        <span>
+                            <img src="{% static 'front/images/userimage.png' %}" alt="User profile pic">
+                        </span>
+                        <span class="mt-1">{{ user.get_full_name }}</span>
                     </a>
                 {% endif %}
-            </div>
-            <div style="margin-right: 20px;">
-                <a  class="btn btn-success" href="{% url 'public:free_exercise' %}">برنامه تمرینی رایگان</a>
             </div>
         </div>
         <a href="{% url 'public:index' %}" class="logo col-6">
