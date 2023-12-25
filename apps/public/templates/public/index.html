@@ -141,6 +141,17 @@
                                                     </a>
                                                 {% endif %}
                                             </div>
+                                            <div class="mt-2">
+                                                <span role="button" class="text-white open-info-btn" onclick="showInfo({{ package.id }})">توضیحات</span>
+                                            </div>
+                                        </div>
+                                        <div id="package-{{ package.id }}" class="package-info-box text-white">
+                                            {% for info in package.get_package_info %}
+                                                <div class="d-flex align-items-center gap-2 p-1">
+                                                    <i class="fa fa-square fa-xs"></i>
+                                                    <span>{{ info.text }}</span>
+                                                </div>
+                                            {% endfor %}
                                         </div>
                                     </div>
                                 {% endfor %}
@@ -181,5 +192,20 @@
 {% endblock %}
 
 {% block Script %}
-
+    <script>
+        // Hide package-infos sections
+        window.addEventListener('click', function(e){
+           if (!e.target.classList.contains('open-info-btn')) {
+               let infos = document.querySelectorAll('.package-info-box');
+               infos.forEach((item, index) => {
+                   item.classList.remove('package-info-box-opened');
+               })
+           }
+        });
+        // Toggle package-info on/off
+        function showInfo(id){
+            let box = document.getElementById(`package-${id}`);
+            box.classList.toggle('package-info-box-opened');
+        }
+    </script>
 {% endblock %}

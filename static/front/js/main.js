@@ -88,9 +88,6 @@ const productsSwiper = new Swiper('#products-swiper', {
         slidesPerView: 4,
         spaceBetween : 18,
       },
-
-      // when window width is >= 640px
-
     },
     // If we need pagination
     pagination: {
@@ -144,9 +141,6 @@ const productsSwiper = new Swiper('#products-swiper', {
       1400: {
         slidesPerView: 4,
       },
-
-      // when window width is >= 640px
-
     },
     // If we need pagination
     pagination: {
@@ -159,6 +153,4 @@ const productsSwiper = new Swiper('#products-swiper', {
       nextEl: '.swiper-button-next',
       prevEl: '.swiper-button-prev',
     },
-
-
   });
