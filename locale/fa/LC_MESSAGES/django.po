@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-24 13:43+0330\n"
+"POT-Creation-Date: 2023-12-26 09:42+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -110,7 +110,7 @@ msgid "Users"
 msgstr "کاربران"
 
 #: .\apps\account\models.py:142 .\apps\diet\models.py:87
-#: .\apps\exercise\models.py:90 .\apps\public\models.py:82
+#: .\apps\exercise\models.py:90
 msgid "Day of week"
 msgstr "روز هفته"
 
@@ -300,17 +300,15 @@ msgstr "تایید شده"
 #: .\apps\diet\models.py:140 .\apps\diet\models.py:167
 #: .\apps\exercise\models.py:30 .\apps\exercise\models.py:62
 #: .\apps\exercise\models.py:92 .\apps\exercise\models.py:121
-#: .\apps\package\models.py:16 .\apps\public\models.py:25
-#: .\apps\public\models.py:54 .\apps\public\models.py:84
-#: .\apps\public\models.py:113 .\apps\public\models.py:128
-#: .\apps\public\models.py:200
+#: .\apps\package\models.py:16 .\apps\package\models.py:40
+#: .\apps\public\models.py:22
 msgid "Create time"
 msgstr "زمان ایجاد"
 
 #: .\apps\account\models.py:213 .\apps\diet\models.py:90
 #: .\apps\exercise\models.py:31 .\apps\exercise\models.py:63
-#: .\apps\package\models.py:17 .\apps\public\models.py:26
-#: .\apps\public\models.py:55 .\apps\public\models.py:129
+#: .\apps\package\models.py:17 .\apps\package\models.py:41
+#: .\apps\public\models.py:23
 msgid "Modify time"
 msgstr "زمان ویرایش"
 
@@ -395,7 +393,6 @@ msgid "Calories in a unit"
 msgstr "کالری در هر واحد"
 
 #: .\apps\diet\models.py:16 .\apps\diet\models.py:135
-#: .\apps\public\models.py:195
 msgid "Food"
 msgstr "غذا"
 
@@ -416,7 +413,6 @@ msgid "example: 15:30"
 msgstr "مثال: 15:30"
 
 #: .\apps\diet\models.py:30 .\apps\diet\models.py:115
-#: .\apps\public\models.py:178
 msgid "Meal"
 msgstr "وعده"
 
@@ -453,9 +449,7 @@ msgid "User's daily programs"
 msgstr "برنامه های روزانه کابر"
 
 #: .\apps\diet\models.py:114 .\apps\exercise\models.py:95
-#: .\apps\exercise\models.py:115 .\apps\public\models.py:87
-#: .\apps\public\models.py:107 .\apps\public\models.py:157
-#: .\apps\public\models.py:177
+#: .\apps\exercise\models.py:115
 msgid "Daily program"
 msgstr "برنامه روزانه"
 
@@ -467,27 +461,27 @@ msgstr "وعده روزانه"
 msgid "Daily meals"
 msgstr "وعده های روزانه"
 
-#: .\apps\diet\models.py:136 .\apps\public\models.py:196
+#: .\apps\diet\models.py:136
 msgid "Amount"
 msgstr "مقدار"
 
-#: .\apps\diet\models.py:137 .\apps\public\models.py:197
+#: .\apps\diet\models.py:137
 msgid "Amount unit"
 msgstr "واحد مقدار"
 
-#: .\apps\diet\models.py:137 .\apps\public\models.py:197
+#: .\apps\diet\models.py:137
 msgid "example: (gram, milligram, glass, ...)"
 msgstr "مثال: گرم، میلی گرم، لیوان و..."
 
-#: .\apps\diet\models.py:138 .\apps\public\models.py:198
+#: .\apps\diet\models.py:138
 msgid "Energy"
 msgstr "انرژی"
 
-#: .\apps\diet\models.py:144 .\apps\public\models.py:204
+#: .\apps\diet\models.py:144
 msgid "Meal's food"
 msgstr "غذای وعده"
 
-#: .\apps\diet\models.py:145 .\apps\public\models.py:205
+#: .\apps\diet\models.py:145
 msgid "Meal's foods"
 msgstr "غذاهای وعده"
 
@@ -512,8 +506,7 @@ msgid "Recommends"
 msgstr "توصیه ها"
 
 #: .\apps\exercise\apps.py:8 .\apps\exercise\models.py:124
-#: .\apps\exercise\models.py:125 .\apps\public\models.py:116
-#: .\apps\public\models.py:117
+#: .\apps\exercise\models.py:125
 msgid "Exercise"
 msgstr "ورزش"
 
@@ -554,7 +547,6 @@ msgid "Level (optional)"
 msgstr "سطح (اختیاری)"
 
 #: .\apps\exercise\models.py:18 .\apps\exercise\models.py:116
-#: .\apps\public\models.py:108
 msgid "Workout"
 msgstr "ورزش"
 
@@ -567,7 +559,7 @@ msgid "example: exercise program of first month"
 msgstr "مثال: برنامه ورزشی ماه اول"
 
 #: .\apps\exercise\models.py:34 .\apps\exercise\models.py:57
-#: .\apps\exercise\models.py:133 .\apps\public\models.py:49
+#: .\apps\exercise\models.py:133
 msgid "Exercise program"
 msgstr "برنامه ورزشی"
 
@@ -575,46 +567,43 @@ msgstr "برنامه ورزشی"
 msgid "Exercise programs"
 msgstr "برنامه های ورزشی کاربران"
 
-#: .\apps\exercise\models.py:58 .\apps\public\models.py:50
+#: .\apps\exercise\models.py:58
 msgid "Week"
 msgstr "هفته"
 
-#: .\apps\exercise\models.py:59 .\apps\public\models.py:51
+#: .\apps\exercise\models.py:59
 msgid "Warm up time (Minute)"
 msgstr "زمان گرم کردن (دقیقه)"
 
 #: .\apps\exercise\models.py:59 .\apps\exercise\models.py:60
-#: .\apps\public\models.py:51 .\apps\public\models.py:52
 msgid "example: 5 - 10"
 msgstr "مثال: 5 - 10"
 
-#: .\apps\exercise\models.py:60 .\apps\public\models.py:52
+#: .\apps\exercise\models.py:60
 msgid "Cool down time (Minute)"
 msgstr "زمان سرد کردن (دقیقه)"
 
 #: .\apps\exercise\models.py:66 .\apps\exercise\models.py:89
-#: .\apps\public\models.py:58 .\apps\public\models.py:81
 msgid "Weekly program"
 msgstr "برنامه هفتگی"
 
-#: .\apps\exercise\models.py:67 .\apps\public\models.py:59
+#: .\apps\exercise\models.py:67
 msgid "Weekly programs"
 msgstr "برنامه هفتگی"
 
-#: .\apps\exercise\models.py:96 .\apps\public\models.py:88
-#: .\apps\public\models.py:158
+#: .\apps\exercise\models.py:96
 msgid "Daily programs"
 msgstr "برنامه های روزانه"
 
-#: .\apps\exercise\models.py:117 .\apps\public\models.py:109
+#: .\apps\exercise\models.py:117
 msgid "Sets"
 msgstr "ست"
 
-#: .\apps\exercise\models.py:118 .\apps\public\models.py:110
+#: .\apps\exercise\models.py:118
 msgid "Numbers in a set"
 msgstr "تعداد در هر ست"
 
-#: .\apps\exercise\models.py:119 .\apps\public\models.py:111
+#: .\apps\exercise\models.py:119
 msgid "Rest time (Seconds)"
 msgstr "زمان استراحت (ثانیه)"
 
@@ -626,11 +615,12 @@ msgstr "توصیه ورزشی"
 msgid "Exercise recommends"
 msgstr "توصیه های ورزشی"
 
-#: .\apps\package\admin.py:24
+#: .\apps\package\admin.py:31
 msgid "Price (Rials)"
 msgstr "قیمت (ریال)"
 
 #: .\apps\package\apps.py:8 .\apps\package\models.py:20
+#: .\apps\package\models.py:37
 msgid "Package"
 msgstr "پکیج"
 
@@ -651,12 +641,12 @@ msgid "Crossfit + Diet"
 msgstr "کراسفیت + رژیم غذایی"
 
 #: .\apps\package\enums.py:12
-msgid "Private workout + Diet"
-msgstr "بدنسازی خصوصی + غذایی"
+msgid "Private workout"
+msgstr "بدنسازی خصوصی"
 
 #: .\apps\package\enums.py:13
-msgid "Any sport + Diet"
-msgstr "هر ورزش تخصصی + غذایی"
+msgid "Any sport"
+msgstr "هر ورزش تخصصی"
 
 #: .\apps\package\enums.py:14
 msgid "Offline"
@@ -686,67 +676,68 @@ msgstr "آیکون پکیج"
 msgid "FontAwesome css class"
 msgstr "CSS class (FontAwesome)"
 
+#: .\apps\package\models.py:38 .\apps\public\models.py:20
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2375
+msgid "Text"
+msgstr "متن"
+
+#: .\apps\package\models.py:44
+msgid "Package info"
+msgstr "توضیح پکیج"
+
+#: .\apps\package\models.py:45
+msgid "Package infos"
+msgstr "توضیحات پکیج"
+
 #: .\apps\public\apps.py:8
 msgid "Public"
 msgstr "عمومی"
 
-#: .\apps\public\models.py:12
+#: .\apps\public\models.py:8
 msgid "Certificate title"
 msgstr "عنوان مدرک"
 
-#: .\apps\public\models.py:12
+#: .\apps\public\models.py:8
 msgid "Optional"
 msgstr "اختیاری"
 
-#: .\apps\public\models.py:13
+#: .\apps\public\models.py:9
 msgid "Picture"
 msgstr "تصویر"
 
-#: .\apps\public\models.py:16
+#: .\apps\public\models.py:12
 msgid "Certificate"
 msgstr "مدرک"
 
-#: .\apps\public\models.py:17
+#: .\apps\public\models.py:13
 msgid "Certificates"
 msgstr "مدارک"
 
-#: .\apps\public\models.py:23 .\apps\public\models.py:126
-msgid "Active"
-msgstr "فعال"
+#: .\apps\public\models.py:18
+msgid "Content title"
+msgstr "عنوان محتوا"
 
-#: .\apps\public\models.py:29
-msgid "Free exercise program"
-msgstr "برنامه ورزشی رایگان"
+#: .\apps\public\models.py:18
+msgid "No title"
+msgstr "بدون عنوان"
 
-#: .\apps\public\models.py:30
-msgid "Free exercise programs"
-msgstr "برنامه‌های ورزشی رایگان"
+#: .\apps\public\models.py:19
+msgid "Short description"
+msgstr "توضیح کوتاه"
 
-#: .\apps\public\models.py:132
-msgid "Free diet program"
-msgstr "برنامه غذایی رایگان"
+#: .\apps\public\models.py:19
+msgid "Date, extra info, ..."
+msgstr "تاریخ، اطلاعات اضافه و..."
 
-#: .\apps\public\models.py:133
-msgid "Free diet programs"
-msgstr "برنامه های غذایی رایگان"
+#: .\apps\public\models.py:26
+msgid "Free content"
+msgstr "محتوای رایگان"
 
-#: .\apps\public\models.py:153
-msgid "Diet program"
-msgstr "برنامه غذایی"
+#: .\apps\public\models.py:27
+msgid "Free contents"
+msgstr "محتواهای رایگان"
 
-#: .\apps\public\models.py:154
-msgid "Day"
-msgstr "روز"
-
-#: .\apps\public\models.py:181 .\apps\public\models.py:194
-msgid "Diet meal"
-msgstr "وعده روزانه"
-
-#: .\apps\public\models.py:182
-msgid "Diet meals"
-msgstr "وعده های روزانه"
-
-#: .\config\settings\base.py:109
+#: .\config\settings\base.py:110
 msgid "Persian"
 msgstr "فارسی"
 
@@ -756,6 +747,57 @@ msgstr ""
 
 #: .\templates\admin\base_site.html:15
 msgid "Django administration"
+msgstr ""
+
+#: .\venv\Lib\site-packages\ckeditor_uploader\forms.py:6
+msgid "Search files"
+msgstr "جستجوی فایل‌ها"
+
+#: .\venv\Lib\site-packages\ckeditor_uploader\templates\ckeditor\browse.html:5
+msgid "Select an image to embed"
+msgstr ""
+
+#: .\venv\Lib\site-packages\ckeditor_uploader\templates\ckeditor\browse.html:27
+msgid "Browse for the image you want, then click 'Embed Image' to continue..."
+msgstr ""
+
+#: .\venv\Lib\site-packages\ckeditor_uploader\templates\ckeditor\browse.html:29
+msgid ""
+"No images found. Upload images using the 'Image Button' dialog's 'Upload' "
+"tab."
+msgstr ""
+
+#: .\venv\Lib\site-packages\ckeditor_uploader\templates\ckeditor\browse.html:50
+msgid "Images in: "
+msgstr "تصویر در:"
+
+#: .\venv\Lib\site-packages\ckeditor_uploader\templates\ckeditor\browse.html:62
+#: .\venv\Lib\site-packages\ckeditor_uploader\templates\ckeditor\browse.html:80
+msgid "Embed Image"
+msgstr "الصاق تصویر"
+
+#: .\venv\Lib\site-packages\ckeditor_uploader\templates\ckeditor\browse.html:146
+msgid "Play Slideshow"
+msgstr ""
+
+#: .\venv\Lib\site-packages\ckeditor_uploader\templates\ckeditor\browse.html:147
+msgid "Pause Slideshow"
+msgstr ""
+
+#: .\venv\Lib\site-packages\ckeditor_uploader\templates\ckeditor\browse.html:148
+msgid "&lsaquo; Previous Photo"
+msgstr ""
+
+#: .\venv\Lib\site-packages\ckeditor_uploader\templates\ckeditor\browse.html:149
+msgid "Next Photo &rsaquo;"
+msgstr ""
+
+#: .\venv\Lib\site-packages\ckeditor_uploader\templates\ckeditor\browse.html:150
+msgid "Next &rsaquo;"
+msgstr ""
+
+#: .\venv\Lib\site-packages\ckeditor_uploader\templates\ckeditor\browse.html:151
+msgid "&lsaquo; Prev"
 msgstr ""
 
 #: .\venv\Lib\site-packages\django\contrib\messages\apps.py:15
@@ -1116,10 +1158,6 @@ msgstr ""
 #: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2339
 #, python-format
 msgid "Slug (up to %(max_length)s)"
-msgstr ""
-
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2375
-msgid "Text"
 msgstr ""
 
 #: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2450
@@ -2016,6 +2054,33 @@ msgstr ""
 #: .\venv\Lib\site-packages\nested_admin\templates\nesting\admin\inlines\tabular.html:33
 msgid "Delete?"
 msgstr ""
+
+#~ msgid "Active"
+#~ msgstr "فعال"
+
+#~ msgid "Free exercise program"
+#~ msgstr "برنامه ورزشی رایگان"
+
+#~ msgid "Free exercise programs"
+#~ msgstr "برنامه‌های ورزشی رایگان"
+
+#~ msgid "Free diet program"
+#~ msgstr "برنامه غذایی رایگان"
+
+#~ msgid "Free diet programs"
+#~ msgstr "برنامه های غذایی رایگان"
+
+#~ msgid "Diet program"
+#~ msgstr "برنامه غذایی"
+
+#~ msgid "Day"
+#~ msgstr "روز"
+
+#~ msgid "Diet meal"
+#~ msgstr "وعده روزانه"
+
+#~ msgid "Diet meals"
+#~ msgstr "وعده های روزانه"
 
 #~ msgid "Please correct the error below."
 #~ msgid_plural "Please correct the errors below."
