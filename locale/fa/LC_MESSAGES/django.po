@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-26 09:42+0330\n"
+"POT-Creation-Date: 2023-12-26 14:05+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,56 +18,56 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: .\apps\account\admin.py:25 .\apps\account\models.py:69
+#: .\apps\account\admin.py:32 .\apps\account\models.py:69
 #: .\apps\package\models.py:21
 msgid "Packages"
 msgstr "پکیج ها"
 
-#: .\apps\account\admin.py:26
+#: .\apps\account\admin.py:33
 msgid "Permissions"
 msgstr "دسترسی ها"
 
-#: .\apps\account\admin.py:27
+#: .\apps\account\admin.py:34
 msgid "Dates"
 msgstr "تاریخ ها"
 
-#: .\apps\account\admin.py:53
+#: .\apps\account\admin.py:60
 msgid "Profile"
 msgstr "پروفایل"
 
-#: .\apps\account\admin.py:72
+#: .\apps\account\admin.py:79
 msgid "Survey"
 msgstr "نظر سنجی"
 
-#: .\apps\account\admin.py:73
+#: .\apps\account\admin.py:80
 msgid "Body info"
 msgstr "اطلاعات بدن"
 
-#: .\apps\account\admin.py:74
+#: .\apps\account\admin.py:81
 msgid "Disease history"
 msgstr "سابقه بیماری"
 
-#: .\apps\account\admin.py:75
+#: .\apps\account\admin.py:82
 msgid "Food/Supplement info"
 msgstr "اطلاعات غذایی/مکمل"
 
-#: .\apps\account\admin.py:76
+#: .\apps\account\admin.py:83
 msgid "Continue food info"
 msgstr "ادامه اطلاعات غذایی"
 
-#: .\apps\account\admin.py:77
+#: .\apps\account\admin.py:84
 msgid "Exercise info"
 msgstr "اطلاعات تمرینی"
 
-#: .\apps\account\admin.py:78
+#: .\apps\account\admin.py:85
 msgid "Documents"
 msgstr "مدارک"
 
-#: .\apps\account\admin.py:79
+#: .\apps\account\admin.py:86
 msgid "Important dates"
 msgstr "تاریخ‌های مهم"
 
-#: .\apps\account\admin.py:80
+#: .\apps\account\admin.py:87
 msgid "Verification"
 msgstr "تاییدیه"
 
@@ -102,6 +102,7 @@ msgstr "نقش کاربر"
 
 #: .\apps\account\models.py:79 .\apps\account\models.py:155
 #: .\apps\diet\models.py:44 .\apps\exercise\models.py:27
+#: .\apps\order\models.py:12
 msgid "User"
 msgstr "کاربر"
 
@@ -178,11 +179,11 @@ msgstr "سابقه تمرین منظم/حرفه ای"
 
 #: .\apps\account\models.py:172
 msgid "Exercise name"
-msgstr "عنوان تمرین"
+msgstr "عنوان تمرین منظم/حرفه‌ای"
 
 #: .\apps\account\models.py:173
 msgid "Doing exercise"
-msgstr "انجام تمرین ورزشی"
+msgstr "وضعیت انجام تمرین ورزشی"
 
 #: .\apps\account\models.py:173
 msgid "I do not exercise"
@@ -237,66 +238,70 @@ msgid "Breakfast time willing"
 msgstr "زمان ترجیحی صبحانه"
 
 #: .\apps\account\models.py:192
-msgid "Snack time willing"
-msgstr "زمان ترجیحی میان وعده"
+msgid "AM Snack time willing"
+msgstr "زمان ترجیحی میان وعده(قبل از ظهر)"
 
 #: .\apps\account\models.py:193
 msgid "Launch time willing"
 msgstr "زمان ترجیجی ناهار"
 
 #: .\apps\account\models.py:194
+msgid "PM Snack time willing"
+msgstr "زمان ترجیحی میان وعده(بعد از ظهر)"
+
+#: .\apps\account\models.py:195
 msgid "Dinner time willing"
 msgstr "زمان ترجیحی شام"
 
-#: .\apps\account\models.py:196
+#: .\apps\account\models.py:197
 msgid "Use supplement"
 msgstr "درحال مصرف مکمل ورزشی/غذایی"
 
-#: .\apps\account\models.py:197
+#: .\apps\account\models.py:198
 msgid "Supplement name"
 msgstr "عنوان مکمل"
 
-#: .\apps\account\models.py:198
+#: .\apps\account\models.py:199
 msgid "Want supplement"
 msgstr "خواستار مکمل ورزشی/غذایی"
 
-#: .\apps\account\models.py:199
+#: .\apps\account\models.py:200
 msgid "Used steroids"
 msgstr "سابقه استفاده از داروی استروییدی"
 
-#: .\apps\account\models.py:200
+#: .\apps\account\models.py:201
 msgid "Steroid medicine name"
 msgstr "نام داروی استروئیدی"
 
-#: .\apps\account\models.py:201
+#: .\apps\account\models.py:202
 msgid "Had/Has diet"
 msgstr "رژیم غذایی داشته/دارد"
 
-#: .\apps\account\models.py:202
+#: .\apps\account\models.py:203
 msgid "Diet name"
 msgstr "عنوان رژیم"
 
-#: .\apps\account\models.py:203
+#: .\apps\account\models.py:204
 msgid "Vegetarian"
 msgstr "گیاه خوار"
 
-#: .\apps\account\models.py:206
+#: .\apps\account\models.py:207
 msgid "Body composition"
 msgstr "آزمایش ترکیب بدنی"
 
-#: .\apps\account\models.py:207
+#: .\apps\account\models.py:208
 msgid "Body checkup"
 msgstr "آزمایش چکاپ بدن"
 
-#: .\apps\account\models.py:208
+#: .\apps\account\models.py:209
 msgid "Body picture"
 msgstr "تصویر بدن"
 
-#: .\apps\account\models.py:210
+#: .\apps\account\models.py:211
 msgid "Verified"
 msgstr "تایید شده"
 
-#: .\apps\account\models.py:212 .\apps\diet\models.py:89
+#: .\apps\account\models.py:213 .\apps\diet\models.py:89
 #: .\apps\diet\models.py:140 .\apps\diet\models.py:167
 #: .\apps\exercise\models.py:30 .\apps\exercise\models.py:62
 #: .\apps\exercise\models.py:92 .\apps\exercise\models.py:121
@@ -305,18 +310,18 @@ msgstr "تایید شده"
 msgid "Create time"
 msgstr "زمان ایجاد"
 
-#: .\apps\account\models.py:213 .\apps\diet\models.py:90
+#: .\apps\account\models.py:214 .\apps\diet\models.py:90
 #: .\apps\exercise\models.py:31 .\apps\exercise\models.py:63
 #: .\apps\package\models.py:17 .\apps\package\models.py:41
 #: .\apps\public\models.py:23
 msgid "Modify time"
 msgstr "زمان ویرایش"
 
-#: .\apps\account\models.py:216
+#: .\apps\account\models.py:217
 msgid "User profile"
 msgstr "پروفایل کاربر"
 
-#: .\apps\account\models.py:217
+#: .\apps\account\models.py:218
 msgid "User profiles"
 msgstr "پروفایل کاربران"
 
@@ -340,11 +345,11 @@ msgstr "باشگاه علوی"
 msgid "Program Title"
 msgstr "عنوان برنامه"
 
-#: .\apps\diet\admin.py:132 .\apps\exercise\admin.py:126
+#: .\apps\diet\admin.py:130 .\apps\exercise\admin.py:124
 msgid "User phone"
 msgstr "تلفن کاربر"
 
-#: .\apps\diet\admin.py:133 .\apps\exercise\admin.py:127
+#: .\apps\diet\admin.py:134 .\apps\exercise\admin.py:128
 msgid "User name"
 msgstr "نام کاربر"
 
@@ -615,6 +620,22 @@ msgstr "توصیه ورزشی"
 msgid "Exercise recommends"
 msgstr "توصیه های ورزشی"
 
+#: .\apps\order\apps.py:8
+msgid "order"
+msgstr "سفارش"
+
+#: .\apps\order\models.py:13
+msgid "packages"
+msgstr "پکیج ها"
+
+#: .\apps\order\models.py:16
+msgid "Purchase request"
+msgstr "درخواست خرید"
+
+#: .\apps\order\models.py:17
+msgid "Purchase requests"
+msgstr "درخواست‌های خرید"
+
 #: .\apps\package\admin.py:31
 msgid "Price (Rials)"
 msgstr "قیمت (ریال)"
@@ -737,7 +758,7 @@ msgstr "محتوای رایگان"
 msgid "Free contents"
 msgstr "محتواهای رایگان"
 
-#: .\config\settings\base.py:110
+#: .\config\settings\base.py:111
 msgid "Persian"
 msgstr "فارسی"
 
@@ -2058,31 +2079,7 @@ msgstr ""
 #~ msgid "Active"
 #~ msgstr "فعال"
 
-#~ msgid "Free exercise program"
-#~ msgstr "برنامه ورزشی رایگان"
-
-#~ msgid "Free exercise programs"
-#~ msgstr "برنامه‌های ورزشی رایگان"
-
-#~ msgid "Free diet program"
-#~ msgstr "برنامه غذایی رایگان"
-
-#~ msgid "Free diet programs"
-#~ msgstr "برنامه های غذایی رایگان"
-
-#~ msgid "Diet program"
-#~ msgstr "برنامه غذایی"
-
-#~ msgid "Day"
-#~ msgstr "روز"
-
-#~ msgid "Diet meal"
-#~ msgstr "وعده روزانه"
-
-#~ msgid "Diet meals"
-#~ msgstr "وعده های روزانه"
-
-#~ msgid "Please correct the error below."
-#~ msgid_plural "Please correct the errors below."
-#~ msgstr[0] "لطفا خطای زیر را درست کنید."
-#~ msgstr[1] "لطفا خطاهای زیر را درست کنید."
+msgid "Please correct the error below."
+msgid_plural "Please correct the errors below."
+msgstr[0] "لطفا خطای زیر را درست کنید."
+msgstr[1] "لطفا خطاهای زیر را درست کنید."
