@@ -123,14 +123,17 @@ class DietProgramAdmin(admin.ModelAdmin):
     autocomplete_fields = ('user',)
     inlines = (DailyDietProgramInline, DietRecommendInline)
 
+    def get_changeform_initial_data(self, request):
+        user = request.GET.get('user', None)
+        return {'user': user}
+
+    @admin.display(description=_("User phone"))
     def get_user_phone(self, obj):
         return obj.user.get_raw_phonenumber() if obj.user else None
 
+    @admin.display(description=_("User name"))
     def get_user_fullname(self, obj):
         return obj.user.get_full_name() if obj.user else None
-
-    get_user_phone.short_description = _("User phone")
-    get_user_fullname.short_description = _("User name")
 
     def get_view_on_site_url(self, obj=None):
         """ Custom redirection for "View on site" button """

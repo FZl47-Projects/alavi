@@ -96,10 +96,10 @@
                         {% if user.is_admin_user %}
                             <div class="col-12 text-left mt-3">
                                 <div class="">
-                                    <a href="{% url 'admin:diet_dietprogram_add' %}" class="btn btn-white m-1 p-2">
+                                    <a href="{% url 'admin:diet_dietprogram_add' %}?user={{ user_detail.id }}" class="btn btn-white m-1 p-2">
                                         ایجاد برنامه غذایی
                                     </a>
-                                    <a href="{% url 'admin:exercise_exerciseprogram_add' %}" class="btn btn-white m-1 p-2">
+                                    <a href="{% url 'admin:exercise_exerciseprogram_add' %}?user={{ user_detail.id }}" class="btn btn-white m-1 p-2">
                                         ایجاد برنامه تمرینی
                                     </a>
                                 </div>
