@@ -189,8 +189,9 @@ class UserProfile(models.Model):
 
     # Food/Supplement info
     breakfast_time = models.CharField(_('Breakfast time willing'), max_length=8, default='-')  # Between (06:00 - 10:00)
-    snack_time = models.CharField(_('Snack time willing'), max_length=8, default='-')  # Between (10:00 - 12:00)
+    am_snack_time = models.CharField(_('AM Snack time willing'), max_length=8, default='-')  # Between (10:00 - 12:00)
     launch_time = models.CharField(_('Launch time willing'), max_length=8, default='-')  # Between (12:30 - 17:00)
+    pm_snack_time = models.CharField(_('PM Snack time willing'), max_length=8, default='-')
     dinner_time = models.CharField(_('Dinner time willing'), max_length=8, default='-')  # Between (18:30 - 21:30)
 
     use_supplement = models.BooleanField(_('Use supplement'), default=False)
