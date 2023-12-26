@@ -10,6 +10,7 @@ class IndexView(TemplateView):
     def get_context_data(self, **kwargs):
         contexts = super().get_context_data(**kwargs)
 
+        contexts['free_contents'] = FreeContent.objects.all()[:7]
         contexts['packages'] = Package.objects.all()[:4]
         contexts['certificates'] = Certificate.objects.all()
 

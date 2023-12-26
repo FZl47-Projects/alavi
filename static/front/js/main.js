@@ -10,7 +10,8 @@ const product = new Swiper('#services-slider', {
       pauseOnMouseEnter: true,
     },
     slidesPerView: 3,
-    // spaceBetween : 10,
+    spaceBetween : 20,
+
     breakpoints: {
       // when window width is >= 320px
       200: {

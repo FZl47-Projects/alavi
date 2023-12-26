@@ -26,63 +26,26 @@
                 </div>
                 <!-- Title -->
                 <!-- Start services content -->
-                <div class="services-content mt-3">
+                <div class="services-content mt-4 h-auto">
                     <div class="services-content-inner">
                         <!-- Slider -->
                         <div class="swiper" id="services-slider">
-                            <div class="swiper-wrapper">
+                            <div class="swiper-wrapper services-wrapper">
                                 <!--each slide service  -->
-                                <div class="swiper-slide">
-                                    <a href="{% if user.is_authenticated %}{% url 'account:user-profile' user.id %}
-                                        {% else %}{% url 'account:login_register' %}{% endif %}">
-                                        <div class="services-item">
-                                            <div class="image-services-item">
-                                                <img src="{% static 'front/images/item4.png' %}" alt="">
+                                {% for content in free_contents %}
+                                    <div class="swiper-slide services-main-box">
+                                        <div class="services-main-inner-box">
+                                            <div class="text-white">
+                                                <div class="d-flex flex-column gap-2">
+                                                    <h4>{{ content.title }}</h4>
+                                                    <span class="fw-semibold">{{ content.short_description }}</span>
+                                                </div>
+
+                                                <p class="pt-2">{{ content.text|safe }}</p>
                                             </div>
-                                            <div class="title-services text-center">
-                                                <span>برنـامــــه</span>
-                                                <span>تمرینـی</span>
-                                            </div>
-                                            <div class="description text-center">
-                                                لورم ایپسوم متن ساختگی با تولیـــد سادگــــی نامــفهــوم،لورم ایپسوم متن
-                                                ساختگی با تولیـــد سادگــــی نامــفهــوم
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                                <!--each slide service  -->
-                                <div class="swiper-slide">
-                                    <a href="{% if user.is_authenticated %}{% url 'account:user-profile' user.id %}
-                                        {% else %}{% url 'account:login_register' %}{% endif %}" style="cursor:pointer;">
-                                        <div class="services-item">
-                                            <div class="image-services-item">
-                                                <img src="{% static 'front/images/item3.png' %}" alt="">
-                                            </div>
-                                            <div class="title-services text-center">
-                                                <span>برنـامــــه</span>
-                                                <span>غـــذایی</span>
-                                            </div>
-                                            <div class="description text-center">
-                                                لورم ایپسوم متن ساختگی با تولیـــد سادگــــی نامــفهــوم،لورم ایپسوم متن
-                                                ساختگی با تولیـــد سادگــــی نامــفهــوم
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="services-item">
-                                        <div class="image-services-item">
-                                            <img src="{% static 'front/images/item2.png' %}" alt="">
-                                        </div>
-                                        <div class="title-services text-center">
-                                            <span>آنــالیـــــز</span>
-                                            <span>بــــــدن</span>
-                                        </div>
-                                        <div class="description text-center"> لورم ایپسوم متن ساختگی با تولیـــد سادگــــی
-                                            نامــفهــوم،لورم ایپسوم متن ساختگی با تولیـــد سادگــــی نامــفهــوم
                                         </div>
                                     </div>
-                                </div>
+                                {% endfor %}
                             </div>
                             <!-- btn next & prev slider certificate -->
                             <div class="swiper-button-prev"></div>
@@ -94,7 +57,7 @@
                 </div>
                 <!-- Start services content -->
 
-                <div class="mt-4">
+                <div class="mt-5">
                     <section>
                         <div class="d-flex justify-content-between">
                             <h3 class="fw-semibold text-white">محصولات</h3>

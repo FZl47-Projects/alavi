@@ -595,28 +595,60 @@ input {
   color: #fff;
 }
 
-.services-content .services-content-inner .swiper .swiper-wrapper .swiper-slide {
-  background-color: rgba(13, 17, 13, 0.742);
+.services-wrapper {
+  background-color: rgba(255, 255, 255, 0.01);
+  box-shadow: 0 0 6px #1a1a1a;
+  backdrop-filter: blur(4px);
+  height: 24rem !important;
 }
-.services-content .services-content-inner .swiper .swiper-wrapper .swiper-slide:nth-child(2n) {
-  background-color: rgba(10, 41, 31, 0.4862745098) !important;
+
+.services-main-box {
+  background-color: rgba(7, 7, 7, 0.9);
+  padding: 0.75rem;
+  border-radius: 0.5rem;
 }
-.services-content .services-content-inner .swiper .swiper-wrapper .swiper-slide:nth-child(2n) .services-item .title-services span:nth-child(1) {
-  color: #6da78b;
-  font-weight: 500;
+
+.services-main-inner-box {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background-color: rgba(26, 178, 104, 0.05);
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  overflow-y: scroll;
 }
-.services-content .services-content-inner .swiper .swiper-wrapper .swiper-slide:nth-child(2n) .services-item .title-services span:nth-child(2) {
-  color: #ffffff;
-  font-weight: 600;
-  font-size: 25px;
+
+.services-main-inner-box::-webkit-scrollbar {
+  width: 5px;
 }
+
+.services-main-inner-box::-webkit-scrollbar-track {
+  background: rgb(179, 177, 177);
+  border-radius: 2rem;
+}
+
+.services-main-inner-box::-webkit-scrollbar-thumb {
+  background: rgb(122, 122, 122);
+  border-radius: 2rem;
+}
+
+.services-main-inner-box::-webkit-scrollbar-thumb:hover {
+  background: rgb(100, 100, 100);
+  border-radius: 2rem;
+}
+
+.services-main-inner-box::-webkit-scrollbar-thumb:active {
+  background: rgb(68, 68, 68);
+  border-radius: 10px;
+}
+
 .services-content .services-content-inner .swiper .swiper-button-next {
-  left: 0px !important;
+  left: 0 !important;
   right: auto;
 }
 .services-content .services-content-inner .swiper .swiper-button-prev {
   left: auto;
-  right: 0px !important;
+  right: 0 !important;
 }
 .services-content .services-content-inner .swiper .swiper-button-next:after {
   font-size: 23px !important;
