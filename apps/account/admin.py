@@ -5,6 +5,13 @@ from django.shortcuts import reverse
 from django.contrib import admin
 from .forms import CustomUserCreationForm, CustomUserChangeForm
 from .models import User, UserProfile, ExerciseDay
+from apps.order.models import PurchaseRequest
+
+
+# Register PurchaseRequest as Inline
+class PurchaseRequestInline(admin.StackedInline):
+    model = PurchaseRequest
+    readonly_fields = ('package',)
 
 
 @admin.register(User)
@@ -20,11 +27,13 @@ class CustomUserAdmin(UserAdmin):
     search_fields = ('email', 'phonenumber', 'last_name')
     ordering = ('phonenumber', 'email')
     filter_horizontal = ('packages', 'user_permissions')
+    inlines = (PurchaseRequestInline,)
+
     fieldsets = (
         (None, {'fields': ('phonenumber', 'email', 'first_name', 'last_name', 'role')}),
-        (_('Packages'), {'fields': ('packages',)}),
         (_('Permissions'), {'fields': ('is_staff', 'is_active', 'is_superuser', 'user_permissions')}),
-        (_('Dates'), {'fields': ('last_login', 'date_joined')})
+        (_('Dates'), {'fields': ('last_login', 'date_joined')}),
+        (_('Packages'), {'fields': ('packages',)})
     )
     add_fieldsets = (
         (None, {
