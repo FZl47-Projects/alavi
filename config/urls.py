@@ -14,6 +14,7 @@ urlpatterns = [
     path('diet/', include('apps.diet.urls', namespace='diet')),
     path('exercise/', include('apps.exercise.urls', namespace='exercise')),
     path('package/', include('apps.package.urls', namespace='package')),
+    path('order/', include('apps.order.urls', namespace='order')),
 ]
 
 # Serve static files on dev

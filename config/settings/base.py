@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'apps.diet',
     'apps.exercise',
     'apps.package',
+    'apps.order',
     'apps.notification',
 ]
 

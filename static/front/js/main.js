@@ -33,8 +33,8 @@ const product = new Swiper('#services-slider', {
       992: {
         slidesPerView: 3,
       },
-      1400: {
-        slidesPerView: 3,
+      1600: {
+        slidesPerView: 4,
       },
   
       // when window width is >= 640px
