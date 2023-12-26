@@ -99,7 +99,7 @@
                                                         خریداری شده
                                                     </span>
                                                 {% else %}
-                                                    <a href="{{ package.buy_link|default:'#' }}" class="btn btn-danger rounded-3 mt-3 px-4">
+                                                    <a href="{% url 'order:package_request' %}?pk={{ package.id }}" class="btn btn-danger rounded-3 mt-3 px-4">
                                                         خرید پکیج
                                                     </a>
                                                 {% endif %}

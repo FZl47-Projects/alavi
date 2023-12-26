@@ -4,4 +4,6 @@ from . import views
 
 app_name = 'order'
 
-urlpatterns = []
+urlpatterns = [
+    path('request/', views.PackageRequestView.as_view(), name='package_request'),
+]
