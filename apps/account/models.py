@@ -168,6 +168,7 @@ class UserProfile(models.Model):
 
     # Exercise info
     physical_damage = models.BooleanField(_('Physical damage'), default=False)
+    damage_type = models.CharField(_('Damage type/area'), max_length=128, null=True, blank=True)
     regular_exercise = models.BooleanField(_('Regular/Pro exercise'), default=False)
     exercise_name = models.CharField(_('Exercise name'), max_length=128, null=True, blank=True)
     doing_exercise = models.CharField(_('Doing exercise'), max_length=64, default=_('I do not exercise'))  # Should be choices (3 choices)

@@ -78,12 +78,12 @@ class UserProfileAdmin(admin.ModelAdmin):
 
     fieldsets = (
         (None, {'fields': ('user', 'national_code', 'picture')}),
-        (_('Survey'), {'fields': ('last_exercise', 'goal_of_program', 'exercise_systems', 'additional_explain')}),
         (_('Body info'), {'fields': ('weight', 'height', 'waist_size', 'hip_size', 'arm_size', 'chest_size')}),
+        (_('Exercise info'), {'fields': ('physical_damage', 'damage_type', 'regular_exercise', 'exercise_name', 'doing_exercise', 'exercise_days')}),
+        (_('Survey'), {'fields': ('last_exercise', 'goal_of_program', 'exercise_systems', 'additional_explain')}),
         (_('Disease history'), {'fields': ('family_disease', 'family_disease_name', 'special_disease', 'special_disease_name', 'special_medicine', 'medicine_name')}),
         (_('Food/Supplement info'), {'fields': ('breakfast_time', 'am_snack_time', 'launch_time', 'pm_snack_time', 'dinner_time')}),
         (_('Continue food info'), {'fields': ('use_supplement', 'supplement_name', 'want_supplement', 'used_steroids', 'steroids_name', 'in_diet', 'diet_name', 'vegetarian')}),
-        (_('Exercise info'), {'fields': ('physical_damage', 'regular_exercise', 'exercise_name', 'doing_exercise', 'exercise_days')}),
         (_('Documents'), {'fields': ('body_composition', 'body_checkup', 'body_picture')}),
         (_('Important dates'), {'fields': ('created_at', 'modified_at')}),
         (_('Verification'), {'fields': ('verified',)}),

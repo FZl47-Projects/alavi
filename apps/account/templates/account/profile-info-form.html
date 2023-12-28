@@ -124,11 +124,19 @@
                         <div class="radio-input-section">
                             <label class="radio-input-label">
                                 خیر
-                                <input type="radio" checked name="physical_damage" value="false" class="input">
+                                <input type="radio" checked name="physical_damage" value="false" onchange="activeField('damageNameInput', this.value)" class="input">
                             </label>
                             <label class="radio-input-section">
                                 بله
-                                <input type="radio" name="physical_damage" value="true" class="input">
+                                <input type="radio" name="physical_damage" value="true" onchange="activeField('damageNameInput', this.value)" class="input">
+                            </label>
+                        </div>
+                        <div id="damageNameInput" class="mt-4 d-none">
+                            <label class="d-flex flex-column gap-2">
+                                <span>
+                                     لطفا ناحیه یا نوع آسیب را وارد نمایید <span class="necessary">(الزامی)</span>
+                                </span>
+                                <input type="text" name="damage_type" placeholder="ناحیه یا نوع آسیب" class="form-control input">
                             </label>
                         </div>
                     </div>
