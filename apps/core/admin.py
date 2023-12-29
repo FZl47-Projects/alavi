@@ -10,10 +10,10 @@ admin.site.unregister(Group)
 
 
 # Unregister django-q models
-admin.site.unregister(Failure)
-admin.site.unregister(OrmQ)
-admin.site.unregister(Schedule)
-admin.site.unregister(Success)
+# admin.site.unregister(Failure)
+# admin.site.unregister(OrmQ)
+# admin.site.unregister(Schedule)
+# admin.site.unregister(Success)
 
 
 # Rename admin site header & title & index_title
