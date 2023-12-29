@@ -8,4 +8,7 @@ from .models import UserProfile, User
 def user_model_saved(sender, instance, created, *args, **kwargs):
     if created:
         # Create profile for new user
-        UserProfile.objects.create(user=instance)
+        if instance.is_admin_user:
+            UserProfile.objects.create(user=instance, verified=True)
+        else:
+            UserProfile.objects.create(user=instance)

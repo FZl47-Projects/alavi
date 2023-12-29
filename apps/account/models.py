@@ -1,5 +1,4 @@
 from django.utils.translation import gettext as _
-from django.contrib.auth.base_user import BaseUserManager
 from django.contrib.auth.models import AbstractUser
 from django.conf import settings
 from django.urls import reverse
@@ -7,53 +6,8 @@ from django.db import models
 
 from phonenumber_field.modelfields import PhoneNumberField
 from apps.package.models import Package
+from . import managers
 import secrets
-
-
-class CustomBaseUserManager(BaseUserManager):
-
-    def create_user(self, phonenumber, password, email=None, **extra_fields):
-        """
-        Create and save a normal_user with the given phonenumber and password.
-        """
-        if not phonenumber:
-            raise ValueError(_("The phonenumber must be set"))
-        email = self.normalize_email(email)
-        user = self.model(email=email, phonenumber=phonenumber, **extra_fields)
-        user.set_password(password)
-        user.save()
-        return user
-
-    def create_financial_user(self, phonenumber, password, email=None, **extra_fields):
-        return self.create_user(
-            phonenumber=phonenumber, password=password, role='financial_user', email=email, **extra_fields
-        )
-
-    def create_superuser(self, phonenumber, password, email=None, **extra_fields):
-        extra_fields.setdefault("is_staff", True)
-        extra_fields.setdefault("is_superuser", True)
-        extra_fields.setdefault("is_active", True)
-
-        if extra_fields.get("is_staff") is not True:
-            raise ValueError("Superuser must have is_staff=True.")
-        if extra_fields.get("is_superuser") is not True:
-            raise ValueError("Superuser must have is_superuser=True.")
-
-        return self.create_user(
-            phonenumber=phonenumber, password=password, role='super_user', email=email, **extra_fields
-        )
-
-
-class NormalUserManager(models.Manager):
-
-    def get_queryset(self):
-        return super().get_queryset().filter(role='normal_user')
-
-
-class SuperUserManager(models.Manager):
-
-    def get_queryset(self):
-        return super().get_queryset().filter(role='super_user')
 
 
 class User(AbstractUser):
@@ -71,9 +25,9 @@ class User(AbstractUser):
     USERNAME_FIELD = 'phonenumber'
     REQUIRED_FIELDS = []
 
-    objects = CustomBaseUserManager()
-    normal_user = NormalUserManager()
-    super_user = SuperUserManager()
+    objects = managers.CustomBaseUserManager()
+    normal_user = managers.NormalUserManager()
+    super_user = managers.SuperUserManager()
 
     class Meta:
         verbose_name = _('User')
