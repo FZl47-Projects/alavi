@@ -1,13 +1,13 @@
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import get_object_or_404
 from django.views.generic import RedirectView
 
-from apps.order.models import PurchaseRequest
+from apps.account.mixins import ProfileVerifiedMixin
 from apps.package.models import Package
+from . models import PurchaseRequest
 
 
 # PackageRequest view
-class PackageRequestView(LoginRequiredMixin, RedirectView):
+class PackageRequestView(ProfileVerifiedMixin, RedirectView):
     def get_redirect_url(self, *args, **kwargs):
         package = get_object_or_404(Package, id=self.request.GET.get('pk'))
         user = self.request.user

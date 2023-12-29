@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-28 15:08+0330\n"
+"POT-Creation-Date: 2023-12-30 02:07+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -329,9 +329,13 @@ msgstr "پروفایل کاربر"
 msgid "User profiles"
 msgstr "پروفایل کاربران"
 
-#: .\apps\account\views.py:47 .\apps\account\views.py:134
+#: .\apps\account\views.py:37 .\apps\account\views.py:70
 msgid "Welcome"
 msgstr "خوش آمدید"
+
+#: .\apps\account\views.py:123
+msgid "Information registered successfully"
+msgstr "اطلاعات با موفقیت ثبت شد"
 
 #: .\apps\core\admin.py:20
 msgid "Alavi sport club"

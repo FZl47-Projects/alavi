@@ -1,22 +1,21 @@
+from django.contrib.auth import authenticate, login, get_user_model, logout as logout_handler
+from django.http import JsonResponse, HttpResponseBadRequest, Http404, HttpResponse
+from django.shortcuts import render, redirect, get_object_or_404, reverse
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.decorators.http import require_POST
+from django.utils.translation import gettext as _
+from django.views.generic import View
 from django.contrib import messages
 from django.conf import settings
-from django.shortcuts import render, redirect, get_object_or_404, reverse
-from django.utils.translation import gettext as _
-from django.http import JsonResponse, HttpResponseBadRequest, Http404, HttpResponse
-from django.views.decorators.http import require_POST
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import View
-from django.contrib.auth import authenticate, login, get_user_model, logout as logout_handler
+
 from apps.core.utils import add_prefix_phonenum, random_num, form_validate_err
-from apps.core.auth.decorators import admin_required_cbv
 from apps.core.redis_py import set_value_expire, remove_key, get_value
+from apps.core.auth.decorators import admin_required_cbv
 from apps.notification.models import NotificationUser
-from apps.public.models import Certificate
 from .models import ExerciseDay, UserProfile
 from .mixins import LogoutRequiredMixin
 from . import forms
 import json
-
 
 User = get_user_model()
 RESET_PASSWORD_CONFIG = settings.RESET_PASSWORD_CONFIG
@@ -34,21 +33,13 @@ def login_register(request):
                 messages.error(request, 'کاربری با این مشخصات یافت نشد')
                 return redirect('account:login_register')
 
-            # Check UserProfile verification
-            if not user.is_admin_user and not user.user_profile.verified:
-                # Create unique token for UserProfile (to track user authentication)
-                user.user_profile.generate_token()
-
-                # Save token in sessions (temporary) and redirect user to GetProfileInfo view
-                request.session['register_token'] = user.user_profile.token
-                return redirect('account:register_profile')
-
             login(request, user)
             messages.success(request, _('Welcome'))
 
             return redirect('public:index')
         else:
             messages.error(request, 'لطفا فیلد هارا به درستی وارد نمایید')
+
         return redirect(user.get_absolute_url())
 
     def register_perform(request, data):
@@ -56,11 +47,13 @@ def login_register(request):
         if f.is_valid() is False:
             messages.error(request, 'لطفا فیلد هارا به درستی وارد نمایید')
             return redirect('account:login_register')
+
         # check for exists normal_user
         phonenumber = f.cleaned_data['phonenumber']
         if User.objects.filter(phonenumber=phonenumber).exists():
             messages.error(request, 'کاربری با این شماره از قبل ثبت شده است')
             return redirect('account:login_register')
+
         # create user
         password = f.cleaned_data['password2']
         user = User(
@@ -71,14 +64,12 @@ def login_register(request):
         user.set_password(password)
         user.save()
 
-        # Create unique token for UserProfile (to track user authentication)
-        user.user_profile.generate_token()
+        # Login user and redirect to index page
+        login(request, user)
 
-        # Save token in sessions (temporary)
-        request.session['register_token'] = user.user_profile.token
+        messages.success(request, _('Welcome'))
 
-        # Redirect to UserProfile information form
-        return redirect('account:register_profile')
+        return redirect('public:index')
 
     if request.method == 'GET':
         return render(request, 'account/login-register.html')
@@ -86,6 +77,7 @@ def login_register(request):
     elif request.method == 'POST':
         data = request.POST
         type_page = data.get('type-page', 'login')
+
         if type_page == 'login':
             return login_perform(request, data)
         elif type_page == 'register':
@@ -93,7 +85,7 @@ def login_register(request):
 
 
 # Render UserProfileInfo View
-class GetUserProfileInfo(LogoutRequiredMixin, View):
+class GetUserProfileInfo(View):
     """ Get UserProfile info before finishing user register """
     def get(self, request):
         # Get register_token and get profile
@@ -125,13 +117,14 @@ class GetUserProfileInfo(LogoutRequiredMixin, View):
             return redirect(reverse('account:register_profile'))
         form.save()
 
-        user = profile.user
-        login(request, user)
-
         # Remove register_token
         profile.clear_token(request)
 
-        messages.success(request, _('Welcome'))
+        messages.success(request, _('Information registered successfully'))
+
+        next_url = request.GET.get('next')
+        if next_url:
+            return redirect(next_url)
 
         return redirect('public:index')
 
@@ -258,10 +251,8 @@ class UserProfileView(LoginRequiredMixin, View):
         user = get_object_or_404(User, id=user_id)
         if request.user.is_normal_user and user != request.user:
             raise Http404
-        context = {
-            'user_detail': user,
-        }
-        return render(request, self.template_name, context)
+
+        return render(request, self.template_name, context={'user_detail': user,})
 
 
 class UserProfileUpdate(LoginRequiredMixin, View):
@@ -274,7 +265,7 @@ class UserProfileUpdate(LoginRequiredMixin, View):
         profile = None
         try:
             profile = user.user_profile
-        except:
+        except (AttributeError, ValueError):
             pass
 
         form = forms.UserProfileUpdateForm(data, request.FILES, instance=profile)
@@ -292,6 +283,7 @@ class UserProfileDelete(LoginRequiredMixin, View):
     def post(self, request, user_id):
         user = get_object_or_404(User, id=user_id)
         user.delete()
+
         messages.success(request, 'کاربر موفقیت حذف شد')
         return redirect('account:users')
 
@@ -310,7 +302,5 @@ class Users(View):
     @admin_required_cbv()
     def get(self, request):
         users = User.normal_user.all()
-        context = {
-            'users': users
-        }
-        return render(request, self.template_name, context)
+
+        return render(request, self.template_name, context={'users': users})
