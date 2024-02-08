@@ -2,7 +2,7 @@ from config.settings.base import *
 from os import getenv
 
 
-PRODUCTION = getenv('PRODUCTION', False)
+PRODUCTION = int(getenv('PRODUCTION', 0))
 
 if PRODUCTION:
     from config.settings.production import *

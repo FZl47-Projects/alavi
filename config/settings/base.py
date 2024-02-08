@@ -1,6 +1,9 @@
 from django.utils.translation import gettext_lazy as _
+from dotenv import load_dotenv
 from pathlib import Path
 import os
+
+load_dotenv()
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -14,7 +17,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-#*g^+y5-plch-=q=@yre0go(@er5diu*!poca-()#p01*1#$qq')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv('DEBUG', True)
+DEBUG = int(os.getenv('DEBUG', True))
 
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '*').split(',')
 
