@@ -1,6 +1,5 @@
 from django.utils.translation import gettext_lazy as _
 from pathlib import Path
-
 import os
 
 
@@ -33,12 +32,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    # Third party apps
-    'django_q',
-    'ckeditor',
-    'phonenumber_field',
-    'nested_admin',
-
     # Apps
     'apps.account',
     'apps.core',
@@ -48,6 +41,12 @@ INSTALLED_APPS = [
     'apps.package',
     'apps.order',
     'apps.notification',
+
+    # Third party apps
+    'django_q',
+    'ckeditor',
+    'phonenumber_field',
+    'nested_admin',
 ]
 
 MIDDLEWARE = [
@@ -166,6 +165,11 @@ IMAGE_FORMATS = [
     'png'
 ]
 
+REDIS_CONFIG = {
+    'HOST': os.getenv('REDIS_HOST', 'localhost'),
+    'PORT': os.getenv('REDIS_PORT', '6379')
+}
+
 Q_CLUSTER = {
     'name': 'django-q',
     'timeout': int(os.getenv('Q_CLUSTER_TIMEOUT', 60)),
@@ -174,10 +178,6 @@ Q_CLUSTER = {
 
 MESSAGE_STORAGE = "django.contrib.messages.storage.cookie.CookieStorage"
 
-REDIS_CONFIG = {
-    'HOST': os.getenv('REDIS_HOST', 'localhost'),
-    'PORT': os.getenv('REDIS_PORT', '6379')
-}
 
 RESET_PASSWORD_CONFIG = {
     'TIMEOUT': int(os.getenv('RESET_PASS_CONFIG_TIMEOUT', 60)),  # by sec
@@ -187,17 +187,17 @@ RESET_PASSWORD_CONFIG = {
 
 
 # Email backend config
-EMAIL_SUBJECT = f'اعلان از طرف سامانه علوی '
+EMAIL_SUBJECT = os.getenv('EMAIL_SUBJECT', 'باشگاه علوی')
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = int(os.getenv('EMAIL_PORT', 587))
-EMAIL_HOST_USER = os.getenv('EMAIL_USER', 'fzl47.projects@gmail.com')
-EMAIL_HOST_PASSWORD = os.getenv('EMAIL_PASSWORD', 'zrqxdunuaorfagaq')
+EMAIL_HOST_USER = os.getenv('EMAIL_USER')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_PASSWORD')
 
 # SMS configurations
 SMS_CONFIG = {
-    'API_KEY': os.getenv('SMS_CONFIG_API_KEY', 'ml23kKIXh-JXCBNfbs-6DWnU1ZaBJuVxcZGjLRnggvs='),
+    'API_KEY': os.getenv('SMS_CONFIG_API_KEY'),
     'API_URL': os.getenv('SMS_CONFIG_API_URL', 'http://rest.ippanel.com/v1/messages/patterns/send'),
-    'ORIGINATOR': os.getenv('SMS_CONFIG_ORIGINATOR', '983000505')
+    'ORIGINATOR': os.getenv('SMS_CONFIG_ORIGINATOR')
 }
