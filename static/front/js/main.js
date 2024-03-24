@@ -1,4 +1,4 @@
-const product = new Swiper('#services-slider', {
+const product = new Swiper('.services-slider', {
     // Optional parameters
     direction: 'horizontal',
     grabCursor: true,
@@ -36,15 +36,12 @@ const product = new Swiper('#services-slider', {
       1600: {
         slidesPerView: 4,
       },
-  
-      // when window width is >= 640px
-  
     },
     // If we need pagination
-    pagination: {
-      el: '.swiper-pagination',
-      clickable: true
-    },
+    // pagination: {
+    //   el: '.swiper-pagination',
+    //   clickable: true
+    // },
   
     // Navigation arrows
     navigation: {

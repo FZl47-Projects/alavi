@@ -17,21 +17,24 @@
         <!-- START HEADER -->
         {% include 'base/components/header.html' %}
         <!-- END HEADER -->
+
         <main class="container-fluid">
             <section class="content-main">
+
                 <!-- Title -->
                 <div class="title">
                     <span>مجـــموعــه</span>
                     <span> ورزشــــی عـــلـــوی</span>
                 </div>
                 <!-- Title -->
+
                 <!-- Start services content -->
-                <div class="services-content mt-4 h-auto">
-                    <div class="services-content-inner">
+                <div class="mt-4">
+                    <div>
                         <!-- Slider -->
-                        <div class="swiper" id="services-slider">
+                        <div class="swiper services-slider">
                             <div class="swiper-wrapper services-wrapper">
-                                <!--each slide service  -->
+                                <!-- each slide service -->
                                 {% for content in free_contents %}
                                     <div class="swiper-slide services-main-box">
                                         <div class="services-main-inner-box">
@@ -40,17 +43,15 @@
                                                     <h4>{{ content.title }}</h4>
                                                     <span class="fw-semibold">{{ content.short_description }}</span>
                                                 </div>
-
                                                 <p class="pt-2">{{ content.text|safe }}</p>
                                             </div>
                                         </div>
                                     </div>
                                 {% endfor %}
                             </div>
-                            <!-- btn next & prev slider certificate -->
+
                             <div class="swiper-button-prev"></div>
                             <div class="swiper-button-next"></div>
-                            <!-- btn next & prev slider certificate -->
                         </div>
                         <!-- Slider -->
                     </div>

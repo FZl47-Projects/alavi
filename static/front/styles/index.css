@@ -560,41 +560,8 @@ input {
 .main-page .content-main .title span:nth-child(1) {
   font-weight: 500;
 }
-.main-page .content-main .services-content {
-  height: 45%;
-  display: flex;
-  flex-direction: column;
-}
-.main-page .content-main .services-content .services-content-inner {
-  display: flex;
-  flex-wrap: wrap;
-}
-.main-page .content-main .services-content .services-content-inner .services-item {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
-}
-.main-page .content-main .services-content .services-content-inner .services-item .title-services {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  font-size: 20px;
-  padding: 10px;
-}
-.main-page .content-main .services-content .services-content-inner .services-item .title-services span:nth-child(1) {
-  color: rgb(255, 255, 255);
-}
-.main-page .content-main .services-content .services-content-inner .services-item .title-services span:nth-child(2) {
-  color: #4a6e5d;
-  font-weight: 600;
-  font-size: 25px;
-}
-.main-page .content-main .services-content .services-content-inner .services-item .description {
-  color: #fff;
-}
 
+/* Free contents styles */
 .services-wrapper {
   background-color: rgba(255, 255, 255, 0.01);
   box-shadow: 0 0 6px #1a1a1a;
@@ -609,7 +576,6 @@ input {
 }
 
 .services-main-inner-box {
-  width: 100%;
   height: 100%;
   position: relative;
   background-color: rgba(26, 178, 104, 0.05);
@@ -642,19 +608,19 @@ input {
   border-radius: 10px;
 }
 
-.services-content .services-content-inner .swiper .swiper-button-next {
+.services-slider .swiper-button-next {
   left: 0 !important;
   right: auto;
 }
-.services-content .services-content-inner .swiper .swiper-button-prev {
+.services-slider .swiper-button-prev {
   left: auto;
   right: 0 !important;
 }
-.services-content .services-content-inner .swiper .swiper-button-next:after {
+.services-slider .swiper-button-next:after {
   font-size: 23px !important;
   color: #fff;
 }
-.services-content .services-content-inner .swiper .swiper-button-prev:after {
+.services-slider .swiper-button-prev:after {
   font-size: 23px !important;
   color: #fff;
 }
