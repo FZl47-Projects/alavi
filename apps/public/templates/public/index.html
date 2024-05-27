@@ -62,7 +62,7 @@
                     <section>
                         <div class="d-flex justify-content-between">
                             <h3 class="fw-semibold text-white">محصولات</h3>
-                            <a href="{% url 'package:list' %}" class="btn btn-success rounded-3 pt-2">همه محصولات</a>
+                            <a href="{% url 'package:list' %}" class="btn btn-success rounded-3 pt-2 bg-red">همه محصولات</a>
                         </div>
                         <!-- Slider -->
                         <div class="swiper product-main-box mt-3 rounded-1" id="products-swiper">
@@ -76,9 +76,9 @@
                                                         <img src="{{ package.icon.url }}" alt="Package logo" width="60" height="48">
                                                     </figure>
                                                 {% elif package.fw_class %}
-                                                    <i class="fa {{ package.fw_class }} fa-4x text-success"></i>
+                                                    <i class="fa {{ package.fw_class }} fa-4x text-success color-red"></i>
                                                 {% else %}
-                                                    <i class="fa fa-heart-circle-plus fa-4x text-success"></i>
+                                                    <i class="fa fa-heart-circle-plus fa-4x text-success color-red"></i>
                                                 {% endif %}
                                             </div>
                                             <div class="d-flex flex-column align-items-center gap-4 mt-1 mb-3 text-white inner-info-box">

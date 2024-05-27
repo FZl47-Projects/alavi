@@ -15,7 +15,7 @@
             {% csrf_token %}
             <input type="hidden" name="token" value="{{ profile.token }}">
 
-            <div class="main-box-title">
+            <div class="main-box-title bg-red">
                 <h3>فرم تکمیل اطلاعات کاربری</h3>
                 <span>کاربر گرامی، لطفا با دقت به سوالات زیر نسبت به خود پاسخ دهید.</span>
             </div>
@@ -549,7 +549,7 @@
                         تایید
                         <input type="checkbox" name="verified" value="true" required class="input form-check-input">
                     </label>
-                    <button type="submit" class="verify-btn">
+                    <button type="submit" class="verify-btn bg-red">
                         ثبت همه موارد
                     </button>
                 </div>
